@@ -1,57 +1,22 @@
 ---
-import "../styles/global.css";
-
+import SiteLayout from "../layouts/SiteLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Shkaev</title>
-		<meta
-			name="description"
-			content="Personal website of Shkaev. The new version is coming soon."
-		/>
-	</head>
-	<body>
-		<main class="page">
-			<h1 class="text-4xl font-bold">Shkaev</h1>
-		</main>
-	</body>
-</html>
-
-<style>
-	:global(:root) {
-		font-family:
-			"SF Pro Display",
-			"Segoe UI",
-			sans-serif;
-		color: #f5f7fb;
-		background:
-			radial-gradient(circle at top, rgba(72, 117, 255, 0.28), transparent 38%),
-			linear-gradient(180deg, #0f172a 0%, #020617 100%);
-	}
-
-	:global(body) {
-		margin: 0;
-		min-height: 100vh;
-		background: transparent;
-	}
-
-	.page {
-		box-sizing: border-box;
-		min-height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 2rem;
-		text-align: center;
-	}
-
-	h1 {
-		margin: 0;
-	}
-</style>
+<SiteLayout
+	title="Dima Shkaev"
+	description="Personal website of Dima Shkaev."
+>
+	<section class="my-auto max-w-3xl">
+		<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
+			Personal website
+		</p>
+		<h1 class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl">
+			Hey, it's great to meet you! I'm Dima
+		</h1>
+		<p class="mt-8 max-w-2xl text-base leading-8 text-stone-600 sm:text-lg">
+			Here you can find curated collections of the photos I've been taking over
+			the years, as well as some highlights of my professional career as a
+			product designer.
+		</p>
+	</section>
+</SiteLayout>

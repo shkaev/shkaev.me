@@ -1,0 +1,493 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+const workTimeline = [
+	{
+		role: "Senior Product Designer",
+		company: "Mayflower",
+		href: "https://mayflower.work",
+		period: "April 2023 — Present",
+		contractType: "Full-time, Office",
+		description: [
+			"Translating user feedback, business requirements, and technical limitations into ongoing product improvements",
+			"Designing thoughtful experiences that add value to users",
+			"Owning the end-to-end design process from rough ideas and sketches to high-fidelity solutions",
+			"Collaborating with design team members to maintain consistency and improve the product holistically",
+			"Providing implementation guidance to engineers and ensuring every feature is built according to our high standards",
+			"Measuring feature success through qualitative and quantitative data research"
+		]
+	},
+	{
+		role: "Senior Product Designer",
+		company: "Avast Software",
+		href: "https://www.linkedin.com/company/avast-software/",
+		period: "May 2019 — Dec 2022",
+		contractType: "Full-time, Remote",
+		intro:
+			"As a senior product designer with deep expertise in perfecting user experience, I worked across various platforms, creating concepts, final designs, and end-to-end user journeys. As an integral part of the Privacy design unit, I communicated with stakeholders about business needs, ideated on new concepts, and was responsible for the final output. I was also lucky to mentor new people and help them find opportunities within our design org.",
+		description: [
+			"Create, maintain, and evolve design of the Privacy product lineup, owning entire product spaces and working on projects that encompass multiple features such as AntiTrack, BreachGuard, SecureLine VPN, and Avast Online Security & Privacy",
+			"Take broad conceptual ideas or high-level problems and deliver product vision, developing end-to-end UX flows and experiences that are simple and solve user needs",
+			"Design large-scale digital products and new experiences, interactions, and interfaces from the ground up",
+			"Create user flows and mockups to articulate design concepts",
+			"Define how an experience should behave based on understanding people's needs through interaction design",
+			"Create click-through prototypes for user testing and demos",
+			"Understand and interpret user research and usability testing",
+			"Help evolve and define the design system for desktop and mobile applications with a focus on aesthetics and visual design",
+			"Partner with product managers, engineers, UX researchers, and content designers to iterate on and oversee the user experience of a product from conception to launch",
+			"Work proficiently in design and collaboration tools such as Figma, Miro, and Adobe Creative Suite",
+			"Proactively solicit and provide feedback from team members",
+			"Mentor junior designers and participate in initiatives such as interviewing, recruiting, and workshops"
+		]
+	},
+	{
+		role: "Product Designer",
+		company: "TrackOFF",
+		href: "https://www.linkedin.com/company/trackoff/",
+		period: "Jun 2015 — Jul 2019",
+		contractType: "Contract, Remote",
+		intro:
+			"I joined the startup as employee number two and helped build our innovative privacy product from the ground up. It performed so well financially that after four years we were acquired by tech giant Avast, where we continued our collective journey within the new company."
+	},
+	{
+		role: "Freelance Designer",
+		company: "Independent practice",
+		period: "Apr 2015 — Jul 2017",
+		contractType: "Self-employed",
+		intro:
+			"Worked on design projects for clients from all over the world. In the downtime I was also successfully taking on web and landing page contests for fun, experience, and additional income."
+	},
+	{
+		role: "Web Designer",
+		company: "Perfecto",
+		href: "https://www.linkedin.com/company/perfecto-mobile/",
+		period: "Jun 2011 — May 2015",
+		contractType: "Full-time, Office",
+		intro:
+			"During the first year I was mostly managing content for the company's websites. Over time I gradually shifted toward web design and project management, which resulted in dozens of successfully completed projects. It was a great time working with brilliant people and a good opportunity to learn this amazing craft from the front lines."
+	},
+	{
+		role: "PR & Project Manager",
+		company: "Omsk Chamber of Commerce",
+		href: "https://omsk.tpprf.ru/",
+		period: "Mar 2008 — Jun 2011",
+		contractType: "Full-time, Office",
+		intro:
+			"My direct responsibilities included website management, writing daily news articles, communicating with clients, overseeing the company's print production from design to distribution, participating in business- and government-related events, and helping to build the company's public image in general."
+	}
+];
+
+const recommendations = [
+	{
+		name: "Aleksandr Kiselev",
+		href: "https://www.linkedin.com/in/aleksandr-kiselev-41a228271",
+		role: "Senior Fullstack Developer, Mayflower — same team",
+		avatar: "/avatar-review-17.jpg",
+		text:
+			"I had the pleasure of working with Dmitry for about two years on the same project as a frontend developer. During that time, he consistently demonstrated his high level of expertise, creativity, and ability to see the product as more than just a set of screens and UI elements.\n\nI would especially like to highlight that Dmitry always took into account the technical capabilities and current realities of the project. Thanks to this, we successfully delivered complex and visually impressive features, finding the perfect balance between design excellence and implementation complexity. He is open to communication, quickly adapts to changes, and makes well-reasoned decisions."
+	},
+	{
+		name: "Bulat Meshkov",
+		href: "https://www.linkedin.com/in/bulatmeshkov/",
+		role: "Senior Product Designer at Exness; Mayflower — different teams",
+		avatar: "/avatar-review-16.jpg",
+		text:
+			"Me and Dmitry worked on the same product. While I was responsible for the content creators experience, he was responsible for user activation and interation experience of our product, and I have to say that our collaboration went great. Dmitry Shkaev is a super easy going and friendly person, and he’s very passionate about the user experience, always advocating for solutions that put user’s needs in the center of the discussion. He’s very strong in validating design decisions with A/B test and other mixed methods to research user experience. He has a lot of business knowledge and understand how to prioritize and balance user x business needs. I’d love to work again with Dmitry, since he has a very strong product sense and we always have fun!"
+	},
+	{
+		name: "Yurii Korotun",
+		href: "https://www.linkedin.com/in/yurii-korotun/",
+		role: "Senior Principal Product Manager at Gen; Avast Software — same team",
+		avatar: "/avatar-review-15.jpg",
+		text:
+			"I had the pleasure to work with Dima on multiple projects and I am thoroughly impressed by his skills as a UI/UX designer.\nI was consistently amazed by his ability to create interfaces that are both visually appealing and user-friendly. He has a remarkable eye for detail and a comprehensive understanding of what it takes to design an interface that is both functional and attractive. In addition to his professional skills, I want to admit his easygoing personality. It’s really great to cooperate on any project. Any challenge is very quickly processed with several options and good ground of what would work best. I am confident in recommending Dima for any UI/UX design project and look forward to working with him again in the future."
+	},
+	{
+		name: "Victoria Usan",
+		href: "https://www.linkedin.com/in/victoriausan/",
+		role: "QA Engineer at Applifting; Avast Software — same team",
+		avatar: "/avatar-review-14.jpg",
+		text:
+			"Dima was mentoring me on my path toward being a UX designer. He dedicated much of his time to helping me grow as a professional. We worked together on different projects, and it was an absolute pleasure to cooperate with him on each of them. Not only has he great design and research skills, but he also has an outstanding skill of explanations being able to defend his point of view in a structured manner. Although our career roads diverged, we stay in close contact sharing interesting information regarding UX skills."
+	},
+	{
+		name: "Ron Ward",
+		href: "https://www.linkedin.com/in/ron-ward-jr/",
+		role: "Senior Product Manager, Avast Software — same team",
+		avatar: "/avatar-review-13.jpg",
+		text:
+			"Dmitry and I worked together dating back to 2018, when we worked at a growth stage start-up company. He was the UX & Design expert that we needed in a fast-paced work environment; with priorities shifting ever so quickly - working on desktop and mobile applications, partner white-label products, websites, investor pitch presentations, you name it.\n\nWe had experienced quite a journey together as well; two company acquisitions, major departmental re-organizations, the Covid-19 pandemic - Dmitry kept a positive outlook throughout many challenges. Always willing to step up to the plate and deliver the best Customer Experiences we can provide, solving problems through UX solutions, and always asking the right questions. Dmitry was never shy to challenge the Product and Engineering teams to provide the best Customer Experience. Dmitry is always Customer focused and has a very keen attention to detail.\n\nI would highly recommend Dmitry to anyone who is looking for an experienced UX Designer, Team Lead, and someone who can mentor Junior UX Designers to become the best version of themselves. I very much hope to work with Dmitry again in the future."
+	},
+	{
+		name: "Natalie Schinkova",
+		href: "https://www.linkedin.com/in/natalie-schinkova/",
+		role: "Product Manager, Avast Software — shared projects",
+		avatar: "/avatar-review-12.jpg",
+		text:
+			"I always enjoyed working with Dmitry on common projects. As a former UX researcher turned PM, I especially appreciated Dima's user centricity and his ability to turn research findings into relevant design changes. Given our hybrid working environment, I also valued his ability to work asynchronously and he was always trying to find best ways how to communicate without generating unnecessary meetings."
+	},
+	{
+		name: "Jon Schubbe",
+		href: "https://www.linkedin.com/in/jon-schubbe-327aa613/",
+		role: "Senior Product Designer, TrackOFF & Avast Software — same team",
+		avatar: "/avatar-review-11.jpg",
+		text:
+			"I've worked with Dima for many years through not just one, but two company acquisition/mergers. He's very easy to get along with and will always be there for you in a time of need. His willingness to always mentor, give feedback, and deliver highly polished visual design no matter the circumstances would be a great addition to any team. Any time I asked for feedback on a design, you better guess he had it ready to go by the next day! I've seen Dima grow a lot over the years and he hasn't stopped.\n\nDima not only manages his time well, but he manages the designs too. His attention to detail and communication with stakeholders means organized design files, regular Slack / email updates, and collaboration with everyone on the team.\n\nOne of Dima's strongest suits is that he delivers. No matter what resources might be lacking in a project, he will always see the design through to the end and deliver high quality with the people that will use it in mind.\n\nI already miss working with him and any team would be lucky to have Dima, whether it be for conceptualizing new products, presenting ideas to stakeholders and investors, or managing a project from start to finish."
+	},
+	{
+		name: "Jan Marek",
+		href: "https://www.linkedin.com/in/jan-marek-52453848/",
+		role: "Senior Product Designer, Avast Software — same team",
+		avatar: "/avatar-review-10.jpg",
+		text:
+			"I had the pleasure of working with Dima during my time at Avast. His design skills are great and he consistently delivered high-quality work. He has a deep understanding of user experience and user interface design principles and was able to apply them effectively to create nice and intuitive interfaces. I highly recommend Dima, he will be a valuable asset to any organization."
+	},
+	{
+		name: "Jiří Pojezný",
+		href: "https://www.linkedin.com/in/ji%C5%99%C3%AD-pojezn%C3%BD-6a322765/",
+		role: "Senior Front End Developer, Avast Software — same area",
+		text:
+			"I was excited to work with Dmitry. His designs are beautiful and user-centric. Together we always found the balance between the UX and technical feasibility so that developers can keep a sustainable clean codebase while providing a great user experience.\n\nDmitry is also super friendly and super responsive. He's always there for his colleagues. I'm sure anyone would love working with him.\n\nIf you are looking for an outstanding and social Product & UX Designer, Dmitry is the right person for you!"
+	},
+	{
+		name: "Ilja Panić",
+		href: "https://www.linkedin.com/in/iljapanic/",
+		role: "Senior Product Designer, Avast Software — same team",
+		avatar: "/avatar-review-9.jpg",
+		text:
+			"I had the pleasure of working with Dmitry for over a year. He is one of the most dependable and talented designers I've collaborated with in the past 10 years.\n\nDmitry has an impeccable attention to detail and consistently delivers well-documented pixel perfect designs. He was our team's go-to guy for anything related to Figma and design systems. Dmitry's strong technical competence is complimented by a great grasp of end-to-end design process and stakeholder management. Whenever he worked on a project, you could rest assured that we will see it through to successful completion.\n\nPersonally, Dmitry was always calm and easy-going, which played a significant role in keeping up the team's spirit even during challenging times. He always went above and beyond to support others when they needed help. He has also done a fantastic job of mentoring more junior members of our team.\n\nAll in all, everyone can only wish to have a professional like Dmitry on their team.\n\nThank you, Dmitry, it was a true pleasure working with you."
+	},
+	{
+		name: "Elena Ukolova",
+		href: "https://www.linkedin.com/in/elenaukolova/",
+		role: "Senior Product Designer, Avast Software — same team",
+		avatar: "/avatar-review-8.jpg",
+		text:
+			"We have been working in one team for a bit less than a year. During this period I have seen some superpowers of Dmitry and his ability to apply them to the work he does. One of these superpowers is the deep knowledge and mastery of Design Instruments. If I had a question on Figma or Design System, Dmitry was always a person to ask and to receive the deepest answer! Dmitry is a great colleague to collaborate with on a project, you can be sure that the work will be done with precision, accuracy, and facilitation for other collaborators! It was just luck to have him in my team."
+	},
+	{
+		name: "Alysa Yamada",
+		href: "https://www.linkedin.com/in/alyyamada/",
+		role: "UX Writer, Avast Software — same area",
+		avatar: "/avatar-review-7.jpg",
+		text:
+			"Dmitry is hands down one of the best UX designers I've ever worked with. We've been on the same design team for about two years and he's always gone above and beyond what was needed for every task. I would look forward to working on projects with him because his ability to organize concepts and simplify processes for everyone is pretty magical to experience. I appreciated his method of helping to incorporate UX writing into the design processes into Figma smoothly and efficiently as well. I have no doubt that Dima will continue to impress others with his design skills and thinking."
+	},
+	{
+		name: "Andrey Perfilev",
+		href: "https://www.linkedin.com/in/perfilev/",
+		role: "Enterpreneur",
+		avatar: "/avatar-review-6.jpg",
+		text:
+			"Dmitry is a very skilled UI designer. I have worked with him for several years now. His attention to detail is great and he delivered more than I expected. Strongly recommended!"
+	},
+	{
+		name: "Ryan Flach",
+		href: "https://www.linkedin.com/in/ryan-flach-1647b1ba/",
+		role: "TrackOFF CTO, Avast Software Director of Engineering",
+		avatar: "/avatar-review-5.jpg",
+		text:
+			"Dmitry is the best designer I’ve ever had the pleasure to work with. His designs are always created with their end purpose in mind, whether it is to enhance conversions on a website, or improve user experience in a GUI. He offers meticulous reasoning for everything that he does. He has made himself available for all of our design needs, is prompt and dependable, always offers a quick turnaround, and provides the highest quality deliverables. His eye for detail cannot be understated. If you engage his services once, you surely will again."
+	},
+	{
+		name: "Faizan J. Khan",
+		href: "https://www.linkedin.com/in/faizanjkhan/",
+		role: "Vice President at Giftsoft | Founder, CIO at VISARY",
+		avatar: "/avatar-review-4.jpg",
+		text:
+			"Dmitry gets it done. His attention to detail and quick response really helped us get exactly what we needed in a timely manner. He is consultative along the way, makes suggestions and listens closely to feedback. What more could you ask for? I highly recommend working with him and will certainly work with him again down the line."
+	},
+	{
+		name: "Vladimir Rybas",
+		href: "https://www.linkedin.com/in/vrybas/",
+		role: "Expert Software Engineer at Typeform.com",
+		avatar: "/avatar-review-3.jpg",
+		text:
+			"Dmitry is very talented and hardworking person. He is the perfectionist in a nutshell. Can't stand poor designs and sloppy user experience on the web and in everyday things. Which is a big laugh sometimes. But this attention to detail is what makes him such a good designer. Highly recommend!"
+	},
+	{
+		name: "Chandler Givens",
+		href: "https://www.linkedin.com/in/chandler-givens-42a6184/",
+		role: "TrackOFF CEO, Avast Software Director of Product & Commercial Innovation",
+		avatar: "/avatar-review-2.jpg",
+		text:
+			"Dmitry is a wonderful designer -- we will absolutely use his services again! In addition to working quickly and creating great designs, he provides thoughtful explanations for why, from a user experience standpoint, certain elements are important. He was also always available to answer questions or revise designs based on our feedback, but also willing to defend positions he felt strongly about. Couldn't have been a better experience."
+	},
+	{
+		name: "Anton Gilyov",
+		href: "https://www.linkedin.com/in/gilyov/",
+		role: "Worked together at Perfecto, TrackOFF and Avast Software — same teams",
+		avatar: "/avatar-review-1.jpg",
+		text:
+			"Dmitry is a very motivated and hard working person. We worked together in Perfecto and still working together on freelance contracts. For now he is one of the most professional and responsible people I have ever met. Work process with him is simple and clean. Dmitry would be a true asset for any positions requiring UI/UX & Website design and comes with my heartfelt recommendation."
+	}
+];
+---
+
+<SiteLayout
+	title="About | Dima Shkaev"
+	description="About Dima Shkaev, his photography, and his product design background."
+>
+	<section class="w-full max-w-[60rem]">
+		<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
+			About
+		</p>
+		<h1 class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl">
+			Dmitry Shkaev
+		</h1>
+		<p class="mt-5 text-base leading-8 text-stone-600 sm:text-lg">
+			Senior product designer with over a decade of hands-on corporate
+			experience.
+		</p>
+
+		<div class="mt-16 border-t border-stone-200 pt-10">
+			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
+				Introduction
+			</h2>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				Professionally, I’m best at the intersection of helping businesses
+				reach their goals and creating meaningful experiences that leave people
+				feeling great, inspired, and cared for. I have a strong background in
+				designing both customer-facing and enterprise software for desktop and
+				mobile, as well as years of commercial website design work.
+			</p>
+		</div>
+
+		<div class="mt-10">
+			<div class="relative space-y-4 pl-8 before:absolute before:bottom-0 before:left-0 before:top-0 before:w-px before:bg-stone-200/70 sm:pl-10">
+				{
+					workTimeline.map((item) => (
+						<article class="relative rounded-[1.75rem] border border-stone-200/80 bg-white/80 p-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] backdrop-blur-sm transition hover:border-stone-300">
+							<span class="absolute left-[-2.375rem] top-[4.4rem] h-3 w-3 -translate-y-1/2 rounded-full border-2 border-stone-50 bg-stone-400 sm:left-[-2.875rem] sm:top-[4.72rem]"></span>
+							<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+								<div class="min-w-0 flex-1">
+									<p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-stone-500">
+										{
+											item.href ? (
+												<a
+													href={item.href}
+													target="_blank"
+													rel="noreferrer"
+													class="transition-colors hover:text-stone-800"
+												>
+													{item.company}
+												</a>
+											) : (
+												<span>{item.company}</span>
+											)
+										}
+										<span class="text-stone-500">·</span>
+										<span>{item.period}</span>
+									</p>
+									<h2 class="mt-3 text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
+										{item.role}
+									</h2>
+								</div>
+								<div class="shrink-0 whitespace-nowrap rounded-full bg-stone-100 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-stone-500">
+									{item.contractType}
+								</div>
+							</div>
+							{
+								(item.intro || item.description) && (
+									<div class="mt-4 w-full">
+									{
+										item.intro && (
+											<p class="text-sm leading-6 text-stone-700 sm:text-[0.95rem] sm:leading-7">
+												{item.intro}
+											</p>
+										)
+									}
+									{
+										item.description && (
+											<ul class="mt-4 space-y-2 text-sm leading-6 text-stone-700 sm:text-[0.95rem] sm:leading-7">
+												{
+													item.description.map((point) => (
+														<li class="flex gap-3">
+															<span class="shrink-0 text-stone-500">·</span>
+															<span>{point}</span>
+														</li>
+													))
+												}
+												</ul>
+											)
+										}
+									</div>
+								)
+							}
+						</article>
+					))
+				}
+			</div>
+		</div>
+
+		<div class="mt-16">
+			<div>
+				<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
+					Strengths &amp; skills
+				</h2>
+				<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+					My main strength is the ability to solve complex problems by finding
+					elegant solutions and transforming them into functional interfaces.
+					There’s no magic to it, though, just a combination of accumulated
+					experience, applied knowledge, and design thinking.
+				</p>
+				<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+					People always tell that I have an eye for perfection when it comes to
+					crafting high-fidelity UI, and so I would consider this to be my
+					second-best trait. Wireframes and early drawing board concepts can and
+					should be wild, but when it comes to the final product it’s pixel
+					perfection or death. Just kidding, but yes, my Figma stuff is pretty
+					neat.
+				</p>
+			</div>
+		</div>
+
+		<div class="mt-16 border-t border-stone-200 pt-10">
+			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
+				Leadership
+			</h2>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				Even though I see myself bringing the most value as an individual
+				contributor, I have experience leading creative initiatives within
+				business objectives, directing and working closely with a small,
+				dedicated team of professionals.
+			</p>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				Usually, I’m also the person who welcomes new hires and performs an
+				onboarding routine, which is a very easy and comfortable activity for
+				me. I’ve also taken up a mentor role to share experience with aspiring
+				designers and gently guide them through design processes.
+			</p>
+		</div>
+
+		<div class="mt-16 border-t border-stone-200 pt-10">
+			<div>
+				<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
+					Recommendations
+				</h2>
+				<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+					Here are some testimonials people shared about me.
+				</p>
+			</div>
+
+			<div class="mt-10 space-y-4">
+				{
+					recommendations.map((item) => (
+						<article class="rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:px-6 sm:py-6">
+							<div class="flex items-center gap-3.5 sm:gap-4">
+								{
+									item.avatar ? (
+										<img
+											src={item.avatar}
+											alt={item.name}
+											draggable="false"
+											class="mt-0.5 h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-stone-200/80 sm:h-14 sm:w-14"
+										/>
+									) : (
+										<div class="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-stone-100 text-stone-400 ring-1 ring-stone-200/80 sm:h-14 sm:w-14">
+											<svg
+												aria-hidden="true"
+												viewBox="0 0 24 24"
+												class="h-6 w-6 fill-current sm:h-7 sm:w-7"
+											>
+												<path d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2.25c-3.83 0-6.75 1.92-6.75 4.5 0 .41.34.75.75.75h12a.75.75 0 0 0 .75-.75c0-2.58-2.92-4.5-6.75-4.5Z"></path>
+											</svg>
+										</div>
+									)
+								}
+								<div class="min-w-0 flex-1">
+									<h3 class="text-[1.2rem] font-normal leading-tight tracking-tight text-stone-950 sm:text-[1.35rem]">
+										<a
+											href={item.href}
+											target="_blank"
+											rel="noreferrer"
+											class="transition-colors hover:text-stone-600"
+										>
+											{item.name}
+										</a>
+									</h3>
+									<p class="mt-0.5 text-sm leading-5 text-stone-500 sm:text-[0.95rem] sm:leading-6">
+										{item.role}
+									</p>
+								</div>
+							</div>
+
+							<div class="mt-4 w-full space-y-3">
+								{
+									item.text.split("\n\n").map((paragraph) => (
+										<p class="text-sm leading-6 text-stone-700 sm:text-[0.95rem] sm:leading-7">
+											{paragraph}
+										</p>
+									))
+								}
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+
+		<div class="mt-16">
+			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
+				Hobbies
+			</h2>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				My main passion is
+				<a
+					href="/photography"
+					class="underline decoration-stone-300 underline-offset-4 transition hover:decoration-stone-900"
+				>
+					photography
+				</a>, which I’ve been doing for quite some time, starting back when film
+				cameras were still the mainstream way to do it. At some point in the
+				past I was comfortable enough to have it as a side gig, even securing
+				contracts from some big companies like
+				<a
+					href="https://en.omskcarbongroup.com"
+					target="_blank"
+					rel="noreferrer"
+					class="underline decoration-stone-300 underline-offset-4 transition hover:decoration-stone-900"
+				>
+					Omsk Carbon Group
+				</a>
+				to shoot portraits and environments.
+			</p>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				Another huge activity for me is
+				<a
+					href="https://www.strava.com"
+					target="_blank"
+					rel="noreferrer"
+					class="underline decoration-stone-300 underline-offset-4 transition hover:decoration-stone-900"
+				>
+					cycling
+				</a>
+				there’s nothing better than hopping on a bike, going out exploring and
+				making friends while doing so. It also helps with taking photos in new
+				places.
+			</p>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				And, as a family man, I spend a lot of time with my wife Olga and two
+				sons Boris and Gleb.
+			</p>
+		</div>
+
+		<div class="mt-16 border-t border-stone-200 pt-10">
+			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
+				Contact info
+			</h2>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				I’m located in Limassol and always open to meeting new people. Feel
+				free to hit me up on
+				<a
+					href="https://www.instagram.com/shkaev/"
+					target="_blank"
+					rel="noreferrer"
+					class="underline decoration-stone-300 underline-offset-4 transition hover:decoration-stone-900"
+				>
+					Instagram
+				</a>.
+			</p>
+		</div>
+	</section>
+</SiteLayout>

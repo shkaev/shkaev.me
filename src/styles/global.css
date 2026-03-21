@@ -1,1 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap");
 @import "tailwindcss";
+
+@layer base {
+	:root {
+		font-family: "Inter", "Segoe UI", sans-serif;
+	}
+
+	html {
+		background-color: #fafaf9;
+	}
+
+	body {
+		margin: 0;
+		font-family: "Inter", "Segoe UI", sans-serif;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: "DM Serif Display", Georgia, serif;
+		font-weight: 400;
+	}
+}
