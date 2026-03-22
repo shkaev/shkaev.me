@@ -1,0 +1,668 @@
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+
+const moreCaseStudies = [
+	{
+		href: "/design/case-studies/cookie-manager",
+		title: "Cookie Manager"
+	},
+	{
+		href: "/design/case-studies/trackoff",
+		title: "TrackOFF"
+	}
+];
+---
+
+<SiteLayout
+	title="Avast Online Security & Privacy | Design Case Study | Dima Shkaev"
+	description="A major redesign of the flagship browser extension with over 10 million users."
+>
+	<div class="flex w-full flex-col">
+		<section class="w-full">
+			<a
+				href="/design"
+				class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500 transition hover:text-stone-900"
+			>
+				Design / Case studies
+			</a>
+			<h1 class="mt-6 text-4xl font-normal tracking-tight text-stone-950 sm:text-5xl">
+				Avast Online Security &amp; Privacy
+			</h1>
+			<p class="mt-8 text-base leading-8 text-stone-700 sm:text-lg">
+				A major redesign of the flagship browser extension with over 10
+				million users.
+			</p>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/aosp/aosp-hero.jpg"
+				alt="AOSP case study hero image"
+				class="h-auto w-full"
+				loading="eager"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Executive summary
+			</h2>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					We took a sidelined browser extension with 12M+ installs and brought
+					it back into the spotlight. Along with a brand new visual style,
+					reformed information architecture, and a revised feature set, we
+					introduced an interactive Privacy Advisor guide system.
+				</p>
+				<p>
+					Through a meticulous design and development process, our team
+					delivered a fully refreshed product to praise from users and
+					leadership. Avast Online Security &amp; Privacy made a strong return
+					and started to play <strong class="font-bold text-stone-950"
+						>an integral role as a major digital touchpoint</strong
+					> for both existing and potential customers.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">Team</h2>
+			<div class="mt-6 space-y-3 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					Product owner: <a
+						href="https://www.linkedin.com/in/petraverse/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Petra Moravcova</a>
+				</p>
+				<p>
+					Product design lead: <a
+						href="https://www.linkedin.com/in/shkaev/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Dmitry Shkaev</a>
+				</p>
+				<p>
+					Discovery: <a
+						href="https://www.linkedin.com/in/petr-augustin/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Petr Augustin</a>
+				</p>
+				<p>
+					UX researcher: <a
+						href="https://www.linkedin.com/in/natalie-schinkova/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Natalie Schinkova</a>
+				</p>
+				<p>
+					UX writer: <a
+						href="https://www.linkedin.com/in/alyyamada/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Alysa Yamada</a>
+				</p>
+				<p>
+					Engineering lead: <a
+						href="https://bit.ly/3WzT3GQ"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Jiri Pojezny</a>
+				</p>
+				<p>
+					Quality assurance: <a
+						href="https://www.linkedin.com/in/victoriausan/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Victoria Usan</a>
+				</p>
+				<p>
+					Product marketing: <a
+						href="https://www.linkedin.com/in/andrew-stark-uk/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Andrew Stark</a>, <a
+						href="https://www.linkedin.com/in/jbosso/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Joe Bosso</a>
+				</p>
+				<p>
+					Web design lead: <a
+						href="https://bit.ly/3FSw5Un"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Matej Portes</a>
+				</p>
+				<p>
+					PR: <a
+						href="https://www.linkedin.com/in/marinaziegler/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Marina Ziegler</a>, <a
+						href="https://www.linkedin.com/in/mike-healey-46a02320/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Mike Healey</a>, <a
+						href="https://www.linkedin.com/in/stephanieaskane/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Stephanie Kane</a>
+				</p>
+				<p>
+					Sales &amp; in-product messaging: <a
+						href="https://www.linkedin.com/in/veronikakonecna/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Veronika Konecna</a>, <a
+						href="https://www.linkedin.com/in/lukasblaha/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Lukas Blaha</a>
+				</p>
+				<p>
+					Documentation &amp; support: <a
+						href="https://bit.ly/3FSe0WG"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Vojtech Holub</a>
+				</p>
+				<p>
+					Localization: <a
+						href="https://www.linkedin.com/in/jan-fiala-31b40182/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Jan Fiala</a>
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Problem statement
+			</h2>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					Amid controversial events surrounding Avast's subsidiary Jumpshot
+					and its <a
+						href="https://press.avast.com/en-gb/avast-to-commence-wind-down-of-subsidiary-jumpshot"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>shutdown in January 2020</a>, the browser extension called Avast
+					Online Security was one of the immediate products that had to fall
+					from grace. The practice of manipulating user data was brought to an
+					abrupt end, and the company fundamentally shifted direction to
+					<strong class="font-bold text-stone-950"
+						>focus on protecting customer privacy</strong
+					>.
+				</p>
+				<p>
+					The extension was put into maintenance mode, its user base and store
+					reviews taking a noticeable hit. After the dust settled, it had been
+					lying on the shelf for over a year. In the meantime, privacy became
+					a key pillar of Avast's commitment to digital freedom and one of the
+					cornerstones of the upcoming rebrand.
+				</p>
+				<p>
+					With that, it was time for such a
+					<strong class="font-bold text-stone-950"
+						>high-volume and impactful customer-facing product</strong
+					> to get back on track, start bringing real value to users, and
+					deliver on Avast's renewed privacy commitment.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">Goals</h2>
+			<ul class="mt-6 list-disc space-y-4 pl-6 text-base leading-8 text-stone-700 marker:text-stone-400 sm:text-lg">
+				<li>
+					Revisit an outdated framework and create a new vision for it through
+					design thinking.
+				</li>
+				<li>
+					Outfit the product with a new visual style and branding to launch
+					alongside the flagship Avast One in late 2021.
+				</li>
+				<li>
+					Design, develop, and introduce a set of features centered on users'
+					privacy.
+				</li>
+				<li>
+					Create user experiences across the full funnel, from acquisition to
+					retention.
+				</li>
+				<li>
+					Build integrations with the existing product lineup and pave the way
+					for future integration with the flagship product.
+				</li>
+			</ul>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/aosp/aosp-process.png"
+				alt="AOSP design process diagram"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Design process
+			</h2>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					At the core of our design process we employed the classic
+					<strong class="font-bold text-stone-950"
+						>double diamond design model</strong
+					>. The initial kick-off and discovery phase were covered by my
+					teammate Petr, who thoroughly explored multiple directions and
+					produced an extensive body of research.
+				</p>
+				<p>
+					I picked up the torch when it came to narrowing down the scope,
+					defining the problem, expanding the work from concepts to high
+					fidelity, testing, and delivering the final results.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+				New information architecture
+			</h3>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					When defining the new information architecture, our initial approach
+					was to retain the single-screen framework and use widget-style cards.
+					I quickly discovered that it would not be ideal.
+				</p>
+				<ul class="list-disc space-y-4 pl-6 text-stone-700 marker:text-stone-400">
+					<li>It lacked a focal point on the main screen.</li>
+					<li>Multiple jobs-to-be-done would compete for users' attention.</li>
+					<li>Tons of controls would further dilute the experience.</li>
+					<li>UI space could be utilized more efficiently.</li>
+					<li>
+						There were more features packed in than before, and we still needed
+						room to scale.
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/aosp/aosp-architecture.png"
+				alt="AOSP information architecture redesign"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<div class="space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					<strong class="font-bold text-stone-950"
+						>With that in mind, I came up with a new information architecture
+						that addressed each of these issues.</strong
+					>
+				</p>
+				<ul class="list-disc space-y-4 pl-6 text-stone-700 marker:text-stone-400">
+					<li>
+						The focal point became immediately clear, so when you looked at the
+						screen you knew what it was about and what to do with it.
+					</li>
+					<li>
+						Jobs-to-be-done were separated into their own sections and did not
+						interfere with each other.
+					</li>
+					<li>
+						Each screen had a single primary action and, at most, a secondary
+						one.
+					</li>
+					<li>
+						The layout shift gave us room to add more meaning and detail to each
+						part of the product without cramming everything together.
+					</li>
+					<li>
+						Breathing room made it easier to create more value per feature and
+						left space for future additions thanks to the sidebar structure.
+					</li>
+				</ul>
+				<p>
+					Many more variables affected the decision-making process. Each UI
+					element and user journey was scrutinized and iterated on. For the
+					purposes of this case study, I focused on the refined post-feedback
+					screens and the decisions behind them.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/aosp/aosp-high-fidelity.png"
+				alt="AOSP high-fidelity interface designs"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+				Prototype
+			</h3>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					After multiple rounds of presenting new concepts to stakeholders and
+					gathering feedback from designers and engineers, I received the
+					green light to produce high-fidelity assets and build a prototype in
+					Figma.
+				</p>
+				<p>
+					With this prototype, we were able to collect more feedback both
+					internally and externally. Qualitative user testing was conducted
+					with three target groups:
+				</p>
+				<ul class="list-disc space-y-4 pl-6 text-stone-700 marker:text-stone-400">
+					<li>People who were already using this browser extension.</li>
+					<li>People who were using our products and were familiar with the brand.</li>
+					<li>General participants with no prior familiarity with our products.</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/aosp/aosp-research.png"
+				alt="AOSP prototype and research screens"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+				User experience research outcome
+			</h3>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					Users responded well to the redesign, particularly the new light
+					visual style, and they navigated the product with ease.
+				</p>
+				<p>
+					There were a few moments when some people did not understand the
+					meaning of a feature because the concept itself was unfamiliar. We
+					addressed that by simplifying verbose copy and, in some cases,
+					replacing paragraphs with a single line plus a link to the relevant
+					help section on the website.
+				</p>
+				<p>
+					We also documented all instances where users hesitated or struggled
+					to locate an action, so I could <strong
+						class="font-bold text-stone-950"
+					>smooth out rough edges</strong> like that as well.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/aosp/aosp-handoff.jpg"
+				alt="AOSP design handoff and implementation"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+				Handoff
+			</h3>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					After a couple more iteration cycles, we were satisfied with the new
+					designs, so it was time to hand them off to development. As a
+					designer, I always try to <strong class="font-bold text-stone-950"
+						>support the devs' workflow</strong
+					> by including them in the process as early as possible and
+					providing meaningful, self-contained deliverables as the project
+					moves forward.
+				</p>
+				<p>
+					This gave engineers a much easier time with sprint planning and let
+					them work on the foundation while hi-fi designs were still being
+					prepared and finalized.
+				</p>
+				<p>Some examples from this project:</p>
+				<ul class="list-disc space-y-4 pl-6 text-stone-700 marker:text-stone-400">
+					<li>
+						Early prioritization and alignment on which features we were keeping
+						or letting go. This let developers refactor old code and begin
+						groundwork for new features on a solid backend foundation.
+					</li>
+					<li>
+						Parallel work on the general structure, so the team had a clear idea
+						of what to expect for frontend development.
+					</li>
+					<li>
+						Designing and shipping collateral items as early as possible, such
+						as new Privacy Advisor messages, interactive guides, updated static
+						web pages, and scenario-specific messaging, before frontend
+						implementation became fully occupied with the main UI.
+					</li>
+				</ul>
+				<p>
+					During development I had close back-and-forth with engineers to make
+					sure everything matched the established vision. Once visuals started
+					coming in, we held regular sessions to iron out rough spots. Despite
+					the team working remotely, I happened to be in the same city as our
+					main frontend developer, so we made the most of it and worked
+					together in person.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+				Localization to 20+ languages
+			</h3>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					AOSP was available globally and had to be localized across
+					European, Asian, and Middle Eastern markets with every release or
+					update.
+				</p>
+				<p>
+					This introduced another level of complexity. One example was
+					producing promotional materials for various online stores. Another
+					was text length variability across languages, sometimes dramatic
+					enough to break the UI. Credit to our QA team for catching every
+					instance where that became a problem, so we could fix it in a timely
+					manner.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/aosp/aosp-localization.png"
+				alt="AOSP localization and store assets"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				How we measured success
+			</h2>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					Avast has a wide array of analytics tools to establish and track
+					almost any metric, all stripped of personal data. Some of the things
+					we looked at included:
+				</p>
+				<ul class="list-disc space-y-4 pl-6 marker:text-stone-400">
+					<li>
+						<strong class="font-bold text-stone-950">New onboarding</strong>:
+						completion rates and immediate feature opt-ins. About a year later,
+						we shortened and simplified onboarding to drive users to the main UI
+						faster.
+					</li>
+					<li>
+						<strong class="font-bold text-stone-950">Product adoption</strong>:
+						how and when people engaged with the product during the first 30
+						days, including uninstall rate.
+					</li>
+					<li>
+						<strong class="font-bold text-stone-950">Usage &amp; interaction</strong>:
+						more specific data on how people used each feature, helping us
+						understand what brought the most value.
+					</li>
+					<li>
+						<strong class="font-bold text-stone-950">Privacy Advisor</strong>:
+						guide completion, depth, popularity across guides, platform rankings,
+						and other engagement signals.
+					</li>
+					<li>
+						<strong class="font-bold text-stone-950">Campaigns</strong>:
+						engagement with promotional in-product messaging and cross-sell
+						opportunities, later extended into a subscription-based model.
+					</li>
+					<li>
+						<strong class="font-bold text-stone-950">Feedback</strong>: NPS,
+						surveys, built-in quick feedback forms, store review dynamics, and
+						additional rounds of user testing.
+					</li>
+					<li>
+						<strong class="font-bold text-stone-950">Churn and retention</strong>:
+						installs versus uninstalls after the redesign. We saw an initial
+						uninstall spike from dormant users who rediscovered the extension,
+						then installs significantly outpaced uninstalls once that wave
+						passed and promotional campaigns resumed.
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Results
+			</h2>
+			<ul class="mt-6 list-disc space-y-4 pl-6 text-base leading-8 text-stone-700 marker:text-stone-400 sm:text-lg">
+				<li>
+					After the redesign, <a
+						href="https://www.avast.com/avast-online-security"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Avast Online Security &amp; Privacy 2.0</a> became a powerful
+					standalone offer and an <strong class="font-bold text-stone-950"
+						>integral touchpoint</strong
+					> within the broader customer experience.
+				</li>
+				<li>
+					With a fresh new look, fully reimagined UX, and a new privacy-first
+					posture, AOSP became the only rebranded product launched alongside
+					the flagship Avast One in the company's latest design language.
+				</li>
+				<li>We created a significant new marketing differentiator.</li>
+				<li>
+					We added contextual first-purchase touchpoints for effective cross-
+					and up-selling to other products.
+				</li>
+				<li>
+					We simplified navigation across all privacy settings, making key user
+					journeys much more effective.
+				</li>
+				<li>
+					We introduced an interactive Privacy Advisor feature to guide users in
+					real time on platforms like Facebook, Google, Twitter, and more.
+				</li>
+				<li>
+					We measurably increased user awareness of privacy issues and
+					available solutions compared to the previous version.
+				</li>
+				<li>
+					The outcome was <strong class="font-bold text-stone-950"
+						>well received by stakeholders</strong
+					> at all levels, including the C-suite.
+				</li>
+			</ul>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/aosp/aosp-results.png"
+				alt="AOSP final product results"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Personal takeaway
+			</h2>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					It was a fascinating design-driven project. I'm grateful for the
+					chance to lead such a significant part of the design process and see
+					the success of our efforts. Huge thanks to everyone involved.
+				</p>
+				<p>
+					By the end of my time with the company, AOSP was the product I felt
+					most attached to. After the redesign, it began to bring a lot of
+					value to people and became much more delightful to use, which is the
+					combination that ultimately matters most.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-20 w-full">
+			<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
+				View more case studies
+			</p>
+			<div class="mt-6 flex flex-col gap-4">
+				{
+					moreCaseStudies.map((study) => (
+						<a
+							href={study.href}
+							class="group rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:px-6 sm:py-6"
+						>
+							<div class="flex items-center justify-between gap-4">
+								<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+									{study.title}
+								</h2>
+								<span class="shrink-0 text-sm uppercase tracking-[0.24em] text-stone-400 transition group-hover:text-stone-700">
+									Open
+								</span>
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</section>
+	</div>
+</SiteLayout>

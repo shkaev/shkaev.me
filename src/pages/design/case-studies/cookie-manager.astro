@@ -1,0 +1,420 @@
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+
+const moreCaseStudies = [
+	{
+		href: "/design/case-studies/aosp",
+		title: "Avast Online Security & Privacy"
+	},
+	{
+		href: "/design/case-studies/trackoff",
+		title: "TrackOFF"
+	}
+];
+---
+
+<SiteLayout
+	title="Cookie Manager | Design Case Study | Dima Shkaev"
+	description="Designing, building, and integrating a new feature in Avast Online Security & Privacy."
+>
+	<div class="flex w-full flex-col">
+		<section class="w-full">
+			<a
+				href="/design"
+				class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500 transition hover:text-stone-900"
+			>
+				Design / Case studies
+			</a>
+			<h1 class="mt-6 text-4xl font-normal tracking-tight text-stone-950 sm:text-5xl">
+				Cookie Manager
+			</h1>
+			<p class="mt-8 text-base leading-8 text-stone-700 sm:text-lg">
+				Designing, building, and integrating a new feature in Avast Online
+				Security &amp; Privacy.
+			</p>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/cookie-manager/cookie-manager-hero.jpg"
+				alt="Cookie Manager case study hero image"
+				class="h-auto w-full"
+				loading="eager"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Executive summary
+			</h2>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				Building on the successful Avast Online Security &amp; Privacy
+				redesign, our team developed a new feature for the company's flagship
+				browser extension. This allowed us to expand the initial offering and
+				pave a smoother path towards transitioning to the paid model as well
+				as an integration with the <a
+					href="https://www.avast.com/avast-one"
+					target="_blank"
+					rel="noreferrer"
+					class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+				>Avast One</a> suite.
+			</p>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">Team</h2>
+			<div class="mt-6 space-y-3 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					Product owner: <a
+						href="https://www.linkedin.com/in/ron-ward-30432894/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Ron Ward</a>
+				</p>
+				<p>
+					Product designer: <a
+						href="https://www.linkedin.com/in/shkaev/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Dmitry Shkaev</a>
+				</p>
+				<p>
+					UX researchers: <a
+						href="https://www.linkedin.com/in/natalie-schinkova/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Natalie Schinkova</a>, <a
+						href="https://www.linkedin.com/in/veronikakonecna/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Veronika Konecna</a>
+				</p>
+				<p>
+					UX writer: <a
+						href="https://www.linkedin.com/in/alyyamada/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Alysa Yamada</a>
+				</p>
+				<p>
+					Engineering: <a
+						href="https://bit.ly/3WzT3GQ"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Jiri Pojezny</a>, <a
+						href="https://www.linkedin.com/in/gilyov/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Anton Gilyov</a>
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Problem statement
+			</h2>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					Back in 2021, Avast <a
+						href="https://www.i-dont-care-about-cookies.eu/whats-new/acquisition/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>purchased</a> a popular browser extension called "I Don't Care
+					About Cookies" created by Croatian developer <a
+						href="https://www.linkedin.com/in/dkladnik/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Daniel Kladnik</a>. It had around 750k active installs on the Google
+					Chrome Store alone. The extension removes cookie consent prompts,
+					allowing people to browse most websites without interruptions, which
+					is especially relevant for the EU because of GDPR compliance.
+				</p>
+				<p>
+					The intention was to enhance and embed that functionality into one of
+					the privacy-oriented products to strengthen the value provided to the
+					user. In the beginning, our main candidate was Avast AntiTrack.
+					However, being a paid product, it would not have received
+					significant benefits from such integration. At that time,
+					overshadowed by a number of major internal changes in Avast, the
+					purchased extension was temporarily shelved.
+				</p>
+				<p>
+					Luckily, a perfect opportunity emerged by the end of 2021 with the
+					<a
+						href="/design/case-studies/aosp"
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>revival of Avast Online Security &amp; Privacy</a>, which had
+					quickly risen to be one of the top products, and could have used more
+					features to support its core offering.
+				</p>
+				<p>
+					<strong class="font-bold text-stone-950"
+						>As the AOSP v2 designer, I was tasked with leading the creative
+						work for this integration.</strong
+					>
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Goals for design
+			</h2>
+			<ul class="mt-6 list-disc space-y-4 pl-6 text-base leading-8 text-stone-700 marker:text-stone-400 sm:text-lg">
+				<li>
+					Enable our users to get rid of cookie consent banners if they would
+					rather not have their browsing experience constantly interrupted.
+				</li>
+				<li>
+					Address the situations where people would face a complex cookie
+					banner with multiple options, something the original extension had
+					not fully solved.
+				</li>
+				<li>
+					Seamlessly integrate the new feature into a recently created
+					framework, tailoring both the user experience and visual appearance
+					according to the established standards.
+				</li>
+			</ul>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Design process
+			</h2>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					Business justification had already been completed prior to the
+					design phase, so discovery in its classic form was not needed. We
+					started by thinking about the potential location of the new
+					functionality in the existing product. The challenging part was to
+					find a delicate balance between user value, usability, in-app
+					visibility, and product impact, while not stealing too much thunder
+					from the existing primary features.
+				</p>
+				<p>
+					In the original extension, the interface was virtually non-existent,
+					so we started with a clean slate, only adopting some parts of its
+					backend.
+				</p>
+				<p>
+					Our initial ideas ranged from a single checkbox in settings to a
+					dedicated tab in the UI with its own settings and data display.
+					Through stakeholder discussions, it quickly became clear that the
+					richer experience was the way to go. With that, we decided to
+					include at least the following parameters: an on/off toggle, value
+					indicators, customization, and whitelisting.
+				</p>
+				<p>
+					<strong class="font-bold text-stone-950"
+						>I produced wireframes covering all key ideas and requirements. We
+						went through a few rounds of internal feedback, and then I moved on
+						to produce hi-fi visuals to run the first external user test.</strong
+					>
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/cookie-manager/cookie-manager-wireframes.jpg"
+				alt="Cookie Manager wireframes"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+				Prototype
+			</h3>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					After running the high-fidelity screens by the team and receiving
+					sign-off from our project owner, I created a prototype in Figma,
+					emulating the flow from installing the extension to discovering and
+					using the Cookie Manager feature.
+				</p>
+				<p>
+					To prepare for the user interviews, we sourced questions from all
+					stakeholders and key team members. The user interviews were
+					conducted by my colleagues Natalie and Veronika. I joined one of the
+					early calls to see if we were on the right track with gathering
+					useful information. They also did a great job of putting together an
+					extensive summary of the findings. Still, I watched all the
+					recordings later by myself to note the specific observations I was
+					looking for.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/cookie-manager/cookie-manager-prototype.png"
+				alt="Cookie Manager prototype screens"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+				User experience research outcome
+			</h3>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					The results were strong and, in some respects, eye-opening. It was
+					one of the most useful pieces of qualitative user research I had in
+					a while, because of the number of important insights that people
+					shared with us. As often happens, some of our previous assumptions
+					did not hold up, and some performed really well.
+				</p>
+				<p>
+					For example, initially we adopted a tooltip system from Avast One,
+					where people would hover over a question mark icon and read a short
+					helper text. This interaction pattern has existed since the earliest
+					visual operating systems, so it seemed obvious for the user. In
+					reality, only two people out of ten found it, and only one of them
+					cared to read the text. Even that person struggled to understand the
+					intended message.
+				</p>
+				<p>
+					Overall, the feature was well received, and there were only moderate
+					to minor usability issues. We presented the findings summary to the
+					team for discussion and prioritization.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/cookie-manager/cookie-manager-research.png"
+				alt="Cookie Manager user research findings"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<div class="space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					Next, I set out to structure, verify, and implement the feedback we
+					had agreed to address.
+				</p>
+				<p>
+					<strong class="font-bold text-stone-950"
+						>As a result of this research, we reimagined how we presented
+						complex cookie popups and the options provided to the user.</strong
+					> Ideally, a second round of qualitative research would have
+					followed, but given the tight timeline, we decided to proceed with
+					the release, gather quantitative data, and revisit the feature in a
+					second phase.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+			<img
+				src="/images/case-studies/cookie-manager/cookie-manager-handoff.png"
+				alt="Cookie Manager final designs and handoff"
+				class="h-auto w-full"
+				loading="lazy"
+			/>
+		</section>
+
+		<section class="mt-16 w-full">
+			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+				Handoff
+			</h3>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				We had a dedicated team of engineers assigned to the project, so our
+				collaboration started as soon as the project kicked off. Working
+				together, we were building the feature iteratively and on schedule,
+				quickly resolving any issues as they emerged. I was pleased with how
+				faithfully the frontend implementation matched the design.
+			</p>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				How we measured success
+			</h2>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				The OKRs were well-defined: shipping on schedule, improving adoption
+				after release, measuring sales impact from cross-promotional
+				campaigns, increasing NPS results by a set amount, and a few others.
+			</p>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Results
+			</h2>
+			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				We successfully shipped Cookie Manager and launched it alongside a
+				marketing campaign. This marked an important milestone in the AOSP
+				product roadmap. Over the next few months, adoption and engagement
+				rates for Cookie Manager exceeded our expectations.
+			</p>
+		</section>
+
+		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+				Personal takeaway
+			</h2>
+			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					This was a perfect example of end-to-end regular design work in a
+					corporate environment, excluding the discovery phase. It might seem
+					routine on the surface, but these projects are always unique and
+					present their own challenges. In this particular instance, I really
+					liked how user research reshaped our design decisions and
+					significantly affected the complexity of information presented to
+					users.
+				</p>
+				<p>
+					Within a single project I had a chance to come up with a new
+					information architecture, create raw concepts, craft prototypes,
+					validate our ideas through feedback sessions and research, build
+					high-fidelity UI, ship to developers, and work with them to oversee
+					the implementation. It really had it all.
+				</p>
+			</div>
+		</section>
+
+		<section class="mt-20 w-full">
+			<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
+				View more case studies
+			</p>
+			<div class="mt-6 flex flex-col gap-4">
+				{
+					moreCaseStudies.map((study) => (
+						<a
+							href={study.href}
+							class="group rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:px-6 sm:py-6"
+						>
+							<div class="flex items-center justify-between gap-4">
+								<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+									{study.title}
+								</h2>
+								<span class="shrink-0 text-sm uppercase tracking-[0.24em] text-stone-400 transition group-hover:text-stone-700">
+									Open
+								</span>
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</section>
+	</div>
+</SiteLayout>

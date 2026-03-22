@@ -1,21 +1,69 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+
+const caseStudies = [
+	{
+		href: "/design/case-studies/aosp",
+		title: "Avast Online Security & Privacy",
+		description:
+			"A major redesign of the flagship browser extension with over 10 million users."
+	},
+	{
+		href: "/design/case-studies/cookie-manager",
+		title: "Cookie Manager",
+		description:
+			"Designing, building, and integrating a new feature in Avast Online Security & Privacy."
+	},
+	{
+		href: "/design/case-studies/trackoff",
+		title: "TrackOFF",
+		description:
+			"A short story about creating a successful product from the ground up to being acquired by a major corporation."
+	}
+];
 ---
 
 <SiteLayout
 	title="Design | Dima Shkaev"
 	description="Product design highlights and selected work by Dima Shkaev."
 >
-	<section class="max-w-3xl">
-		<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
-			Design
-		</p>
-		<h1 class="mt-6 text-4xl font-normal tracking-tight text-stone-950 sm:text-5xl">
-			Product design highlights will live here.
-		</h1>
-		<p class="mt-8 max-w-2xl text-base leading-8 text-stone-600 sm:text-lg">
-			For now this page is a placeholder for selected case studies, process
-			snapshots, and notable milestones from my professional work.
-		</p>
-	</section>
+	<div class="flex w-full flex-col">
+		<section class="w-full">
+			<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
+				Design
+			</p>
+			<h1 class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl">
+				Design case studies
+			</h1>
+			<p class="mt-8 text-base leading-8 text-stone-700 sm:text-lg">
+				Explore some of the featured product design work I've been doing over
+				the years.
+			</p>
+		</section>
+
+		<section class="mt-14 w-full">
+			<div class="flex flex-col gap-4">
+				{
+					caseStudies.map((study) => (
+						<a
+							href={study.href}
+							class="group flex w-full flex-col gap-3 rounded-[2rem] border border-stone-200 bg-white px-6 py-6 transition hover:border-stone-300 hover:bg-stone-100/80 sm:px-8 sm:py-7"
+						>
+							<div class="flex items-center justify-between gap-4">
+								<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+									{study.title}
+								</h2>
+								<span class="shrink-0 text-sm uppercase tracking-[0.24em] text-stone-400 transition group-hover:text-stone-700">
+									Open
+								</span>
+							</div>
+							<p class="text-sm leading-7 text-stone-700 sm:text-base">
+								{study.description}
+							</p>
+						</a>
+					))
+				}
+			</div>
+		</section>
+	</div>
 </SiteLayout>
