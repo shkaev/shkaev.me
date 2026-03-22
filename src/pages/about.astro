@@ -221,8 +221,8 @@ const hiddenRecommendations = recommendations.slice(4);
 ---
 
 <SiteLayout
-	title="About | Dima Shkaev"
-	description="About Dima Shkaev, his photography, and his product design background."
+	title="About | Dmitry Shkaev"
+	description="About Dmitry Shkaev, his photography, and his product design background."
 >
 	<section class="w-full max-w-[60rem]">
 		<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
@@ -245,7 +245,7 @@ const hiddenRecommendations = recommendations.slice(4);
 			<div class="relative space-y-4 pl-8 before:absolute before:bottom-0 before:left-0 before:top-0 before:w-px before:bg-stone-200/70 sm:pl-10">
 				{
 					workTimeline.map((item) => (
-						<article class="relative rounded-[1.75rem] border border-stone-200/80 bg-white/80 p-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] backdrop-blur-sm transition hover:border-stone-300">
+						<article class="relative rounded-[1.75rem] border border-stone-200/80 bg-white/80 p-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] backdrop-blur-sm">
 							<span class="absolute left-[-2.375rem] top-[2.15rem] h-3 w-3 -translate-y-1/2 rounded-full border-2 border-stone-50 bg-stone-400 sm:left-[-2.875rem]"></span>
 							<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 								<div class="min-w-0 flex-1">
@@ -256,7 +256,7 @@ const hiddenRecommendations = recommendations.slice(4);
 													href={item.href}
 													target="_blank"
 													rel="noreferrer"
-													class="inline-flex items-center gap-2 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+													class="text-link inline-flex items-center gap-2"
 												>
 													{
 														item.favicon ? (
@@ -388,7 +388,7 @@ const hiddenRecommendations = recommendations.slice(4);
 			<div class="mt-10 space-y-4">
 				{
 					visibleRecommendations.map((item) => (
-						<article class="rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:px-6 sm:py-6">
+						<article class="rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-6 sm:py-6">
 							<div class="flex items-center gap-3.5 sm:gap-4">
 								{
 									item.avatar ? (
@@ -446,7 +446,7 @@ const hiddenRecommendations = recommendations.slice(4);
 							<div id="more-recommendations" class="hidden space-y-4">
 								{
 									hiddenRecommendations.map((item) => (
-										<article class="rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:px-6 sm:py-6">
+										<article class="rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-6 sm:py-6">
 											<div class="flex items-center gap-3.5 sm:gap-4">
 												{
 													item.avatar ? (
@@ -499,9 +499,10 @@ const hiddenRecommendations = recommendations.slice(4);
 							<button
 								type="button"
 								id="show-all-recommendations"
+								data-divider-link
 								class="group flex w-full cursor-pointer items-center gap-4 py-3 text-sm font-medium text-stone-500 transition hover:text-stone-900 sm:text-[0.95rem]"
 							>
-								<span class="h-px flex-1 bg-stone-200 transition-colors group-hover:bg-stone-400"></span>
+								<span data-divider-line class="h-px flex-1 bg-stone-200 transition-colors group-hover:bg-stone-400"></span>
 								<span class="inline-flex items-center gap-2 whitespace-nowrap">
 									<span>See all {recommendations.length} recommendations</span>
 									<svg
@@ -512,7 +513,7 @@ const hiddenRecommendations = recommendations.slice(4);
 										<path d="M5.75 7.5 10 11.75 14.25 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
 									</svg>
 								</span>
-								<span class="h-px flex-1 bg-stone-200 transition-colors group-hover:bg-stone-400"></span>
+								<span data-divider-line class="h-px flex-1 bg-stone-200 transition-colors group-hover:bg-stone-400"></span>
 							</button>
 						</>
 					)
@@ -558,7 +559,7 @@ const hiddenRecommendations = recommendations.slice(4);
 					href="https://t.me/shkaev"
 					target="_blank"
 					rel="noreferrer"
-					class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					class="text-link"
 				>
 					Telegram
 				</a>.

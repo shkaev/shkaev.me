@@ -1,5 +1,5 @@
 ---
-import SiteLayout from "../../../layouts/SiteLayout.astro";
+import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
 
 const moreCaseStudies = [
 	{
@@ -13,35 +13,14 @@ const moreCaseStudies = [
 ];
 ---
 
-<SiteLayout
-	title="Cookie Manager | Design Case Study | Dima Shkaev"
+<CaseStudyLayout
+	title="Cookie Manager | Design Case Study | Dmitry Shkaev"
 	description="Designing, building, and integrating a new feature in Avast Online Security & Privacy."
+	pageTitle="Cookie Manager"
+	heroSrc="/images/case-studies/cookie-manager/cookie-manager-hero.jpg"
+	heroAlt="Cookie Manager case study hero image"
+	moreCaseStudies={moreCaseStudies}
 >
-	<div class="flex w-full flex-col">
-		<section class="w-full">
-			<a
-				href="/design"
-				class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500 transition hover:text-stone-900"
-			>
-				Design / Case studies
-			</a>
-			<h1 class="mt-6 text-4xl font-normal tracking-tight text-stone-950 sm:text-5xl">
-				Cookie Manager
-			</h1>
-			<p class="mt-8 text-base leading-8 text-stone-700 sm:text-lg">
-				Designing, building, and integrating a new feature in Avast Online
-				Security &amp; Privacy.
-			</p>
-		</section>
-
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src="/images/case-studies/cookie-manager/cookie-manager-hero.jpg"
-				alt="Cookie Manager case study hero image"
-				class="h-auto w-full"
-				loading="eager"
-			/>
-		</section>
 
 		<section class="mt-16 w-full">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
@@ -225,7 +204,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/cookie-manager/cookie-manager-wireframes.jpg"
 				alt="Cookie Manager wireframes"
@@ -235,9 +214,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-16 w-full">
-			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Prototype
-			</h3>
+			</h2>
 			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
 					After running the high-fidelity screens by the team and receiving
@@ -258,7 +237,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/cookie-manager/cookie-manager-prototype.png"
 				alt="Cookie Manager prototype screens"
@@ -268,9 +247,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-16 w-full">
-			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				User experience research outcome
-			</h3>
+			</h2>
 			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
 					The results were strong and, in some respects, eye-opening. It was
@@ -296,7 +275,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/cookie-manager/cookie-manager-research.png"
 				alt="Cookie Manager user research findings"
@@ -323,7 +302,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/cookie-manager/cookie-manager-handoff.png"
 				alt="Cookie Manager final designs and handoff"
@@ -333,9 +312,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-16 w-full">
-			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Handoff
-			</h3>
+			</h2>
 			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
 				We had a dedicated team of engineers assigned to the project, so our
 				collaboration started as soon as the project kicked off. Working
@@ -392,29 +371,4 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-20 w-full">
-			<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
-				View more case studies
-			</p>
-			<div class="mt-6 flex flex-col gap-4">
-				{
-					moreCaseStudies.map((study) => (
-						<a
-							href={study.href}
-							class="group rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:px-6 sm:py-6"
-						>
-							<div class="flex items-center justify-between gap-4">
-								<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-									{study.title}
-								</h2>
-								<span class="shrink-0 text-sm uppercase tracking-[0.24em] text-stone-400 transition group-hover:text-stone-700">
-									Open
-								</span>
-							</div>
-						</a>
-					))
-				}
-			</div>
-		</section>
-	</div>
-</SiteLayout>
+</CaseStudyLayout>

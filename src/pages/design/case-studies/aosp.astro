@@ -1,5 +1,5 @@
 ---
-import SiteLayout from "../../../layouts/SiteLayout.astro";
+import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
 
 const moreCaseStudies = [
 	{
@@ -13,35 +13,14 @@ const moreCaseStudies = [
 ];
 ---
 
-<SiteLayout
-	title="Avast Online Security & Privacy | Design Case Study | Dima Shkaev"
+<CaseStudyLayout
+	title="Avast Online Security & Privacy | Design Case Study | Dmitry Shkaev"
 	description="A major redesign of the flagship browser extension with over 10 million users."
+	pageTitle="Avast Online Security & Privacy"
+	heroSrc="/images/case-studies/aosp/aosp-hero.jpg"
+	heroAlt="AOSP case study hero image"
+	moreCaseStudies={moreCaseStudies}
 >
-	<div class="flex w-full flex-col">
-		<section class="w-full">
-			<a
-				href="/design"
-				class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500 transition hover:text-stone-900"
-			>
-				Design / Case studies
-			</a>
-			<h1 class="mt-6 text-4xl font-normal tracking-tight text-stone-950 sm:text-5xl">
-				Avast Online Security &amp; Privacy
-			</h1>
-			<p class="mt-8 text-base leading-8 text-stone-700 sm:text-lg">
-				A major redesign of the flagship browser extension with over 10
-				million users.
-			</p>
-		</section>
-
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src="/images/case-studies/aosp/aosp-hero.jpg"
-				alt="AOSP case study hero image"
-				class="h-auto w-full"
-				loading="eager"
-			/>
-		</section>
 
 		<section class="mt-16 w-full">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
@@ -67,131 +46,183 @@ const moreCaseStudies = [
 
 		<section class="mt-16 w-full border-t border-stone-200 pt-10">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">Team</h2>
-			<div class="mt-6 space-y-3 text-base leading-8 text-stone-700 sm:text-lg">
+			<div class="mt-6 space-y-8 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
-					Product owner: <a
-						href="https://www.linkedin.com/in/petraverse/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Petra Moravcova</a>
+					A cross-functional effort spanning product, design, research,
+					engineering, QA, marketing, localization, and support. The core team
+					carried the redesign from discovery through launch, with additional
+					specialists supporting rollout across channels and markets.
 				</p>
-				<p>
-					Product design lead: <a
-						href="https://www.linkedin.com/in/shkaev/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Dmitry Shkaev</a>
-				</p>
-				<p>
-					Discovery: <a
-						href="https://www.linkedin.com/in/petr-augustin/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Petr Augustin</a>
-				</p>
-				<p>
-					UX researcher: <a
-						href="https://www.linkedin.com/in/natalie-schinkova/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Natalie Schinkova</a>
-				</p>
-				<p>
-					UX writer: <a
-						href="https://www.linkedin.com/in/alyyamada/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Alysa Yamada</a>
-				</p>
-				<p>
-					Engineering lead: <a
-						href="https://bit.ly/3WzT3GQ"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Jiri Pojezny</a>
-				</p>
-				<p>
-					Quality assurance: <a
-						href="https://www.linkedin.com/in/victoriausan/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Victoria Usan</a>
-				</p>
-				<p>
-					Product marketing: <a
-						href="https://www.linkedin.com/in/andrew-stark-uk/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Andrew Stark</a>, <a
-						href="https://www.linkedin.com/in/jbosso/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Joe Bosso</a>
-				</p>
-				<p>
-					Web design lead: <a
-						href="https://bit.ly/3FSw5Un"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Matej Portes</a>
-				</p>
-				<p>
-					PR: <a
-						href="https://www.linkedin.com/in/marinaziegler/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Marina Ziegler</a>, <a
-						href="https://www.linkedin.com/in/mike-healey-46a02320/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Mike Healey</a>, <a
-						href="https://www.linkedin.com/in/stephanieaskane/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Stephanie Kane</a>
-				</p>
-				<p>
-					Sales &amp; in-product messaging: <a
-						href="https://www.linkedin.com/in/veronikakonecna/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Veronika Konecna</a>, <a
-						href="https://www.linkedin.com/in/lukasblaha/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Lukas Blaha</a>
-				</p>
-				<p>
-					Documentation &amp; support: <a
-						href="https://bit.ly/3FSe0WG"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Vojtech Holub</a>
-				</p>
-				<p>
-					Localization: <a
-						href="https://www.linkedin.com/in/jan-fiala-31b40182/"
-						target="_blank"
-						rel="noreferrer"
-						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Jan Fiala</a>
-				</p>
+				<div class="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+					<div class="space-y-4">
+						<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
+							Core team
+						</p>
+						<div class="space-y-5">
+							<div>
+								<p class="text-sm uppercase tracking-[0.18em] text-stone-500">
+									Product design lead
+								</p>
+								<p class="mt-1 text-stone-950">
+									<a
+										href="https://www.linkedin.com/in/shkaev/"
+										target="_blank"
+										rel="noreferrer"
+										class="font-medium underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+									>Dmitry Shkaev</a>
+								</p>
+								<p class="mt-1 text-sm leading-7 text-stone-600">
+									Led product design from problem framing and information
+									architecture to high-fidelity design, testing, and handoff.
+								</p>
+							</div>
+							<div>
+								<p class="text-sm uppercase tracking-[0.18em] text-stone-500">
+									Product owner
+								</p>
+								<p class="mt-1 text-stone-950">
+									<a
+										href="https://www.linkedin.com/in/petraverse/"
+										target="_blank"
+										rel="noreferrer"
+										class="font-medium underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+									>Petra Moravcova</a>
+								</p>
+							</div>
+							<div>
+								<p class="text-sm uppercase tracking-[0.18em] text-stone-500">
+									Discovery
+								</p>
+								<p class="mt-1 text-stone-950">
+									<a
+										href="https://www.linkedin.com/in/petr-augustin/"
+										target="_blank"
+										rel="noreferrer"
+										class="font-medium underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+									>Petr Augustin</a>
+								</p>
+							</div>
+							<div>
+								<p class="text-sm uppercase tracking-[0.18em] text-stone-500">
+									UX research
+								</p>
+								<p class="mt-1 text-stone-950">
+									<a
+										href="https://www.linkedin.com/in/natalie-schinkova/"
+										target="_blank"
+										rel="noreferrer"
+										class="font-medium underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+									>Natalie Schinkova</a>
+								</p>
+							</div>
+							<div>
+								<p class="text-sm uppercase tracking-[0.18em] text-stone-500">
+									Engineering lead
+								</p>
+								<p class="mt-1 text-stone-950">
+									<a
+										href="https://bit.ly/3WzT3GQ"
+										target="_blank"
+										rel="noreferrer"
+										class="font-medium underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+									>Jiri Pojezny</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="space-y-4">
+						<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
+							Cross-functional support
+						</p>
+						<div class="space-y-3 text-stone-700">
+							<p>
+								<span class="text-stone-950">UX writing:</span> <a
+									href="https://www.linkedin.com/in/alyyamada/"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Alysa Yamada</a>
+							</p>
+							<p>
+								<span class="text-stone-950">Quality assurance:</span> <a
+									href="https://www.linkedin.com/in/victoriausan/"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Victoria Usan</a>
+							</p>
+							<p>
+								<span class="text-stone-950">Product marketing:</span> <a
+									href="https://www.linkedin.com/in/andrew-stark-uk/"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Andrew Stark</a>, <a
+									href="https://www.linkedin.com/in/jbosso/"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Joe Bosso</a>
+							</p>
+							<p>
+								<span class="text-stone-950">Web design lead:</span> <a
+									href="https://bit.ly/3FSw5Un"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Matej Portes</a>
+							</p>
+							<p>
+								<span class="text-stone-950">PR:</span> <a
+									href="https://www.linkedin.com/in/marinaziegler/"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Marina Ziegler</a>, <a
+									href="https://www.linkedin.com/in/mike-healey-46a02320/"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Mike Healey</a>, <a
+									href="https://www.linkedin.com/in/stephanieaskane/"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Stephanie Kane</a>
+							</p>
+							<p>
+								<span class="text-stone-950">Sales &amp; in-product messaging:</span>
+								<a
+									href="https://www.linkedin.com/in/veronikakonecna/"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Veronika Konecna</a>, <a
+									href="https://www.linkedin.com/in/lukasblaha/"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Lukas Blaha</a>
+							</p>
+							<p>
+								<span class="text-stone-950">Documentation &amp; support:</span> <a
+									href="https://bit.ly/3FSe0WG"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Vojtech Holub</a>
+							</p>
+							<p>
+								<span class="text-stone-950">Localization:</span> <a
+									href="https://www.linkedin.com/in/jan-fiala-31b40182/"
+									target="_blank"
+									rel="noreferrer"
+									class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+								>Jan Fiala</a>
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -258,7 +289,7 @@ const moreCaseStudies = [
 			</ul>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/aosp/aosp-process.png"
 				alt="AOSP design process diagram"
@@ -289,9 +320,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-16 w-full border-t border-stone-200 pt-10">
-			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				New information architecture
-			</h3>
+			</h2>
 			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
 					When defining the new information architecture, our initial approach
@@ -311,7 +342,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/aosp/aosp-architecture.png"
 				alt="AOSP information architecture redesign"
@@ -359,7 +390,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/aosp/aosp-high-fidelity.png"
 				alt="AOSP high-fidelity interface designs"
@@ -369,9 +400,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-16 w-full">
-			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Prototype
-			</h3>
+			</h2>
 			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
 					After multiple rounds of presenting new concepts to stakeholders and
@@ -392,7 +423,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/aosp/aosp-research.png"
 				alt="AOSP prototype and research screens"
@@ -402,9 +433,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-16 w-full">
-			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				User experience research outcome
-			</h3>
+			</h2>
 			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
 					Users responded well to the redesign, particularly the new light
@@ -426,7 +457,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/aosp/aosp-handoff.jpg"
 				alt="AOSP design handoff and implementation"
@@ -436,9 +467,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-16 w-full">
-			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Handoff
-			</h3>
+			</h2>
 			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
 					After a couple more iteration cycles, we were satisfied with the new
@@ -484,9 +515,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-16 w-full border-t border-stone-200 pt-10">
-			<h3 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
+			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Localization to 20+ languages
-			</h3>
+			</h2>
 			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
 					AOSP was available globally and had to be localized across
@@ -504,7 +535,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/aosp/aosp-localization.png"
 				alt="AOSP localization and store assets"
@@ -612,7 +643,7 @@ const moreCaseStudies = [
 			</ul>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[1.75rem] border border-stone-200/80 bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
 				src="/images/case-studies/aosp/aosp-results.png"
 				alt="AOSP final product results"
@@ -640,29 +671,4 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-20 w-full">
-			<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
-				View more case studies
-			</p>
-			<div class="mt-6 flex flex-col gap-4">
-				{
-					moreCaseStudies.map((study) => (
-						<a
-							href={study.href}
-							class="group rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:px-6 sm:py-6"
-						>
-							<div class="flex items-center justify-between gap-4">
-								<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-									{study.title}
-								</h2>
-								<span class="shrink-0 text-sm uppercase tracking-[0.24em] text-stone-400 transition group-hover:text-stone-700">
-									Open
-								</span>
-							</div>
-						</a>
-					))
-				}
-			</div>
-		</section>
-	</div>
-</SiteLayout>
+</CaseStudyLayout>
