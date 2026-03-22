@@ -140,7 +140,7 @@ const recommendations = [
 		href: "https://www.linkedin.com/in/ji%C5%99%C3%AD-pojezn%C3%BD-6a322765/",
 		role: "Senior Front End Developer, Avast Software — same area",
 		text:
-			"I was excited to work with Dmitry. His designs are beautiful and user-centric. Together we always found the balance between the UX and technical feasibility so that developers can keep a sustainable clean codebase while providing a great user experience.\n\nDmitry is also super friendly and super responsive. He's always there for his colleagues. I'm sure anyone would love working with him.\n\nIf you are looking for an outstanding and social Product & UX Designer, Dmitry is the right person for you!"
+			"I was excited to work with Dmitry. His designs are beautiful and user-centric. Together we always found the balance between the UX and technical feasibility so that developers can keep a sustainable clean codebase while providing a great user experience.\n\nDmitry is also super friendly and super responsive. He's always there for his colleagues. I'm sure anyone would love working with him. If you are looking for an outstanding and social Product & UX Designer, Dmitry is the right person for you!"
 	},
 	{
 		name: "Ilja Panić",
@@ -215,6 +215,9 @@ const recommendations = [
 			"Dmitry is a very motivated and hard working person. We worked together in Perfecto and still working together on freelance contracts. For now he is one of the most professional and responsible people I have ever met. Work process with him is simple and clean. Dmitry would be a true asset for any positions requiring UI/UX & Website design and comes with my heartfelt recommendation."
 	}
 ];
+
+const visibleRecommendations = recommendations.slice(0, 4);
+const hiddenRecommendations = recommendations.slice(4);
 ---
 
 <SiteLayout
@@ -228,30 +231,22 @@ const recommendations = [
 		<h1 class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl">
 			Dmitry Shkaev
 		</h1>
-		<p class="mt-5 text-base leading-8 text-stone-600 sm:text-lg">
+		<p class="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
 			Senior product designer with over a decade of hands-on corporate
-			experience.
+			experience. I&rsquo;m best at creating meaningful user-centered design
+			that helps businesses reach their goals and leaves people feeling
+			great, inspired, and cared for. My background is in building
+			customer-facing enterprise software across desktop and mobile.
+			Currently, I&rsquo;m driving interaction metrics for a high-impact
+			product with tens of millions of monthly active users.
 		</p>
-
-		<div class="mt-16 border-t border-stone-200 pt-10">
-			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
-				Introduction
-			</h2>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				Professionally, I’m best at the intersection of helping businesses
-				reach their goals and creating meaningful experiences that leave people
-				feeling great, inspired, and cared for. I have a strong background in
-				designing both customer-facing and enterprise software for desktop and
-				mobile, as well as years of commercial website design work.
-			</p>
-		</div>
 
 		<div class="mt-10">
 			<div class="relative space-y-4 pl-8 before:absolute before:bottom-0 before:left-0 before:top-0 before:w-px before:bg-stone-200/70 sm:pl-10">
 				{
 					workTimeline.map((item) => (
 						<article class="relative rounded-[1.75rem] border border-stone-200/80 bg-white/80 p-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] backdrop-blur-sm transition hover:border-stone-300">
-							<span class="absolute left-[-2.375rem] top-[4.4rem] h-3 w-3 -translate-y-1/2 rounded-full border-2 border-stone-50 bg-stone-400 sm:left-[-2.875rem] sm:top-[4.72rem]"></span>
+							<span class="absolute left-[-2.375rem] top-[2.15rem] h-3 w-3 -translate-y-1/2 rounded-full border-2 border-stone-50 bg-stone-400 sm:left-[-2.875rem]"></span>
 							<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
 								<div class="min-w-0 flex-1">
 									<p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-stone-500">
@@ -261,7 +256,7 @@ const recommendations = [
 													href={item.href}
 													target="_blank"
 													rel="noreferrer"
-													class="inline-flex items-center gap-2 transition-colors hover:text-stone-800"
+													class="inline-flex items-center gap-2 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
 												>
 													{
 														item.favicon ? (
@@ -338,17 +333,23 @@ const recommendations = [
 					Strengths &amp; skills
 				</h2>
 				<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-					My core strength is solving complex problems through elegant,
-					well-reasoned solutions and turning them into clear, functional
-					interfaces. There&rsquo;s no magic behind it &mdash; just experience,
-					pattern recognition, and a disciplined design approach.
+					My core strength is
+					<span class="font-bold text-stone-950"
+						>solving complex problems</span
+					>
+					through elegant, well-reasoned solutions and turning them into
+					clear, functional interfaces. There&rsquo;s no magic behind it
+					&mdash; just experience, pattern recognition, and a disciplined
+					design approach.
 				</p>
 				<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-					I&rsquo;m often told that I have an eye for perfection when it comes to
-					crafting high-fidelity UI, and I would consider this to be my second
-					strongest trait. Wireframes and early concepts can and should be wild,
-					but when it comes to the final product, it&rsquo;s pixel perfection or
-					death. Just kidding, but yes, my Figma stuff is pretty neat.
+					I&rsquo;m often told that I have an eye for
+					<span class="font-bold text-stone-950">perfection</span> when it
+					comes to crafting high-fidelity UI, and I would consider this to be
+					my second strongest trait. Wireframes and early concepts can and
+					should be wild, but when it comes to the final product, it&rsquo;s
+					pixel-perfect or death. Just kidding, but yes, my Figma stuff is
+					pretty neat.
 				</p>
 			</div>
 		</div>
@@ -358,12 +359,16 @@ const recommendations = [
 				Leadership
 			</h2>
 			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				While I bring the most value as an individual contributor, I have
-				experience leading creative initiatives within business goals and
-				working closely with small, focused teams. I&rsquo;m often involved in
-				onboarding new hires and helping them get up to speed, and I&rsquo;ve
-				taken on mentoring responsibilities to support junior designers and
-				guide them through design processes.
+				While I bring the most value as an
+				<span class="font-bold text-stone-950">individual contributor</span>,
+				I have experience leading creative initiatives within business goals
+				and working closely with small, focused teams. I&rsquo;m often
+				involved in
+				<span class="font-bold text-stone-950">onboarding</span> new hires
+				and helping them get up to speed, and I&rsquo;ve taken on
+				<span class="font-bold text-stone-950">mentoring</span>
+				responsibilities to support junior designers and guide them through
+				design processes.
 			</p>
 		</div>
 
@@ -382,7 +387,7 @@ const recommendations = [
 
 			<div class="mt-10 space-y-4">
 				{
-					recommendations.map((item) => (
+					visibleRecommendations.map((item) => (
 						<article class="rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:px-6 sm:py-6">
 							<div class="flex items-center gap-3.5 sm:gap-4">
 								{
@@ -434,6 +439,84 @@ const recommendations = [
 						</article>
 					))
 				}
+
+				{
+					hiddenRecommendations.length > 0 && (
+						<>
+							<div id="more-recommendations" class="hidden space-y-4">
+								{
+									hiddenRecommendations.map((item) => (
+										<article class="rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:px-6 sm:py-6">
+											<div class="flex items-center gap-3.5 sm:gap-4">
+												{
+													item.avatar ? (
+														<img
+															src={item.avatar}
+															alt={item.name}
+															draggable="false"
+															class="mt-0.5 h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-stone-200/80 sm:h-14 sm:w-14"
+														/>
+													) : (
+														<div class="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-stone-100 text-stone-400 ring-1 ring-stone-200/80 sm:h-14 sm:w-14">
+															<svg
+																aria-hidden="true"
+																viewBox="0 0 24 24"
+																class="h-6 w-6 fill-current sm:h-7 sm:w-7"
+															>
+																<path d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2.25c-3.83 0-6.75 1.92-6.75 4.5 0 .41.34.75.75.75h12a.75.75 0 0 0 .75-.75c0-2.58-2.92-4.5-6.75-4.5Z"></path>
+															</svg>
+														</div>
+													)
+												}
+												<div class="min-w-0 flex-1">
+													<h3 class="text-[1.2rem] font-normal leading-tight tracking-tight text-stone-950 sm:text-[1.35rem]">
+														<a
+															href={item.href}
+															target="_blank"
+															rel="noreferrer"
+															class="transition-colors hover:text-stone-600"
+														>
+															{item.name}
+														</a>
+													</h3>
+													<p class="mt-1 text-sm leading-6 text-stone-500 sm:text-[0.95rem]">
+														{item.role}
+													</p>
+												</div>
+											</div>
+											<div class="mt-5 text-sm leading-7 text-stone-700 sm:text-[0.95rem]">
+												{
+													item.text.split("\n\n").map((paragraph) => (
+														<p class="mt-4 first:mt-0">{paragraph}</p>
+													))
+												}
+											</div>
+										</article>
+									))
+								}
+							</div>
+
+							<button
+								type="button"
+								id="show-all-recommendations"
+								class="group flex w-full cursor-pointer items-center gap-4 py-3 text-sm font-medium text-stone-500 transition hover:text-stone-900 sm:text-[0.95rem]"
+							>
+								<span class="h-px flex-1 bg-stone-200 transition-colors group-hover:bg-stone-400"></span>
+								<span class="inline-flex items-center gap-2 whitespace-nowrap">
+									<span>See all {recommendations.length} recommendations</span>
+									<svg
+										aria-hidden="true"
+										viewBox="0 0 20 20"
+										class="h-4 w-4 fill-none stroke-current stroke-[1.75] transition-transform group-hover:translate-y-[1px]"
+									>
+										<path d="M5.75 7.5 10 11.75 14.25 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+									</svg>
+								</span>
+								<span class="h-px flex-1 bg-stone-200 transition-colors group-hover:bg-stone-400"></span>
+							</button>
+						</>
+					)
+				}
 			</div>
 		</div>
 
@@ -442,16 +525,20 @@ const recommendations = [
 				Hobbies
 			</h2>
 			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				My main passion is photography, which I&rsquo;ve been practicing for
-				quite some time, starting back when film cameras were still the
-				mainstream. At one point, I was comfortable enough to turn it into a
-				side gig, even securing contracts with companies like Omsk Carbon
-				Group to shoot portraits and environments.
+				My main passion is <span class="font-bold text-stone-950"
+					>photography</span
+				>, which I&rsquo;ve been practicing for quite some time, starting
+				back when film cameras were still the mainstream. At one point, I was
+				comfortable enough to turn it into a side gig, even securing
+				contracts with companies like Omsk Carbon Group to shoot portraits
+				and environments.
 			</p>
 			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				Another major activity for me is cycling &mdash; there&rsquo;s nothing
-				better than hopping on a bike, exploring new places, and meeting
-				people along the way. It also naturally complements my photography.
+				Another major activity for me is <span class="font-bold text-stone-950"
+					>cycling</span
+				> &mdash; there&rsquo;s nothing better than hopping on a bike,
+				exploring new places, and meeting people along the way. It also
+				naturally complements my photography.
 			</p>
 			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
 				And, as a family man, I spend a lot of time with my wife Olga and our
@@ -464,9 +551,28 @@ const recommendations = [
 				Contact info
 			</h2>
 			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				I&rsquo;m located in 🇨🇾 Limassol and always open to meeting new people.
-				Feel free to hit me up on Instagram.
+				I&rsquo;m located in 🇨🇾
+				<span class="font-bold text-stone-950">Limassol</span> and always
+				open to meeting new people. Feel free to hit me up on
+				<a
+					href="https://t.me/shkaev"
+					target="_blank"
+					rel="noreferrer"
+					class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+				>
+					Telegram
+				</a>.
 			</p>
 		</div>
 	</section>
+
+	<script is:inline>
+		const trigger = document.getElementById("show-all-recommendations");
+		const content = document.getElementById("more-recommendations");
+
+		trigger?.addEventListener("click", () => {
+			content?.classList.remove("hidden");
+			trigger.remove();
+		});
+	</script>
 </SiteLayout>
