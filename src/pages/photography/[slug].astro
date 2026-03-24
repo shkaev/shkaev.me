@@ -1,0 +1,425 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import ArrowLeftIcon from "../../components/icons/ArrowLeftIcon.astro";
+import ArrowRightIcon from "../../components/icons/ArrowRightIcon.astro";
+import { resolvePhotoAssetUrl } from "../../lib/photoAsset";
+
+export async function getStaticPaths() {
+	const series = await getCollection("photo-series");
+
+	return series.map((entry) => ({
+		params: { slug: entry.data.slug },
+		props: { entry }
+	}));
+}
+
+const { entry } = Astro.props;
+const { title, summary, intro, cardLocation, timeframe, photos } = entry.data;
+const galleryPhotos = photos.map((photo) => ({
+	...photo,
+	src: resolvePhotoAssetUrl(photo.src),
+	thumbSrc: resolvePhotoAssetUrl(photo.src, "thumb")
+}));
+
+const desktopRows: typeof galleryPhotos[] = [];
+let currentRow: typeof galleryPhotos = [];
+let currentAspectSum = 0;
+const targetAspectSum = 3.4;
+
+for (const photo of galleryPhotos) {
+	currentRow.push(photo);
+	currentAspectSum += photo.width / photo.height;
+
+	if (currentAspectSum >= targetAspectSum) {
+		desktopRows.push(currentRow);
+		currentRow = [];
+		currentAspectSum = 0;
+	}
+}
+
+if (currentRow.length > 0) {
+	desktopRows.push(currentRow);
+}
+---
+
+<SiteLayout title={`${title} | Photography | Dmitry Shkaev`} description={summary}>
+	<section class="w-full">
+		<a
+			href="/photography"
+			data-back-link
+			class="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.24em] text-stone-500 transition hover:text-stone-900"
+		>
+			<ArrowLeftIcon class="h-4 w-4" />
+			<span>Back</span>
+		</a>
+		<h1 class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl">
+			{title}
+		</h1>
+		<p class="mt-3 text-sm leading-7 text-stone-700 sm:text-base">
+			{cardLocation} · {timeframe} · {photos.length} frames
+		</p>
+		{
+			intro && (
+				<>
+					<div class="mt-5 h-px w-full bg-stone-200/80"></div>
+					<p class="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
+						{intro}
+					</p>
+				</>
+			)
+		}
+
+		<div class={intro ? "mt-8 flex flex-col gap-1 lg:hidden" : "mt-10 flex flex-col gap-1 lg:hidden"}>
+			{
+				galleryPhotos.map((photo, index) => (
+					<a
+						href={photo.src}
+						class="group block"
+						data-lightbox-trigger
+						data-photo-index={index}
+						data-photo-src={photo.src}
+						data-photo-alt={`${title} frame ${index + 1}`}
+					>
+						<img
+							src={photo.thumbSrc}
+							alt={`${title} frame ${index + 1}`}
+							width={photo.width}
+							height={photo.height}
+							loading="lazy"
+							class="block h-auto w-full rounded-[4px] transition duration-300 group-hover:scale-[1.01]"
+						/>
+					</a>
+				))
+			}
+		</div>
+
+		<div class={intro ? "mt-8 hidden flex-col gap-1 lg:flex" : "mt-10 hidden flex-col gap-1 lg:flex"}>
+			{
+				desktopRows.map((row) => (
+					<div class="flex gap-1">
+						{
+							row.map((photo) => {
+								const photoIndex = galleryPhotos.indexOf(photo);
+								const aspectRatio = photo.width / photo.height;
+
+								return (
+									<a
+										href={photo.src}
+										class="group block h-64 min-w-0 overflow-hidden"
+										style={`flex: ${aspectRatio} 1 0%;`}
+										data-lightbox-trigger
+										data-photo-index={photoIndex}
+										data-photo-src={photo.src}
+										data-photo-alt={`${title} frame ${photoIndex + 1}`}
+									>
+										<img
+											src={photo.thumbSrc}
+											alt={`${title} frame ${photoIndex + 1}`}
+											width={photo.width}
+											height={photo.height}
+											loading={photoIndex < 9 ? "eager" : "lazy"}
+											class="block h-full w-full rounded-[4px] object-cover transition duration-300 group-hover:scale-[1.01]"
+										/>
+									</a>
+								);
+							})
+						}
+					</div>
+				))
+			}
+		</div>
+
+		<div class="lightbox" data-lightbox hidden>
+			<div class="lightbox__backdrop" data-lightbox-close></div>
+			<div class="lightbox__chrome" data-lightbox-chrome>
+				<button
+					type="button"
+					class="lightbox__button"
+					data-lightbox-prev
+					aria-label="Previous photo"
+				>
+					<ArrowLeftIcon class="h-5 w-5" />
+				</button>
+				<div class="lightbox__frame">
+					<img data-lightbox-image alt="" class="lightbox__image" />
+				</div>
+				<button
+					type="button"
+					class="lightbox__button"
+					data-lightbox-next
+					aria-label="Next photo"
+				>
+					<ArrowRightIcon class="h-5 w-5" />
+				</button>
+			</div>
+		</div>
+	</section>
+</SiteLayout>
+
+<style>
+	.lightbox {
+		position: fixed;
+		inset: 0;
+		z-index: 60;
+		background: rgb(255 255 255 / 0.8);
+		backdrop-filter: blur(32px);
+		-webkit-backdrop-filter: blur(32px);
+	}
+
+	:global(.dark) .lightbox {
+		background: rgb(0 0 0 / 0.8);
+	}
+
+	.lightbox[hidden] {
+		display: none;
+	}
+
+	.lightbox__backdrop {
+		position: absolute;
+		inset: 0;
+	}
+
+	.lightbox__chrome {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 0.75rem;
+		height: 100%;
+		padding: 3rem 0.75rem;
+	}
+
+	.lightbox__frame {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
+		height: 100%;
+	}
+
+	.lightbox__image {
+		display: block;
+		max-width: 100%;
+		max-height: calc(100vh - 6rem);
+		border-radius: 0.5rem;
+	}
+
+	.lightbox__button {
+		position: relative;
+		z-index: 2;
+		display: inline-flex;
+		height: 2.75rem;
+		width: 2.75rem;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgb(255 255 255 / 0.16);
+		border-radius: 9999px;
+		background: rgb(28 25 23 / 0.72);
+		color: rgb(250 250 249);
+		transition:
+			background-color 150ms ease,
+			border-color 150ms ease;
+	}
+
+	.lightbox__button svg {
+		display: block;
+		flex: none;
+	}
+
+	.lightbox__button:hover {
+		background: rgb(41 37 36 / 0.92);
+		border-color: rgb(255 255 255 / 0.28);
+	}
+
+	@media (max-width: 767px) {
+		.lightbox__chrome {
+			grid-template-columns: 1fr;
+			padding: 3rem 0.5rem;
+		}
+
+		.lightbox__button[data-lightbox-prev],
+		.lightbox__button[data-lightbox-next] {
+			position: absolute;
+			bottom: 1rem;
+		}
+
+		.lightbox__button[data-lightbox-prev] {
+			left: 1rem;
+		}
+
+		.lightbox__button[data-lightbox-next] {
+			right: 1rem;
+		}
+	}
+</style>
+
+<script is:inline define:vars={{ galleryPhotos }}>
+	(() => {
+		const triggers = Array.from(
+			document.querySelectorAll("[data-lightbox-trigger]")
+		);
+		const lightbox = document.querySelector("[data-lightbox]");
+		const chrome = document.querySelector("[data-lightbox-chrome]");
+		const image = document.querySelector("[data-lightbox-image]");
+		const closeButtons = Array.from(
+			document.querySelectorAll("[data-lightbox-close]")
+		);
+		const prevButton = document.querySelector("[data-lightbox-prev]");
+		const nextButton = document.querySelector("[data-lightbox-next]");
+
+		if (
+			!triggers.length ||
+			!(lightbox instanceof HTMLElement) ||
+			!(chrome instanceof HTMLElement) ||
+			!(image instanceof HTMLImageElement) ||
+			!(prevButton instanceof HTMLButtonElement) ||
+			!(nextButton instanceof HTMLButtonElement)
+		) {
+			return;
+		}
+
+		const lightboxPhotos = galleryPhotos.map((photo, index) => {
+			const trigger = triggers.find((item) => {
+				if (!(item instanceof HTMLElement)) {
+					return false;
+				}
+
+				return Number(item.dataset.photoIndex) === index;
+			});
+
+			return {
+				src: photo.src,
+				alt:
+					trigger instanceof HTMLElement
+						? trigger.dataset.photoAlt ?? `Photo ${index + 1}`
+						: `Photo ${index + 1}`
+			};
+		});
+
+		let currentIndex = 0;
+		let lastFocusedElement = null;
+		let touchStartX = 0;
+		let touchStartY = 0;
+
+		const updateImage = () => {
+			const photo = lightboxPhotos[currentIndex];
+
+			if (!photo) {
+				return;
+			}
+
+			image.src = photo.src;
+			image.alt = photo.alt;
+		};
+
+		const open = (index) => {
+			currentIndex = index;
+			lastFocusedElement = document.activeElement;
+			updateImage();
+			lightbox.hidden = false;
+			document.body.style.overflow = "hidden";
+			prevButton.focus();
+		};
+
+		const close = () => {
+			lightbox.hidden = true;
+			image.removeAttribute("src");
+			document.body.style.overflow = "";
+
+			if (lastFocusedElement instanceof HTMLElement) {
+				lastFocusedElement.focus();
+			}
+		};
+
+		const goTo = (direction) => {
+			currentIndex =
+				(currentIndex + direction + lightboxPhotos.length) % lightboxPhotos.length;
+			updateImage();
+		};
+
+		triggers.forEach((trigger) => {
+			trigger.addEventListener("click", (event) => {
+				event.preventDefault();
+
+				if (!(trigger instanceof HTMLElement)) {
+					return;
+				}
+
+				open(Number(trigger.dataset.photoIndex ?? 0));
+			});
+		});
+
+		closeButtons.forEach((button) => {
+			button.addEventListener("click", close);
+		});
+
+		chrome.addEventListener("click", (event) => {
+			const target = event.target;
+
+			if (!(target instanceof HTMLElement)) {
+				return;
+			}
+
+			if (target.closest("[data-lightbox-image], [data-lightbox-prev], [data-lightbox-next]")) {
+				return;
+			}
+
+			close();
+		});
+
+		prevButton.addEventListener("click", () => goTo(-1));
+		nextButton.addEventListener("click", () => goTo(1));
+
+		lightbox.addEventListener(
+			"touchstart",
+			(event) => {
+				const touch = event.touches[0];
+
+				if (!touch) {
+					return;
+				}
+
+				touchStartX = touch.clientX;
+				touchStartY = touch.clientY;
+			},
+			{ passive: true }
+		);
+
+		lightbox.addEventListener(
+			"touchend",
+			(event) => {
+				const touch = event.changedTouches[0];
+
+				if (!touch || lightbox.hidden) {
+					return;
+				}
+
+				const deltaX = touch.clientX - touchStartX;
+				const deltaY = touch.clientY - touchStartY;
+				const isVerticalSwipe =
+					Math.abs(deltaY) > 80 && Math.abs(deltaY) > Math.abs(deltaX) * 1.25;
+
+				if (isVerticalSwipe) {
+					close();
+				}
+			},
+			{ passive: true }
+		);
+
+		document.addEventListener("keydown", (event) => {
+			if (lightbox.hidden) {
+				return;
+			}
+
+			if (event.key === "Escape") {
+				close();
+			} else if (event.key === "ArrowLeft") {
+				goTo(-1);
+			} else if (event.key === "ArrowRight") {
+				goTo(1);
+			}
+		});
+	})();
+</script>

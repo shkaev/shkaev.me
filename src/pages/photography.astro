@@ -1,5 +1,12 @@
 ---
+import { getCollection } from "astro:content";
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { resolvePhotoAssetUrl } from "../lib/photoAsset";
+
+const series = (await getCollection("photo-series")).sort(
+	(a, b) => b.data.sortOrder - a.data.sortOrder
+);
+
 ---
 
 <SiteLayout
@@ -11,11 +18,48 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 			Photography
 		</p>
 		<h1 class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl">
-			Selected collections are coming here next.
+			Photography archive, rebuilt series by series.
 		</h1>
 		<p class="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
-			This section will feature curated photo series, archived over time and
-			organized into distinct visual narratives.
+			The new archive keeps each series in an explicit sequence, so every frame
+			stays where it belongs. Imported collections now use the same gallery
+			system, card pattern, and lightbox.
 		</p>
+
+		<div class="mt-14 grid grid-cols-1 gap-4 xl:grid-cols-2">
+			{
+				series.map((entry) => (
+					<a
+						href={`/photography/${entry.data.slug}`}
+						data-hover-card
+						class="group flex flex-col overflow-hidden rounded-[12px] border border-stone-200/80 bg-white transition hover:border-stone-300"
+					>
+						<div class="overflow-hidden bg-stone-100">
+							<img
+								src={resolvePhotoAssetUrl(entry.data.cover.src, "card-cover")}
+								alt={entry.data.title}
+								width={entry.data.cover.width}
+								height={entry.data.cover.height}
+								class="aspect-[16/10] h-auto w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+							/>
+						</div>
+						<div class="min-w-0 p-6">
+							<p class="inline-flex items-center gap-1.5 text-sm text-stone-500">
+								<span>{entry.data.cardLocation}</span>
+								<span class="text-stone-500">·</span>
+								<span>{entry.data.timeframe}</span>
+								<span class="text-stone-500">·</span>
+								<span>{entry.data.photos.length} frames</span>
+							</p>
+							<div class="mt-px">
+								<h2 class="min-w-0 text-xl tracking-tight text-stone-950 sm:text-2xl">
+									{entry.data.title}
+								</h2>
+							</div>
+						</div>
+					</a>
+				))
+			}
+		</div>
 	</section>
 </SiteLayout>

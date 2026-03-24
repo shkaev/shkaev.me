@@ -17,6 +17,10 @@ pnpm-debug.log*
 .env
 .env.production
 
+# local photo archives are stored in R2, not in Git
+public/photo-imports/
+data/photo-imports/
+
 # macOS-specific files
 .DS_Store
 

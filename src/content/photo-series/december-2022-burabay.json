@@ -1,0 +1,77 @@
+{
+  "title": "Burabay",
+  "slug": "december-2022-burabay",
+  "summary": "December 2022, Burabay",
+  "cardLocation": "Kazakhstan",
+  "location": "Burabay",
+  "timeframe": "December 2022",
+  "legacyPath": "/december-2022",
+  "sortOrder": 20,
+  "cover": {
+    "src": "/photo-imports/december-2022/images/007.jpg",
+    "width": 1920,
+    "height": 1280
+  },
+  "photos": [
+    {
+      "src": "/photo-imports/december-2022/images/001.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1659622
+    },
+    {
+      "src": "/photo-imports/december-2022/images/002.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1458071
+    },
+    {
+      "src": "/photo-imports/december-2022/images/003.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1893695
+    },
+    {
+      "src": "/photo-imports/december-2022/images/004.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1776870
+    },
+    {
+      "src": "/photo-imports/december-2022/images/005.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1541996
+    },
+    {
+      "src": "/photo-imports/december-2022/images/006.jpg",
+      "width": 1920,
+      "height": 1280,
+      "size": 1030775
+    },
+    {
+      "src": "/photo-imports/december-2022/images/007.jpg",
+      "width": 1920,
+      "height": 1280,
+      "size": 1281081
+    },
+    {
+      "src": "/photo-imports/december-2022/images/008.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1309559
+    },
+    {
+      "src": "/photo-imports/december-2022/images/009.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1769773
+    },
+    {
+      "src": "/photo-imports/december-2022/images/010.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1584824
+    }
+  ]
+}
