@@ -5,6 +5,16 @@ import ArrowLeftIcon from "../../components/icons/ArrowLeftIcon.astro";
 import ArrowRightIcon from "../../components/icons/ArrowRightIcon.astro";
 import { resolvePhotoAssetUrl } from "../../lib/photoAsset";
 
+const countryFlagByLocation: Record<string, string> = {
+	Cyprus: "/images/flags/cyprus.svg",
+	Kazakhstan: "/images/flags/kazakhstan.svg",
+	Uzbekistan: "/images/flags/uzbekistan.svg",
+	Russia: "/images/flags/russia.svg",
+	UAE: "/images/flags/uae.svg",
+	"United Arab Emirates": "/images/flags/uae.svg"
+};
+const resolveCountryFlag = (location: string) => countryFlagByLocation[location];
+
 export async function getStaticPaths() {
 	const series = await getCollection("photo-series");
 
@@ -15,7 +25,21 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const sortedSeries = (await getCollection("photo-series")).sort(
+	(a, b) => b.data.sortOrder - a.data.sortOrder
+);
+const currentSeriesIndex = sortedSeries.findIndex(
+	(seriesEntry) => seriesEntry.id === entry.id
+);
+const previousSeries =
+	currentSeriesIndex > 0 ? sortedSeries[currentSeriesIndex - 1] : null;
+const nextSeries =
+	currentSeriesIndex >= 0 && currentSeriesIndex < sortedSeries.length - 1
+		? sortedSeries[currentSeriesIndex + 1]
+		: null;
 const { title, summary, intro, cardLocation, timeframe, photos } = entry.data;
+const flagSrc = resolveCountryFlag(cardLocation);
+const isCyprus = cardLocation === "Cyprus";
 const galleryPhotos = photos.map((photo) => ({
 	...photo,
 	src: resolvePhotoAssetUrl(photo.src),
@@ -25,7 +49,7 @@ const galleryPhotos = photos.map((photo) => ({
 const desktopRows: typeof galleryPhotos[] = [];
 let currentRow: typeof galleryPhotos = [];
 let currentAspectSum = 0;
-const targetAspectSum = 3.4;
+const targetAspectSum = 2.8;
 
 for (const photo of galleryPhotos) {
 	currentRow.push(photo);
@@ -47,7 +71,6 @@ if (currentRow.length > 0) {
 	<section class="w-full">
 		<a
 			href="/photography"
-			data-back-link
 			class="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.24em] text-stone-500 transition hover:text-stone-900"
 		>
 			<ArrowLeftIcon class="h-4 w-4" />
@@ -56,8 +79,32 @@ if (currentRow.length > 0) {
 		<h1 class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl">
 			{title}
 		</h1>
-		<p class="mt-3 text-sm leading-7 text-stone-700 sm:text-base">
-			{cardLocation} · {timeframe} · {photos.length} frames
+		<p class="mt-3 inline-flex flex-wrap items-center gap-2 text-sm leading-7 text-stone-700 sm:text-base">
+			{
+				flagSrc && (
+					<span
+						aria-label={cardLocation}
+						role="img"
+						data-flag-icon
+						class="relative -top-px block h-[15px] w-5 shrink-0 overflow-visible"
+					>
+						<span data-flag-tooltip aria-hidden="true">{cardLocation}</span>
+						<img
+							src={flagSrc}
+							alt=""
+							class="block size-full rounded-[2px] object-cover shadow-2xs"
+						/>
+						{isCyprus ? (
+							<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-stone-200/80"></span>
+						) : (
+							<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-black/50 mix-blend-overlay"></span>
+						)}
+					</span>
+				)
+			}
+			<span>{timeframe}</span>
+			<span class="text-stone-500">·</span>
+			<span>{photos.length} frames</span>
 		</p>
 		{
 			intro && (
@@ -75,7 +122,7 @@ if (currentRow.length > 0) {
 				galleryPhotos.map((photo, index) => (
 					<a
 						href={photo.src}
-						class="group block"
+						class="photo-tile group block"
 						data-lightbox-trigger
 						data-photo-index={index}
 						data-photo-src={photo.src}
@@ -87,7 +134,7 @@ if (currentRow.length > 0) {
 							width={photo.width}
 							height={photo.height}
 							loading="lazy"
-							class="block h-auto w-full rounded-[4px] transition duration-300 group-hover:scale-[1.01]"
+							class="photo-tile__image block h-auto w-full rounded-[4px] transition duration-300 group-hover:scale-[1.01]"
 						/>
 					</a>
 				))
@@ -106,7 +153,7 @@ if (currentRow.length > 0) {
 								return (
 									<a
 										href={photo.src}
-										class="group block h-64 min-w-0 overflow-hidden"
+										class="photo-tile group block h-72 min-w-0 overflow-hidden"
 										style={`flex: ${aspectRatio} 1 0%;`}
 										data-lightbox-trigger
 										data-photo-index={photoIndex}
@@ -119,7 +166,7 @@ if (currentRow.length > 0) {
 											width={photo.width}
 											height={photo.height}
 											loading={photoIndex < 9 ? "eager" : "lazy"}
-											class="block h-full w-full rounded-[4px] object-cover transition duration-300 group-hover:scale-[1.01]"
+											class="photo-tile__image block h-full w-full rounded-[4px] object-cover transition duration-300 group-hover:scale-[1.01]"
 										/>
 									</a>
 								);
@@ -129,6 +176,54 @@ if (currentRow.length > 0) {
 				))
 			}
 		</div>
+
+		{
+			(previousSeries || nextSeries) && (
+				<section class="mt-4 w-full sm:mt-4">
+					<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+						{
+							previousSeries ? (
+								<a
+									href={`/photography/${previousSeries.data.slug}`}
+									data-hover-card
+									class="group inline-flex h-full items-center gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5"
+								>
+									<ArrowLeftIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
+									<p class="text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
+										{previousSeries.data.title}
+									</p>
+								</a>
+							) : (
+								<a
+									href="/photography"
+									data-hover-card
+									class="group inline-flex h-full items-center gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5"
+								>
+									<ArrowLeftIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
+									<p class="text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
+										Photography
+									</p>
+								</a>
+							)
+						}
+						{
+							nextSeries && (
+								<a
+									href={`/photography/${nextSeries.data.slug}`}
+									data-hover-card
+									class="group inline-flex h-full items-center justify-end gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5"
+								>
+									<p class="text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-right sm:text-base">
+										{nextSeries.data.title}
+									</p>
+									<ArrowRightIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
+								</a>
+							)
+						}
+					</div>
+				</section>
+			)
+		}
 
 		<div class="lightbox" data-lightbox hidden>
 			<div class="lightbox__backdrop" data-lightbox-close></div>
@@ -141,8 +236,32 @@ if (currentRow.length > 0) {
 				>
 					<ArrowLeftIcon class="h-5 w-5" />
 				</button>
-				<div class="lightbox__frame">
-					<img data-lightbox-image alt="" class="lightbox__image" />
+				<div class="lightbox__frame" data-lightbox-frame>
+					<img data-lightbox-image alt="" class="lightbox__image mx-auto hidden md:block" />
+					<div
+						class="lightbox__mobile-scroller flex h-full w-full items-center gap-3 overflow-x-auto overflow-y-hidden px-4 snap-x snap-mandatory scroll-smooth md:hidden"
+						data-lightbox-mobile-scroller
+						aria-label="Photo gallery"
+					>
+						{
+								galleryPhotos.map((photo, index) => (
+									<div
+										class="lightbox__mobile-slide flex h-full w-[calc(100%-2.5rem)] min-w-[calc(100%-2.5rem)] shrink-0 items-center justify-center snap-center snap-always"
+										data-lightbox-mobile-slide
+										data-photo-index={index}
+									>
+									<img
+										data-photo-src={photo.src}
+										alt={`${title} frame ${index + 1}`}
+										class="lightbox__image"
+										data-lightbox-mobile-image
+										loading="lazy"
+										decoding="async"
+									/>
+								</div>
+							))
+						}
+					</div>
 				</div>
 				<button
 					type="button"
@@ -158,17 +277,76 @@ if (currentRow.length > 0) {
 </SiteLayout>
 
 <style>
+	.photo-tile {
+		position: relative;
+		background: linear-gradient(180deg, rgb(245 245 244), rgb(241 240 239));
+	}
+
+	.photo-tile::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: 4px;
+		background: linear-gradient(
+			90deg,
+			rgb(255 255 255 / 0) 0%,
+			rgb(255 255 255 / 0.42) 50%,
+			rgb(255 255 255 / 0) 100%
+		);
+		transform: translateX(-100%);
+		animation: photo-tile-shimmer 1.8s ease-in-out infinite;
+		pointer-events: none;
+	}
+
+	.photo-tile__image {
+		position: relative;
+		z-index: 1;
+		opacity: 0;
+		transition:
+			opacity 220ms ease,
+			transform 300ms ease;
+	}
+
+	.photo-tile.is-loaded::after {
+		opacity: 0;
+		animation: none;
+	}
+
+	.photo-tile.is-loaded .photo-tile__image {
+		opacity: 1;
+	}
+
+	:global(.dark) .photo-tile {
+		background: linear-gradient(180deg, rgb(41 37 36), rgb(28 25 23));
+	}
+
+	:global(.dark) .photo-tile::after {
+		background: linear-gradient(
+			90deg,
+			rgb(255 255 255 / 0) 0%,
+			rgb(255 255 255 / 0.08) 50%,
+			rgb(255 255 255 / 0) 100%
+		);
+	}
+
+	@keyframes photo-tile-shimmer {
+		100% {
+			transform: translateX(100%);
+		}
+	}
+
 	.lightbox {
+		--lightbox-overlay-opacity: 0.8;
 		position: fixed;
 		inset: 0;
 		z-index: 60;
-		background: rgb(255 255 255 / 0.8);
+		background: rgb(255 255 255 / var(--lightbox-overlay-opacity));
 		backdrop-filter: blur(32px);
 		-webkit-backdrop-filter: blur(32px);
 	}
 
 	:global(.dark) .lightbox {
-		background: rgb(0 0 0 / 0.8);
+		background: rgb(0 0 0 / var(--lightbox-overlay-opacity));
 	}
 
 	.lightbox[hidden] {
@@ -195,8 +373,14 @@ if (currentRow.length > 0) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		width: 100%;
 		min-width: 0;
 		height: 100%;
+		overflow: hidden;
+		transition:
+			transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 220ms ease;
+		will-change: transform, opacity;
 	}
 
 	.lightbox__image {
@@ -212,15 +396,18 @@ if (currentRow.length > 0) {
 		display: inline-flex;
 		height: 2.75rem;
 		width: 2.75rem;
+		cursor: pointer;
 		align-items: center;
 		justify-content: center;
-		border: 1px solid rgb(255 255 255 / 0.16);
+		border: 1px solid rgb(231 229 228 / 0.8);
 		border-radius: 9999px;
-		background: rgb(28 25 23 / 0.72);
-		color: rgb(250 250 249);
+		background: rgb(255 255 255 / 0.96);
+		color: rgb(120 113 108);
+		box-shadow: 0 1px 0 rgb(28 25 23 / 0.04);
 		transition:
 			background-color 150ms ease,
-			border-color 150ms ease;
+			border-color 150ms ease,
+			color 150ms ease;
 	}
 
 	.lightbox__button svg {
@@ -229,40 +416,76 @@ if (currentRow.length > 0) {
 	}
 
 	.lightbox__button:hover {
-		background: rgb(41 37 36 / 0.92);
-		border-color: rgb(255 255 255 / 0.28);
+		background: rgb(255 255 255 / 0.98);
+		border-color: rgb(214 211 209);
+		color: rgb(28 25 23);
 	}
 
-	@media (max-width: 767px) {
-		.lightbox__chrome {
-			grid-template-columns: 1fr;
-			padding: 3rem 0.5rem;
+	:global(.dark) .lightbox__button {
+		border-color: rgb(68 64 60 / 0.9);
+		background: rgb(28 25 23 / 0.72);
+		color: rgb(168 162 158);
+		box-shadow: none;
+	}
+
+	:global(.dark) .lightbox__button:hover {
+		background: rgb(41 37 36 / 0.92);
+		border-color: rgb(120 113 108);
+		color: rgb(250 250 249);
+	}
+
+		@media (max-width: 767px) {
+			.lightbox__chrome {
+				grid-template-columns: 1fr;
+				padding: 3rem 0.5rem;
+			}
+
+		.lightbox__frame {
+			display: block;
+			width: 100%;
 		}
+
+			.lightbox__mobile-scroller {
+				scroll-padding-inline: 1rem;
+				-webkit-overflow-scrolling: touch;
+				touch-action: pan-x;
+				scrollbar-width: none;
+			}
+
+		.lightbox__mobile-scroller::-webkit-scrollbar {
+			display: none;
+		}
+
+			.lightbox__mobile-slide .lightbox__image {
+				max-height: calc(100vh - 6rem);
+			}
 
 		.lightbox__button[data-lightbox-prev],
 		.lightbox__button[data-lightbox-next] {
-			position: absolute;
-			bottom: 1rem;
-		}
-
-		.lightbox__button[data-lightbox-prev] {
-			left: 1rem;
-		}
-
-		.lightbox__button[data-lightbox-next] {
-			right: 1rem;
+			display: none;
 		}
 	}
 </style>
 
 <script is:inline define:vars={{ galleryPhotos }}>
 	(() => {
+		const galleryImages = Array.from(
+			document.querySelectorAll(".photo-tile__image")
+		);
 		const triggers = Array.from(
 			document.querySelectorAll("[data-lightbox-trigger]")
 		);
 		const lightbox = document.querySelector("[data-lightbox]");
 		const chrome = document.querySelector("[data-lightbox-chrome]");
+		const frame = document.querySelector("[data-lightbox-frame]");
 		const image = document.querySelector("[data-lightbox-image]");
+		const mobileScroller = document.querySelector("[data-lightbox-mobile-scroller]");
+		const mobileImages = Array.from(
+			document.querySelectorAll("[data-lightbox-mobile-image]")
+		);
+		const mobileSlides = Array.from(
+			document.querySelectorAll("[data-lightbox-mobile-slide]")
+		);
 		const closeButtons = Array.from(
 			document.querySelectorAll("[data-lightbox-close]")
 		);
@@ -270,15 +493,45 @@ if (currentRow.length > 0) {
 		const nextButton = document.querySelector("[data-lightbox-next]");
 
 		if (
+			!galleryImages.length ||
 			!triggers.length ||
 			!(lightbox instanceof HTMLElement) ||
 			!(chrome instanceof HTMLElement) ||
+			!(frame instanceof HTMLElement) ||
 			!(image instanceof HTMLImageElement) ||
+			!(mobileScroller instanceof HTMLElement) ||
 			!(prevButton instanceof HTMLButtonElement) ||
 			!(nextButton instanceof HTMLButtonElement)
 		) {
 			return;
 		}
+
+		const markImageAsLoaded = (image) => {
+			if (!(image instanceof HTMLImageElement)) {
+				return;
+			}
+
+			const tile = image.closest(".photo-tile");
+
+			if (tile instanceof HTMLElement) {
+				tile.classList.add("is-loaded");
+			}
+		};
+
+		galleryImages.forEach((image) => {
+			if (!(image instanceof HTMLImageElement)) {
+				return;
+			}
+
+			if (image.complete) {
+				markImageAsLoaded(image);
+				return;
+			}
+
+			image.addEventListener("load", () => markImageAsLoaded(image), {
+				once: true
+			});
+		});
 
 		const lightboxPhotos = galleryPhotos.map((photo, index) => {
 			const trigger = triggers.find((item) => {
@@ -300,8 +553,42 @@ if (currentRow.length > 0) {
 
 		let currentIndex = 0;
 		let lastFocusedElement = null;
+		let mobileScrollSettledTimer = 0;
+		const preloadedMobileSources = new Map();
 		let touchStartX = 0;
 		let touchStartY = 0;
+		let isTrackingDismiss = false;
+		let dismissDirectionLocked = false;
+
+		const normalizeIndex = (index) =>
+			(index + lightboxPhotos.length) % lightboxPhotos.length;
+
+		const isMobileViewport = () => window.matchMedia("(max-width: 767px)").matches;
+
+		const applyDismissDrag = (offsetY, withTransition = false) => {
+			const progress = Math.min(Math.abs(offsetY) / 240, 1);
+			const scale = 1 - progress * 0.04;
+			const opacity = Math.max(0.38, 1 - progress * 0.62);
+
+			frame.style.transition = withTransition
+				? "transform 220ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease"
+				: "none";
+			frame.style.transform = `translate3d(0, ${offsetY}px, 0) scale(${scale})`;
+			frame.style.opacity = String(opacity);
+			lightbox.style.setProperty(
+				"--lightbox-overlay-opacity",
+				String(Math.max(0.18, 0.8 - progress * 0.56))
+			);
+		};
+
+		const resetDismissDrag = (withTransition = true) => {
+			frame.style.transition = withTransition
+				? "transform 220ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease"
+				: "none";
+			frame.style.transform = "";
+			frame.style.opacity = "";
+			lightbox.style.setProperty("--lightbox-overlay-opacity", "0.8");
+		};
 
 		const updateImage = () => {
 			const photo = lightboxPhotos[currentIndex];
@@ -314,29 +601,141 @@ if (currentRow.length > 0) {
 			image.alt = photo.alt;
 		};
 
+		const loadMobileImageAt = (index) => {
+			const normalizedIndex = normalizeIndex(index);
+			const mobileImage = mobileImages[normalizedIndex];
+			const source = lightboxPhotos[normalizedIndex]?.src;
+
+			if (!source) {
+				return;
+			}
+
+			if (mobileImage instanceof HTMLImageElement && !mobileImage.getAttribute("src")) {
+				mobileImage.loading = "eager";
+				mobileImage.fetchPriority = "high";
+				mobileImage.src = source;
+			}
+
+			if (!preloadedMobileSources.has(source)) {
+				const preloadImage = new Image();
+				preloadImage.decoding = "async";
+				preloadImage.fetchPriority = "high";
+				preloadImage.src = source;
+				preloadedMobileSources.set(
+					source,
+					typeof preloadImage.decode === "function"
+						? preloadImage.decode().catch(() => {})
+						: Promise.resolve()
+				);
+			}
+		};
+
+		const preloadMobileWindow = (index) => {
+			loadMobileImageAt(index - 2);
+			loadMobileImageAt(index - 1);
+			loadMobileImageAt(index);
+			loadMobileImageAt(index + 1);
+			loadMobileImageAt(index + 2);
+			loadMobileImageAt(index + 3);
+		};
+
+		const scrollMobileToIndex = (index, behavior = "smooth") => {
+			const slide = mobileSlides[index];
+
+			if (!(slide instanceof HTMLElement)) {
+				return;
+			}
+
+			slide.scrollIntoView({
+				behavior,
+				inline: "center",
+				block: "nearest"
+			});
+		};
+
+		const syncCurrentIndexFromMobileScroll = () => {
+			const scrollerRect = mobileScroller.getBoundingClientRect();
+			const scrollerCenter = scrollerRect.left + scrollerRect.width / 2;
+			let nearestIndex = currentIndex;
+			let nearestDistance = Number.POSITIVE_INFINITY;
+
+			mobileSlides.forEach((slide, index) => {
+				if (!(slide instanceof HTMLElement)) {
+					return;
+				}
+
+				const rect = slide.getBoundingClientRect();
+				const slideCenter = rect.left + rect.width / 2;
+				const distance = Math.abs(slideCenter - scrollerCenter);
+
+				if (distance < nearestDistance) {
+					nearestDistance = distance;
+					nearestIndex = index;
+				}
+			});
+
+			currentIndex = nearestIndex;
+			updateImage();
+			preloadMobileWindow(currentIndex);
+		};
+
 		const open = (index) => {
 			currentIndex = index;
 			lastFocusedElement = document.activeElement;
 			updateImage();
+			preloadMobileWindow(index);
 			lightbox.hidden = false;
 			document.body.style.overflow = "hidden";
-			prevButton.focus();
+			resetDismissDrag(false);
+			if (isMobileViewport()) {
+				requestAnimationFrame(() => scrollMobileToIndex(index, "auto"));
+			} else {
+				prevButton.focus();
+			}
 		};
 
 		const close = () => {
 			lightbox.hidden = true;
 			image.removeAttribute("src");
 			document.body.style.overflow = "";
+			resetDismissDrag(false);
+			isTrackingDismiss = false;
+			dismissDirectionLocked = false;
 
 			if (lastFocusedElement instanceof HTMLElement) {
 				lastFocusedElement.focus();
 			}
 		};
 
+		const closeWithFade = () => {
+			frame.style.transition =
+				"transform 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms ease";
+			frame.style.transform = "scale(0.985)";
+			frame.style.opacity = "0";
+			lightbox.style.setProperty("--lightbox-overlay-opacity", "0");
+			window.setTimeout(() => {
+				close();
+			}, 100);
+		};
+
+		const closeWithDismiss = (offsetY) => {
+			const exitOffset =
+				offsetY + Math.sign(offsetY || 1) * Math.max(window.innerHeight * 0.35, 220);
+
+			applyDismissDrag(exitOffset, true);
+			window.setTimeout(() => {
+				close();
+			}, 180);
+		};
+
 		const goTo = (direction) => {
 			currentIndex =
 				(currentIndex + direction + lightboxPhotos.length) % lightboxPhotos.length;
 			updateImage();
+			preloadMobileWindow(currentIndex);
+			if (isMobileViewport()) {
+				scrollMobileToIndex(currentIndex);
+			}
 		};
 
 		triggers.forEach((trigger) => {
@@ -352,7 +751,7 @@ if (currentRow.length > 0) {
 		});
 
 		closeButtons.forEach((button) => {
-			button.addEventListener("click", close);
+			button.addEventListener("click", closeWithFade);
 		});
 
 		chrome.addEventListener("click", (event) => {
@@ -366,15 +765,26 @@ if (currentRow.length > 0) {
 				return;
 			}
 
-			close();
+			closeWithFade();
 		});
 
 		prevButton.addEventListener("click", () => goTo(-1));
 		nextButton.addEventListener("click", () => goTo(1));
+		image.addEventListener("click", () => {
+			if (isMobileViewport() || lightbox.hidden) {
+				return;
+			}
 
-		lightbox.addEventListener(
+			goTo(1);
+		});
+
+		mobileScroller.addEventListener(
 			"touchstart",
 			(event) => {
+				if (lightbox.hidden || !isMobileViewport() || event.touches.length !== 1) {
+					return;
+				}
+
 				const touch = event.touches[0];
 
 				if (!touch) {
@@ -383,30 +793,105 @@ if (currentRow.length > 0) {
 
 				touchStartX = touch.clientX;
 				touchStartY = touch.clientY;
+				isTrackingDismiss = false;
+				dismissDirectionLocked = false;
+				resetDismissDrag(false);
 			},
 			{ passive: true }
 		);
 
-		lightbox.addEventListener(
-			"touchend",
+		mobileScroller.addEventListener(
+			"touchmove",
 			(event) => {
-				const touch = event.changedTouches[0];
+				if (lightbox.hidden || !isMobileViewport() || event.touches.length !== 1) {
+					return;
+				}
 
-				if (!touch || lightbox.hidden) {
+				const touch = event.touches[0];
+
+				if (!touch) {
 					return;
 				}
 
 				const deltaX = touch.clientX - touchStartX;
 				const deltaY = touch.clientY - touchStartY;
-				const isVerticalSwipe =
-					Math.abs(deltaY) > 80 && Math.abs(deltaY) > Math.abs(deltaX) * 1.25;
+				const absDeltaX = Math.abs(deltaX);
+				const absDeltaY = Math.abs(deltaY);
 
-				if (isVerticalSwipe) {
-					close();
+				if (!dismissDirectionLocked) {
+					if (absDeltaY > 10 && absDeltaY > absDeltaX * 1.1) {
+						isTrackingDismiss = true;
+						dismissDirectionLocked = true;
+					} else if (absDeltaX > 10 && absDeltaX > absDeltaY) {
+						isTrackingDismiss = false;
+						dismissDirectionLocked = true;
+					}
 				}
+
+				if (!isTrackingDismiss) {
+					return;
+				}
+
+				event.preventDefault();
+				applyDismissDrag(deltaY, false);
+			},
+			{ passive: false }
+		);
+
+		mobileScroller.addEventListener(
+			"touchend",
+			(event) => {
+				if (lightbox.hidden || !isMobileViewport()) {
+					return;
+				}
+
+				const touch = event.changedTouches[0];
+
+				if (!touch) {
+					return;
+				}
+
+				const deltaY = touch.clientY - touchStartY;
+
+				if (isTrackingDismiss && Math.abs(deltaY) > 110) {
+					closeWithDismiss(deltaY);
+				} else if (isTrackingDismiss) {
+					resetDismissDrag(true);
+				}
+
+				isTrackingDismiss = false;
+				dismissDirectionLocked = false;
 			},
 			{ passive: true }
 		);
+
+		mobileScroller.addEventListener(
+			"touchcancel",
+			() => {
+				if (lightbox.hidden || !isMobileViewport()) {
+					return;
+				}
+
+				resetDismissDrag(true);
+				isTrackingDismiss = false;
+				dismissDirectionLocked = false;
+			},
+			{ passive: true }
+		);
+
+		mobileScroller.addEventListener("scroll", () => {
+			if (lightbox.hidden || !isMobileViewport() || isTrackingDismiss) {
+				return;
+			}
+
+			if (mobileScrollSettledTimer) {
+				window.clearTimeout(mobileScrollSettledTimer);
+			}
+
+			mobileScrollSettledTimer = window.setTimeout(() => {
+				syncCurrentIndexFromMobileScroll();
+			}, 120);
+		});
 
 		document.addEventListener("keydown", (event) => {
 			if (lightbox.hidden) {
@@ -414,11 +899,17 @@ if (currentRow.length > 0) {
 			}
 
 			if (event.key === "Escape") {
-				close();
+				closeWithFade();
 			} else if (event.key === "ArrowLeft") {
 				goTo(-1);
 			} else if (event.key === "ArrowRight") {
 				goTo(1);
+			}
+		});
+
+		window.addEventListener("resize", () => {
+			if (!lightbox.hidden) {
+				scrollMobileToIndex(currentIndex, "auto");
 			}
 		});
 	})();

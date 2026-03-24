@@ -12,6 +12,7 @@ const { title, description = "Personal website of Dmitry Shkaev." } =
 	Astro.props;
 
 const pathname = Astro.url.pathname;
+const isHomePage = pathname === "/";
 
 const navigation = [
 	{ href: "/photography", label: "Photography" },
@@ -62,26 +63,137 @@ const shellWidthClass = "max-w-[81.25rem]";
 				root.style.colorScheme = theme;
 			})();
 		</script>
+		<script is:inline>
+			(() => {
+				const scrollStorageKey = "scroll-position:";
+				const pageKey = `${scrollStorageKey}${window.location.pathname}${window.location.search}`;
+
+				const saveScrollPosition = () => {
+					try {
+						sessionStorage.setItem(pageKey, String(window.scrollY));
+					} catch {
+						// Ignore storage failures and keep default browser behavior.
+					}
+				};
+
+				const restoreScrollPosition = () => {
+					try {
+						const storedPosition = sessionStorage.getItem(pageKey);
+
+						if (storedPosition === null) {
+							return;
+						}
+
+						const y = Number.parseFloat(storedPosition);
+
+						if (!Number.isFinite(y)) {
+							return;
+						}
+
+						requestAnimationFrame(() => {
+							requestAnimationFrame(() => {
+								window.scrollTo({ top: y, left: 0, behavior: "auto" });
+							});
+						});
+					} catch {
+						// Ignore storage failures and keep default browser behavior.
+					}
+				};
+
+				if ("scrollRestoration" in history) {
+					history.scrollRestoration = "manual";
+				}
+
+				window.addEventListener("pagehide", saveScrollPosition);
+				document.addEventListener("visibilitychange", () => {
+					if (document.visibilityState === "hidden") {
+						saveScrollPosition();
+					}
+				});
+
+				window.addEventListener("pageshow", (event) => {
+					const navigationEntry = performance.getEntriesByType("navigation")[0];
+					const navigationType = navigationEntry &&
+						typeof navigationEntry === "object" &&
+						"type" in navigationEntry
+						? navigationEntry.type
+						: "";
+
+					if (event.persisted || navigationType === "back_forward") {
+						restoreScrollPosition();
+					}
+				});
+
+				document.addEventListener("click", (event) => {
+					const target = event.target;
+
+					if (!(target instanceof Element)) {
+						return;
+					}
+
+					const backLink = target.closest("[data-back-link]");
+
+					if (!(backLink instanceof HTMLAnchorElement)) {
+						return;
+					}
+
+					if (
+						event.defaultPrevented ||
+						event.button !== 0 ||
+						backLink.target === "_blank" ||
+						event.metaKey ||
+						event.ctrlKey ||
+						event.shiftKey ||
+						event.altKey
+					) {
+						return;
+					}
+
+					const referrer = document.referrer ? new URL(document.referrer) : null;
+					const hasSameOriginReferrer = referrer !== null &&
+						referrer.origin === window.location.origin;
+
+					if (!hasSameOriginReferrer || history.length <= 1) {
+						return;
+					}
+
+					event.preventDefault();
+					saveScrollPosition();
+					history.back();
+				});
+
+			})();
+		</script>
 	</head>
 	<body class="min-h-screen bg-stone-50 text-stone-900 antialiased transition-colors dark:bg-stone-950 dark:text-stone-100">
-		<div class="flex min-h-screen flex-col px-6 py-6 sm:px-8 lg:px-12">
+		<div class:list={[
+			"flex min-h-screen flex-col px-6 sm:px-8 lg:px-12",
+			isHomePage ? "py-4 sm:py-6" : "py-6"
+		]}>
 			<header class="w-full border-b border-stone-200/80 dark:border-stone-800/80">
-				<div class:list={["mx-auto grid w-full grid-cols-[auto_1fr_auto] items-center gap-4 pb-6", shellWidthClass]}>
-					<div class="relative justify-self-start">
-						<a
-							href="/"
-							aria-label="Home"
-							data-avatar-link
-							class="group flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-stone-200 bg-white text-stone-950 transition hover:border-stone-300 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-50 dark:hover:border-stone-500"
-						>
+				<div class:list={[
+					"mx-auto grid w-full grid-cols-[auto_1fr_auto] items-center gap-4",
+					isHomePage ? "pb-4 sm:pb-6" : "pb-6",
+					shellWidthClass
+				]}>
+					<a
+						href="/"
+						aria-label="Home"
+						data-avatar-link
+						class="group flex items-center gap-3 justify-self-start text-stone-950 dark:text-stone-50"
+					>
+						<span class="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-stone-200 bg-white transition group-hover:border-stone-300 dark:border-stone-700 dark:bg-stone-900 dark:group-hover:border-stone-500">
 							<img
 								src="/avatars/avatar.jpg"
 								alt="Dima Shkaev"
 								class="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
 							/>
-						</a>
-						<span data-avatar-tooltip aria-hidden="true">Dmitry Shkaev</span>
-					</div>
+						</span>
+						<span data-avatar-name class="font-display hidden leading-none tracking-normal text-stone-950 sm:flex sm:flex-col">
+							<span class="text-lg">Dmitry</span>
+							<span class="-mt-2 text-2xl">Shkaev</span>
+						</span>
+					</a>
 					<nav
 						aria-label="Primary"
 						class="col-start-1 row-start-2 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 justify-self-center sm:col-start-2 sm:row-start-1"
@@ -133,12 +245,19 @@ const shellWidthClass = "max-w-[81.25rem]";
 				</div>
 			</header>
 
-			<main class="mx-auto flex w-full max-w-[64rem] flex-1 items-start py-12 sm:py-16">
+			<main class:list={[
+				"mx-auto flex w-full max-w-[64rem] flex-1 items-start",
+				isHomePage ? "py-8 sm:py-16" : "py-12 sm:py-16"
+			]}>
 				<slot />
 			</main>
 
 			<footer class="mt-8 w-full border-t border-stone-200/80 dark:border-stone-800/80">
-				<div class:list={["mx-auto flex w-full flex-col gap-4 pt-6 text-sm text-stone-500 dark:text-stone-400 sm:flex-row sm:items-center sm:justify-between", shellWidthClass]}>
+				<div class:list={[
+					"mx-auto flex w-full flex-col gap-4 text-sm text-stone-500 dark:text-stone-400 sm:flex-row sm:items-center sm:justify-between",
+					isHomePage ? "pt-4 sm:pt-6" : "pt-6",
+					shellWidthClass
+				]}>
 					<p>Design, photography, and the things in between.</p>
 					<div class="flex items-center gap-1">
 						{
