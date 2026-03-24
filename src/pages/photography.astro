@@ -26,16 +26,16 @@ const resolveCountryFlag = (location: string) => countryFlagByLocation[location]
 		<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
 			Photography
 		</p>
-		<h1 class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl">
-			Photography archive, rebuilt series by series.
+		<h1 class="mt-4 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:mt-6 sm:text-5xl md:text-6xl">
+			My collection
 		</h1>
 		<p class="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
-			The new archive keeps each series in an explicit sequence, so every frame
-			stays where it belongs. Imported collections now use the same gallery
-			system, card pattern, and lightbox.
+			This is an archive of photos taken with my Fujifilm X-E4. It’s
+			built series by series, with every collection kept in sequence to
+			preserve the feeling of time, place, and movement.
 		</p>
 
-		<div class="mt-14 grid grid-cols-1 gap-4 xl:grid-cols-2">
+		<div class="mt-8 grid grid-cols-1 gap-4 xl:grid-cols-2">
 			{
 				series.map((entry) => {
 					const flagSrc = resolveCountryFlag(entry.data.cardLocation);

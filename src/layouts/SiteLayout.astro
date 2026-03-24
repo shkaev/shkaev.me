@@ -43,6 +43,12 @@ const shellWidthClass = "max-w-[81.25rem]";
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+		<link
+			rel="preload"
+			as="image"
+			href="/avatars/avatar.jpg"
+			fetchpriority="high"
+		/>
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
@@ -51,16 +57,24 @@ const shellWidthClass = "max-w-[81.25rem]";
 			(() => {
 				const storageKey = "theme";
 				const root = document.documentElement;
-				const storedTheme = localStorage.getItem(storageKey);
-				const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-				const theme = storedTheme === "light" || storedTheme === "dark"
-					? storedTheme
-					: prefersDark
-						? "dark"
-						: "light";
+				const resolveTheme = () => {
+					const storedTheme = localStorage.getItem(storageKey);
+					const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-				root.classList.toggle("dark", theme === "dark");
-				root.style.colorScheme = theme;
+					return storedTheme === "light" || storedTheme === "dark"
+						? storedTheme
+						: prefersDark
+							? "dark"
+							: "light";
+				};
+
+				const applyResolvedTheme = () => {
+					const theme = resolveTheme();
+					root.classList.toggle("dark", theme === "dark");
+					root.style.colorScheme = theme;
+				};
+
+				applyResolvedTheme();
 			})();
 		</script>
 		<script is:inline>
@@ -165,15 +179,11 @@ const shellWidthClass = "max-w-[81.25rem]";
 			})();
 		</script>
 	</head>
-	<body class="min-h-screen bg-stone-50 text-stone-900 antialiased transition-colors dark:bg-stone-950 dark:text-stone-100">
-		<div class:list={[
-			"flex min-h-screen flex-col px-6 sm:px-8 lg:px-12",
-			isHomePage ? "py-4 sm:py-6" : "py-6"
-		]}>
+	<body class="min-h-[100svh] bg-stone-50 text-stone-900 antialiased transition-colors dark:bg-stone-950 dark:text-stone-100 sm:min-h-screen">
+		<div class="flex min-h-[100svh] flex-col px-6 py-6 sm:min-h-screen sm:px-8 sm:py-6 lg:px-12">
 			<header class="w-full border-b border-stone-200/80 dark:border-stone-800/80">
 				<div class:list={[
-					"mx-auto grid w-full grid-cols-[auto_1fr_auto] items-center gap-4",
-					isHomePage ? "pb-4 sm:pb-6" : "pb-6",
+					"mx-auto grid w-full grid-cols-[auto_1fr_auto] items-center gap-4 pb-6",
 					shellWidthClass
 				]}>
 					<a
@@ -186,17 +196,25 @@ const shellWidthClass = "max-w-[81.25rem]";
 							<img
 								src="/avatars/avatar.jpg"
 								alt="Dima Shkaev"
+								width="220"
+								height="220"
+								loading="eager"
+								decoding="async"
+								fetchpriority="high"
 								class="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
 							/>
 						</span>
-						<span data-avatar-name class="font-display hidden leading-none tracking-normal text-stone-950 sm:flex sm:flex-col">
+						<span
+							data-avatar-name
+							class="font-display flex flex-col leading-none tracking-normal text-stone-950 dark:text-stone-50"
+						>
 							<span class="text-lg">Dmitry</span>
 							<span class="-mt-2 text-2xl">Shkaev</span>
 						</span>
 					</a>
 					<nav
 						aria-label="Primary"
-						class="col-start-1 row-start-2 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 justify-self-center sm:col-start-2 sm:row-start-1"
+						class="col-start-1 col-span-3 row-start-2 mt-2 flex w-full items-center justify-between gap-2 justify-self-stretch sm:col-start-2 sm:col-span-1 sm:row-start-1 sm:mt-0 sm:w-auto sm:flex-wrap sm:justify-center sm:gap-x-8 sm:gap-y-2 sm:justify-self-center"
 					>
 						{
 							navigation.map((item) => {
@@ -208,7 +226,7 @@ const shellWidthClass = "max-w-[81.25rem]";
 										aria-current={isActive ? "page" : undefined}
 										data-nav-link
 										class:list={[
-											"text-sm font-medium tracking-tight transition-colors",
+											"flex-1 text-center text-sm font-medium tracking-tight transition-colors sm:flex-none",
 											isActive
 												? "text-stone-950"
 												: "text-stone-500 hover:text-stone-900"
@@ -247,19 +265,31 @@ const shellWidthClass = "max-w-[81.25rem]";
 
 			<main class:list={[
 				"mx-auto flex w-full max-w-[64rem] flex-1 items-start",
-				isHomePage ? "py-8 sm:py-16" : "py-12 sm:py-16"
+				isHomePage ? "py-4 sm:py-16" : "py-6 sm:py-16"
 			]}>
 				<slot />
 			</main>
 
-			<footer class="mt-8 w-full border-t border-stone-200/80 dark:border-stone-800/80">
+			<footer
+				class:list={[
+					"w-full border-t border-stone-200/80 dark:border-stone-800/80",
+					isHomePage ? "mt-auto" : "mt-8"
+				]}
+			>
 				<div class:list={[
 					"mx-auto flex w-full flex-col gap-4 text-sm text-stone-500 dark:text-stone-400 sm:flex-row sm:items-center sm:justify-between",
 					isHomePage ? "pt-4 sm:pt-6" : "pt-6",
 					shellWidthClass
 				]}>
-					<p>Design, photography, and the things in between.</p>
-					<div class="flex items-center gap-1">
+					<p class:list={[isHomePage ? "hidden sm:block" : "block"]}>
+						Design, photography, and the things in between.
+					</p>
+					<div
+						class:list={[
+							"flex items-center gap-1",
+							isHomePage ? "justify-center gap-3" : ""
+						]}
+					>
 						{
 							socialLinks.map((item) => (
 									<a
@@ -268,14 +298,20 @@ const shellWidthClass = "max-w-[81.25rem]";
 										rel="noreferrer"
 										aria-label={item.label}
 										data-footer-icon
-										class="relative flex h-10 w-10 items-center justify-center text-stone-500 transition hover:text-stone-950"
+										class:list={[
+											"relative flex items-center justify-center text-stone-500 transition hover:text-stone-950",
+											isHomePage ? "h-12 w-12 sm:h-10 sm:w-10" : "h-10 w-10"
+										]}
 									>
 									{
 										item.label === "LinkedIn" ? (
 											<svg
 												aria-hidden="true"
 												viewBox="0 0 24 24"
-												class="h-5 w-5 fill-current"
+												class:list={[
+													"fill-current",
+													isHomePage ? "h-6 w-6 sm:h-5 sm:w-5" : "h-5 w-5"
+												]}
 											>
 												<path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A1.97 1.97 0 0 0 3.28 5c0 1.08.88 1.94 1.94 1.94h.03A1.96 1.96 0 0 0 7.22 5 1.95 1.95 0 0 0 5.25 3Zm10.16 5.23c-1.8 0-2.6.99-3.06 1.69V8.5H8.97c.04.93 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.13-.92.27-.68.88-1.38 1.9-1.38 1.34 0 1.88 1.03 1.88 2.54V20h3.38v-6.57c0-3.52-1.88-5.2-4.23-5.2Z"></path>
 											</svg>
@@ -283,7 +319,10 @@ const shellWidthClass = "max-w-[81.25rem]";
 											<svg
 												aria-hidden="true"
 												viewBox="0 0 24 24"
-												class="h-5 w-5 fill-current"
+												class:list={[
+													"fill-current",
+													isHomePage ? "h-6 w-6 sm:h-5 sm:w-5" : "h-5 w-5"
+												]}
 											>
 												<path d="M20.67 4.36c.52-.2 1 .13.83.93l-2.84 13.39c-.12.58-.45.72-.92.45l-4.33-3.2-2.09 2.01c-.23.23-.43.43-.87.43l.31-4.4 8.01-7.23c.35-.31-.08-.49-.53-.19l-9.9 6.24-4.26-1.33c-.93-.29-.95-.93.19-1.38l16.4-6.32Z"></path>
 											</svg>
@@ -291,7 +330,10 @@ const shellWidthClass = "max-w-[81.25rem]";
 											<svg
 												aria-hidden="true"
 												viewBox="0 0 24 24"
-												class="h-5 w-5 fill-current"
+												class:list={[
+													"fill-current",
+													isHomePage ? "h-6 w-6 sm:h-5 sm:w-5" : "h-5 w-5"
+												]}
 											>
 												<path d="M7.75 3h8.5A4.75 4.75 0 0 1 21 7.75v8.5A4.75 4.75 0 0 1 16.25 21h-8.5A4.75 4.75 0 0 1 3 16.25v-8.5A4.75 4.75 0 0 1 7.75 3Zm-.17 1.74A2.84 2.84 0 0 0 4.74 7.6v8.8a2.84 2.84 0 0 0 2.84 2.85h8.84a2.84 2.84 0 0 0 2.84-2.84V7.58a2.84 2.84 0 0 0-2.84-2.84H7.58Zm9.52 1.3a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 7.62A4.38 4.38 0 1 1 7.62 12 4.39 4.39 0 0 1 12 7.62Zm0 1.74A2.64 2.64 0 1 0 14.64 12 2.64 2.64 0 0 0 12 9.36Z"></path>
 											</svg>
@@ -309,14 +351,19 @@ const shellWidthClass = "max-w-[81.25rem]";
 			(() => {
 				const storageKey = "theme";
 				const root = document.documentElement;
-				const button = document.querySelector("[data-theme-toggle]");
+				const getStoredTheme = () => {
+					const storedTheme = localStorage.getItem(storageKey);
 
-				if (!button) {
-					return;
-				}
+					if (storedTheme === "light" || storedTheme === "dark") {
+						return storedTheme;
+					}
 
-				const getTheme = () =>
-					root.classList.contains("dark") ? "dark" : "light";
+					return window.matchMedia("(prefers-color-scheme: dark)").matches
+						? "dark"
+						: "light";
+				};
+
+				const getTheme = () => getStoredTheme();
 
 				const isEditableTarget = (target) =>
 					target instanceof HTMLElement &&
@@ -329,6 +376,12 @@ const shellWidthClass = "max-w-[81.25rem]";
 					const isDark = theme === "dark";
 					root.classList.toggle("dark", isDark);
 					root.style.colorScheme = theme;
+					const button = document.querySelector("[data-theme-toggle]");
+
+					if (!(button instanceof HTMLButtonElement)) {
+						return;
+					}
+
 					button.setAttribute("aria-pressed", String(isDark));
 					button.setAttribute(
 						"aria-label",
@@ -336,15 +389,13 @@ const shellWidthClass = "max-w-[81.25rem]";
 					);
 				};
 
-				applyTheme(getTheme());
-
-				button.addEventListener("click", () => {
+				const toggleTheme = () => {
 					const nextTheme = getTheme() === "dark" ? "light" : "dark";
 					localStorage.setItem(storageKey, nextTheme);
 					applyTheme(nextTheme);
-				});
+				};
 
-				document.addEventListener("keydown", (event) => {
+				const handleThemeKeydown = (event) => {
 					if (event.defaultPrevented || event.repeat || event.code !== "KeyL") {
 						return;
 					}
@@ -356,7 +407,30 @@ const shellWidthClass = "max-w-[81.25rem]";
 					const nextTheme = getTheme() === "dark" ? "light" : "dark";
 					localStorage.setItem(storageKey, nextTheme);
 					applyTheme(nextTheme);
-				});
+				};
+
+				const setupThemeToggle = () => {
+					const button = document.querySelector("[data-theme-toggle]");
+
+					if (!(button instanceof HTMLButtonElement)) {
+						return;
+					}
+
+					applyTheme(getStoredTheme());
+
+					if (button.dataset.themeBound !== "true") {
+						button.addEventListener("click", toggleTheme);
+						button.dataset.themeBound = "true";
+					}
+				};
+
+				setupThemeToggle();
+
+				if (document.documentElement.dataset.themeKeydownBound !== "true") {
+					document.addEventListener("keydown", handleThemeKeydown);
+					document.documentElement.dataset.themeKeydownBound = "true";
+				}
+
 			})();
 		</script>
 	</body>
