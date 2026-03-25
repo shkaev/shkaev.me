@@ -1,0 +1,131 @@
+{
+  "title": "Troodos",
+  "slug": "november-2023-troodos",
+  "summary": "November 2023, Troodos",
+  "cardLocation": "Cyprus",
+  "location": "Troodos",
+  "timeframe": "November 2023",
+  "legacyPath": "/november-2023",
+  "sortOrder": 50,
+  "cover": {
+    "src": "/photo-imports/november-2023/images/014.jpg",
+    "width": 1920,
+    "height": 1280
+  },
+  "photos": [
+    {
+      "src": "/photo-imports/november-2023/images/001.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2541985
+    },
+    {
+      "src": "/photo-imports/november-2023/images/002.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2147438
+    },
+    {
+      "src": "/photo-imports/november-2023/images/003.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1667611
+    },
+    {
+      "src": "/photo-imports/november-2023/images/004.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2320778
+    },
+    {
+      "src": "/photo-imports/november-2023/images/005.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2508310
+    },
+    {
+      "src": "/photo-imports/november-2023/images/006.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1345415
+    },
+    {
+      "src": "/photo-imports/november-2023/images/007.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2341406
+    },
+    {
+      "src": "/photo-imports/november-2023/images/008.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2773327
+    },
+    {
+      "src": "/photo-imports/november-2023/images/009.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1249179
+    },
+    {
+      "src": "/photo-imports/november-2023/images/010.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2025016
+    },
+    {
+      "src": "/photo-imports/november-2023/images/011.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1551206
+    },
+    {
+      "src": "/photo-imports/november-2023/images/012.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2114876
+    },
+    {
+      "src": "/photo-imports/november-2023/images/013.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2113182
+    },
+    {
+      "src": "/photo-imports/november-2023/images/014.jpg",
+      "width": 1920,
+      "height": 1280,
+      "size": 868760
+    },
+    {
+      "src": "/photo-imports/november-2023/images/015.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1489177
+    },
+    {
+      "src": "/photo-imports/november-2023/images/016.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1026627
+    },
+    {
+      "src": "/photo-imports/november-2023/images/017.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1472518
+    },
+    {
+      "src": "/photo-imports/november-2023/images/018.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1288193
+    },
+    {
+      "src": "/photo-imports/november-2023/images/020.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2493766
+    }
+  ]
+}

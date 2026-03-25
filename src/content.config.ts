@@ -18,6 +18,13 @@ const photoSeries = defineCollection({
 			width: z.number().int().positive(),
 			height: z.number().int().positive()
 		}),
+		cardCover: z
+			.object({
+				src: z.string(),
+				width: z.number().int().positive(),
+				height: z.number().int().positive()
+			})
+			.optional(),
 		photos: z
 			.array(
 				z.object({

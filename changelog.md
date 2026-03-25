@@ -4,6 +4,26 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-03-26</span></p>
+
+## Expanded the Cyprus photography archive and refined archive behavior
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added new Cyprus photography series for October 2023 through May 2024, including Limassol, Troodos, Agios Pavlos, Nicosia, and Kampi Trail Hike entries.
+- Extended the photography archive with the next Limassol sequence, including Parts 8 and 9, plus a standalone Limassol Carnival 2024 post.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Improved photography archive cards with optional custom card covers so difficult crops could be framed more intentionally.
+- Improved photo series pages so the Back link returned to the previous archive scroll position when possible, while still falling back safely to the archive.
+- Improved gallery affordances with a pointer cursor in the lightbox image and aligned the desktop gallery tile hover zoom with the archive card pattern.
+
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Added support in the content schema for custom archive card cover assets alongside the standard generated covers.
+- Updated project workflow notes to require live progress reporting during long photo imports.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-25</span></p>
 
 ## Added a changelog drawer and set the workflow for future updates

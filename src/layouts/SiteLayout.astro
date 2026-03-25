@@ -1006,7 +1006,17 @@ const shellWidthClass = "max-w-[81.25rem]";
 							return;
 						}
 
-						button.addEventListener("click", closeSheet);
+						button.addEventListener("click", () => {
+							const isBackdrop = button.classList.contains("site-sheet__backdrop");
+
+							if (isBackdrop && document.activeElement instanceof HTMLElement) {
+								document.activeElement.blur();
+								closeSheet({ restoreFocus: false });
+								return;
+							}
+
+							closeSheet();
+						});
 						button.dataset.sheetBound = "true";
 					});
 

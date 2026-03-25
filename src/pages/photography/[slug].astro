@@ -111,6 +111,7 @@ if (currentRow.length > 0) {
 	<section class="w-full">
 		<a
 			href="/photography"
+			data-back-link
 			class="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.24em] text-stone-500 transition hover:text-stone-900"
 		>
 			<ArrowLeftIcon class="h-4 w-4" />
@@ -193,18 +194,18 @@ if (currentRow.length > 0) {
 											data-photo-alt={`${title} frame ${photoIndex + 1}`}
 											data-mobile-carousel-pair-item={block.photos.length > 1 ? "true" : undefined}
 										>
-											<img
-												src={photo.thumbSrc}
-												alt={`${title} frame ${photoIndex + 1}`}
-												width={photo.width}
-												height={photo.height}
-												loading="lazy"
-												class:list={[
-													"photo-tile__image block w-full rounded-[4px] transition duration-300",
-													block.photos.length > 1
-														? "h-full object-cover"
-														: "h-auto"
-												]}
+										<img
+											src={photo.thumbSrc}
+											alt={`${title} frame ${photoIndex + 1}`}
+											width={photo.width}
+											height={photo.height}
+											loading="lazy"
+											class:list={[
+												"photo-tile__image block w-full rounded-[4px] transition duration-300",
+												block.photos.length > 1
+													? "h-full object-cover"
+													: "h-auto"
+											]}
 												data-mobile-carousel-image
 												data-full-src={photo.src}
 												data-photo-index={photoIndex}
@@ -249,7 +250,7 @@ if (currentRow.length > 0) {
 											width={photo.width}
 											height={photo.height}
 											loading={photoIndex < 9 ? "eager" : "lazy"}
-											class="photo-tile__image block h-full w-full rounded-[4px] object-cover transition duration-300 group-hover:scale-[1.01]"
+											class="photo-tile__image block h-full w-full rounded-[4px] object-cover transition duration-300 group-hover:scale-[1.02]"
 										/>
 									</a>
 								);
@@ -385,9 +386,7 @@ if (currentRow.length > 0) {
 		position: relative;
 		z-index: 1;
 		opacity: 0;
-		transition:
-			opacity 220ms ease,
-			transform 300ms ease;
+		transition: opacity 220ms ease;
 	}
 
 	.photo-tile.is-loaded::after {
@@ -471,6 +470,7 @@ if (currentRow.length > 0) {
 		max-width: 100%;
 		max-height: calc(100vh - 6rem);
 		border-radius: 0.5rem;
+		cursor: pointer;
 	}
 
 	.lightbox__button {
@@ -528,7 +528,7 @@ if (currentRow.length > 0) {
 	}
 
 	@media (max-width: 767px) {
-		section > a[href="/photography"] {
+		section > a[data-back-link] {
 			margin-top: -0.125rem;
 		}
 
@@ -611,6 +611,7 @@ if (currentRow.length > 0) {
 		const galleryImages = Array.from(
 			document.querySelectorAll(".photo-tile__image")
 		);
+		const backLink = document.querySelector("[data-back-link]");
 		const pageTitle = document.querySelector("[data-page-title]");
 		const mobileCarousel = document.querySelector("[data-mobile-carousel]");
 		const mobileCarouselSlides = Array.from(
@@ -651,6 +652,31 @@ if (currentRow.length > 0) {
 			!(nextButton instanceof HTMLButtonElement)
 		) {
 			return;
+		}
+
+		if (backLink instanceof HTMLAnchorElement) {
+			backLink.addEventListener("click", (event) => {
+				const referrer = document.referrer;
+
+				if (!referrer) {
+					return;
+				}
+
+				try {
+					const referrerUrl = new URL(referrer);
+					const currentUrl = new URL(window.location.href);
+					const isSameOrigin = referrerUrl.origin === currentUrl.origin;
+
+					if (!isSameOrigin || window.history.length <= 1) {
+						return;
+					}
+
+					event.preventDefault();
+					window.history.back();
+				} catch {
+					// Ignore malformed referrers and fall back to the archive href.
+				}
+			});
 		}
 
 		const markImageAsLoaded = (image) => {

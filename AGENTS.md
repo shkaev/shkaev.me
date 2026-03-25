@@ -33,6 +33,8 @@
 - Do not touch older changelog entries unless the task explicitly requires changelog maintenance.
 - Run verification only when the change actually needs it under the rules above.
 - Commit only after the code change and matching changelog entry are both ready.
+- Before pushing, show the user a preview of the exact new changelog entry that is about to be shipped and get explicit approval.
+- Do not push committed work until the user has approved the new changelog preview for that push.
 
 ## Deploy Message
 

@@ -40,6 +40,10 @@ const resolveCountryFlag = (location: string) => countryFlagByLocation[location]
 				series.map((entry) => {
 					const flagSrc = resolveCountryFlag(entry.data.cardLocation);
 					const isCyprus = entry.data.cardLocation === "Cyprus";
+					const cardCover = entry.data.cardCover ?? entry.data.cover;
+					const cardCoverSrc = entry.data.cardCover
+						? entry.data.cardCover.src
+						: resolvePhotoAssetUrl(entry.data.cover.src, "card-cover");
 
 					return (
 						<a
@@ -49,10 +53,10 @@ const resolveCountryFlag = (location: string) => countryFlagByLocation[location]
 						>
 							<div class="overflow-hidden bg-stone-100">
 								<img
-									src={resolvePhotoAssetUrl(entry.data.cover.src, "card-cover")}
+									src={cardCoverSrc}
 									alt={entry.data.title}
-									width={entry.data.cover.width}
-									height={entry.data.cover.height}
+									width={cardCover.width}
+									height={cardCover.height}
 									class="aspect-[16/10] h-auto w-full object-cover transition duration-300 group-hover:scale-[1.02]"
 								/>
 							</div>
