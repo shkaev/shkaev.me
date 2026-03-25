@@ -42,7 +42,7 @@ const resolveCountryFlag = (location: string) => countryFlagByLocation[location]
 					const isCyprus = entry.data.cardLocation === "Cyprus";
 					const cardCover = entry.data.cardCover ?? entry.data.cover;
 					const cardCoverSrc = entry.data.cardCover
-						? entry.data.cardCover.src
+						? resolvePhotoAssetUrl(entry.data.cardCover.src, "card-cover")
 						: resolvePhotoAssetUrl(entry.data.cover.src, "card-cover");
 
 					return (

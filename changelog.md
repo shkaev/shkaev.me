@@ -16,13 +16,14 @@ Use completed/past tense throughout, including entry titles, and do not show com
 <p class="changelog-label changelog-label--improved">Improved</p>
 
 - Improved photography archive cards with optional custom card covers so difficult crops could be framed more intentionally.
+- Fixed custom photography card covers so special archive crops loaded from the R2 photo domain instead of broken relative paths on the main site.
 - Improved photo series pages so the Back link returned to the previous archive scroll position when possible, while still falling back safely to the archive.
 - Improved gallery affordances with a pointer cursor in the lightbox image and aligned the desktop gallery tile hover zoom with the archive card pattern.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
 - Added support in the content schema for custom archive card cover assets alongside the standard generated covers.
-- Updated project workflow notes to require live progress reporting during long photo imports.
+- Updated project workflow notes to require live progress reporting during long photo imports and to keep consecutive commits inside the same top changelog entry when they belong to one shipped release.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-25</span></p>
 

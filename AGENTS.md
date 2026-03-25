@@ -11,6 +11,7 @@
 - If a task ends with a git commit, update `changelog.md` in the same changeset before committing.
 - Treat `changelog.md` as part of the definition of done for any committed project work. Do not leave changelog updates for later.
 - Add new entries at the top of `changelog.md`, keeping the newest committed work first.
+- If consecutive commits belong to the same shipped body of work, keep updating the existing top changelog entry for that release instead of creating a new separate top entry for each small follow-up fix.
 - Do not rewrite, reorder, or "refresh" older changelog entries during normal new work. Leave historical entries alone unless the task is specifically about changelog cleanup or backfilling history.
 - Write changelog content in English.
 - Keep all changelog copy in completed/past tense, including entry titles. Do not use commit-style imperative titles such as `Add`, `Refine`, `Build`, or `Migrate`.
@@ -30,6 +31,7 @@
 ## Commit Checklist
 
 - Before committing, append a new top entry to `changelog.md` in the accepted format.
+- If the current commit is a follow-up to the same release already represented by the top entry, update that existing top entry instead of appending a new one.
 - Do not touch older changelog entries unless the task explicitly requires changelog maintenance.
 - Run verification only when the change actually needs it under the rules above.
 - Commit only after the code change and matching changelog entry are both ready.
