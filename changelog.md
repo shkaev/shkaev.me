@@ -1,0 +1,87 @@
+# Changelog
+
+This file tracks meaningful production updates to `shkaev.me`.
+Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
+Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
+
+<p class="changelog-meta"><span class="changelog-meta__date">2026-03-25</span></p>
+
+## Added a changelog drawer and set the workflow for future updates
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added a changelog button to the site header next to the theme toggle.
+- Added a right-side changelog drawer with keyboard shortcuts, blur overlay, and inline rendering of `changelog.md`.
+- Added project rules that required future committed work to update `changelog.md` in the same changeset.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Restyled the changelog into a date-based format with cleaner titles, clearer labels, and simpler past-tense copy.
+- Tuned the drawer width, spacing, typography, label colors, checkmark styling, tooltip placement, and open/close animation.
+- Fixed focus behavior so keyboard shortcuts for the changelog and theme toggle no longer left unwanted focus rings behind.
+
+<p class="changelog-meta"><span class="changelog-meta__date">2026-03-24</span></p>
+
+## Launched the photography archive and moved it to R2-backed storage
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added a real photography archive with generated pages for each series.
+- Added country flags to photography cards and series headers.
+- Added previous and next links between photography series.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Improved photography pages with better scroll restore, keyboard and touch lightbox behavior, and smoother image loading.
+- Tightened mobile spacing and type across the home, about, design, and photography pages.
+- Cleaned up the mobile site shell so the avatar wordmark, nav, footer, and theme toggle fit better on small screens.
+- Reworked photography series pages on phones with a horizontal carousel, paired landscape shots, and better mobile layout rules.
+- Refined the shared site shell and homepage layout around the avatar wordmark, spacing, and footer social links.
+
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Imported dozens of photo series into Astro content collections with structured JSON metadata.
+- Added `PUBLIC_PHOTO_BASE_URL` support so photography assets could load from Cloudflare R2 instead of the repo.
+- Added R2 sync scripts, environment examples, and setup docs for moving `public/photo-imports` out of git.
+- Added a few small performance tweaks, including avatar preloading and cleaner theme setup in the shared layout.
+
+<p class="changelog-meta"><span class="changelog-meta__date">2026-03-22</span></p>
+
+## Added full design case studies and updated the shared site layout
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added a persistent dark mode with local storage support and a keyboard shortcut.
+- Added visual previews to the design landing page instead of plain text links.
+- Added full case studies for Avast Online Security & Privacy, Cookie Manager, and TrackOFF.
+- Added Telegram to the site chrome and linked the contact section to it.
+- Added brand favicons to the work timeline so companies became easier to scan.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Reworked the shared site chrome with a tighter nav layout, avatar label, dedicated theme toggle, and footer social tooltips.
+- Extended the refreshed theme across the homepage, about page, design pages, photography page, and case study templates.
+- Turned the design section into a browsable portfolio with dedicated project pages.
+- Rewrote the About page intro to better explain the product design background and ongoing work.
+- Polished the work timeline with cleaner markers, stronger links, and tighter copy.
+- Shortened the first view of the page by showing only part of the recommendations list, with the rest behind a reveal action.
+- Cleaned up About page copy and recommendation text for the first public version.
+
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Imported the supporting images for the design case studies and linked them from the main design page.
+- Moved portrait assets into `/avatars` and replaced the initial favicon set with project-specific files used by the new layout.
+
+<p class="changelog-meta"><span class="changelog-meta__date">2026-03-21</span></p>
+
+## Launched the first multi-page site layout and about page
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Replaced the placeholder front page with a new light visual direction and a shared site layout.
+- Launched the About page with a career timeline, recommendation blocks, and portrait assets.
+- Added top-level Design and Photography pages.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Expanded the global styling so the project worked as a multi-page portfolio instead of a single placeholder screen.

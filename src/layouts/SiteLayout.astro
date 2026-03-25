@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import { Content as ChangelogContent } from "../../changelog.md";
+import DocumentCheckIcon from "../components/icons/DocumentCheckIcon.astro";
 import MoonIcon from "../components/icons/MoonIcon.astro";
 import SunIcon from "../components/icons/SunIcon.astro";
 
@@ -238,28 +240,49 @@ const shellWidthClass = "max-w-[81.25rem]";
 							})
 						}
 					</nav>
-					<button
-						type="button"
-						data-theme-toggle
-						class="relative inline-flex h-11 w-11 cursor-pointer items-center justify-center justify-self-end rounded-full border border-stone-200 bg-white text-stone-700 transition hover:border-stone-300 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900"
-						aria-label="Switch to dark mode"
-						aria-pressed="false"
-					>
-						<span class="relative flex h-5 w-5 items-center justify-center">
-							<MoonIcon data-theme-icon="moon" class="h-5 w-5 dark:hidden" />
-							<SunIcon data-theme-icon="sun" class="hidden h-5 w-5 dark:block" />
-						</span>
-						<span data-theme-tooltip aria-hidden="true">
-							<span class="flex items-center gap-2 dark:hidden">
-								<span>Dark mode</span>
-								<span data-tooltip-key>L</span>
+					<div class="flex items-center justify-self-end gap-3">
+						<button
+							type="button"
+							data-sheet-toggle
+							class="relative inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-stone-200 bg-white text-stone-700 transition hover:border-stone-300 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900"
+							aria-label="Open changelog"
+							aria-haspopup="dialog"
+							aria-controls="changelog-sheet"
+							aria-expanded="false"
+						>
+							<span class="relative flex h-5 w-5 items-center justify-center">
+								<DocumentCheckIcon class="h-5 w-5" />
 							</span>
-							<span class="hidden items-center gap-2 dark:flex">
-								<span>Light mode</span>
-								<span data-tooltip-key>L</span>
+							<span data-control-tooltip aria-hidden="true">
+								<span class="flex items-center gap-2">
+									<span>Changelog</span>
+									<span data-tooltip-key>C</span>
+								</span>
 							</span>
-						</span>
-					</button>
+						</button>
+						<button
+							type="button"
+							data-theme-toggle
+							class="relative inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-stone-200 bg-white text-stone-700 transition hover:border-stone-300 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900"
+							aria-label="Switch to dark mode"
+							aria-pressed="false"
+						>
+							<span class="relative flex h-5 w-5 items-center justify-center">
+								<MoonIcon data-theme-icon="moon" class="h-5 w-5 dark:hidden" />
+								<SunIcon data-theme-icon="sun" class="hidden h-5 w-5 dark:block" />
+							</span>
+							<span data-control-tooltip aria-hidden="true">
+								<span class="flex items-center gap-2 dark:hidden">
+									<span>Dark mode</span>
+									<span data-tooltip-key>L</span>
+								</span>
+								<span class="hidden items-center gap-2 dark:flex">
+									<span>Light mode</span>
+									<span data-tooltip-key>L</span>
+								</span>
+							</span>
+						</button>
+					</div>
 				</div>
 			</header>
 
@@ -347,6 +370,462 @@ const shellWidthClass = "max-w-[81.25rem]";
 				</div>
 			</footer>
 		</div>
+		<div
+			id="changelog-sheet"
+			class="site-sheet"
+			data-sheet-root
+			data-state="closed"
+			hidden
+		>
+			<div class="site-sheet__backdrop" data-sheet-close></div>
+			<aside
+				class="site-sheet__panel"
+				data-sheet-panel
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="changelog-sheet-title"
+			>
+				<div class="site-sheet__surface">
+					<div class="site-sheet__header">
+						<div class="min-w-0">
+							<h2
+								id="changelog-sheet-title"
+								class="text-[2.5rem] leading-none tracking-tight text-stone-950 sm:text-[3rem]"
+							>
+								Changelog
+							</h2>
+							<p class="mt-3 max-w-xl text-[0.98rem] leading-[1.8] text-stone-600">
+								A running record of meaningful production updates.
+							</p>
+						</div>
+						<button
+							type="button"
+							data-sheet-close
+							data-sheet-close-button
+							class="site-sheet__icon-button"
+							aria-label="Close changelog"
+						>
+							<svg
+								aria-hidden="true"
+								viewBox="0 0 24 24"
+								class="h-5 w-5"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.75"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M6 6 18 18"></path>
+								<path d="M18 6 6 18"></path>
+							</svg>
+						</button>
+					</div>
+					<div class="site-sheet__content">
+						<div data-changelog-sheet>
+							<ChangelogContent />
+						</div>
+					</div>
+					<div class="site-sheet__footer">
+						<button
+							type="button"
+							data-sheet-close
+							class="site-sheet__close-button"
+						>
+							Close
+						</button>
+					</div>
+				</div>
+			</aside>
+		</div>
+		<style is:global>
+			.site-sheet {
+				--sheet-overlay-opacity: 0.8;
+				position: fixed;
+				inset: 0;
+				z-index: 70;
+				background: rgb(255 255 255 / var(--sheet-overlay-opacity));
+				backdrop-filter: blur(32px);
+				-webkit-backdrop-filter: blur(32px);
+				opacity: 0;
+				transition: opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
+			}
+
+			.dark .site-sheet {
+				background: rgb(0 0 0 / var(--sheet-overlay-opacity));
+			}
+
+			.site-sheet[data-state="open"] {
+				opacity: 1;
+			}
+
+			.site-sheet[hidden] {
+				display: none;
+			}
+
+			.site-sheet__backdrop {
+				position: absolute;
+				inset: 0;
+			}
+
+			.site-sheet__panel {
+				position: absolute;
+				right: 0;
+				top: 0;
+				display: flex;
+				height: 100%;
+				width: min(40rem, 100vw);
+				max-width: 100%;
+				transform: translate3d(100%, 0, 0);
+				opacity: 0;
+				transition:
+					transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+					opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
+			}
+
+			.site-sheet[data-state="open"] .site-sheet__panel {
+				transform: translate3d(0, 0, 0);
+				opacity: 1;
+			}
+
+			.site-sheet__surface {
+				display: flex;
+				min-height: 0;
+				flex: 1 1 auto;
+				flex-direction: column;
+				border-left: 1px solid rgb(231 229 228 / 0.8);
+				background: rgb(255 255 255 / 0.96);
+				box-shadow:
+					0 1px 0 rgb(28 25 23 / 0.04),
+					-24px 0 64px rgb(28 25 23 / 0.16);
+				transform: scale(0.985);
+				transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+			}
+
+			.dark .site-sheet__surface {
+				border-left-color: rgb(68 64 60 / 0.9);
+				background: rgb(28 25 23 / 0.94);
+				box-shadow:
+					0 1px 0 rgb(0 0 0 / 0.35),
+					-24px 0 64px rgb(0 0 0 / 0.4);
+			}
+
+			.site-sheet[data-state="open"] .site-sheet__surface {
+				transform: scale(1);
+			}
+
+			.site-sheet__header {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				gap: 1.5rem;
+				border-bottom: 1px solid rgb(231 229 228 / 0.8);
+				padding: 1.5rem 2rem 1.25rem;
+			}
+
+			.dark .site-sheet__header {
+				border-bottom-color: rgb(68 64 60 / 0.9);
+			}
+
+			.site-sheet__icon-button {
+				display: inline-flex;
+				height: 2.75rem;
+				width: 2.75rem;
+				flex: none;
+				cursor: pointer;
+				align-items: center;
+				justify-content: center;
+				border-radius: 9999px;
+				border: 1px solid rgb(231 229 228 / 0.8);
+				background: rgb(255 255 255 / 0.96);
+				color: rgb(120 113 108);
+				transition:
+					background-color 150ms ease,
+					border-color 150ms ease,
+					color 150ms ease;
+			}
+
+			.site-sheet__icon-button:hover {
+				border-color: rgb(214 211 209);
+				background: rgb(255 255 255 / 0.98);
+				color: rgb(28 25 23);
+			}
+
+			.dark .site-sheet__icon-button {
+				border-color: rgb(68 64 60 / 0.9);
+				background: rgb(28 25 23 / 0.72);
+				color: rgb(168 162 158);
+			}
+
+			.dark .site-sheet__icon-button:hover {
+				border-color: rgb(120 113 108);
+				background: rgb(41 37 36 / 0.92);
+				color: rgb(250 250 249);
+			}
+
+			.site-sheet__content {
+				min-height: 0;
+				flex: 1 1 auto;
+				overflow-y: auto;
+				padding: 0.5rem 2rem 8rem;
+			}
+
+			.site-sheet__footer {
+				position: sticky;
+				bottom: 0;
+				border-top: 1px solid rgb(231 229 228 / 0.8);
+				background: rgb(255 255 255 / 0.9);
+				padding: 1rem 2rem max(1rem, env(safe-area-inset-bottom));
+				backdrop-filter: blur(24px);
+				-webkit-backdrop-filter: blur(24px);
+			}
+
+			.dark .site-sheet__footer {
+				border-top-color: rgb(68 64 60 / 0.9);
+				background: rgb(28 25 23 / 0.88);
+			}
+
+			.site-sheet__close-button {
+				display: inline-flex;
+				width: 100%;
+				cursor: pointer;
+				align-items: center;
+				justify-content: center;
+				border-radius: 9999px;
+				border: 1px solid rgb(231 229 228 / 0.8);
+				background: rgb(255 255 255 / 0.96);
+				padding: 0.875rem 1.25rem;
+				font-size: 0.95rem;
+				font-weight: 500;
+				line-height: 1;
+				color: rgb(28 25 23);
+				transition:
+					background-color 150ms ease,
+					border-color 150ms ease,
+					color 150ms ease;
+			}
+
+			.site-sheet__close-button:hover {
+				border-color: rgb(214 211 209);
+				background: rgb(255 255 255 / 0.98);
+			}
+
+			.dark .site-sheet__close-button {
+				border-color: rgb(68 64 60 / 0.9);
+				background: rgb(41 37 36 / 0.92);
+				color: rgb(250 250 249);
+			}
+
+			.dark .site-sheet__close-button:hover {
+				border-color: rgb(120 113 108);
+			}
+
+			[data-changelog-sheet] {
+				max-width: 42rem;
+				color: rgb(68 64 60);
+			}
+
+			[data-changelog-sheet] > :first-child {
+				margin-top: 0;
+			}
+
+			[data-changelog-sheet] > h1,
+			[data-changelog-sheet] > h1 + p,
+			[data-changelog-sheet] > h1 + p + p {
+				display: none;
+			}
+
+			[data-changelog-sheet] h1 {
+				margin: 0 0 0.875rem;
+				font-size: 2.1rem;
+				line-height: 1.05;
+				letter-spacing: -0.03em;
+				color: rgb(28 25 23);
+			}
+
+			[data-changelog-sheet] h2 {
+				margin: 1.125rem 0 0;
+				padding-top: 1.125rem;
+				font-size: 1.65rem;
+				line-height: 1.1;
+				letter-spacing: -0.03em;
+				color: rgb(28 25 23);
+			}
+
+			[data-changelog-sheet] h1 + p + p + h2,
+			[data-changelog-sheet] > h2:first-of-type {
+				margin-top: 0;
+				padding-top: 0;
+				border-top: 0;
+			}
+
+			[data-changelog-sheet] .changelog-meta {
+				display: inline-flex;
+				flex-wrap: wrap;
+				align-items: center;
+				margin: 1.125rem 0 0;
+				padding-top: 1.125rem;
+				font-size: 0.875rem;
+				line-height: 1.4;
+				color: rgb(120 113 108);
+			}
+
+			[data-changelog-sheet] > .changelog-meta:first-of-type {
+				margin-top: 0;
+				padding-top: 0;
+				border-top: 0;
+			}
+
+			[data-changelog-sheet] .changelog-meta__date {
+				display: inline-flex;
+				align-items: center;
+			}
+
+			[data-changelog-sheet] .changelog-meta + h2 {
+				margin-top: calc(0.1rem + 4px);
+				padding-top: 0;
+				border-top: 0;
+			}
+
+			[data-changelog-sheet] .changelog-label {
+				--changelog-accent: rgb(120 113 108);
+				margin: 1.1rem 0 0;
+				font-family: "Inter", "Segoe UI", sans-serif;
+				font-size: 0.8rem;
+				font-weight: 600;
+				line-height: 1.2;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: var(--changelog-accent);
+			}
+
+			[data-changelog-sheet] .changelog-label--added,
+			[data-changelog-sheet] .changelog-label--added + ul {
+				--changelog-accent: rgb(5 150 105);
+			}
+
+			[data-changelog-sheet] .changelog-label--improved,
+			[data-changelog-sheet] .changelog-label--improved + ul {
+				--changelog-accent: rgb(245 158 11);
+			}
+
+			[data-changelog-sheet] .changelog-label--infrastructure,
+			[data-changelog-sheet] .changelog-label--infrastructure + ul {
+				--changelog-accent: rgb(129 140 248);
+			}
+
+			[data-changelog-sheet] .changelog-label + ul li {
+				color: rgb(68 64 60);
+			}
+
+			[data-changelog-sheet] .changelog-label + ul li::before {
+				background-color: var(--changelog-accent);
+			}
+
+			[data-changelog-sheet] p {
+				margin: 0.875rem 0 0;
+				font-size: 0.98rem;
+				line-height: 1.8;
+				color: rgb(87 83 78);
+			}
+
+			[data-changelog-sheet] ul {
+				margin: calc(0.875rem - 4px) 0 0;
+				padding-left: 0;
+				list-style: none;
+			}
+
+			[data-changelog-sheet] li {
+				position: relative;
+				margin-top: 0.6rem;
+				padding-left: 1.75rem;
+				font-size: 0.9rem;
+				line-height: 1.75;
+				color: rgb(68 64 60);
+			}
+
+			[data-changelog-sheet] li::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0.28rem;
+				height: 1rem;
+				width: 1rem;
+				background-color: var(--changelog-accent, rgb(5 150 105));
+				mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='black'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m4.5 12.75 6 6 9-13.5'/%3E%3C/svg%3E");
+				mask-repeat: no-repeat;
+				mask-position: center;
+				mask-size: contain;
+				-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='black'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m4.5 12.75 6 6 9-13.5'/%3E%3C/svg%3E");
+				-webkit-mask-repeat: no-repeat;
+				-webkit-mask-position: center;
+				-webkit-mask-size: contain;
+			}
+
+			[data-changelog-sheet] code {
+				border-radius: 0.45rem;
+				border: 1px solid rgb(231 229 228 / 0.8);
+				background: rgb(245 245 244);
+				padding: 0.12rem 0.42rem;
+				font-size: 0.84em;
+				color: rgb(28 25 23);
+			}
+
+			.dark [data-changelog-sheet] {
+				color: rgb(214 211 209);
+			}
+
+			.dark [data-changelog-sheet] h1,
+			.dark [data-changelog-sheet] h2 {
+				color: rgb(250 250 249);
+			}
+
+			.dark [data-changelog-sheet] .changelog-meta {
+				color: rgb(168 162 158);
+			}
+
+			.dark [data-changelog-sheet] .changelog-label {
+				color: var(--changelog-accent);
+			}
+
+			.dark [data-changelog-sheet] p {
+				color: rgb(214 211 209);
+			}
+
+			.dark [data-changelog-sheet] li {
+				color: rgb(231 229 228);
+			}
+
+			.dark [data-changelog-sheet] .changelog-label + ul li {
+				color: rgb(231 229 228);
+			}
+
+			.dark [data-changelog-sheet] code {
+				border-color: rgb(68 64 60 / 0.9);
+				background: rgb(41 37 36);
+				color: rgb(250 250 249);
+			}
+
+			@media (max-width: 767px) {
+				.site-sheet__header,
+				.site-sheet__footer {
+					padding-left: 1rem;
+					padding-right: 1rem;
+				}
+
+				.site-sheet__content {
+					padding-left: 1rem;
+					padding-right: 1rem;
+				}
+
+				[data-changelog-sheet] h1 {
+					font-size: 1.8rem;
+				}
+
+				[data-changelog-sheet] h2 {
+					font-size: 1.45rem;
+				}
+			}
+		</style>
 		<script is:inline>
 			(() => {
 				const storageKey = "theme";
@@ -404,6 +883,10 @@ const shellWidthClass = "max-w-[81.25rem]";
 						return;
 					}
 
+					if (document.activeElement instanceof HTMLElement) {
+						document.activeElement.blur();
+					}
+
 					const nextTheme = getTheme() === "dark" ? "light" : "dark";
 					localStorage.setItem(storageKey, nextTheme);
 					applyTheme(nextTheme);
@@ -425,6 +908,156 @@ const shellWidthClass = "max-w-[81.25rem]";
 				};
 
 				setupThemeToggle();
+
+				const setupChangelogSheet = () => {
+					const sheetRoot = document.querySelector("[data-sheet-root]");
+					const sheetPanel = document.querySelector("[data-sheet-panel]");
+					const openButtons = Array.from(
+						document.querySelectorAll("[data-sheet-toggle]")
+					);
+					const closeButtons = Array.from(
+						document.querySelectorAll("[data-sheet-close]")
+					);
+					const closeFocusTarget = document.querySelector(
+						"[data-sheet-close-button]"
+					);
+
+					if (
+						!(sheetRoot instanceof HTMLElement) ||
+						!(sheetPanel instanceof HTMLElement) ||
+						!(closeFocusTarget instanceof HTMLButtonElement) ||
+						!openButtons.length
+					) {
+						return;
+					}
+
+					let lastTrigger = null;
+					let closeTimer = 0;
+
+					const syncTriggerState = (isOpen) => {
+						openButtons.forEach((button) => {
+							if (!(button instanceof HTMLButtonElement)) {
+								return;
+							}
+
+							button.setAttribute("aria-expanded", String(isOpen));
+						});
+					};
+
+					const openSheet = (button, options = {}) => {
+						const { focusCloseButton = true } = options;
+
+						if (!(button instanceof HTMLElement)) {
+							return;
+						}
+
+						if (closeTimer) {
+							window.clearTimeout(closeTimer);
+							closeTimer = 0;
+						}
+
+						lastTrigger = button;
+						sheetRoot.hidden = false;
+						document.body.style.overflow = "hidden";
+						syncTriggerState(true);
+
+						requestAnimationFrame(() => {
+							sheetRoot.dataset.state = "open";
+							if (focusCloseButton) {
+								closeFocusTarget.focus();
+							}
+						});
+					};
+
+					const closeSheet = (options = {}) => {
+						const { restoreFocus = true } = options;
+
+						if (sheetRoot.hidden) {
+							return;
+						}
+
+						sheetRoot.dataset.state = "closed";
+						document.body.style.overflow = "";
+						syncTriggerState(false);
+
+						closeTimer = window.setTimeout(() => {
+							sheetRoot.hidden = true;
+							if (restoreFocus && lastTrigger instanceof HTMLElement) {
+								lastTrigger.focus();
+							}
+						}, 280);
+					};
+
+					openButtons.forEach((button) => {
+						if (!(button instanceof HTMLButtonElement)) {
+							return;
+						}
+
+						if (button.dataset.sheetBound === "true") {
+							return;
+						}
+
+						button.addEventListener("click", () => openSheet(button));
+						button.dataset.sheetBound = "true";
+					});
+
+					closeButtons.forEach((button) => {
+						if (!(button instanceof HTMLElement) || button.dataset.sheetBound === "true") {
+							return;
+						}
+
+						button.addEventListener("click", closeSheet);
+						button.dataset.sheetBound = "true";
+					});
+
+					document.addEventListener("keydown", (event) => {
+						if (event.key === "Escape" && !sheetRoot.hidden) {
+							if (document.activeElement instanceof HTMLElement) {
+								document.activeElement.blur();
+							}
+
+							closeSheet({ restoreFocus: false });
+						}
+					});
+
+					const handleChangelogKeydown = (event) => {
+						if (event.defaultPrevented || event.repeat || event.code !== "KeyC") {
+							return;
+						}
+
+						if (isEditableTarget(event.target)) {
+							return;
+						}
+
+						if (document.activeElement instanceof HTMLElement) {
+							document.activeElement.blur();
+						}
+
+						if (sheetRoot.hidden) {
+							const firstButton = openButtons.find(
+								(button) => button instanceof HTMLButtonElement
+							);
+
+							if (firstButton instanceof HTMLButtonElement) {
+								openSheet(firstButton, { focusCloseButton: false });
+							}
+							return;
+						}
+
+						closeSheet({ restoreFocus: false });
+					};
+
+					sheetPanel.addEventListener("click", (event) => {
+						event.stopPropagation();
+					});
+
+					if (document.documentElement.dataset.changelogKeydownBound !== "true") {
+						document.addEventListener("keydown", handleChangelogKeydown);
+						document.documentElement.dataset.changelogKeydownBound = "true";
+					}
+				};
+
+				setupChangelogSheet();
 
 				if (document.documentElement.dataset.themeKeydownBound !== "true") {
 					document.addEventListener("keydown", handleThemeKeydown);

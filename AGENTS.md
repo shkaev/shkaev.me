@@ -6,6 +6,41 @@
 - Run verification only when changes affect logic, routing, data models, Astro content collections, build configuration, or other structural behavior.
 - If a visual change is large enough that layout breakage is a realistic risk, verify selectively and only when needed.
 
+## Changelog
+
+- If a task ends with a git commit, update `changelog.md` in the same changeset before committing.
+- Treat `changelog.md` as part of the definition of done for any committed project work. Do not leave changelog updates for later.
+- Add new entries at the top of `changelog.md`, keeping the newest committed work first.
+- Do not rewrite, reorder, or "refresh" older changelog entries during normal new work. Leave historical entries alone unless the task is specifically about changelog cleanup or backfilling history.
+- Write changelog content in English.
+- Keep all changelog copy in completed/past tense, including entry titles. Do not use commit-style imperative titles such as `Add`, `Refine`, `Build`, or `Migrate`.
+- Do not show commit hashes in visible changelog content.
+- Use only the established changelog structure and CSS hooks already used in `changelog.md`:
+  `<p class="changelog-meta"><span class="changelog-meta__date">YYYY-MM-DD</span></p>`
+  `## Past-tense entry title`
+  optional section labels as:
+  `<p class="changelog-label changelog-label--added">Added</p>`
+  `<p class="changelog-label changelog-label--improved">Improved</p>`
+  `<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>`
+  followed by short bullets.
+- Keep bullets factual and outcome-oriented. Summarize what changed for the site or project, not raw file churn.
+- Prefer 1-3 bullets per label block. Use only the labels that are needed for that commit.
+- For normal forward work, use the current local date of the commit as the changelog date. Only use git-derived historical dates when backfilling older entries from history.
+
+## Commit Checklist
+
+- Before committing, append a new top entry to `changelog.md` in the accepted format.
+- Do not touch older changelog entries unless the task explicitly requires changelog maintenance.
+- Run verification only when the change actually needs it under the rules above.
+- Commit only after the code change and matching changelog entry are both ready.
+
+## Deploy Message
+
+- When a change is being committed and pushed for deployment, make sure the GitHub deploy message reflects the same shipped work described in the new top entry of `changelog.md`.
+- Use the new changelog entry as the source of truth for deploy-message wording and scope.
+- The deploy message may add technical details that are too low-level or internal for the user-facing changelog, as long as they accurately belong to the same shipped work.
+- Do not let the deploy message drift away from the matching changelog entry or imply a different release scope.
+
 ## Import Progress
 
 - During long photo imports, proactively report live progress in the form `downloaded X / Y` without waiting for the user to ask.
