@@ -1,0 +1,83 @@
+{
+  "title": "Zygi",
+  "slug": "june-2024-zygi",
+  "summary": "June 2024, Zygi",
+  "cardLocation": "Cyprus",
+  "location": "Zygi",
+  "timeframe": "June 2024",
+  "legacyPath": "/june-2024",
+  "sortOrder": 65,
+  "cover": {
+    "src": "/photo-imports/june-2024/images/019.jpg",
+    "width": 1707,
+    "height": 2560
+  },
+  "photos": [
+    {
+      "src": "/photo-imports/june-2024/images/013.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1619121
+    },
+    {
+      "src": "/photo-imports/june-2024/images/014.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1900239
+    },
+    {
+      "src": "/photo-imports/june-2024/images/016.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1439895
+    },
+    {
+      "src": "/photo-imports/june-2024/images/017.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1335737
+    },
+    {
+      "src": "/photo-imports/june-2024/images/018.jpg",
+      "width": 1706,
+      "height": 2560,
+      "size": 1841337
+    },
+    {
+      "src": "/photo-imports/june-2024/images/019.jpg",
+      "width": 1920,
+      "height": 1280,
+      "size": 1308166
+    },
+    {
+      "src": "/photo-imports/june-2024/images/020.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1318990
+    },
+    {
+      "src": "/photo-imports/june-2024/images/021.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1865900
+    },
+    {
+      "src": "/photo-imports/june-2024/images/022.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1570589
+    },
+    {
+      "src": "/photo-imports/june-2024/images/023.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1546166
+    },
+    {
+      "src": "/photo-imports/june-2024/images/024.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2504616
+    }
+  ]
+}

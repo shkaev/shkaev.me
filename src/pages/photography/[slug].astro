@@ -111,8 +111,8 @@ if (currentRow.length > 0) {
 	<section class="w-full">
 		<a
 			href="/photography"
-			data-back-link
-			class="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.24em] text-stone-500 transition hover:text-stone-900"
+			data-restore-scroll-target="/photography"
+			class="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.24em] text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
 		>
 			<ArrowLeftIcon class="h-4 w-4" />
 			<span>Back</span>
@@ -280,6 +280,7 @@ if (currentRow.length > 0) {
 							) : (
 								<a
 									href="/photography"
+									data-restore-scroll-target="/photography"
 									data-hover-card
 									class="group inline-flex h-full items-center gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5"
 								>
@@ -611,7 +612,6 @@ if (currentRow.length > 0) {
 		const galleryImages = Array.from(
 			document.querySelectorAll(".photo-tile__image")
 		);
-		const backLink = document.querySelector("[data-back-link]");
 		const pageTitle = document.querySelector("[data-page-title]");
 		const mobileCarousel = document.querySelector("[data-mobile-carousel]");
 		const mobileCarouselSlides = Array.from(
@@ -652,31 +652,6 @@ if (currentRow.length > 0) {
 			!(nextButton instanceof HTMLButtonElement)
 		) {
 			return;
-		}
-
-		if (backLink instanceof HTMLAnchorElement) {
-			backLink.addEventListener("click", (event) => {
-				const referrer = document.referrer;
-
-				if (!referrer) {
-					return;
-				}
-
-				try {
-					const referrerUrl = new URL(referrer);
-					const currentUrl = new URL(window.location.href);
-					const isSameOrigin = referrerUrl.origin === currentUrl.origin;
-
-					if (!isSameOrigin || window.history.length <= 1) {
-						return;
-					}
-
-					event.preventDefault();
-					window.history.back();
-				} catch {
-					// Ignore malformed referrers and fall back to the archive href.
-				}
-			});
 		}
 
 		const markImageAsLoaded = (image) => {

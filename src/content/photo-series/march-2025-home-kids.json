@@ -1,0 +1,71 @@
+{
+  "title": "Home & Kids",
+  "slug": "march-2025-home-kids",
+  "summary": "March 2025, Home & Kids",
+  "cardLocation": "Cyprus",
+  "location": "Home & Kids",
+  "timeframe": "March 2025",
+  "legacyPath": "/march-2025",
+  "sortOrder": 83,
+  "cover": {
+    "src": "/photo-imports/march-2025/images/023.jpg",
+    "width": 1707,
+    "height": 2560
+  },
+  "photos": [
+    {
+      "src": "/photo-imports/march-2025/images/001.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 2141059
+    },
+    {
+      "src": "/photo-imports/march-2025/images/002.jpg",
+      "width": 1920,
+      "height": 1280,
+      "size": 1397849
+    },
+    {
+      "src": "/photo-imports/march-2025/images/003.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1023094
+    },
+    {
+      "src": "/photo-imports/march-2025/images/022.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1134665
+    },
+    {
+      "src": "/photo-imports/march-2025/images/023.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1062290
+    },
+    {
+      "src": "/photo-imports/march-2025/images/024.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1142585
+    },
+    {
+      "src": "/photo-imports/march-2025/images/025.jpg",
+      "width": 1920,
+      "height": 1280,
+      "size": 918664
+    },
+    {
+      "src": "/photo-imports/march-2025/images/026.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1655707
+    },
+    {
+      "src": "/photo-imports/march-2025/images/027.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1583456
+    }
+  ]
+}

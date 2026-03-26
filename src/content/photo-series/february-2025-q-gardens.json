@@ -1,0 +1,53 @@
+{
+  "title": "Q Gardens",
+  "slug": "february-2025-q-gardens",
+  "summary": "February 2025, Q Gardens",
+  "cardLocation": "Cyprus",
+  "location": "Q Gardens",
+  "timeframe": "February 2025",
+  "legacyPath": "/february-2025",
+  "sortOrder": 79,
+  "cover": {
+    "src": "/photo-imports/february-2025/images/024.jpg",
+    "width": 1707,
+    "height": 2560
+  },
+  "photos": [
+    {
+      "src": "/photo-imports/february-2025/images/024.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1577431
+    },
+    {
+      "src": "/photo-imports/february-2025/images/025.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1514800
+    },
+    {
+      "src": "/photo-imports/february-2025/images/026.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1443496
+    },
+    {
+      "src": "/photo-imports/february-2025/images/027.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1583650
+    },
+    {
+      "src": "/photo-imports/february-2025/images/028.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1719683
+    },
+    {
+      "src": "/photo-imports/february-2025/images/029.jpg",
+      "width": 1707,
+      "height": 2560,
+      "size": 1339831
+    }
+  ]
+}

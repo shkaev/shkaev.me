@@ -6,23 +6,25 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-26</span></p>
 
-## Expanded the Cyprus photography archive and refined archive behavior
+## Expanded and refined the photography archive
 
 <p class="changelog-label changelog-label--added">Added</p>
 
 - Added new Cyprus photography series for October 2023 through May 2024, including Limassol, Troodos, Agios Pavlos, Nicosia, and Kampi Trail Hike entries.
 - Extended the photography archive with the next Limassol sequence, including Parts 8 and 9, plus a standalone Limassol Carnival 2024 post.
+- Added the next archive wave for June 2024 through March 2025, including Zygi, Edro III Shipwreck, Abu Dhabi, Pissouri, Q Gardens, Home & Kids, Hiking, and the next Paphos, Larnaca, Limassol, and carnival entries.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
 - Improved photography archive cards with optional custom card covers so difficult crops could be framed more intentionally.
 - Fixed custom photography card covers so special archive crops loaded from the R2 photo domain instead of broken relative paths on the main site.
-- Improved photo series pages so the Back link returned to the previous archive scroll position when possible, while still falling back safely to the archive.
-- Improved gallery affordances with a pointer cursor in the lightbox image and aligned the desktop gallery tile hover zoom with the archive card pattern.
+- Improved archive continuity by rebalancing several photography series across months so Limassol, Paphos, Nicosia, and related side trips stayed in the right narrative buckets.
+- Improved photo series navigation so archive and case study Back links returned to the correct section without jumping into the wrong previous page, while preserving scroll restore on the listing pages.
+- Improved gallery affordances with a pointer cursor in the lightbox image, better flag tooltips on archive cards, and cleaner hover behavior across archive and masonry tiles.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
-- Added support in the content schema for custom archive card cover assets alongside the standard generated covers.
+- Added support in the content model for custom archive card cover assets alongside the standard generated covers.
 - Updated project workflow notes to require live progress reporting during long photo imports and to keep consecutive commits inside the same top changelog entry when they belong to one shipped release.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-25</span></p>
