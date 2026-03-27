@@ -4,23 +4,32 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-03-27</span></p>
+
+## Expanded the photography archive with new 2025 entries
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added the next wave of Cyprus photography series for April through August 2025.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Recovered the missing July 2025 post from the mislabeled legacy source and returned it to the archive chronology.
+- Refined several archive cards and post boundaries so the new entries fit the archive more cleanly.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-26</span></p>
 
 ## Expanded and refined the photography archive
 
 <p class="changelog-label changelog-label--added">Added</p>
 
-- Added new Cyprus photography series for October 2023 through May 2024, including Limassol, Troodos, Agios Pavlos, Nicosia, and Kampi Trail Hike entries.
-- Extended the photography archive with the next Limassol sequence, including Parts 8 and 9, plus a standalone Limassol Carnival 2024 post.
-- Added the next archive wave for June 2024 through March 2025, including Zygi, Edro III Shipwreck, Abu Dhabi, Pissouri, Q Gardens, Home & Kids, Hiking, and the next Paphos, Larnaca, Limassol, and carnival entries.
+- Added new photography archive entries across the Cyprus timeline from late 2023 through March 2025.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
 - Improved photography archive cards with optional custom card covers so difficult crops could be framed more intentionally.
-- Fixed custom photography card covers so special archive crops loaded from the R2 photo domain instead of broken relative paths on the main site.
-- Improved archive continuity by rebalancing several photography series across months so Limassol, Paphos, Nicosia, and related side trips stayed in the right narrative buckets.
-- Improved photo series navigation so archive and case study Back links returned to the correct section without jumping into the wrong previous page, while preserving scroll restore on the listing pages.
-- Improved gallery affordances with a pointer cursor in the lightbox image, better flag tooltips on archive cards, and cleaner hover behavior across archive and masonry tiles.
+- Fixed custom card covers so archive crops loaded from the R2 photo domain correctly.
+- Improved archive continuity, navigation, and gallery behavior across the photography section.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 

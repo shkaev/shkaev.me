@@ -25,6 +25,9 @@
   `<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>`
   followed by short bullets.
 - Keep bullets factual and outcome-oriented. Summarize what changed for the site or project, not raw file churn.
+- Prefer compressed summaries over exhaustive detail. Capture the shipped body of work at a high level instead of listing every post, page, edge case, or micro-fix.
+- Avoid over-enumerating names, locations, or subfeatures unless they are necessary to understand the release.
+- Prefer one broad bullet for a cohesive wave of content or refinements over several narrow bullets that restate the same release in finer detail.
 - Prefer 1-3 bullets per label block. Use only the labels that are needed for that commit.
 - For normal forward work, use the current local date of the commit as the changelog date. Only use git-derived historical dates when backfilling older entries from history.
 

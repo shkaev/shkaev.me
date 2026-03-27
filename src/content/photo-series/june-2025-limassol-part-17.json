@@ -1,0 +1,77 @@
+{
+  "title": "Limassol, Part 17",
+  "slug": "june-2025-limassol-part-17",
+  "summary": "June 2025, Limassol",
+  "cardLocation": "Cyprus",
+  "location": "Limassol",
+  "timeframe": "June 2025",
+  "legacyPath": "/june-2025",
+  "sortOrder": 90,
+  "cover": {
+    "src": "/photo-imports/june-2025/images/011.jpg",
+    "width": 3840,
+    "height": 2560
+  },
+  "photos": [
+    {
+      "src": "/photo-imports/june-2025/images/010.jpg",
+      "width": 3840,
+      "height": 5760,
+      "size": 9596458
+    },
+    {
+      "src": "/photo-imports/june-2025/images/011.jpg",
+      "width": 3840,
+      "height": 2560,
+      "size": 5090907
+    },
+    {
+      "src": "/photo-imports/june-2025/images/014.jpg",
+      "width": 3840,
+      "height": 5760,
+      "size": 10027293
+    },
+    {
+      "src": "/photo-imports/june-2025/images/015.jpg",
+      "width": 3840,
+      "height": 5760,
+      "size": 9567892
+    },
+    {
+      "src": "/photo-imports/june-2025/images/016.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 2968765
+    },
+    {
+      "src": "/photo-imports/june-2025/images/017.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 3319685
+    },
+    {
+      "src": "/photo-imports/june-2025/images/018.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 3008406
+    },
+    {
+      "src": "/photo-imports/june-2025/images/019.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 3160937
+    },
+    {
+      "src": "/photo-imports/june-2025/images/020.jpg",
+      "width": 3840,
+      "height": 5760,
+      "size": 9547552
+    },
+    {
+      "src": "/photo-imports/june-2025/images/021.jpg",
+      "width": 3840,
+      "height": 5760,
+      "size": 9973196
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "title": "Kiti",
+  "slug": "june-2025-kiti",
+  "summary": "June 2025, Kiti",
+  "cardLocation": "Cyprus",
+  "location": "Kiti",
+  "timeframe": "June 2025",
+  "legacyPath": "/june-2025",
+  "sortOrder": 91,
+  "cardCover": {
+    "src": "/photo-imports/june-2025/card-covers-special/001-down-20.jpg",
+    "width": 1024,
+    "height": 640
+  },
+  "cover": {
+    "src": "/photo-imports/june-2025/images/001.jpg",
+    "width": 1920,
+    "height": 2880
+  },
+  "photos": [
+    {
+      "src": "/photo-imports/june-2025/images/001.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 3593029
+    },
+    {
+      "src": "/photo-imports/june-2025/images/002.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 2822374
+    },
+    {
+      "src": "/photo-imports/june-2025/images/003.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 3455010
+    },
+    {
+      "src": "/photo-imports/june-2025/images/004.jpg",
+      "width": 3840,
+      "height": 5760,
+      "size": 9765559
+    },
+    {
+      "src": "/photo-imports/june-2025/images/005.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 3311191
+    },
+    {
+      "src": "/photo-imports/june-2025/images/006.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 2862893
+    },
+    {
+      "src": "/photo-imports/june-2025/images/007.jpg",
+      "width": 3840,
+      "height": 5760,
+      "size": 11289263
+    },
+    {
+      "src": "/photo-imports/june-2025/images/008.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 3106518
+    },
+    {
+      "src": "/photo-imports/june-2025/images/009.jpg",
+      "width": 3840,
+      "height": 5760,
+      "size": 10769854
+    },
+    {
+      "src": "/photo-imports/june-2025/images/012.jpg",
+      "width": 3840,
+      "height": 5760,
+      "size": 5984691
+    },
+    {
+      "src": "/photo-imports/june-2025/images/013.jpg",
+      "width": 1920,
+      "height": 2880,
+      "size": 2898676
+    }
+  ]
+}
