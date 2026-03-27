@@ -1,0 +1,21 @@
+---
+import ArrowLeftIcon from "./icons/ArrowLeftIcon.astro";
+
+interface Props {
+	href: string;
+	label?: string;
+	restoreTarget?: string;
+}
+
+const { href, label = "Back", restoreTarget } = Astro.props;
+---
+
+<a
+	href={href}
+	data-back-link
+	data-restore-scroll-target={restoreTarget ?? href}
+	class="back-link"
+>
+	<ArrowLeftIcon class="h-4 w-4" />
+	<span>{label}</span>
+</a>

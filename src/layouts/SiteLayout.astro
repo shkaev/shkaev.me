@@ -13,7 +13,17 @@ interface Props {
 const { title, description = "Personal website of Dmitry Shkaev." } =
 	Astro.props;
 
-const pathname = Astro.url.pathname;
+const normalizePath = (value: string) => {
+	if (value === "/") {
+		return value;
+	}
+
+	return value
+		.replace(/\/index\.html$/u, "")
+		.replace(/\/+$/u, "") || "/";
+};
+
+const pathname = normalizePath(Astro.url.pathname);
 const isHomePage = pathname === "/";
 
 const navigation = [
@@ -21,6 +31,12 @@ const navigation = [
 	{ href: "/design", label: "Design" },
 	{ href: "/about", label: "About" }
 ];
+
+const isNavItemActive = (href: string) => {
+	const normalizedHref = normalizePath(href);
+
+	return pathname === normalizedHref || pathname.startsWith(`${normalizedHref}/`);
+};
 
 const socialLinks = [
 	{
@@ -43,6 +59,9 @@ const shellWidthClass = "max-w-[81.25rem]";
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<script is:inline>
+			document.documentElement.classList.add("js");
+		</script>
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
 		<link
@@ -162,44 +181,6 @@ const shellWidthClass = "max-w-[81.25rem]";
 						return;
 					}
 
-					const backLink = target.closest("[data-back-link]");
-
-					if (!(backLink instanceof HTMLAnchorElement)) {
-						return;
-					}
-
-					if (
-						event.defaultPrevented ||
-						event.button !== 0 ||
-						backLink.target === "_blank" ||
-						event.metaKey ||
-						event.ctrlKey ||
-						event.shiftKey ||
-						event.altKey
-					) {
-						return;
-					}
-
-					const referrer = document.referrer ? new URL(document.referrer) : null;
-					const hasSameOriginReferrer = referrer !== null &&
-						referrer.origin === window.location.origin;
-
-					if (!hasSameOriginReferrer || history.length <= 1) {
-						return;
-					}
-
-					event.preventDefault();
-					saveScrollPosition();
-					history.back();
-				});
-
-				document.addEventListener("click", (event) => {
-					const target = event.target;
-
-					if (!(target instanceof Element)) {
-						return;
-					}
-
 					const restoreLink = target.closest("[data-restore-scroll-target]");
 
 					if (!(restoreLink instanceof HTMLAnchorElement)) {
@@ -266,11 +247,11 @@ const shellWidthClass = "max-w-[81.25rem]";
 					</a>
 					<nav
 						aria-label="Primary"
-						class="col-start-1 col-span-3 row-start-2 mt-2 flex w-full items-center justify-between gap-2 justify-self-stretch sm:col-start-2 sm:col-span-1 sm:row-start-1 sm:mt-0 sm:w-auto sm:flex-wrap sm:justify-center sm:gap-x-8 sm:gap-y-2 sm:justify-self-center"
+						class="col-start-1 col-span-3 row-start-2 mt-2 flex w-full items-center justify-center gap-8 justify-self-center sm:col-start-2 sm:col-span-1 sm:row-start-1 sm:mt-0 sm:w-auto sm:flex-wrap sm:gap-x-8 sm:gap-y-2"
 					>
 						{
 							navigation.map((item) => {
-								const isActive = pathname === item.href;
+								const isActive = isNavItemActive(item.href);
 
 								return (
 									<a
@@ -278,7 +259,7 @@ const shellWidthClass = "max-w-[81.25rem]";
 										aria-current={isActive ? "page" : undefined}
 										data-nav-link
 										class:list={[
-											"flex-1 text-center text-sm font-medium tracking-tight transition-colors sm:flex-none",
+											"text-center text-sm font-medium tracking-tight transition-colors",
 											isActive
 												? "text-stone-950"
 												: "text-stone-500 hover:text-stone-900"
@@ -444,7 +425,9 @@ const shellWidthClass = "max-w-[81.25rem]";
 							>
 								Changelog
 							</h2>
-							<p class="mt-3 max-w-xl text-[0.98rem] leading-[1.8] text-stone-600">
+							<p
+								class="site-sheet__subtitle mt-3 max-w-xl text-[0.98rem] leading-[1.8] text-stone-600"
+							>
 								A running record of meaningful production updates.
 							</p>
 						</div>
@@ -600,6 +583,17 @@ const shellWidthClass = "max-w-[81.25rem]";
 				color: rgb(28 25 23);
 			}
 
+			.site-sheet__icon-button:focus,
+			.site-sheet__close-button:focus {
+				outline: none;
+			}
+
+			.site-sheet__icon-button:focus-visible,
+			.site-sheet__close-button:focus-visible {
+				outline: 2px solid rgb(28 25 23 / 0.5);
+				outline-offset: 2px;
+			}
+
 			.dark .site-sheet__icon-button {
 				border-color: rgb(68 64 60 / 0.9);
 				background: rgb(28 25 23 / 0.72);
@@ -667,6 +661,11 @@ const shellWidthClass = "max-w-[81.25rem]";
 
 			.dark .site-sheet__close-button:hover {
 				border-color: rgb(120 113 108);
+			}
+
+			.dark .site-sheet__icon-button:focus-visible,
+			.dark .site-sheet__close-button:focus-visible {
+				outline-color: rgb(250 250 249 / 0.55);
 			}
 
 			[data-changelog-sheet] {
@@ -867,6 +866,10 @@ const shellWidthClass = "max-w-[81.25rem]";
 					padding-right: 1rem;
 				}
 
+				.site-sheet__subtitle {
+					display: none;
+				}
+
 				[data-changelog-sheet] h1 {
 					font-size: 1.8rem;
 				}
@@ -901,6 +904,9 @@ const shellWidthClass = "max-w-[81.25rem]";
 						target.closest("input, textarea, select, [contenteditable='true']")
 					);
 
+				const hasModifierKey = (event) =>
+					event.metaKey || event.ctrlKey || event.altKey || event.shiftKey;
+
 				const applyTheme = (theme) => {
 					const isDark = theme === "dark";
 					root.classList.toggle("dark", isDark);
@@ -925,7 +931,12 @@ const shellWidthClass = "max-w-[81.25rem]";
 				};
 
 				const handleThemeKeydown = (event) => {
-					if (event.defaultPrevented || event.repeat || event.code !== "KeyL") {
+					if (
+						event.defaultPrevented ||
+						event.repeat ||
+						hasModifierKey(event) ||
+						event.code !== "KeyL"
+					) {
 						return;
 					}
 
@@ -983,6 +994,7 @@ const shellWidthClass = "max-w-[81.25rem]";
 
 					let lastTrigger = null;
 					let closeTimer = 0;
+					let lastInteractionWasPointer = false;
 
 					const syncTriggerState = (isOpen) => {
 						openButtons.forEach((button) => {
@@ -1047,7 +1059,17 @@ const shellWidthClass = "max-w-[81.25rem]";
 							return;
 						}
 
-						button.addEventListener("click", () => openSheet(button));
+						button.addEventListener("pointerdown", () => {
+							lastInteractionWasPointer = true;
+						});
+						button.addEventListener("keydown", () => {
+							lastInteractionWasPointer = false;
+						});
+						button.addEventListener("click", () =>
+							openSheet(button, {
+								focusCloseButton: !lastInteractionWasPointer
+							})
+						);
 						button.dataset.sheetBound = "true";
 					});
 
@@ -1056,6 +1078,12 @@ const shellWidthClass = "max-w-[81.25rem]";
 							return;
 						}
 
+						button.addEventListener("pointerdown", () => {
+							lastInteractionWasPointer = true;
+						});
+						button.addEventListener("keydown", () => {
+							lastInteractionWasPointer = false;
+						});
 						button.addEventListener("click", () => {
 							const isBackdrop = button.classList.contains("site-sheet__backdrop");
 
@@ -1065,7 +1093,7 @@ const shellWidthClass = "max-w-[81.25rem]";
 								return;
 							}
 
-							closeSheet();
+							closeSheet({ restoreFocus: !lastInteractionWasPointer });
 						});
 						button.dataset.sheetBound = "true";
 					});
@@ -1081,13 +1109,20 @@ const shellWidthClass = "max-w-[81.25rem]";
 					});
 
 					const handleChangelogKeydown = (event) => {
-						if (event.defaultPrevented || event.repeat || event.code !== "KeyC") {
+						if (
+							event.defaultPrevented ||
+							event.repeat ||
+							hasModifierKey(event) ||
+							event.code !== "KeyC"
+						) {
 							return;
 						}
 
 						if (isEditableTarget(event.target)) {
 							return;
 						}
+
+						lastInteractionWasPointer = false;
 
 						if (document.activeElement instanceof HTMLElement) {
 							document.activeElement.blur();

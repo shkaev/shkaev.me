@@ -1,6 +1,6 @@
 ---
 import SiteLayout from "./SiteLayout.astro";
-import ArrowLeftIcon from "../components/icons/ArrowLeftIcon.astro";
+import BackLink from "../components/BackLink.astro";
 import ChevronRightIcon from "../components/icons/ChevronRightIcon.astro";
 
 interface MoreCaseStudyLink {
@@ -30,14 +30,7 @@ const {
 <SiteLayout title={title} description={description}>
 	<div class="flex w-full flex-col">
 		<section class="w-full">
-			<a
-				href="/design"
-				data-restore-scroll-target="/design"
-				class="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.24em] text-stone-500 transition hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
-			>
-				<ArrowLeftIcon class="h-4 w-4" />
-				<span>Case studies</span>
-			</a>
+			<BackLink href="/design" label="Case studies" />
 			<h1 class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl">
 				{pageTitle}
 			</h1>

@@ -12,6 +12,7 @@
 - Treat `changelog.md` as part of the definition of done for any committed project work. Do not leave changelog updates for later.
 - Add new entries at the top of `changelog.md`, keeping the newest committed work first.
 - If consecutive commits belong to the same shipped body of work, keep updating the existing top changelog entry for that release instead of creating a new separate top entry for each small follow-up fix.
+- If multiple commits land on the same local date, default to one shared top changelog entry for that date and keep expanding it unless the user explicitly wants separate releases called out.
 - Do not rewrite, reorder, or "refresh" older changelog entries during normal new work. Leave historical entries alone unless the task is specifically about changelog cleanup or backfilling history.
 - Write changelog content in English.
 - Keep all changelog copy in completed/past tense, including entry titles. Do not use commit-style imperative titles such as `Add`, `Refine`, `Build`, or `Migrate`.
@@ -35,6 +36,8 @@
 
 - Before committing, append a new top entry to `changelog.md` in the accepted format.
 - If the current commit is a follow-up to the same release already represented by the top entry, update that existing top entry instead of appending a new one.
+- If there is already a top entry for the current local date, keep merging same-day work into that entry by default instead of creating another entry for that date.
+- Before pushing, review the full current project worktree across all active threads and include every intended project change in the release commit and matching changelog entry instead of preparing a push from only the current thread.
 - Do not touch older changelog entries unless the task explicitly requires changelog maintenance.
 - Run verification only when the change actually needs it under the rules above.
 - Commit only after the code change and matching changelog entry are both ready.
@@ -52,3 +55,14 @@
 
 - During long photo imports, proactively report live progress in the form `downloaded X / Y` without waiting for the user to ask.
 - If an import is still running, give the latest verified count from the filesystem rather than a vague status message.
+
+## Local Photo Imports
+
+- When importing from a user-provided local folder, treat that folder as the source of truth for originals.
+- Do not copy or keep original full-resolution photos inside the project under `public/photo-imports` or `data/photo-imports`.
+- Generate and keep only derived web assets inside the project:
+  - `display`
+  - `thumbs`
+  - `card-covers`
+  - `card-covers-special` when needed
+- Keep metadata and manifests in the project, but keep originals outside the repo and outside the project tree.

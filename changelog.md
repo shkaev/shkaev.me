@@ -6,16 +6,23 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-27</span></p>
 
-## Expanded the photography archive with new 2025 entries
+## Expanded the photography archive and refined key site sections
 
 <p class="changelog-label changelog-label--added">Added</p>
 
-- Added the next wave of Cyprus photography series for April through August 2025.
+- Added the next wave of Cyprus photography series for April through September 2025.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
 - Recovered the missing July 2025 post from the mislabeled legacy source and returned it to the archive chronology.
 - Refined several archive cards and post boundaries so the new entries fit the archive more cleanly.
+- Improved shared navigation behavior with more reliable active states, safer keyboard shortcuts, stronger mobile header alignment, and back links that now return consistently to their section roots.
+- Refined the design and photography sections with cleaner case study cards, better mobile series navigation, non-JavaScript gallery previews, and more stable photography grid behavior.
+- Reworked the About page with a stronger introductory heading, updated work-history copy, expandable work timeline entries, and tighter mobile spacing across the timeline cards.
+
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Tightened the release workflow rules so same-day work and cross-thread project changes are gathered into one shared changelog entry before pushes.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-26</span></p>
 

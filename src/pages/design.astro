@@ -6,6 +6,8 @@ const caseStudies = [
 	{
 		href: "/design/case-studies/aosp",
 		title: "Avast Online Security & Privacy",
+		logoSrc: "/favicons/avast.ico",
+		logoAlt: "Avast",
 		imageSrc: "/images/case-studies/aosp/aosp-hero.jpg",
 		imageAlt: "Avast Online Security & Privacy case study preview",
 		description:
@@ -14,6 +16,8 @@ const caseStudies = [
 	{
 		href: "/design/case-studies/cookie-manager",
 		title: "Cookie Manager",
+		logoSrc: "/favicons/avast.ico",
+		logoAlt: "Avast",
 		imageSrc: "/images/case-studies/cookie-manager/cookie-manager-hero.jpg",
 		imageAlt: "Cookie Manager case study preview",
 		description:
@@ -22,6 +26,8 @@ const caseStudies = [
 	{
 		href: "/design/case-studies/trackoff",
 		title: "TrackOFF",
+		logoSrc: "/favicons/trackoff.png",
+		logoAlt: "TrackOFF",
 		imageSrc: "/images/case-studies/trackoff/trackoff-hero.jpg",
 		imageAlt: "TrackOFF case study preview",
 		description:
@@ -48,32 +54,39 @@ const caseStudies = [
 			</p>
 		</section>
 
-		<section class="mt-10 w-full">
+		<section class="mt-8 w-full">
 			<div class="flex flex-col gap-4">
 				{
 					caseStudies.map((study) => (
 						<a
 							href={study.href}
 							data-hover-card
-							class="group grid w-full grid-cols-[6.5rem_minmax(0,1fr)_2.5rem] items-center gap-x-4 rounded-[12px] border border-stone-200/70 bg-white p-3 shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:grid-cols-[9rem_minmax(0,1fr)_2.5rem] sm:gap-x-5 sm:p-4"
+							class="group grid w-full grid-cols-1 overflow-hidden rounded-[12px] border border-stone-200/70 bg-white shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:min-h-32 sm:grid-cols-[9rem_minmax(0,1fr)_2.5rem] sm:items-center sm:gap-x-7 sm:p-4"
 						>
-							<div class="overflow-hidden rounded-[8px] border border-stone-200/80 bg-stone-100">
+							<div class="aspect-[16/9] overflow-hidden bg-stone-100 sm:-my-4 sm:-ml-4 sm:aspect-auto sm:self-stretch">
 								<img
 									src={study.imageSrc}
 									alt={study.imageAlt}
-									class="block h-auto w-full transition-transform duration-300 ease-out group-hover:scale-[1.08]"
+									class="block h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.08]"
 									loading="lazy"
 								/>
 							</div>
-							<div class="min-w-0">
-								<h4 class="text-xl tracking-tight text-stone-950 sm:text-2xl">
-									{study.title}
+							<div class="min-w-0 px-4 py-4 sm:px-0 sm:py-0">
+								<h4 class="flex min-w-0 items-center gap-2 text-xl tracking-tight text-stone-950 sm:gap-2.5 sm:text-2xl">
+									<img
+										src={study.logoSrc}
+										alt=""
+										aria-hidden="true"
+										loading="lazy"
+										class="h-4 w-4 shrink-0 rounded-[4px] object-cover sm:h-[1.125rem] sm:w-[1.125rem]"
+									/>
+									<span class="truncate">{study.title}</span>
 								</h4>
 								<p class="mt-1 text-xs leading-5 text-stone-700 sm:text-sm">
 									{study.description}
 								</p>
 							</div>
-							<span data-card-accent class="flex h-10 w-10 items-center justify-center self-center text-stone-400 transition group-hover:text-stone-700">
+							<span data-card-accent class="hidden h-10 w-10 items-center justify-center self-center text-stone-400 transition group-hover:text-stone-700 sm:flex">
 									<ChevronRightIcon class="h-5 w-5" />
 							</span>
 						</a>
