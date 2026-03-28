@@ -6,13 +6,19 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-28</span></p>
 
-## Added filtering to the photography archive
+## Photo gallery filters and total rework of the recommendations
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added live search plus country and year filters to the photography archive.
+- Added a featured recommendation carousel to the About page with animated navigation and company icons.
+- Implemented the archive controls, empty states, and year dividers across light and dark themes.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
-- Added live search plus country and year filters to the photography archive.
-- Refined the archive controls, empty states, and year dividers across light and dark themes.
 - Expanded the photography grid to a denser three-column layout on large screens and widened the shared page shell to match the header container.
+- Reworked the About page recommendations into shorter quotes with refreshed metadata, tighter controls, and cleaner progress feedback.
+- Tightened the work timeline card spacing so role descriptions now sit closer to their headings.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-27</span></p>
 

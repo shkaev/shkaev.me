@@ -104,6 +104,11 @@
 		border-color: rgb(120 113 108);
 	}
 
+	.dark [data-recommendation-control]:hover {
+		color: rgb(250 250 249);
+		border-color: rgb(120 113 108);
+	}
+
 	.dark [data-divider-link] {
 		color: rgb(168 162 158);
 	}

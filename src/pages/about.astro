@@ -1,5 +1,7 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import ArrowLeftIcon from "../components/icons/ArrowLeftIcon.astro";
+import ArrowRightIcon from "../components/icons/ArrowRightIcon.astro";
 import ChevronDownIcon from "../components/icons/ChevronDownIcon.astro";
 import WorkTimelineCard from "../components/WorkTimelineCard.astro";
 
@@ -76,152 +78,191 @@ const recommendations = [
 	{
 		name: "Aleksandr Kiselev",
 		href: "https://www.linkedin.com/in/aleksandr-kiselev-41a228271",
-		role: "Senior Fullstack Developer, Mayflower — same team",
+		favicon: "/favicons/mayflower.ico",
+		role: "Senior Fullstack Developer, Mayflower",
 		avatar: "/avatars/avatar-review-17.jpg",
 		text:
-			"I had the pleasure of working with Dmitry for about two years on the same project as a frontend developer. During that time, he consistently demonstrated his high level of expertise, creativity, and ability to see the product as more than just a set of screens and UI elements.\n\nI would especially like to highlight that Dmitry always took into account the technical capabilities and current realities of the project. Thanks to this, we successfully delivered complex and visually impressive features, finding the perfect balance between design excellence and implementation complexity. He is open to communication, quickly adapts to changes, and makes well-reasoned decisions."
+			"“We successfully delivered complex and visually impressive features, finding the perfect balance between design excellence and implementation.”"
 	},
 	{
 		name: "Bulat Meshkov",
 		href: "https://www.linkedin.com/in/bulatmeshkov/",
-		role: "Senior Product Designer at Exness; Mayflower — different teams",
+		favicon: "/favicons/exness.png",
+		role: "Senior Product Designer, Exness",
 		avatar: "/avatars/avatar-review-16.jpg",
 		text:
-			"Me and Dmitry worked on the same product. While I was responsible for the content creators experience, he was responsible for user activation and interation experience of our product, and I have to say that our collaboration went great. Dmitry Shkaev is a super easy going and friendly person, and he’s very passionate about the user experience, always advocating for solutions that put user’s needs in the center of the discussion. He’s very strong in validating design decisions with A/B test and other mixed methods to research user experience. He has a lot of business knowledge and understand how to prioritize and balance user x business needs. I’d love to work again with Dmitry, since he has a very strong product sense and we always have fun!"
+			"“Dmitry is very passionate about the user experience, always advocating for solutions that put user’s needs in the center of the discussion.”"
 	},
 	{
 		name: "Yurii Korotun",
 		href: "https://www.linkedin.com/in/yurii-korotun/",
-		role: "Senior Principal Product Manager at Gen; Avast Software — same team",
+		favicon: "/favicons/gen.png",
+		role: "Senior Principal Product Manager, Gen",
 		avatar: "/avatars/avatar-review-15.jpg",
 		text:
-			"I had the pleasure to work with Dima on multiple projects and I am thoroughly impressed by his skills as a UI/UX designer.\nI was consistently amazed by his ability to create interfaces that are both visually appealing and user-friendly. He has a remarkable eye for detail and a comprehensive understanding of what it takes to design an interface that is both functional and attractive. In addition to his professional skills, I want to admit his easygoing personality. It’s really great to cooperate on any project. Any challenge is very quickly processed with several options and good ground of what would work best. I am confident in recommending Dima for any UI/UX design project and look forward to working with him again in the future."
+			"“A remarkable eye for detail and a comprehensive understanding of what it takes to design an interface that is both functional and attractive.”"
 	},
 	{
 		name: "Victoria Usan",
 		href: "https://www.linkedin.com/in/victoriausan/",
-		role: "QA Engineer at Applifting; Avast Software — same team",
+		favicon: "/favicons/avast.ico",
+		role: "QA Engineer, Avast Software",
 		avatar: "/avatars/avatar-review-14.jpg",
 		text:
-			"Dima was mentoring me on my path toward being a UX designer. He dedicated much of his time to helping me grow as a professional. We worked together on different projects, and it was an absolute pleasure to cooperate with him on each of them. Not only has he great design and research skills, but he also has an outstanding skill of explanations being able to defend his point of view in a structured manner. Although our career roads diverged, we stay in close contact sharing interesting information regarding UX skills."
-	},
-	{
-		name: "Ron Ward",
-		href: "https://www.linkedin.com/in/ron-ward-jr/",
-		role: "Senior Product Manager, Avast Software — same team",
-		avatar: "/avatars/avatar-review-13.jpg",
-		text:
-			"Dmitry and I worked together dating back to 2018, when we worked at a growth stage start-up company. He was the UX & Design expert that we needed in a fast-paced work environment; with priorities shifting ever so quickly - working on desktop and mobile applications, partner white-label products, websites, investor pitch presentations, you name it.\n\nWe had experienced quite a journey together as well; two company acquisitions, major departmental re-organizations, the Covid-19 pandemic - Dmitry kept a positive outlook throughout many challenges. Always willing to step up to the plate and deliver the best Customer Experiences we can provide, solving problems through UX solutions, and always asking the right questions. Dmitry was never shy to challenge the Product and Engineering teams to provide the best Customer Experience. Dmitry is always Customer focused and has a very keen attention to detail.\n\nI would highly recommend Dmitry to anyone who is looking for an experienced UX Designer, Team Lead, and someone who can mentor Junior UX Designers to become the best version of themselves. I very much hope to work with Dmitry again in the future."
+			"“Dima dedicated much of his time to helping me grow as a professional. [...] It was an absolute pleasure to work with him on each of our projects.”"
 	},
 	{
 		name: "Natalie Schinkova",
 		href: "https://www.linkedin.com/in/natalie-schinkova/",
-		role: "Product Manager, Avast Software — shared projects",
+		favicon: "/favicons/avast.ico",
+		role: "Product Manager, Avast Software",
 		avatar: "/avatars/avatar-review-12.jpg",
 		text:
-			"I always enjoyed working with Dmitry on common projects. As a former UX researcher turned PM, I especially appreciated Dima's user centricity and his ability to turn research findings into relevant design changes. Given our hybrid working environment, I also valued his ability to work asynchronously and he was always trying to find best ways how to communicate without generating unnecessary meetings."
+			"“As a former UX researcher turned PM, I especially appreciated Dima's user centricity and his ability to turn research findings into relevant design changes.”"
+	},
+	{
+		name: "Ron Ward",
+		href: "https://www.linkedin.com/in/ron-ward-jr/",
+		favicon: "/favicons/avast.ico",
+		role: "Senior Product Manager, Avast Software",
+		avatar: "/avatars/avatar-review-13.jpg",
+		text:
+			"“Dmitry kept a positive outlook throughout many challenges. [...] He is always customer-focused and has a very keen attention to detail.”"
 	},
 	{
 		name: "Jon Schubbe",
 		href: "https://www.linkedin.com/in/jon-schubbe-327aa613/",
-		role: "Senior Product Designer, TrackOFF & Avast Software — same team",
+		favicon: "/favicons/avast.ico",
+		role: "Senior Product Designer, Avast Software",
 		avatar: "/avatars/avatar-review-11.jpg",
 		text:
-			"I've worked with Dima for many years through not just one, but two company acquisition/mergers. He's very easy to get along with and will always be there for you in a time of need. His willingness to always mentor, give feedback, and deliver highly polished visual design no matter the circumstances would be a great addition to any team. Any time I asked for feedback on a design, you better guess he had it ready to go by the next day! I've seen Dima grow a lot over the years and he hasn't stopped.\n\nDima not only manages his time well, but he manages the designs too. His attention to detail and communication with stakeholders means organized design files, regular Slack / email updates, and collaboration with everyone on the team.\n\nOne of Dima's strongest suits is that he delivers. No matter what resources might be lacking in a project, he will always see the design through to the end and deliver high quality with the people that will use it in mind.\n\nI already miss working with him and any team would be lucky to have Dima, whether it be for conceptualizing new products, presenting ideas to stakeholders and investors, or managing a project from start to finish."
+			"“One of Dima's strongest suits is that he delivers.”"
 	},
 	{
 		name: "Jan Marek",
 		href: "https://www.linkedin.com/in/jan-marek-52453848/",
-		role: "Senior Product Designer, Avast Software — same team",
+		favicon: "/favicons/avast.ico",
+		role: "Senior Product Designer, Avast Software",
 		avatar: "/avatars/avatar-review-10.jpg",
 		text:
-			"I had the pleasure of working with Dima during my time at Avast. His design skills are great and he consistently delivered high-quality work. He has a deep understanding of user experience and user interface design principles and was able to apply them effectively to create nice and intuitive interfaces. I highly recommend Dima, he will be a valuable asset to any organization."
+			"“He has a deep understanding of user experience and user interface design principles.”"
 	},
 	{
 		name: "Jiří Pojezný",
 		href: "https://www.linkedin.com/in/ji%C5%99%C3%AD-pojezn%C3%BD-6a322765/",
-		role: "Senior Front End Developer, Avast Software — same area",
+		favicon: "/favicons/avast.ico",
+		role: "Senior Frontend Developer, Avast Software",
 		text:
-			"I was excited to work with Dmitry. His designs are beautiful and user-centric. Together we always found the balance between the UX and technical feasibility so that developers can keep a sustainable clean codebase while providing a great user experience.\n\nDmitry is also super friendly and super responsive. He's always there for his colleagues. I'm sure anyone would love working with him. If you are looking for an outstanding and social Product & UX Designer, Dmitry is the right person for you!"
+			"“Dima is super friendly and super responsive. He's always there for his colleagues.”"
 	},
 	{
 		name: "Ilja Panić",
 		href: "https://www.linkedin.com/in/iljapanic/",
-		role: "Senior Product Designer, Avast Software — same team",
+		favicon: "/favicons/avast.ico",
+		role: "Senior Product Designer, Avast Software",
 		avatar: "/avatars/avatar-review-9.jpg",
 		text:
-			"I had the pleasure of working with Dmitry for over a year. He is one of the most dependable and talented designers I've collaborated with in the past 10 years.\n\nDmitry has an impeccable attention to detail and consistently delivers well-documented pixel perfect designs. He was our team's go-to guy for anything related to Figma and design systems. Dmitry's strong technical competence is complimented by a great grasp of end-to-end design process and stakeholder management. Whenever he worked on a project, you could rest assured that we will see it through to successful completion.\n\nPersonally, Dmitry was always calm and easy-going, which played a significant role in keeping up the team's spirit even during challenging times. He always went above and beyond to support others when they needed help. He has also done a fantastic job of mentoring more junior members of our team.\n\nAll in all, everyone can only wish to have a professional like Dmitry on their team.\n\nThank you, Dmitry, it was a true pleasure working with you."
+			"“He is one of the most dependable and talented designers I've collaborated with in the past 10 years.”"
 	},
 	{
 		name: "Elena Ukolova",
 		href: "https://www.linkedin.com/in/elenaukolova/",
-		role: "Senior Product Designer, Avast Software — same team",
+		favicon: "/favicons/avast.ico",
+		role: "Senior Product Designer, Avast Software",
 		avatar: "/avatars/avatar-review-8.jpg",
 		text:
-			"We have been working in one team for a bit less than a year. During this period I have seen some superpowers of Dmitry and his ability to apply them to the work he does. One of these superpowers is the deep knowledge and mastery of Design Instruments. If I had a question on Figma or Design System, Dmitry was always a person to ask and to receive the deepest answer! Dmitry is a great colleague to collaborate with on a project, you can be sure that the work will be done with precision, accuracy, and facilitation for other collaborators! It was just luck to have him in my team."
+			"“If I had a question on Figma or Design System, he was always a person to ask and to receive the deepest answer.”"
 	},
 	{
 		name: "Alysa Yamada",
 		href: "https://www.linkedin.com/in/alyyamada/",
-		role: "UX Writer, Avast Software — same area",
+		favicon: "/favicons/avast.ico",
+		role: "UX Writer, Avast Software",
 		avatar: "/avatars/avatar-review-7.jpg",
 		text:
-			"Dmitry is hands down one of the best UX designers I've ever worked with. We've been on the same design team for about two years and he's always gone above and beyond what was needed for every task. I would look forward to working on projects with him because his ability to organize concepts and simplify processes for everyone is pretty magical to experience. I appreciated his method of helping to incorporate UX writing into the design processes into Figma smoothly and efficiently as well. I have no doubt that Dima will continue to impress others with his design skills and thinking."
+			"“His ability to organize concepts and simplify processes for everyone is pretty magical to experience.”"
 	},
 	{
 		name: "Andrey Perfilev",
 		href: "https://www.linkedin.com/in/perfilev/",
-		role: "Enterpreneur",
+		favicon: "/favicons/nitroseller.png",
+		role: "CEO, Nitroseller",
 		avatar: "/avatars/avatar-review-6.jpg",
 		text:
-			"Dmitry is a very skilled UI designer. I have worked with him for several years now. His attention to detail is great and he delivered more than I expected. Strongly recommended!"
+			"“Dmitry is a very skilled product designer. Strongly recommended!”"
 	},
 	{
 		name: "Ryan Flach",
 		href: "https://www.linkedin.com/in/ryan-flach-1647b1ba/",
-		role: "TrackOFF CTO, Avast Software Director of Engineering",
+		favicon: "/favicons/trackoff.png",
+		role: "CTO, TrackOFF",
 		avatar: "/avatars/avatar-review-5.jpg",
 		text:
-			"Dmitry is the best designer I’ve ever had the pleasure to work with. His designs are always created with their end purpose in mind, whether it is to enhance conversions on a website, or improve user experience in a GUI. He offers meticulous reasoning for everything that he does. He has made himself available for all of our design needs, is prompt and dependable, always offers a quick turnaround, and provides the highest quality deliverables. His eye for detail cannot be understated. If you engage his services once, you surely will again."
+			"“Dima is prompt and dependable, always offers a quick turnaround, and provides the highest quality deliverables. His eye for detail cannot be understated.”"
 	},
 	{
 		name: "Faizan J. Khan",
 		href: "https://www.linkedin.com/in/faizanjkhan/",
-		role: "Vice President at Giftsoft | Founder, CIO at VISARY",
+		favicon: "/favicons/visary.png",
+		role: "CIO, VISARY",
 		avatar: "/avatars/avatar-review-4.jpg",
 		text:
-			"Dmitry gets it done. His attention to detail and quick response really helped us get exactly what we needed in a timely manner. He is consultative along the way, makes suggestions and listens closely to feedback. What more could you ask for? I highly recommend working with him and will certainly work with him again down the line."
+			"“Dmitry gets it done.”"
 	},
 	{
 		name: "Vladimir Rybas",
 		href: "https://www.linkedin.com/in/vrybas/",
-		role: "Expert Software Engineer at Typeform.com",
+		favicon: "/favicons/typeform.ico",
+		role: "Expert Software Engineer, Typeform",
 		avatar: "/avatars/avatar-review-3.jpg",
 		text:
-			"Dmitry is very talented and hardworking person. He is the perfectionist in a nutshell. Can't stand poor designs and sloppy user experience on the web and in everyday things. Which is a big laugh sometimes. But this attention to detail is what makes him such a good designer. Highly recommend!"
+			"“He is a very talented and hardworking person.”"
 	},
 	{
 		name: "Chandler Givens",
 		href: "https://www.linkedin.com/in/chandler-givens-42a6184/",
-		role: "TrackOFF CEO, Avast Software Director of Product & Commercial Innovation",
+		favicon: "/favicons/trackoff.png",
+		role: "TrackOFF, CEO",
 		avatar: "/avatars/avatar-review-2.jpg",
 		text:
-			"Dmitry is a wonderful designer -- we will absolutely use his services again! In addition to working quickly and creating great designs, he provides thoughtful explanations for why, from a user experience standpoint, certain elements are important. He was also always available to answer questions or revise designs based on our feedback, but also willing to defend positions he felt strongly about. Couldn't have been a better experience."
+			"“Dima is a wonderful designer.”"
 	},
 	{
 		name: "Anton Gilyov",
 		href: "https://www.linkedin.com/in/gilyov/",
-		role: "Worked together at Perfecto, TrackOFF and Avast Software — same teams",
+		favicon: "/favicons/avast.ico",
+		role: "Senior Frontend Developer, Avast Software",
 		avatar: "/avatars/avatar-review-1.jpg",
 		text:
-			"Dmitry is a very motivated and hard working person. We worked together in Perfecto and still working together on freelance contracts. For now he is one of the most professional and responsible people I have ever met. Work process with him is simple and clean. Dmitry would be a true asset for any positions requiring UI/UX & Website design and comes with my heartfelt recommendation."
+			"“He is one of the most professional and responsible people I have ever met.”"
 	}
 ];
 
-const visibleRecommendations = recommendations.slice(0, 4);
-const hiddenRecommendations = recommendations.slice(4);
 const visibleWorkTimeline = workTimeline.slice(0, 3);
 const hiddenWorkTimeline = workTimeline.slice(3);
+const featuredRecommendation = recommendations[0];
+const recommendationSliderItems = recommendations.map((item) => ({
+	name: item.name,
+	href: item.href,
+	favicon: item.favicon ?? "",
+	role: item.role,
+	avatar: item.avatar ?? "",
+	text: item.text
+}));
+
+const escapeRecommendationHtml = (value: string) =>
+	value
+		.replaceAll("&", "&amp;")
+		.replaceAll("<", "&lt;")
+		.replaceAll(">", "&gt;")
+		.replaceAll('"', "&quot;")
+		.replaceAll("'", "&#39;");
+
+const renderRecommendationQuote = (value: string) =>
+	escapeRecommendationHtml(value).replaceAll(
+		"[...]",
+		'<span class="text-stone-300 dark:text-stone-700">[...]</span>'
+	);
 ---
 
 <SiteLayout
@@ -332,141 +373,144 @@ const hiddenWorkTimeline = workTimeline.slice(3);
 					Recommendations
 				</h2>
 				<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-					Here are the testimonials from colleagues and clients I&rsquo;ve
-					worked with over the years, originally shared on LinkedIn. They
-					offer an external perspective on my work, collaboration style, and
-					overall contribution across different roles and projects.
+					Here are some quotes from the colleagues and clients I&rsquo;ve
+					worked with over the years. They offer an external perspective on
+					my work, collaboration style, and overall contribution across
+					different roles and projects. Originally shared on <a
+						href="https://www.linkedin.com/in/shkaev/details/recommendations/"
+						target="_blank"
+						rel="noreferrer"
+						class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>LinkedIn</a>.
 				</p>
 			</div>
 
-			<div class="mt-10 space-y-4">
-				{
-					visibleRecommendations.map((item) => (
-						<article class="rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-6 sm:py-6">
-							<div class="flex items-center gap-3.5 sm:gap-4">
-								{
-									item.avatar ? (
-										<img
-											src={item.avatar}
-											alt={item.name}
-											draggable="false"
-											class="mt-0.5 h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-stone-200/80 sm:h-14 sm:w-14"
-										/>
-									) : (
-										<div class="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-stone-100 text-stone-400 ring-1 ring-stone-200/80 sm:h-14 sm:w-14">
-											<svg
-												aria-hidden="true"
-												viewBox="0 0 24 24"
-												class="h-6 w-6 fill-current sm:h-7 sm:w-7"
-											>
-												<path d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2.25c-3.83 0-6.75 1.92-6.75 4.5 0 .41.34.75.75.75h12a.75.75 0 0 0 .75-.75c0-2.58-2.92-4.5-6.75-4.5Z"></path>
-											</svg>
-										</div>
-									)
-								}
-								<div class="min-w-0 flex-1">
-									<h3 class="text-[1.2rem] font-normal leading-tight tracking-tight text-stone-950 sm:text-[1.35rem]">
-										<a
-											href={item.href}
-											target="_blank"
-											rel="noreferrer"
-											class="transition-colors hover:text-stone-600"
-										>
-											{item.name}
-										</a>
-									</h3>
-									<p class="mt-0.5 text-sm leading-5 text-stone-500 sm:text-[0.95rem] sm:leading-6">
-										{item.role}
-									</p>
-								</div>
+			{
+				featuredRecommendation && (
+					<div>
+						<div class="pt-8 pb-2 sm:pt-10 sm:pb-2">
+							<div id="featured-recommendation-copy" class="flex max-w-5xl items-end">
+								<p
+									id="featured-recommendation-text"
+									class="text-[1.7rem] font-medium leading-[1.26] tracking-tight text-stone-950 sm:text-[2.2rem] sm:leading-[1.28]"
+									set:html={renderRecommendationQuote(featuredRecommendation.text)}
+								>
+								</p>
 							</div>
+						</div>
 
-							<div class="mt-4 w-full space-y-3">
-								{
-									item.text.split("\n\n").map((paragraph) => (
-										<p class="text-sm leading-6 text-stone-700 sm:text-[0.95rem] sm:leading-7">
-											{paragraph}
-										</p>
-									))
-								}
-							</div>
-						</article>
-					))
-				}
-
-				{
-					hiddenRecommendations.length > 0 && (
-						<>
-							<div id="more-recommendations" class="hidden space-y-4">
-								{
-									hiddenRecommendations.map((item) => (
-										<article class="rounded-[1.5rem] border border-stone-200/70 bg-white px-5 py-5 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-6 sm:py-6">
-											<div class="flex items-center gap-3.5 sm:gap-4">
-												{
-													item.avatar ? (
-														<img
-															src={item.avatar}
-															alt={item.name}
-															draggable="false"
-															class="mt-0.5 h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-stone-200/80 sm:h-14 sm:w-14"
-														/>
-													) : (
-														<div class="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-stone-100 text-stone-400 ring-1 ring-stone-200/80 sm:h-14 sm:w-14">
-															<svg
-																aria-hidden="true"
-																viewBox="0 0 24 24"
-																class="h-6 w-6 fill-current sm:h-7 sm:w-7"
-															>
-																<path d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2.25c-3.83 0-6.75 1.92-6.75 4.5 0 .41.34.75.75.75h12a.75.75 0 0 0 .75-.75c0-2.58-2.92-4.5-6.75-4.5Z"></path>
-															</svg>
-														</div>
-													)
-												}
-												<div class="min-w-0 flex-1">
-													<h3 class="text-[1.2rem] font-normal leading-tight tracking-tight text-stone-950 sm:text-[1.35rem]">
-														<a
-															href={item.href}
-															target="_blank"
-															rel="noreferrer"
-															class="transition-colors hover:text-stone-600"
-														>
-															{item.name}
-														</a>
-													</h3>
-													<p class="mt-1 text-sm leading-6 text-stone-500 sm:text-[0.95rem]">
-														{item.role}
-													</p>
-												</div>
-											</div>
-											<div class="mt-5 text-sm leading-7 text-stone-700 sm:text-[0.95rem]">
-												{
-													item.text.split("\n\n").map((paragraph) => (
-														<p class="mt-4 first:mt-0">{paragraph}</p>
-													))
-												}
-											</div>
-										</article>
-									))
-								}
-							</div>
-
-							<button
-								type="button"
-								id="show-all-recommendations"
-								data-divider-link
-								class="group flex w-full cursor-pointer items-center gap-4 py-3 text-sm font-medium text-stone-500 transition hover:text-stone-900 sm:text-[0.95rem]"
+						<div class="py-8 sm:py-8">
+							<div
+								id="featured-recommendation-progress"
+								class="relative h-px w-full overflow-hidden"
 							>
-								<span data-divider-line class="h-px flex-1 bg-stone-200 transition-colors group-hover:bg-stone-400"></span>
-								<span class="inline-flex items-center gap-2 whitespace-nowrap">
-									<span>See all {recommendations.length} recommendations</span>
-									<ChevronDownIcon class="h-4 w-4 transition-transform group-hover:translate-y-[1px]" />
-								</span>
-								<span data-divider-line class="h-px flex-1 bg-stone-200 transition-colors group-hover:bg-stone-400"></span>
-							</button>
-						</>
-					)
-				}
-			</div>
+								<div class="absolute inset-0 bg-stone-200 dark:bg-stone-700/80"></div>
+								<div
+									id="featured-recommendation-progress-fill"
+									class="absolute inset-y-0 left-0 hidden w-0 bg-[oklch(64.6%_0.222_41.116)] transition-[width] duration-300 ease-out dark:bg-amber-600"
+								></div>
+							</div>
+
+							<div class="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+								<div id="featured-recommendation-meta" class="flex items-center gap-3.5 sm:gap-4">
+									<img
+										id="featured-recommendation-avatar"
+										src={featuredRecommendation.avatar}
+										alt={featuredRecommendation.name}
+										draggable="false"
+										class:list={[
+											"h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-stone-200/80 sm:h-14 sm:w-14",
+											!featuredRecommendation.avatar && "hidden"
+										]}
+									/>
+									<div
+										id="featured-recommendation-avatar-placeholder"
+										class:list={[
+											"flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-stone-100 text-stone-400 ring-1 ring-stone-200/80 sm:h-14 sm:w-14",
+											featuredRecommendation.avatar && "hidden"
+										]}
+									>
+										<svg
+											aria-hidden="true"
+											viewBox="0 0 24 24"
+											class="h-6 w-6 fill-current sm:h-7 sm:w-7"
+										>
+											<path d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2.25c-3.83 0-6.75 1.92-6.75 4.5 0 .41.34.75.75.75h12a.75.75 0 0 0 .75-.75c0-2.58-2.92-4.5-6.75-4.5Z"></path>
+										</svg>
+									</div>
+									<div class="min-w-0 flex-1">
+										<h3 class="text-[1.2rem] font-normal leading-tight tracking-tight text-stone-950 sm:text-[1.35rem]">
+											<a
+												id="featured-recommendation-name"
+												href={featuredRecommendation.href}
+												target="_blank"
+												rel="noreferrer"
+												class="transition-colors hover:text-stone-600"
+											>
+												{featuredRecommendation.name}
+											</a>
+										</h3>
+										<p class="mt-0.5 text-sm leading-5 text-stone-600 sm:text-[0.95rem] sm:leading-6 dark:text-stone-400">
+											<span class="inline-flex items-center gap-1.5">
+												<img
+													id="featured-recommendation-favicon"
+													src={featuredRecommendation.favicon}
+													alt=""
+													loading="lazy"
+													class:list={[
+														"h-4 w-4 rounded-sm",
+														!featuredRecommendation.favicon && "hidden"
+													]}
+												/>
+												<span id="featured-recommendation-role">
+													{featuredRecommendation.role}
+												</span>
+											</span>
+										</p>
+									</div>
+								</div>
+
+								<div class="flex items-center gap-3 self-end sm:self-center">
+								<button
+									type="button"
+									aria-label="Previous recommendation"
+									id="featured-recommendation-prev"
+									data-recommendation-control
+									class="relative inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-stone-200 bg-white text-stone-700 transition hover:border-stone-300 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900 disabled:pointer-events-none disabled:cursor-default disabled:opacity-40"
+								>
+									<ArrowLeftIcon class="h-4 w-4" />
+								</button>
+								<button
+									type="button"
+									aria-label="Next recommendation"
+									id="featured-recommendation-next"
+									data-recommendation-control
+									class="relative inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-stone-200 bg-white text-stone-700 transition hover:border-stone-300 hover:text-stone-950 dark:border-stone-700 dark:bg-stone-900"
+								>
+									<span id="featured-recommendation-next-icon">
+										<ArrowRightIcon class="h-4 w-4" />
+									</span>
+									<span id="featured-recommendation-reset-icon" class="hidden">
+										<svg
+											aria-hidden="true"
+											viewBox="0 0 16 16"
+											class="h-4 w-4 fill-current"
+										>
+											<path
+												fill-rule="evenodd"
+												d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"
+											></path>
+											<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"></path>
+										</svg>
+									</span>
+								</button>
+							</div>
+						</div>
+						</div>
+					</div>
+				)
+			}
+
 		</div>
 
 		<div class="mt-16">
@@ -515,6 +559,288 @@ const hiddenWorkTimeline = workTimeline.slice(3);
 		</div>
 	</section>
 
+	<script is:inline define:vars={{ recommendationSliderItems }}>
+		const recommendationItems = recommendationSliderItems;
+		const recommendationCopy = document.getElementById("featured-recommendation-copy");
+		const recommendationMeta = document.getElementById("featured-recommendation-meta");
+		const recommendationText = document.getElementById("featured-recommendation-text");
+		const recommendationName = document.getElementById("featured-recommendation-name");
+		const recommendationFavicon = document.getElementById(
+			"featured-recommendation-favicon"
+		);
+		const recommendationRole = document.getElementById("featured-recommendation-role");
+		const recommendationAvatar = document.getElementById("featured-recommendation-avatar");
+		const recommendationAvatarPlaceholder = document.getElementById(
+			"featured-recommendation-avatar-placeholder"
+		);
+		const recommendationProgressFill = document.getElementById(
+			"featured-recommendation-progress-fill"
+		);
+		const recommendationPrev = document.getElementById("featured-recommendation-prev");
+		const recommendationNext = document.getElementById("featured-recommendation-next");
+		const recommendationNextIcon = document.getElementById(
+			"featured-recommendation-next-icon"
+		);
+		const recommendationResetIcon = document.getElementById(
+			"featured-recommendation-reset-icon"
+		);
+
+		if (
+			recommendationItems.length > 0 &&
+			recommendationCopy instanceof HTMLElement &&
+			recommendationMeta instanceof HTMLElement &&
+			recommendationText instanceof HTMLElement &&
+			recommendationName instanceof HTMLAnchorElement &&
+			recommendationFavicon instanceof HTMLImageElement &&
+			recommendationRole instanceof HTMLElement &&
+			recommendationAvatar instanceof HTMLImageElement &&
+			recommendationAvatarPlaceholder instanceof HTMLElement &&
+			recommendationProgressFill instanceof HTMLElement &&
+			recommendationPrev instanceof HTMLButtonElement &&
+			recommendationNext instanceof HTMLButtonElement &&
+			recommendationNextIcon instanceof HTMLElement &&
+			recommendationResetIcon instanceof HTMLElement
+		) {
+			let recommendationIndex = 0;
+			let isAnimating = false;
+			const prefersReducedMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)"
+			).matches;
+			const escapeHtml = (value) =>
+				value
+					.replaceAll("&", "&amp;")
+					.replaceAll("<", "&lt;")
+					.replaceAll(">", "&gt;")
+					.replaceAll('"', "&quot;")
+					.replaceAll("'", "&#39;");
+			const formatRecommendationQuote = (value) =>
+				escapeHtml(value).replaceAll(
+					"[...]",
+					'<span class="text-stone-300 dark:text-stone-700">[...]</span>'
+				);
+			const measureRecommendationHeight = () => {
+				const copyWidth = recommendationCopy.getBoundingClientRect().width;
+
+				if (!copyWidth) {
+					return;
+				}
+
+				const measurementNode = document.createElement("div");
+				measurementNode.className =
+					"pointer-events-none fixed left-0 top-0 -z-10 flex max-w-5xl items-end opacity-0";
+				measurementNode.style.width = `${copyWidth}px`;
+
+				const measurementText = document.createElement("p");
+				measurementText.className =
+					"text-[1.7rem] font-medium leading-[1.26] tracking-tight text-stone-950 sm:text-[2.2rem] sm:leading-[1.28]";
+				measurementNode.append(measurementText);
+				document.body.append(measurementNode);
+
+				let maxHeight = 0;
+
+				for (const item of recommendationItems) {
+					measurementText.innerHTML = formatRecommendationQuote(item.text);
+					maxHeight = Math.max(maxHeight, measurementNode.getBoundingClientRect().height);
+				}
+
+				measurementNode.remove();
+
+				if (maxHeight > 0) {
+					recommendationCopy.style.minHeight = `${Math.ceil(maxHeight)}px`;
+				}
+			};
+
+			const syncRecommendationControls = () => {
+				const isFirstRecommendation = recommendationIndex === 0;
+				const isLastRecommendation =
+					recommendationIndex === recommendationItems.length - 1;
+
+				recommendationPrev.disabled = isFirstRecommendation;
+				recommendationNext.disabled = false;
+				recommendationNext.setAttribute(
+					"aria-label",
+					isLastRecommendation ? "Restart recommendations" : "Next recommendation"
+				);
+				recommendationNextIcon.classList.toggle("hidden", isLastRecommendation);
+				recommendationResetIcon.classList.toggle("hidden", !isLastRecommendation);
+			};
+
+			const renderRecommendation = () => {
+				const item = recommendationItems[recommendationIndex];
+
+				recommendationText.innerHTML = formatRecommendationQuote(item.text);
+				recommendationName.textContent = item.name;
+				recommendationName.href = item.href;
+				recommendationFavicon.src = item.favicon;
+				recommendationFavicon.classList.toggle("hidden", !item.favicon);
+				recommendationRole.textContent = item.role;
+
+				if (item.avatar) {
+					recommendationAvatar.src = item.avatar;
+					recommendationAvatar.alt = item.name;
+					recommendationAvatar.classList.remove("hidden");
+					recommendationAvatarPlaceholder.classList.add("hidden");
+				} else {
+					recommendationAvatar.classList.add("hidden");
+					recommendationAvatarPlaceholder.classList.remove("hidden");
+				}
+
+				const progress = ((recommendationIndex + 1) / recommendationItems.length) * 100;
+				recommendationProgressFill.classList.remove("hidden");
+				recommendationProgressFill.style.width = `${progress}%`;
+
+				syncRecommendationControls();
+			};
+
+			measureRecommendationHeight();
+
+			if ("ResizeObserver" in window) {
+				const resizeObserver = new ResizeObserver(() => {
+					measureRecommendationHeight();
+				});
+				resizeObserver.observe(recommendationCopy);
+			} else {
+				window.addEventListener("resize", measureRecommendationHeight);
+			}
+
+			const animateElements = (elements, keyframes, options) =>
+				Promise.all(
+					elements.map(
+						(element) =>
+							new Promise((resolve) => {
+								const animation = element.animate(keyframes, options);
+								animation.addEventListener("finish", resolve, { once: true });
+							})
+					)
+				);
+
+			const transitionRecommendation = async (step) => {
+				if (isAnimating) {
+					return;
+				}
+
+				const nextIndex =
+					(recommendationIndex + step + recommendationItems.length) %
+					recommendationItems.length;
+
+				if (prefersReducedMotion) {
+					recommendationIndex = nextIndex;
+					renderRecommendation();
+					return;
+				}
+
+				isAnimating = true;
+				syncRecommendationControls();
+
+				const exitOffset = step > 0 ? -18 : 18;
+				const enterOffset = step > 0 ? 18 : -18;
+				const animatedElements = [recommendationCopy, recommendationMeta];
+
+				await animateElements(
+					animatedElements,
+					[
+						{ opacity: 1, transform: "translate3d(0, 0, 0)" },
+						{
+							opacity: 0,
+							transform: `translate3d(${exitOffset}px, 0, 0)`
+						}
+					],
+					{ duration: 180, easing: "ease-out", fill: "forwards" }
+				);
+
+				recommendationIndex = nextIndex;
+				renderRecommendation();
+
+				animatedElements.forEach((element) => {
+					element.style.opacity = "0";
+					element.style.transform = `translate3d(${enterOffset}px, 0, 0)`;
+				});
+
+				await animateElements(
+					animatedElements,
+					[
+						{
+							opacity: 0,
+							transform: `translate3d(${enterOffset}px, 0, 0)`
+						},
+						{ opacity: 1, transform: "translate3d(0, 0, 0)" }
+					],
+					{ duration: 220, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" }
+				);
+
+				animatedElements.forEach((element) => {
+					element.style.opacity = "";
+					element.style.transform = "";
+				});
+
+				isAnimating = false;
+				syncRecommendationControls();
+			};
+
+			recommendationPrev.addEventListener("click", () => {
+				void transitionRecommendation(-1);
+			});
+
+			recommendationNext.addEventListener("click", () => {
+				if (recommendationIndex === recommendationItems.length - 1) {
+					recommendationIndex = 0;
+
+					if (prefersReducedMotion) {
+						renderRecommendation();
+						return;
+					}
+
+					isAnimating = true;
+					syncRecommendationControls();
+
+					const animatedElements = [recommendationCopy, recommendationMeta];
+
+					void animateElements(
+						animatedElements,
+						[
+							{ opacity: 1, transform: "translate3d(0, 0, 0)" },
+							{ opacity: 0, transform: "translate3d(-18px, 0, 0)" }
+						],
+						{ duration: 180, easing: "ease-out", fill: "forwards" }
+					).then(async () => {
+						renderRecommendation();
+
+						animatedElements.forEach((element) => {
+							element.style.opacity = "0";
+							element.style.transform = "translate3d(18px, 0, 0)";
+						});
+
+						await animateElements(
+							animatedElements,
+							[
+								{ opacity: 0, transform: "translate3d(18px, 0, 0)" },
+								{ opacity: 1, transform: "translate3d(0, 0, 0)" }
+							],
+							{
+								duration: 220,
+								easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+								fill: "forwards"
+							}
+						);
+
+						animatedElements.forEach((element) => {
+							element.style.opacity = "";
+							element.style.transform = "";
+						});
+
+						isAnimating = false;
+						syncRecommendationControls();
+					});
+					return;
+				}
+
+				void transitionRecommendation(1);
+			});
+
+			renderRecommendation();
+		}
+	</script>
+
 	<script is:inline>
 		const setupExpandableSection = (triggerId, contentId) => {
 			const trigger = document.getElementById(triggerId);
@@ -527,6 +853,5 @@ const hiddenWorkTimeline = workTimeline.slice(3);
 		};
 
 		setupExpandableSection("show-more-work-timeline", "more-work-timeline");
-		setupExpandableSection("show-all-recommendations", "more-recommendations");
 	</script>
 </SiteLayout>
