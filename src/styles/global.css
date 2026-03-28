@@ -20,6 +20,12 @@
 		font-family: "Inter", "Segoe UI", sans-serif;
 	}
 
+	[data-photography-search]::-webkit-search-cancel-button {
+		-webkit-appearance: none;
+		appearance: none;
+		display: none;
+	}
+
 	h1,
 	h2,
 	h3,

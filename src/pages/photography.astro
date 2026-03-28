@@ -3,9 +3,22 @@ import { getCollection } from "astro:content";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import { resolvePhotoAssetUrl } from "../lib/photoAsset";
 
-const series = (await getCollection("photo-series")).sort(
-	(a, b) => b.data.sortOrder - a.data.sortOrder
-);
+const parseSeriesYear = (timeframe: string) => {
+	const match = timeframe.match(/\b(19|20)\d{2}\b/u);
+
+	return match ? Number.parseInt(match[0], 10) : null;
+};
+
+const series = (await getCollection("photo-series"))
+	.map((entry) => ({
+		...entry,
+		data: {
+			...entry.data,
+			year: parseSeriesYear(entry.data.timeframe)
+		}
+	}))
+	.sort((a, b) => b.data.sortOrder - a.data.sortOrder);
+
 const countryFlagByLocation: Record<string, string> = {
 	Cyprus: "/images/flags/cyprus.svg",
 	Kazakhstan: "/images/flags/kazakhstan.svg",
@@ -14,28 +27,217 @@ const countryFlagByLocation: Record<string, string> = {
 	UAE: "/images/flags/uae.svg",
 	"United Arab Emirates": "/images/flags/uae.svg"
 };
-const resolveCountryFlag = (location: string) => countryFlagByLocation[location];
 
+const sortOptions = [
+	{ value: "newest", label: "Newest first" },
+	{ value: "oldest", label: "Oldest first" }
+] as const;
+
+const countryOptions = Array.from(
+	new Set(series.map((entry) => entry.data.cardLocation))
+).sort((left, right) => left.localeCompare(right));
+
+const yearOptions = Array.from(
+	new Set(
+		series
+			.map((entry) => entry.data.year)
+			.filter((year): year is number => year !== null)
+	)
+).sort((left, right) => right - left);
+
+const resolveCountryFlag = (location: string) => countryFlagByLocation[location];
+const formatYearLabel = (year: number | string) =>
+	String(year) === "2003" ? "Legacy" : String(year);
+const buildSearchTerms = (entry: (typeof series)[number]) => {
+	const terms = [
+		entry.data.title,
+		entry.data.summary,
+		entry.data.location,
+		entry.data.timeframe,
+		entry.data.cardLocation,
+		entry.data.year ? String(entry.data.year) : ""
+	];
+
+	if (entry.data.slug === "2003-2007-old-film-collection") {
+		terms.push("legacy", "2003", "2004", "2005", "2006", "2007");
+	}
+
+	return terms.join(" ").toLowerCase();
+};
+
+let previousRenderedYear = "";
 ---
 
 <SiteLayout
 	title="Photography | Dmitry Shkaev"
 	description="Photography collections and visual stories by Dmitry Shkaev."
 >
-	<section class="w-full">
+	<section class="w-full" data-photography-root>
 		<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
 			Photography
 		</p>
 		<h1 class="mt-4 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:mt-6 sm:text-5xl md:text-6xl">
 			My collection
 		</h1>
-		<p class="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
-			This is an archive of photos taken with my Fujifilm X-E4. It’s
-			built series by series, with every collection kept in sequence to
-			preserve the feeling of time, place, and movement.
+			<p class="mt-5 max-w-4xl text-base leading-8 text-stone-700 sm:text-lg">
+				This is an archive of photos taken with my Fujifilm X-E4. It’s
+				built series by series, with every collection kept in sequence to
+				preserve the feeling of time, place, and movement.
 		</p>
 
-		<div class="mt-8 grid grid-cols-1 gap-4 xl:grid-cols-2">
+		<div class="mt-7">
+			<div
+				class="grid gap-2 lg:grid-cols-[minmax(0,1.8fr)_repeat(3,minmax(0,0.8fr))]"
+				data-photography-controls
+			>
+					<label class="relative flex min-w-0 flex-col">
+							<input
+								type="search"
+								name="q"
+								placeholder="Search by place, title, or year"
+								autocomplete="off"
+								aria-label="Search photography series"
+								data-hover-card
+								data-photography-search
+								class="h-11 rounded-full border border-stone-200/80 bg-white px-4 pr-11 text-[0.96rem] text-stone-900 outline-none shadow-[inset_0_1px_2px_rgba(120,113,108,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] transition placeholder:text-stone-500 hover:border-stone-300 focus:border-stone-300 focus:bg-white focus:shadow-[inset_0_1px_2px_rgba(120,113,108,0.1),0_0_0_1px_rgba(255,255,255,0.75)] dark:bg-stone-900 dark:text-stone-100 dark:placeholder:text-stone-400 dark:shadow-[inset_0_1px_2px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.05)] dark:focus:border-[rgb(120_113_108)] dark:focus:bg-stone-900 dark:focus:shadow-[inset_0_1px_2px_rgba(0,0,0,0.42),0_0_0_1px_rgba(87,83,78,0.5)]"
+							/>
+							<button
+								type="button"
+								aria-label="Clear search"
+								data-search-clear
+									class="group absolute inset-y-0 right-1.5 my-auto hidden size-8 cursor-pointer items-center justify-center rounded-full text-stone-400 transition hover:bg-stone-100 hover:text-stone-700 dark:text-stone-500 dark:hover:bg-stone-800"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									class="size-5 transition group-hover:text-stone-700 dark:group-hover:text-white"
+									aria-hidden="true"
+								>
+								<path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+							</svg>
+						</button>
+				</label>
+
+					<label class="group relative flex min-w-0 flex-col">
+						<select
+								name="country"
+								aria-label="Filter by country"
+								data-hover-card
+								data-photography-country
+								class="h-11 cursor-pointer appearance-none rounded-full border border-stone-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,248,247,0.94)_100%)] px-4 pr-10 text-[0.96rem] text-stone-900 outline-none transition hover:border-stone-300 focus:border-stone-300 focus:bg-white focus:shadow-[0_0_0_1px_rgba(255,255,255,0.8),inset_0_1px_0_rgba(255,255,255,0.95)] dark:bg-[linear-gradient(180deg,rgba(41,37,36,0.96)_0%,rgba(28,25,23,0.96)_100%)] dark:text-stone-100 dark:focus:border-[rgb(120_113_108)] dark:focus:bg-stone-900 dark:focus:shadow-[0_0_0_1px_rgba(87,83,78,0.5),inset_0_1px_0_rgba(255,255,255,0.04)]"
+						>
+						<option value="all">All countries</option>
+							{
+								countryOptions.map((country) => (
+									<option value={country}>{country}</option>
+								))
+							}
+						</select>
+							<span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-stone-500 transition group-hover:text-stone-700 dark:text-stone-400 dark:group-hover:text-stone-200">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 16 16"
+								fill="currentColor"
+								class="size-4"
+								aria-hidden="true"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z"
+									clip-rule="evenodd"
+								/>
+							</svg>
+						</span>
+				</label>
+
+					<label class="group relative flex min-w-0 flex-col">
+						<select
+								name="year"
+								aria-label="Filter by year"
+								data-hover-card
+								data-photography-year
+								class="h-11 cursor-pointer appearance-none rounded-full border border-stone-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,248,247,0.94)_100%)] px-4 pr-10 text-[0.96rem] text-stone-900 outline-none transition hover:border-stone-300 focus:border-stone-300 focus:bg-white focus:shadow-[0_0_0_1px_rgba(255,255,255,0.8),inset_0_1px_0_rgba(255,255,255,0.95)] dark:bg-[linear-gradient(180deg,rgba(41,37,36,0.96)_0%,rgba(28,25,23,0.96)_100%)] dark:text-stone-100 dark:focus:border-[rgb(120_113_108)] dark:focus:bg-stone-900 dark:focus:shadow-[0_0_0_1px_rgba(87,83,78,0.5),inset_0_1px_0_rgba(255,255,255,0.04)]"
+						>
+							<option value="all">All years</option>
+							{
+								yearOptions.map((year) => (
+									<option value={String(year)}>{formatYearLabel(year)}</option>
+								))
+							}
+						</select>
+							<span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-stone-500 transition group-hover:text-stone-700 dark:text-stone-400 dark:group-hover:text-stone-200">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 16 16"
+								fill="currentColor"
+								class="size-4"
+								aria-hidden="true"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z"
+									clip-rule="evenodd"
+								/>
+							</svg>
+						</span>
+				</label>
+
+					<label class="group relative flex min-w-0 flex-col">
+						<select
+								name="sort"
+								aria-label="Sort photography series"
+								data-hover-card
+								data-photography-sort
+								class="h-11 cursor-pointer appearance-none rounded-full border border-stone-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,248,247,0.94)_100%)] px-4 pr-10 text-[0.96rem] text-stone-900 outline-none transition hover:border-stone-300 focus:border-stone-300 focus:bg-white focus:shadow-[0_0_0_1px_rgba(255,255,255,0.8),inset_0_1px_0_rgba(255,255,255,0.95)] dark:bg-[linear-gradient(180deg,rgba(41,37,36,0.96)_0%,rgba(28,25,23,0.96)_100%)] dark:text-stone-100 dark:focus:border-[rgb(120_113_108)] dark:focus:bg-stone-900 dark:focus:shadow-[0_0_0_1px_rgba(87,83,78,0.5),inset_0_1px_0_rgba(255,255,255,0.04)]"
+						>
+							{
+								sortOptions.map((option) => (
+									<option value={option.value}>{option.label}</option>
+								))
+							}
+						</select>
+							<span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-stone-500 transition group-hover:text-stone-700 dark:text-stone-400 dark:group-hover:text-stone-200">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 16 16"
+								fill="currentColor"
+								class="size-4"
+								aria-hidden="true"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z"
+									clip-rule="evenodd"
+								/>
+							</svg>
+						</span>
+				</label>
+			</div>
+
+		</div>
+
+			<div
+				class="mt-3 rounded-[18px] border border-dashed border-stone-300 bg-stone-100/80 px-5 py-8 text-center dark:border-stone-700/80 dark:bg-stone-900/70"
+			data-empty-state
+			hidden
+		>
+				<h3 class="text-xl tracking-tight text-stone-900 sm:text-[2.125rem] dark:text-stone-100">
+					No series matched these filters
+				</h3>
+				<p class="mt-1.5 text-sm text-stone-500">
+					Try clearing one of the filters or broadening the search.
+				</p>
+			<button
+				type="button"
+				data-clear-all
+					class="mt-6 inline-flex h-11 cursor-pointer items-center justify-center rounded-full border border-stone-300 bg-white px-5 text-sm font-medium text-stone-900 transition hover:border-stone-400 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:hover:border-stone-500 dark:hover:bg-stone-700"
+			>
+				Clear all
+			</button>
+		</div>
+
+		<div class="mt-3 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 xl:gap-3" data-series-grid>
 			{
 				series.map((entry) => {
 					const flagSrc = resolveCountryFlag(entry.data.cardLocation);
@@ -44,64 +246,372 @@ const resolveCountryFlag = (location: string) => countryFlagByLocation[location]
 					const cardCoverSrc = entry.data.cardCover
 						? resolvePhotoAssetUrl(entry.data.cardCover.src, "card-cover")
 						: resolvePhotoAssetUrl(entry.data.cover.src, "card-cover");
+					const searchIndex = buildSearchTerms(entry);
+					const currentYear = entry.data.year ? String(entry.data.year) : "";
+					const shouldRenderDivider = currentYear !== previousRenderedYear;
+
+					previousRenderedYear = currentYear;
 
 					return (
-						<a
-							href={`/photography/${entry.data.slug}`}
-							data-hover-card
-							class="group flex flex-col overflow-visible rounded-[12px] border border-stone-200/80 bg-white transition hover:border-stone-300"
-						>
-							<div class="overflow-hidden rounded-t-[12px] bg-stone-100">
-								<img
-									src={cardCoverSrc}
-									alt={entry.data.title}
-									width={cardCover.width}
-									height={cardCover.height}
-									class="aspect-[16/10] h-auto w-full object-cover transition duration-300 group-hover:scale-[1.02]"
-								/>
-							</div>
-							<div class="min-w-0 p-6">
-								<p class="inline-flex flex-wrap items-center gap-2 text-sm text-stone-500">
-									<span class="inline-flex items-center gap-2">
-										{
-											flagSrc && (
-												<span
-													aria-label={entry.data.cardLocation}
-													role="img"
-													data-flag-icon
-													class="relative block h-[15px] w-5 shrink-0 overflow-visible"
-												>
-													<span data-flag-tooltip aria-hidden="true">
-														{entry.data.cardLocation}
-													</span>
-													<img
-														src={flagSrc}
-														alt=""
-														class="block size-full rounded-[2px] object-cover shadow-2xs"
-													/>
-													{isCyprus ? (
-														<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-stone-200/80"></span>
-													) : (
-														<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-black/50 mix-blend-overlay"></span>
-													)}
-												</span>
-											)
-										}
-									</span>
-									<span>{entry.data.timeframe}</span>
-									<span class="text-stone-500">·</span>
-									<span>{entry.data.photos.length} frames</span>
-								</p>
-								<div class="mt-px">
-									<h2 class="min-w-0 text-xl tracking-tight text-stone-950 sm:text-2xl">
-										{entry.data.title}
-									</h2>
+						<>
+							{
+								shouldRenderDivider && (
+									<div
+										data-year-divider
+										data-year={currentYear}
+										class="col-span-full flex items-center gap-3 py-5"
+									>
+										<span class="flex shrink-0 items-center gap-1">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 16 16"
+												fill="currentColor"
+												class="size-4 shrink-0 text-stone-500 dark:text-stone-400"
+												aria-hidden="true"
+											>
+												<path
+													fill-rule="evenodd"
+													d="M8 2a.75.75 0 0 1 .75.75v8.69l1.22-1.22a.75.75 0 1 1 1.06 1.06l-2.5 2.5a.75.75 0 0 1-1.06 0l-2.5-2.5a.75.75 0 1 1 1.06-1.06l1.22 1.22V2.75A.75.75 0 0 1 8 2Z"
+													clip-rule="evenodd"
+												/>
+											</svg>
+											<span class="shrink-0 text-sm font-medium tracking-tight text-stone-500 dark:text-stone-400">
+												{formatYearLabel(currentYear)}
+											</span>
+										</span>
+										<span class="h-px w-full bg-stone-200/80 dark:bg-stone-800/80"></span>
+									</div>
+								)
+							}
+							<a
+								href={`/photography/${entry.data.slug}`}
+								data-hover-card
+								data-series-card
+								data-country={entry.data.cardLocation}
+								data-year={entry.data.year ? String(entry.data.year) : ""}
+								data-sort-order={String(entry.data.sortOrder)}
+								data-title={entry.data.title}
+								data-search-index={searchIndex}
+								class="group flex flex-col overflow-visible rounded-[12px] border border-stone-200/80 bg-white transition hover:border-stone-300"
+							>
+								<div class="overflow-hidden rounded-t-[12px] bg-stone-100">
+									<img
+										src={cardCoverSrc}
+										alt={entry.data.title}
+										width={cardCover.width}
+										height={cardCover.height}
+										class="aspect-[16/10] h-auto w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+									/>
 								</div>
-							</div>
-						</a>
+									<div class="min-w-0 p-5 xl:p-4">
+										<p class="inline-flex flex-wrap items-center gap-2 text-sm text-stone-500 xl:text-[0.82rem]">
+										<span class="inline-flex items-center gap-2">
+											{
+												flagSrc && (
+													<span
+														aria-label={entry.data.cardLocation}
+														role="img"
+														data-flag-icon
+														class="relative block h-[15px] w-5 shrink-0 overflow-visible"
+													>
+														<span data-flag-tooltip aria-hidden="true">
+															{entry.data.cardLocation}
+														</span>
+														<img
+															src={flagSrc}
+															alt=""
+															class="block size-full rounded-[2px] object-cover shadow-2xs"
+														/>
+														{isCyprus ? (
+															<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-stone-200/80"></span>
+														) : (
+															<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-black/50 mix-blend-overlay"></span>
+														)}
+													</span>
+												)
+											}
+										</span>
+										<span>{entry.data.timeframe}</span>
+										<span class="text-stone-500">·</span>
+										<span>{entry.data.photos.length} frames</span>
+									</p>
+										<div class="mt-px">
+											<h2 class="min-w-0 text-xl tracking-tight text-stone-950 sm:text-2xl xl:text-[1.42rem]">
+												{entry.data.title}
+											</h2>
+										</div>
+								</div>
+							</a>
+						</>
 					);
 				})
 			}
 		</div>
 	</section>
 </SiteLayout>
+
+<script is:inline>
+	(() => {
+		const root = document.querySelector("[data-photography-root]");
+
+		if (!(root instanceof HTMLElement)) {
+			return;
+		}
+
+		const searchInput = root.querySelector("[data-photography-search]");
+		const countrySelect = root.querySelector("[data-photography-country]");
+		const yearSelect = root.querySelector("[data-photography-year]");
+		const sortSelect = root.querySelector("[data-photography-sort]");
+			const searchClearButton = root.querySelector("[data-search-clear]");
+			const emptyState = root.querySelector("[data-empty-state]");
+			const clearAllButton = root.querySelector("[data-clear-all]");
+			const grid = root.querySelector("[data-series-grid]");
+			const cards = Array.from(root.querySelectorAll("[data-series-card]")).filter(
+				(card) => card instanceof HTMLAnchorElement
+			);
+
+		if (
+			!(searchInput instanceof HTMLInputElement) ||
+			!(countrySelect instanceof HTMLSelectElement) ||
+			!(yearSelect instanceof HTMLSelectElement) ||
+			!(sortSelect instanceof HTMLSelectElement) ||
+			!(searchClearButton instanceof HTMLButtonElement) ||
+			!(emptyState instanceof HTMLElement) ||
+			!(clearAllButton instanceof HTMLButtonElement) ||
+			!(grid instanceof HTMLElement)
+		) {
+			return;
+		}
+
+		const defaults = {
+			q: "",
+			country: "all",
+			year: "all",
+			sort: "newest"
+		};
+
+		const validCountries = new Set(
+			Array.from(countrySelect.options).map((option) => option.value)
+		);
+			const validYears = new Set(
+				Array.from(yearSelect.options).map((option) => option.value)
+			);
+		const validSorts = new Set(["newest", "oldest"]);
+		const sortLabels = {
+			newest: "Newest first",
+			oldest: "Oldest first"
+		};
+
+			const state = { ...defaults };
+			const initialCardOrder = [...cards];
+
+			const normalizeQuery = (value) => value.trim().replace(/\s+/g, " ").toLowerCase();
+			const createYearDivider = (year) => {
+				const divider = document.createElement("div");
+				const group = document.createElement("span");
+				const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+				const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+				const label = document.createElement("span");
+				const line = document.createElement("span");
+
+				divider.dataset.yearDivider = "true";
+				divider.dataset.year = year;
+				divider.className = "col-span-full flex items-center gap-3 py-5";
+
+				group.className = "flex shrink-0 items-center gap-1";
+
+				icon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+				icon.setAttribute("viewBox", "0 0 16 16");
+				icon.setAttribute("fill", "currentColor");
+				icon.setAttribute("class", "size-4 shrink-0 text-stone-500 dark:text-stone-400");
+				icon.setAttribute("aria-hidden", "true");
+
+				path.setAttribute("fill-rule", "evenodd");
+				path.setAttribute(
+					"d",
+					"M8 2a.75.75 0 0 1 .75.75v8.69l1.22-1.22a.75.75 0 1 1 1.06 1.06l-2.5 2.5a.75.75 0 0 1-1.06 0l-2.5-2.5a.75.75 0 1 1 1.06-1.06l1.22 1.22V2.75A.75.75 0 0 1 8 2Z"
+				);
+				path.setAttribute("clip-rule", "evenodd");
+				icon.append(path);
+
+				label.className =
+					"shrink-0 text-sm font-medium tracking-tight text-stone-500 dark:text-stone-400";
+				label.textContent = year === "2003" ? "Legacy" : year;
+
+				line.className = "h-px w-full bg-stone-200/80 dark:bg-stone-800/80";
+
+				group.append(icon, label);
+				divider.append(group, line);
+
+				return divider;
+			};
+
+		const readUrlState = () => {
+			const params = new URLSearchParams(window.location.search);
+			const q = params.get("q") ?? defaults.q;
+			const country = params.get("country") ?? defaults.country;
+			const year = params.get("year") ?? defaults.year;
+			const sort = params.get("sort") ?? defaults.sort;
+
+			state.q = q;
+			state.country = validCountries.has(country) ? country : defaults.country;
+			state.year = validYears.has(year) ? year : defaults.year;
+			state.sort = validSorts.has(sort) ? sort : defaults.sort;
+		};
+
+		const syncControls = () => {
+			searchInput.value = state.q;
+			countrySelect.value = state.country;
+			yearSelect.value = state.year;
+			sortSelect.value = state.sort;
+			searchClearButton.classList.toggle("hidden", state.q.length === 0);
+			searchClearButton.classList.toggle("flex", state.q.length > 0);
+		};
+
+		const syncUrl = () => {
+			const params = new URLSearchParams();
+
+			if (state.q) {
+				params.set("q", state.q);
+			}
+
+			if (state.country !== defaults.country) {
+				params.set("country", state.country);
+			}
+
+			if (state.year !== defaults.year) {
+				params.set("year", state.year);
+			}
+
+			if (state.sort !== defaults.sort) {
+				params.set("sort", state.sort);
+			}
+
+			const nextSearch = params.toString();
+			const nextUrl = nextSearch
+				? `${window.location.pathname}?${nextSearch}`
+				: window.location.pathname;
+
+			history.replaceState({}, "", nextUrl);
+		};
+
+		const getComparator = (sort) => {
+			switch (sort) {
+				case "oldest":
+					return (left, right) =>
+						Number.parseInt(left.dataset.sortOrder || "0", 10) -
+						Number.parseInt(right.dataset.sortOrder || "0", 10);
+				case "newest":
+				default:
+					return (left, right) =>
+						Number.parseInt(right.dataset.sortOrder || "0", 10) -
+						Number.parseInt(left.dataset.sortOrder || "0", 10);
+			}
+		};
+
+		const applyState = () => {
+			const query = normalizeQuery(state.q);
+			const matchingCards = initialCardOrder.filter((card) => {
+				const searchIndex = card.dataset.searchIndex || "";
+				const matchesQuery = query ? searchIndex.includes(query) : true;
+				const matchesCountry =
+					state.country === defaults.country ||
+					card.dataset.country === state.country;
+				const matchesYear =
+					state.year === defaults.year || card.dataset.year === state.year;
+
+				return matchesQuery && matchesCountry && matchesYear;
+			});
+
+			const hiddenCards = initialCardOrder.filter(
+				(card) => !matchingCards.includes(card)
+			);
+
+			matchingCards.sort(getComparator(state.sort));
+
+			const visibleYears = Array.from(
+				new Set(matchingCards.map((card) => card.dataset.year || ""))
+			).filter(Boolean);
+			const orderedYears = visibleYears.sort((left, right) =>
+				state.sort === "oldest"
+					? Number.parseInt(left, 10) - Number.parseInt(right, 10)
+					: Number.parseInt(right, 10) - Number.parseInt(left, 10)
+			);
+			const cardsByYear = new Map();
+
+			for (const card of matchingCards) {
+				const year = card.dataset.year || "";
+				const yearCards = cardsByYear.get(year) ?? [];
+				yearCards.push(card);
+				cardsByYear.set(year, yearCards);
+			}
+
+			for (const card of matchingCards) {
+				card.hidden = false;
+				card.setAttribute("aria-hidden", "false");
+			}
+
+			for (const card of hiddenCards) {
+				card.hidden = true;
+				card.setAttribute("aria-hidden", "true");
+			}
+
+			for (const divider of Array.from(grid.querySelectorAll("[data-year-divider]"))) {
+				divider.remove();
+			}
+
+			const visibleItems = [];
+
+			for (const year of orderedYears) {
+				const yearCards = cardsByYear.get(year) ?? [];
+
+				visibleItems.push(createYearDivider(year));
+				visibleItems.push(...yearCards);
+			}
+
+			grid.append(...visibleItems, ...hiddenCards);
+			emptyState.hidden = matchingCards.length > 0;
+			grid.hidden = matchingCards.length === 0;
+			syncUrl();
+		};
+
+		searchInput.addEventListener("input", () => {
+			state.q = searchInput.value;
+			searchClearButton.classList.toggle("hidden", state.q.length === 0);
+			searchClearButton.classList.toggle("flex", state.q.length > 0);
+			applyState();
+		});
+
+		searchClearButton.addEventListener("click", () => {
+			state.q = defaults.q;
+			syncControls();
+			applyState();
+			searchInput.focus();
+		});
+
+		countrySelect.addEventListener("change", () => {
+			state.country = countrySelect.value;
+			applyState();
+		});
+
+		yearSelect.addEventListener("change", () => {
+			state.year = yearSelect.value;
+			applyState();
+		});
+
+		sortSelect.addEventListener("change", () => {
+			state.sort = sortSelect.value;
+			applyState();
+		});
+
+		clearAllButton.addEventListener("click", () => {
+			Object.assign(state, defaults);
+			syncControls();
+			applyState();
+		});
+
+		readUrlState();
+		syncControls();
+		applyState();
+	})();
+</script>

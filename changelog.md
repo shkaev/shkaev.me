@@ -4,6 +4,16 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-03-28</span></p>
+
+## Added filtering to the photography archive
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Added live search plus country and year filters to the photography archive.
+- Refined the archive controls, empty states, and year dividers across light and dark themes.
+- Expanded the photography grid to a denser three-column layout on large screens and widened the shared page shell to match the header container.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-27</span></p>
 
 ## Expanded the photography archive and refined key site sections
@@ -16,6 +26,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 - Recovered the missing July 2025 post from the mislabeled legacy source and returned it to the archive chronology.
 - Refined several archive cards and post boundaries so the new entries fit the archive more cleanly.
+- Restored the missing September 2025 photography derivatives so the newest archive entry now loads its cover and gallery images correctly in production.
 - Improved shared navigation behavior with more reliable active states, safer keyboard shortcuts, stronger mobile header alignment, and back links that now return consistently to their section roots.
 - Refined the design and photography sections with cleaner case study cards, better mobile series navigation, non-JavaScript gallery previews, and more stable photography grid behavior.
 - Reworked the About page with a stronger introductory heading, updated work-history copy, expandable work timeline entries, and tighter mobile spacing across the timeline cards.

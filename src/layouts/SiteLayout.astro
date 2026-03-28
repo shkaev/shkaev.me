@@ -259,7 +259,7 @@ const shellWidthClass = "max-w-[81.25rem]";
 										aria-current={isActive ? "page" : undefined}
 										data-nav-link
 										class:list={[
-											"text-center text-sm font-medium tracking-tight transition-colors",
+											"text-center text-[0.96rem] font-normal tracking-normal transition-colors",
 											isActive
 												? "text-stone-950"
 												: "text-stone-500 hover:text-stone-900"
@@ -318,7 +318,8 @@ const shellWidthClass = "max-w-[81.25rem]";
 			</header>
 
 			<main class:list={[
-				"mx-auto flex w-full max-w-[64rem] flex-1 items-start",
+				"mx-auto flex w-full flex-1 items-start",
+				shellWidthClass,
 				isHomePage ? "py-4 sm:py-16" : "py-6 sm:py-16"
 			]}>
 				<slot />
