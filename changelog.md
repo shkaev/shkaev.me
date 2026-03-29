@@ -4,6 +4,23 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-03-29</span></p>
+
+## Posting photos and correcting recommendations
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added a new wave of photography archive entries from September 2025 through January 2026.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Refined the photography archive chronology.
+- Refreshed the About page recommendation order, spacing, and section rhythm.
+
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Switched local photo imports to keep only generated web assets and manifests inside the project while treating external folders as the source of truth for originals.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-28</span></p>
 
 ## Photo gallery filters and total rework of the recommendations

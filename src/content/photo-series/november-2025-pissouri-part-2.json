@@ -1,0 +1,76 @@
+{
+  "title": "Pissouri, Part 2",
+  "slug": "november-2025-pissouri-part-2",
+  "summary": "November 2025, Pissouri",
+  "cardLocation": "Cyprus",
+  "location": "Pissouri",
+  "timeframe": "November 2025",
+  "legacyPath": "/november-2025",
+  "sortOrder": 96,
+  "cover": {
+    "src": "/photo-imports/november-2025/images/DSCF5041.jpg",
+    "width": 4160,
+    "height": 6240
+  },
+  "cardCover": {
+    "src": "/photo-imports/november-2025/card-covers-special/DSCF5041-up-5.jpg",
+    "width": 682,
+    "height": 426
+  },
+  "photos": [
+    {
+      "src": "/photo-imports/november-2025/images/DSCF5034.jpg",
+      "width": 3986,
+      "height": 5979,
+      "size": 16135328
+    },
+    {
+      "src": "/photo-imports/november-2025/images/DSCF5035.jpg",
+      "width": 3613,
+      "height": 5420,
+      "size": 11368169
+    },
+    {
+      "src": "/photo-imports/november-2025/images/DSCF5037.jpg",
+      "width": 3092,
+      "height": 4638,
+      "size": 9388913
+    },
+    {
+      "src": "/photo-imports/november-2025/images/DSCF5038.jpg",
+      "width": 3758,
+      "height": 5637,
+      "size": 14275981
+    },
+    {
+      "src": "/photo-imports/november-2025/images/DSCF5041.jpg",
+      "width": 4160,
+      "height": 6240,
+      "size": 18171264
+    },
+    {
+      "src": "/photo-imports/november-2025/images/DSCF5042.jpg",
+      "width": 3955,
+      "height": 5933,
+      "size": 22144525
+    },
+    {
+      "src": "/photo-imports/november-2025/images/DSCF5043.jpg",
+      "width": 3749,
+      "height": 5624,
+      "size": 14005720
+    },
+    {
+      "src": "/photo-imports/november-2025/images/DSCF5044.jpg",
+      "width": 4093,
+      "height": 6140,
+      "size": 17493905
+    },
+    {
+      "src": "/photo-imports/november-2025/images/DSCF5045.jpg",
+      "width": 4160,
+      "height": 6240,
+      "size": 16346157
+    }
+  ]
+}
