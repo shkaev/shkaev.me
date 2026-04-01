@@ -1,0 +1,16 @@
+---
+interface Props {
+	as?: string;
+	class?: string;
+}
+
+const {
+	as = "p",
+	class: className
+} = Astro.props;
+const Tag = as;
+---
+
+<Tag class:list={["type-micro-label", className]}>
+	<slot />
+</Tag>

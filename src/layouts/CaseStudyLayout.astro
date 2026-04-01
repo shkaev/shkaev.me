@@ -1,6 +1,8 @@
 ---
 import SiteLayout from "./SiteLayout.astro";
-import BackLink from "../components/BackLink.astro";
+import CaseStudyHero from "../components/sections/CaseStudyHero.astro";
+import MicroLabel from "../components/typography/MicroLabel.astro";
+import CardTitle from "../components/typography/CardTitle.astro";
 import ChevronRightIcon from "../components/icons/ChevronRightIcon.astro";
 import { resolveStaticAssetUrl } from "../lib/assetUrl";
 
@@ -42,31 +44,17 @@ const resolvedMoreCaseStudies = moreCaseStudies.map((study) => ({
 
 <SiteLayout title={title} description={description}>
 	<div class="flex w-full flex-col">
-		<section class="w-full">
-			<BackLink href="/design" label="Case studies" />
-			<h1 class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl">
-				{pageTitle}
-			</h1>
-			<p class="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
-				{description}
-			</p>
-		</section>
-
-		<section class="mt-10 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={resolvedHeroSrc}
-				alt={heroAlt}
-				class="h-auto w-full"
-				loading="eager"
-			/>
-		</section>
+		<CaseStudyHero
+			title={pageTitle}
+			lead={description}
+			heroSrc={resolvedHeroSrc}
+			heroAlt={heroAlt}
+		/>
 
 		<slot />
 
 		<section class="mt-20 w-full">
-			<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
-				Read more case studies
-			</p>
+			<MicroLabel class="text-sm tracking-[0.24em]">Read more case studies</MicroLabel>
 			<div class="mt-6 flex flex-col gap-4">
 				{
 					resolvedMoreCaseStudies.map((study) => (
@@ -84,7 +72,10 @@ const resolvedMoreCaseStudies = moreCaseStudies.map((study) => ({
 								/>
 							</div>
 							<div class="min-w-0 px-4 py-4 sm:px-0 sm:py-0">
-								<h4 class="flex min-w-0 items-center gap-2 text-xl tracking-tight text-stone-950 sm:gap-2.5 sm:text-2xl">
+								<CardTitle
+									as="h4"
+									class="flex min-w-0 items-center gap-2 sm:gap-2.5"
+								>
 									<img
 										src={study.logoSrc}
 										alt=""
@@ -93,7 +84,7 @@ const resolvedMoreCaseStudies = moreCaseStudies.map((study) => ({
 										class="h-4 w-4 shrink-0 rounded-[4px] object-cover sm:h-[1.125rem] sm:w-[1.125rem]"
 									/>
 									<span class="truncate">{study.title}</span>
-								</h4>
+								</CardTitle>
 								<p class="mt-1 text-xs leading-5 text-stone-700 sm:text-sm">
 									{study.description}
 								</p>

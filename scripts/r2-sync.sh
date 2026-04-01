@@ -2,8 +2,6 @@
 
 set -euo pipefail
 
-export PATH="$HOME/Library/Python/3.9/bin:$PATH"
-
 if ! command -v aws >/dev/null 2>&1; then
   echo "aws CLI is required. Install it first, then rerun this script." >&2
   exit 1

@@ -1,5 +1,7 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import CardTitle from "../components/typography/CardTitle.astro";
 import ChevronRightIcon from "../components/icons/ChevronRightIcon.astro";
 import { resolveStaticAssetUrl } from "../lib/assetUrl";
 
@@ -48,18 +50,11 @@ const resolvedCaseStudies = caseStudies.map((study) => ({
 	description="Product design highlights and selected work by Dmitry Shkaev."
 >
 	<div class="flex w-full flex-col">
-		<section class="w-full">
-			<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
-				Design
-			</p>
-			<h1 class="mt-4 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:mt-6 sm:text-5xl md:text-6xl">
-				Case studies
-			</h1>
-			<p class="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
-				Explore some of the featured product design work I've been doing over
-				the years.
-			</p>
-		</section>
+		<PageHero
+			eyebrow="Design"
+			title="Case studies"
+			lead="Explore some of the featured product design work I've been doing over the years."
+		/>
 
 		<section class="mt-8 w-full">
 			<div class="flex flex-col gap-4">
@@ -79,7 +74,10 @@ const resolvedCaseStudies = caseStudies.map((study) => ({
 								/>
 							</div>
 							<div class="min-w-0 px-4 py-4 sm:px-0 sm:py-0">
-								<h4 class="flex min-w-0 items-center gap-2 text-xl tracking-tight text-stone-950 sm:gap-2.5 sm:text-2xl">
+								<CardTitle
+									as="h4"
+									class="flex min-w-0 items-center gap-2 sm:gap-2.5"
+								>
 									<img
 										src={study.logoSrc}
 										alt=""
@@ -88,7 +86,7 @@ const resolvedCaseStudies = caseStudies.map((study) => ({
 										class="h-4 w-4 shrink-0 rounded-[4px] object-cover sm:h-[1.125rem] sm:w-[1.125rem]"
 									/>
 									<span class="truncate">{study.title}</span>
-								</h4>
+								</CardTitle>
 								<p class="mt-1 text-xs leading-5 text-stone-700 sm:text-sm">
 									{study.description}
 								</p>

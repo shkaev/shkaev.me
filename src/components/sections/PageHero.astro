@@ -1,0 +1,32 @@
+---
+import PageEyebrow from "../typography/PageEyebrow.astro";
+import PageLead from "../typography/PageLead.astro";
+import PageTitle from "../typography/PageTitle.astro";
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	lead?: string;
+	class?: string;
+	eyebrowClass?: string;
+	titleClass?: string;
+	leadClass?: string;
+}
+
+const {
+	eyebrow,
+	title,
+	lead,
+	class: className,
+	eyebrowClass,
+	titleClass,
+	leadClass
+} = Astro.props;
+---
+
+<section class:list={["w-full", className]}>
+	{eyebrow && <PageEyebrow class={eyebrowClass}>{eyebrow}</PageEyebrow>}
+	<PageTitle class:list={["mt-4 sm:mt-6", titleClass]}>{title}</PageTitle>
+	{lead && <PageLead class:list={["mt-5", leadClass]}>{lead}</PageLead>}
+	<slot />
+</section>

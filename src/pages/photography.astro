@@ -1,8 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/sections/PageHero.astro";
 import { resolvePhotoAssetUrl } from "../lib/photoAsset";
-import { resolveStaticAssetUrl } from "../lib/assetUrl";
+import { resolveCountryFlag } from "../lib/countryFlags";
 
 const parseSeriesYear = (timeframe: string) => {
 	const match = timeframe.match(/\b(19|20)\d{2}\b/u);
@@ -19,15 +20,6 @@ const series = (await getCollection("photo-series"))
 		}
 	}))
 	.sort((a, b) => b.data.sortOrder - a.data.sortOrder);
-
-const countryFlagByLocation: Record<string, string> = {
-	Cyprus: resolveStaticAssetUrl("/images/flags/cyprus.svg"),
-	Kazakhstan: resolveStaticAssetUrl("/images/flags/kazakhstan.svg"),
-	Uzbekistan: resolveStaticAssetUrl("/images/flags/uzbekistan.svg"),
-	Russia: resolveStaticAssetUrl("/images/flags/russia.svg"),
-	UAE: resolveStaticAssetUrl("/images/flags/uae.svg"),
-	"United Arab Emirates": resolveStaticAssetUrl("/images/flags/uae.svg")
-};
 
 const sortOptions = [
 	{ value: "newest", label: "Newest first" },
@@ -46,7 +38,6 @@ const yearOptions = Array.from(
 	)
 ).sort((left, right) => right - left);
 
-const resolveCountryFlag = (location: string) => countryFlagByLocation[location];
 const formatYearLabel = (year: number | string) =>
 	String(year) === "2003" ? "Legacy" : String(year);
 const buildSearchTerms = (entry: (typeof series)[number]) => {
@@ -66,7 +57,22 @@ const buildSearchTerms = (entry: (typeof series)[number]) => {
 	return terms.join(" ").toLowerCase();
 };
 
-let previousRenderedYear = "";
+const renderedSeries = series.map((entry, index, entries) => {
+	const currentYear = entry.data.year ? String(entry.data.year) : "";
+	const previousYear =
+		index > 0
+			? entries[index - 1]?.data.year
+				? String(entries[index - 1].data.year)
+				: ""
+			: "";
+
+	return {
+		entry,
+		currentYear,
+		shouldRenderDivider: currentYear !== previousYear,
+		searchIndex: buildSearchTerms(entry)
+	};
+});
 ---
 
 <SiteLayout
@@ -74,17 +80,12 @@ let previousRenderedYear = "";
 	description="Photography collections and visual stories by Dmitry Shkaev."
 >
 	<section class="w-full" data-photography-root>
-		<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
-			Photography
-		</p>
-		<h1 class="mt-4 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:mt-6 sm:text-5xl md:text-6xl">
-			My collection
-		</h1>
-			<p class="mt-5 max-w-4xl text-base leading-8 text-stone-700 sm:text-lg">
-				This is an archive of photos taken with my Fujifilm X-E4. It’s
-				built series by series, with every collection kept in sequence to
-				preserve the feeling of time, place, and movement.
-		</p>
+		<PageHero
+			eyebrow="Photography"
+			title="My collection"
+			lead="This is an archive of photos taken with my Fujifilm X-E4. It’s built series by series, with every collection kept in sequence to preserve the feeling of time, place, and movement."
+			leadClass="max-w-4xl"
+		/>
 
 		<div class="mt-7">
 			<div
@@ -240,18 +241,14 @@ let previousRenderedYear = "";
 
 		<div class="mt-3 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 xl:gap-3" data-series-grid>
 			{
-				series.map((entry) => {
+				renderedSeries.map(
+					({ entry, currentYear, shouldRenderDivider, searchIndex }) => {
 					const flagSrc = resolveCountryFlag(entry.data.cardLocation);
 					const isCyprus = entry.data.cardLocation === "Cyprus";
 					const cardCover = entry.data.cardCover ?? entry.data.cover;
 					const cardCoverSrc = entry.data.cardCover
 						? resolvePhotoAssetUrl(entry.data.cardCover.src, "card-cover")
 						: resolvePhotoAssetUrl(entry.data.cover.src, "card-cover");
-					const searchIndex = buildSearchTerms(entry);
-					const currentYear = entry.data.year ? String(entry.data.year) : "";
-					const shouldRenderDivider = currentYear !== previousRenderedYear;
-
-					previousRenderedYear = currentYear;
 
 					return (
 						<>
@@ -315,7 +312,7 @@ let previousRenderedYear = "";
 														data-flag-icon
 														class="relative block h-[15px] w-5 shrink-0 overflow-visible"
 													>
-														<span data-flag-tooltip aria-hidden="true">
+														<span class="tooltip tooltip--top" data-flag-tooltip aria-hidden="true">
 															{entry.data.cardLocation}
 														</span>
 														<img
@@ -345,7 +342,8 @@ let previousRenderedYear = "";
 							</a>
 						</>
 					);
-				})
+					}
+				)
 			}
 		</div>
 	</section>
@@ -402,9 +400,11 @@ let previousRenderedYear = "";
 			newest: "Newest first",
 			oldest: "Oldest first"
 		};
+		const searchDebounceMs = 150;
 
 			const state = { ...defaults };
 			const initialCardOrder = [...cards];
+			let searchDebounceTimer = 0;
 
 			const normalizeQuery = (value) => value.trim().replace(/\s+/g, " ").toLowerCase();
 			const createYearDivider = (year) => {
@@ -576,43 +576,65 @@ let previousRenderedYear = "";
 			syncUrl();
 		};
 
+		const cancelPendingSearchApply = () => {
+			if (!searchDebounceTimer) {
+				return;
+			}
+
+			window.clearTimeout(searchDebounceTimer);
+			searchDebounceTimer = 0;
+		};
+
+		const applyStateImmediately = () => {
+			cancelPendingSearchApply();
+			applyState();
+		};
+
+		const scheduleSearchApplyState = () => {
+			cancelPendingSearchApply();
+			searchDebounceTimer = window.setTimeout(() => {
+				searchDebounceTimer = 0;
+				applyState();
+			}, searchDebounceMs);
+		};
+
 		searchInput.addEventListener("input", () => {
 			state.q = searchInput.value;
 			searchClearButton.classList.toggle("hidden", state.q.length === 0);
 			searchClearButton.classList.toggle("flex", state.q.length > 0);
-			applyState();
+			scheduleSearchApplyState();
 		});
 
 		searchClearButton.addEventListener("click", () => {
 			state.q = defaults.q;
 			syncControls();
-			applyState();
+			applyStateImmediately();
 			searchInput.focus();
 		});
 
 		countrySelect.addEventListener("change", () => {
 			state.country = countrySelect.value;
-			applyState();
+			applyStateImmediately();
 		});
 
 		yearSelect.addEventListener("change", () => {
 			state.year = yearSelect.value;
-			applyState();
+			applyStateImmediately();
 		});
 
 		sortSelect.addEventListener("change", () => {
 			state.sort = sortSelect.value;
-			applyState();
+			applyStateImmediately();
 		});
 
 		clearAllButton.addEventListener("click", () => {
 			Object.assign(state, defaults);
 			syncControls();
-			applyState();
+			applyStateImmediately();
 		});
 
 		readUrlState();
 		syncControls();
-		applyState();
+		applyStateImmediately();
 	})();
 </script>

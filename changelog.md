@@ -4,6 +4,31 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-02</span></p>
+
+## Major refactoring
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Rich metadata to enable clean sharing previews.
+
+<p class="changelog-label changelog-label--fixed">Fixed</p>
+
+- Removed brittle assumptions from asset resolution and other shared page logic.
+- Fixed several accessibility, filtering, and mobile gallery issues across the changelog sheet and photography pages.
+- Restored reliable dark-theme typography and reduced page-transition flicker.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Rebuilt the shared site shell into dedicated layout components and extracted the main client-side behaviors into focused modules.
+- Introduced reusable typography and section primitives across the case studies and top-level pages.
+- Replaced the previous font with self-hosted IBM Plex Serif for large headings and other display text.
+
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Centralized shared site config, path helpers, theme utilities, and other duplicated support logic.
+- Simplified support code by cleaning up the R2 sync script and loosening unused content schema requirements.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-01</span></p>
 
 ## Refined the design case studies and polished the About page

@@ -1,0 +1,80 @@
+---
+import {
+	applyThemeToRoot,
+	resolveStoredTheme,
+	themeStorageKey
+} from "../../scripts/themeShared";
+
+interface Props {
+	title: string;
+	description: string;
+	favicon32Src: string;
+	appleTouchIconSrc: string;
+	avatarSrc: string;
+	siteName: string;
+	canonicalUrl: string;
+	socialImageUrl: string;
+	interLatinFontSrc: string;
+	displayFontSemiboldSrc: string;
+}
+
+const {
+	title,
+	description,
+	favicon32Src,
+	appleTouchIconSrc,
+	avatarSrc,
+	siteName,
+	canonicalUrl,
+	socialImageUrl,
+	interLatinFontSrc,
+	displayFontSemiboldSrc
+} = Astro.props;
+
+const earlyThemeScript = `(() => {
+	const theme = (${resolveStoredTheme.toString()})(${JSON.stringify(themeStorageKey)});
+	(${applyThemeToRoot.toString()})(document.documentElement, theme);
+})();`;
+---
+
+<meta charset="utf-8" />
+<script is:inline>
+	document.documentElement.classList.add("js");
+</script>
+<link rel="icon" type="image/png" sizes="32x32" href={favicon32Src} />
+<link rel="apple-touch-icon" sizes="180x180" href={appleTouchIconSrc} />
+<link rel="preload" as="image" href={avatarSrc} fetchpriority="high" />
+<link
+	rel="preload"
+	as="font"
+	type="font/woff2"
+	href={interLatinFontSrc}
+	crossorigin
+/>
+<link
+	rel="preload"
+	as="font"
+	type="font/woff2"
+	href={displayFontSemiboldSrc}
+	crossorigin
+/>
+<meta name="viewport" content="width=device-width" />
+<meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0c0a09" media="(prefers-color-scheme: dark)" />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={socialImageUrl} />
+<meta property="og:image:alt" content={title} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImageUrl} />
+<meta name="twitter:image:alt" content={title} />
+<script is:inline set:html={earlyThemeScript}></script>

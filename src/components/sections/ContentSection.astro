@@ -1,0 +1,38 @@
+---
+import PageEyebrow from "../typography/PageEyebrow.astro";
+import SectionBody from "../typography/SectionBody.astro";
+import SectionTitle from "../typography/SectionTitle.astro";
+
+interface Props {
+	as?: string;
+	title?: string;
+	eyebrow?: string;
+	class?: string;
+	titleAs?: string;
+	titleClass?: string;
+	bodyClass?: string;
+}
+
+const {
+	as = "section",
+	title,
+	eyebrow,
+	class: className,
+	titleAs = "h2",
+	titleClass,
+	bodyClass
+} = Astro.props;
+const Tag = as;
+---
+
+<Tag class:list={["mt-12 w-full", className]}>
+	{eyebrow && <PageEyebrow>{eyebrow}</PageEyebrow>}
+	{title && (
+		<SectionTitle as={titleAs} class={eyebrow ? "mt-4" : undefined}>
+			{title}
+		</SectionTitle>
+	)}
+	<SectionBody class={bodyClass}>
+		<slot />
+	</SectionBody>
+</Tag>

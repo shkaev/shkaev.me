@@ -1,5 +1,8 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/sections/PageHero.astro";
+import SectionTitle from "../components/typography/SectionTitle.astro";
+import SectionBody from "../components/typography/SectionBody.astro";
 import ArrowLeftIcon from "../components/icons/ArrowLeftIcon.astro";
 import ArrowRightIcon from "../components/icons/ArrowRightIcon.astro";
 import ChevronDownIcon from "../components/icons/ChevronDownIcon.astro";
@@ -282,20 +285,11 @@ const renderRecommendationQuote = (value: string) =>
 	description="About Dmitry Shkaev, his photography, and his product design background."
 >
 	<section class="w-full max-w-[60rem]">
-		<p class="text-sm font-medium uppercase tracking-[0.24em] text-stone-500">
-			About me
-		</p>
-		<h1 class="mt-4 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:mt-6 sm:text-5xl md:text-6xl">
-			Product designer with 10+ years of experience
-		</h1>
-		<p class="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
-			My background is in building customer-facing enterprise software across
-			desktop and mobile. I&rsquo;m best at creating meaningful
-			user-centered design that helps businesses reach their goals and leaves
-			people feeling great, inspired, and cared for. Currently, I&rsquo;m
-			driving interaction metrics for a high-impact product with tens of
-			millions of monthly active users.
-		</p>
+		<PageHero
+			eyebrow="About me"
+			title="Product designer with 10+ years of experience"
+			lead="My background is in building customer-facing enterprise software across desktop and mobile. I’m best at creating meaningful user-centered design that helps businesses reach their goals and leaves people feeling great, inspired, and cared for. Currently, I’m driving interaction metrics for a high-impact product with tens of millions of monthly active users."
+		/>
 
 		<div class="mt-10">
 			<div class="relative space-y-4 pl-8 before:absolute before:bottom-0 before:left-0 before:top-0 before:w-px before:bg-stone-200 dark:before:bg-stone-700/90 sm:pl-10">
@@ -336,47 +330,47 @@ const renderRecommendationQuote = (value: string) =>
 
 		<div class="mt-12">
 			<div>
-				<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
-					Strengths &amp; skills
-				</h2>
-				<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-					My core strength is
-					<span class="font-bold text-stone-950"
-						>solving complex problems</span
-					>
-					through elegant, well-reasoned solutions and turning them into
-					clear, functional interfaces. There&rsquo;s no magic behind it
-					&mdash; just experience, pattern recognition, and a disciplined
-					design approach.
-				</p>
-				<p class="mt-4 text-base leading-8 text-stone-700 sm:text-lg">
-					I&rsquo;m often told that I have an eye for
-					<span class="font-bold text-stone-950">perfection</span> when it
-					comes to crafting high-fidelity UI, and I would consider this to be
-					my second strongest trait. Wireframes and early concepts can and
-					should be wild, but when it comes to the final product, it&rsquo;s
-					pixel-perfect or death. Just kidding, but yes, my Figma stuff is
-					pretty neat.
-				</p>
+				<SectionTitle>Strengths &amp; skills</SectionTitle>
+				<SectionBody>
+					<p>
+						My core strength is
+						<span class="font-bold text-stone-950"
+							>solving complex problems</span
+						>
+						through elegant, well-reasoned solutions and turning them into
+						clear, functional interfaces. There&rsquo;s no magic behind it
+						&mdash; just experience, pattern recognition, and a disciplined
+						design approach.
+					</p>
+					<p>
+						I&rsquo;m often told that I have an eye for
+						<span class="font-bold text-stone-950">perfection</span> when it
+						comes to crafting high-fidelity UI, and I would consider this to be
+						my second strongest trait. Wireframes and early concepts can and
+						should be wild, but when it comes to the final product, it&rsquo;s
+						pixel-perfect or death. Just kidding, but yes, my Figma stuff is
+						pretty neat.
+					</p>
+				</SectionBody>
 			</div>
 		</div>
 
 		<div class="mt-12">
 			<div>
-				<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
-					Recommendations
-				</h2>
-				<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-					Here are some quotes from the colleagues and clients I&rsquo;ve
-					worked with over the years. They offer an external perspective on
-					my work, collaboration style, and overall contribution across
-					different roles and projects. Originally shared on <a
-						href="https://www.linkedin.com/in/shkaev/details/recommendations/"
-						target="_blank"
-						rel="noreferrer"
-						class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>LinkedIn</a>.
-				</p>
+				<SectionTitle>Recommendations</SectionTitle>
+				<SectionBody>
+					<p>
+						Here are some quotes from the colleagues and clients I&rsquo;ve
+						worked with over the years. They offer an external perspective on
+						my work, collaboration style, and overall contribution across
+						different roles and projects. Originally shared on <a
+							href="https://www.linkedin.com/in/shkaev/details/recommendations/"
+							target="_blank"
+							rel="noreferrer"
+							class="underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+						>LinkedIn</a>.
+					</p>
+				</SectionBody>
 			</div>
 
 			{
@@ -444,7 +438,7 @@ const renderRecommendationQuote = (value: string) =>
 										</div>
 									</a>
 									<div class="min-w-0 flex-1">
-										<h3 class="text-[1.2rem] font-normal leading-tight tracking-tight text-stone-950 sm:text-[1.35rem]">
+											<h3 class="text-[1.2rem] font-semibold leading-tight tracking-tight text-stone-950 sm:text-[1.35rem]">
 											<a
 												id="featured-recommendation-name"
 												href={featuredRecommendation.href}
@@ -533,64 +527,64 @@ const renderRecommendationQuote = (value: string) =>
 		</div>
 
 		<div class="mt-12">
-			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
-				Leadership
-			</h2>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				While I bring the most value as an
-				<span class="font-bold text-stone-950">individual contributor</span>,
-				I have experience leading creative initiatives within business goals
-				and working closely with small, focused teams. I&rsquo;m often
-				involved in
-				<span class="font-bold text-stone-950">onboarding</span> new hires
-				and helping them get up to speed, and I&rsquo;ve taken on
-				<span class="font-bold text-stone-950">mentoring</span>
-				responsibilities to support junior designers and guide them through
-				design processes.
-			</p>
+			<SectionTitle>Leadership</SectionTitle>
+			<SectionBody>
+				<p>
+					While I bring the most value as an
+					<span class="font-bold text-stone-950">individual contributor</span>,
+					I have experience leading creative initiatives within business goals
+					and working closely with small, focused teams. I&rsquo;m often
+					involved in
+					<span class="font-bold text-stone-950">onboarding</span> new hires
+					and helping them get up to speed, and I&rsquo;ve taken on
+					<span class="font-bold text-stone-950">mentoring</span>
+					responsibilities to support junior designers and guide them through
+					design processes.
+				</p>
+			</SectionBody>
 		</div>
 
 		<div class="mt-12">
-			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
-				Hobbies
-			</h2>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				My main passion is <span class="font-bold text-stone-950"
-					>photography</span
-				>, which I&rsquo;ve been practicing for quite some time, starting
-				back when film cameras were still the mainstream. At one point, I was
-				comfortable enough to turn it into a side gig, even securing
-				contracts with companies like Omsk Carbon Group to shoot portraits
-				and environments.
-			</p>
-			<p class="mt-4 text-base leading-8 text-stone-700 sm:text-lg">
-				Another major activity for me is <span class="font-bold text-stone-950"
-					>cycling</span
-				> &mdash; there&rsquo;s nothing better than hopping on a bike,
-				exploring new places, and meeting people along the way. It also
-				naturally complements my photography.
-			</p>
-			<p class="mt-4 text-base leading-8 text-stone-700 sm:text-lg">
-				And, as a family man, I spend a lot of time with my wife Olga and our
-				two sons, Boris and Gleb.
-			</p>
+			<SectionTitle>Hobbies</SectionTitle>
+			<SectionBody>
+				<p>
+					My main passion is <span class="font-bold text-stone-950"
+						>photography</span
+					>, which I&rsquo;ve been practicing for quite some time, starting
+					back when film cameras were still the mainstream. At one point, I was
+					comfortable enough to turn it into a side gig, even securing
+					contracts with companies like Omsk Carbon Group to shoot portraits
+					and environments.
+				</p>
+				<p>
+					Another major activity for me is <span class="font-bold text-stone-950"
+						>cycling</span
+					> &mdash; there&rsquo;s nothing better than hopping on a bike,
+					exploring new places, and meeting people along the way. It also
+					naturally complements my photography.
+				</p>
+				<p>
+					And, as a family man, I spend a lot of time with my wife Olga and our
+					two sons, Boris and Gleb.
+				</p>
+			</SectionBody>
 		</div>
 
 		<div class="mt-12">
-			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
-				Contact info
-			</h2>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				I&rsquo;m located in 🇨🇾
-				<span class="font-bold text-stone-950">Limassol</span> and always
-				open to meeting new people. Feel free to hit me up on
-				<span class="whitespace-nowrap"><a
-					href="https://t.me/shkaev"
-					target="_blank"
-					rel="noreferrer"
-					class="text-link"
-				>Telegram</a>.</span>
-			</p>
+			<SectionTitle>Contact info</SectionTitle>
+			<SectionBody>
+				<p>
+					I&rsquo;m located in 🇨🇾
+					<span class="font-bold text-stone-950">Limassol</span> and always
+					open to meeting new people. Feel free to hit me up on
+					<span class="whitespace-nowrap"><a
+						href="https://t.me/shkaev"
+						target="_blank"
+						rel="noreferrer"
+						class="text-link"
+					>Telegram</a>.</span>
+				</p>
+			</SectionBody>
 		</div>
 	</section>
 

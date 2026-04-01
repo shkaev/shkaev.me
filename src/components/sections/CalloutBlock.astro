@@ -1,0 +1,51 @@
+---
+import DisplayCallout from "../typography/DisplayCallout.astro";
+import MicroLabel from "../typography/MicroLabel.astro";
+
+interface Props {
+	label: string;
+	title: string;
+	body?: string;
+	class?: string;
+	labelClass?: string;
+	titleClass?: string;
+	bodyClass?: string;
+}
+
+const {
+	label,
+	title,
+	body,
+	class: className,
+	labelClass,
+	titleClass,
+	bodyClass
+} = Astro.props;
+
+const hasBodySlot = Astro.slots.has("default");
+---
+
+<div class:list={["max-w-3xl border-l border-stone-200 py-2 pl-6", className]}>
+	<MicroLabel class={labelClass}>
+		<span class="inline-flex items-center gap-2">
+			<slot name="label-prefix" />
+			<span class="text-stone-950">{label}</span>
+		</span>
+	</MicroLabel>
+	<DisplayCallout class:list={["mt-2 text-balance text-[1.28rem] leading-tight sm:text-[1.45rem]", titleClass]}>
+		{title}
+	</DisplayCallout>
+	{
+		hasBodySlot ? (
+			<div class:list={["mt-1 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]", bodyClass]}>
+				<slot />
+			</div>
+		) : (
+			body && (
+			<p class:list={["mt-1 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]", bodyClass]}>
+				{body}
+			</p>
+			)
+		)
+	}
+</div>

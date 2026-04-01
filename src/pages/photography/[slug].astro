@@ -4,18 +4,8 @@ import SiteLayout from "../../layouts/SiteLayout.astro";
 import BackLink from "../../components/BackLink.astro";
 import ArrowLeftIcon from "../../components/icons/ArrowLeftIcon.astro";
 import ArrowRightIcon from "../../components/icons/ArrowRightIcon.astro";
+import { resolveCountryFlag } from "../../lib/countryFlags";
 import { resolvePhotoAssetUrl } from "../../lib/photoAsset";
-import { resolveStaticAssetUrl } from "../../lib/assetUrl";
-
-const countryFlagByLocation: Record<string, string> = {
-	Cyprus: resolveStaticAssetUrl("/images/flags/cyprus.svg"),
-	Kazakhstan: resolveStaticAssetUrl("/images/flags/kazakhstan.svg"),
-	Uzbekistan: resolveStaticAssetUrl("/images/flags/uzbekistan.svg"),
-	Russia: resolveStaticAssetUrl("/images/flags/russia.svg"),
-	UAE: resolveStaticAssetUrl("/images/flags/uae.svg"),
-	"United Arab Emirates": resolveStaticAssetUrl("/images/flags/uae.svg")
-};
-const resolveCountryFlag = (location: string) => countryFlagByLocation[location];
 
 export async function getStaticPaths() {
 	const series = await getCollection("photo-series");
@@ -113,7 +103,7 @@ if (currentRow.length > 0) {
 	<section class="w-full">
 		<BackLink href="/photography" />
 		<h1
-			class="mt-6 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl"
+			class="mt-6 text-4xl font-semibold tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl"
 			data-page-title
 		>
 			{title}
@@ -127,7 +117,7 @@ if (currentRow.length > 0) {
 						data-flag-icon
 						class="relative -top-px block h-[15px] w-5 shrink-0 overflow-visible"
 					>
-						<span data-flag-tooltip aria-hidden="true">{cardLocation}</span>
+						<span class="tooltip tooltip--top" data-flag-tooltip aria-hidden="true">{cardLocation}</span>
 						<img
 							src={flagSrc}
 							alt=""
@@ -158,7 +148,7 @@ if (currentRow.length > 0) {
 
 		<div
 			class:list={[
-				intro ? "mt-8" : "mt-10",
+				intro ? "mt-4 sm:mt-8" : "mt-4 sm:mt-10",
 				"photo-carousel relative left-1/2 right-1/2 flex w-screen -translate-x-1/2 gap-3 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth lg:hidden"
 			]}
 			data-mobile-carousel
@@ -311,8 +301,36 @@ if (currentRow.length > 0) {
 		}
 
 		<div class="lightbox" data-lightbox hidden>
-			<div class="lightbox__backdrop" data-lightbox-close></div>
-			<div class="lightbox__chrome" data-lightbox-chrome>
+			<div class="lightbox__backdrop" data-lightbox-close aria-hidden="true"></div>
+			<div
+				class="lightbox__chrome"
+				data-lightbox-chrome
+				role="dialog"
+				aria-modal="true"
+				aria-label={`Photo viewer for ${title}`}
+				tabindex="-1"
+			>
+				<button
+					type="button"
+					class="lightbox__button lightbox__button--close"
+					data-lightbox-close
+					data-lightbox-close-button
+					aria-label="Close photo viewer"
+				>
+					<svg
+						aria-hidden="true"
+						viewBox="0 0 24 24"
+						class="h-5 w-5"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.75"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M6 6 18 18"></path>
+						<path d="M18 6 6 18"></path>
+					</svg>
+				</button>
 				<button
 					type="button"
 					class="lightbox__button"
@@ -504,6 +522,15 @@ if (currentRow.length > 0) {
 		flex: none;
 	}
 
+	.lightbox__button:focus {
+		outline: none;
+	}
+
+	.lightbox__button:focus-visible {
+		outline: 2px solid rgb(28 25 23 / 0.5);
+		outline-offset: 2px;
+	}
+
 	.lightbox__button:hover {
 		background: rgb(255 255 255 / 0.98);
 		border-color: rgb(214 211 209);
@@ -521,6 +548,16 @@ if (currentRow.length > 0) {
 		background: rgb(41 37 36 / 0.92);
 		border-color: rgb(120 113 108);
 		color: rgb(250 250 249);
+	}
+
+	:global(.dark) .lightbox__button:focus-visible {
+		outline-color: rgb(250 250 249 / 0.55);
+	}
+
+	.lightbox__button--close {
+		position: absolute;
+		top: 1rem;
+		right: 0.75rem;
 	}
 
 	.photo-carousel {
@@ -557,10 +594,6 @@ if (currentRow.length > 0) {
 			margin-top: 1rem;
 		}
 
-		.photo-carousel {
-			margin-top: 1rem !important;
-		}
-
 		[data-mobile-carousel-pair="true"] > div {
 			height: var(--mobile-carousel-single-height);
 		}
@@ -583,6 +616,11 @@ if (currentRow.length > 0) {
 		.lightbox__chrome {
 			grid-template-columns: 1fr;
 			padding: 3rem 0.5rem;
+		}
+
+		.lightbox__button--close {
+			top: 0.75rem;
+			right: 0.5rem;
 		}
 
 		.lightbox__frame {
@@ -642,6 +680,7 @@ if (currentRow.length > 0) {
 		const closeButtons = Array.from(
 			document.querySelectorAll("[data-lightbox-close]")
 		);
+		const closeButton = document.querySelector("[data-lightbox-close-button]");
 		const prevButton = document.querySelector("[data-lightbox-prev]");
 		const nextButton = document.querySelector("[data-lightbox-next]");
 
@@ -653,6 +692,7 @@ if (currentRow.length > 0) {
 			!(frame instanceof HTMLElement) ||
 			!(image instanceof HTMLImageElement) ||
 			!(mobileScroller instanceof HTMLElement) ||
+			!(closeButton instanceof HTMLButtonElement) ||
 			!(prevButton instanceof HTMLButtonElement) ||
 			!(nextButton instanceof HTMLButtonElement)
 		) {
@@ -708,17 +748,47 @@ if (currentRow.length > 0) {
 		let lastFocusedElement = null;
 		let mobileCarouselSettledTimer = 0;
 		let mobileScrollSettledTimer = 0;
+		let mobileCarouselHeightObserver = null;
+		let observedMobileCarouselReference = null;
 		const preloadedCarouselSources = new Map();
 		const preloadedMobileSources = new Map();
 		let touchStartX = 0;
 		let touchStartY = 0;
 		let isTrackingDismiss = false;
 		let dismissDirectionLocked = false;
+		const focusableSelector = [
+			"a[href]",
+			"button:not([disabled])",
+			"input:not([disabled]):not([type='hidden'])",
+			"select:not([disabled])",
+			"textarea:not([disabled])",
+			"[tabindex]:not([tabindex='-1'])"
+		].join(",");
 
 		const normalizeIndex = (index) =>
 			(index + lightboxPhotos.length) % lightboxPhotos.length;
 
 		const isMobileViewport = () => window.matchMedia("(max-width: 767px)").matches;
+		const isVisibleFocusable = (element) =>
+			element instanceof HTMLElement &&
+			!element.hidden &&
+			element.getAttribute("aria-hidden") !== "true" &&
+			element.getClientRects().length > 0;
+
+		const getFocusableElements = (container) =>
+			Array.from(container.querySelectorAll(focusableSelector)).filter(
+				isVisibleFocusable
+			);
+
+		const focusLightboxTarget = () => {
+			if (isVisibleFocusable(closeButton)) {
+				closeButton.focus();
+				return;
+			}
+
+			const [firstFocusable] = getFocusableElements(chrome);
+			(firstFocusable ?? chrome).focus();
+		};
 
 		const alignInitialMobileViewport = () => {
 			if (
@@ -863,6 +933,42 @@ if (currentRow.length > 0) {
 			}
 		};
 
+		const observeMobileCarouselHeights = () => {
+			if (!(mobileCarousel instanceof HTMLElement) || !isMobileViewport()) {
+				return;
+			}
+
+			const referenceSlide = mobileCarousel.querySelector(
+				"[data-mobile-carousel-single=\"true\"] .photo-tile"
+			);
+
+			if (!(referenceSlide instanceof HTMLElement)) {
+				return;
+			}
+
+			if (observedMobileCarouselReference === referenceSlide) {
+				syncMobileCarouselHeights();
+				return;
+			}
+
+			observedMobileCarouselReference = referenceSlide;
+
+			if (typeof ResizeObserver !== "function") {
+				syncMobileCarouselHeights();
+				return;
+			}
+
+			if (mobileCarouselHeightObserver instanceof ResizeObserver) {
+				mobileCarouselHeightObserver.disconnect();
+			}
+
+			mobileCarouselHeightObserver = new ResizeObserver(() => {
+				syncMobileCarouselHeights();
+			});
+			mobileCarouselHeightObserver.observe(referenceSlide);
+			syncMobileCarouselHeights();
+		};
+
 		const applyDismissDrag = (offsetY, withTransition = false) => {
 			const progress = Math.min(Math.abs(offsetY) / 240, 1);
 			const scale = 1 - progress * 0.04;
@@ -985,11 +1091,14 @@ if (currentRow.length > 0) {
 			lightbox.hidden = false;
 			document.body.style.overflow = "hidden";
 			resetDismissDrag(false);
-			if (isMobileViewport()) {
-				requestAnimationFrame(() => scrollMobileToIndex(index, "auto"));
-			} else {
-				prevButton.focus();
-			}
+			requestAnimationFrame(() => {
+				if (isMobileViewport()) {
+					scrollMobileToIndex(index, "auto");
+					return;
+				}
+
+				focusLightboxTarget();
+			});
 		};
 
 		const close = () => {
@@ -1062,7 +1171,11 @@ if (currentRow.length > 0) {
 				return;
 			}
 
-			if (target.closest("[data-lightbox-image], [data-lightbox-prev], [data-lightbox-next]")) {
+			if (
+				target.closest(
+					"[data-lightbox-image], [data-lightbox-prev], [data-lightbox-next], [data-lightbox-close-button]"
+				)
+			) {
 				return;
 			}
 
@@ -1213,14 +1326,10 @@ if (currentRow.length > 0) {
 		if (isMobileViewport()) {
 			preloadInitialMobileCarouselImages(5);
 			preloadMobileCarouselWindow(0);
-			syncMobileCarouselHeights();
+			observeMobileCarouselHeights();
 			requestAnimationFrame(() => {
 				alignInitialMobileViewport();
-				syncMobileCarouselHeights();
-				window.setTimeout(alignInitialMobileViewport, 0);
-				window.setTimeout(syncMobileCarouselHeights, 0);
-				window.setTimeout(alignInitialMobileViewport, 120);
-				window.setTimeout(syncMobileCarouselHeights, 120);
+				observeMobileCarouselHeights();
 			});
 		}
 
@@ -1229,13 +1338,56 @@ if (currentRow.length > 0) {
 				return;
 			}
 
-			if (event.key === "Escape") {
+			if (event.key === "Tab") {
+				const focusableElements = getFocusableElements(chrome);
+
+				if (!focusableElements.length) {
+					event.preventDefault();
+					chrome.focus();
+					return;
+				}
+
+				const firstFocusable = focusableElements[0];
+				const lastFocusable = focusableElements[focusableElements.length - 1];
+				const activeElement = document.activeElement;
+
+				if (event.shiftKey) {
+					if (
+						activeElement === firstFocusable ||
+						activeElement === chrome ||
+						!chrome.contains(activeElement)
+					) {
+						event.preventDefault();
+						lastFocusable.focus();
+					}
+					return;
+				}
+
+				if (activeElement === lastFocusable || !chrome.contains(activeElement)) {
+					event.preventDefault();
+					firstFocusable.focus();
+				}
+			} else if (event.key === "Escape") {
 				closeWithFade();
 			} else if (event.key === "ArrowLeft") {
 				goTo(-1);
 			} else if (event.key === "ArrowRight") {
 				goTo(1);
 			}
+		});
+
+		document.addEventListener("focusin", (event) => {
+			if (lightbox.hidden) {
+				return;
+			}
+
+			const target = event.target;
+
+			if (target instanceof Node && chrome.contains(target)) {
+				return;
+			}
+
+			focusLightboxTarget();
 		});
 
 		window.addEventListener("resize", () => {

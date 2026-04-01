@@ -1,5 +1,11 @@
 ---
 import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
+import ContentSection from "../../../components/sections/ContentSection.astro";
+import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
+import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
+import MicroLabel from "../../../components/typography/MicroLabel.astro";
+import DisplayCallout from "../../../components/typography/DisplayCallout.astro";
+import CardTitle from "../../../components/typography/CardTitle.astro";
 import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
 const moreCaseStudies = [
@@ -35,11 +41,8 @@ const moreCaseStudies = [
 	moreCaseStudies={moreCaseStudies}
 >
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Executive summary
-			</h2>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Executive summary" bodyClass="mt-6">
+			<p>
 				Building on the successful Avast Online Security &amp; Privacy
 				redesign, our team developed a new feature for the company's flagship
 				browser extension. This allowed us to expand the initial offering and
@@ -48,14 +51,16 @@ const moreCaseStudies = [
 					href="https://www.avast.com/avast-one"
 					target="_blank"
 					rel="noreferrer"
-					class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-				>Avast One</a> suite.
+						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+					>Avast One</a> suite.
 			</p>
-		</section>
+		</ContentSection>
 
-		<section class="mt-12 w-full border-y border-stone-200 pt-10 pb-12">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">Team</h2>
-			<div class="mt-6 space-y-8 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection
+			title="Team"
+			class="border-y border-stone-200 pt-10 pb-12"
+			bodyClass="mt-6 space-y-8"
+		>
 				<p>
 					A compact cross-functional team carried Cookie Manager from product
 					framing through design, research, implementation, and release.
@@ -145,18 +150,17 @@ const moreCaseStudies = [
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+			<CardTitle as="h2" class="text-2xl sm:text-3xl">
 				Problem statement
-			</h2>
+			</CardTitle>
 			<div class="mt-6 grid gap-8 lg:grid-cols-3">
 				<div>
-					<p class="font-display text-[1.18rem] leading-none tracking-tight text-stone-950 sm:text-[1.32rem]">
+					<DisplayCallout>
 						The acquired product
-					</p>
+					</DisplayCallout>
 					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 						<p>
 							In 2021, Avast <a
@@ -178,9 +182,9 @@ const moreCaseStudies = [
 					</div>
 				</div>
 				<div>
-					<p class="font-display text-[1.18rem] leading-none tracking-tight text-stone-950 sm:text-[1.32rem]">
+					<DisplayCallout>
 						Why it was paused
-					</p>
+					</DisplayCallout>
 					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 						<p>
 							The intention was to embed that capability into one of Avast's
@@ -192,9 +196,9 @@ const moreCaseStudies = [
 					</div>
 				</div>
 				<div>
-					<p class="font-display text-[1.18rem] leading-none tracking-tight text-stone-950 sm:text-[1.32rem]">
+					<DisplayCallout>
 						Why AOSP became the fit
-					</p>
+					</DisplayCallout>
 					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 						<p>
 							That changed with the <a
@@ -208,9 +212,13 @@ const moreCaseStudies = [
 					</div>
 				</div>
 			</div>
-			<div class="mt-8 max-w-3xl border-l border-stone-200 py-2 pl-6">
-				<p class="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em]">
-					<span class="-translate-y-px text-amber-500">
+			<CalloutBlock
+				label="My role"
+				title="Turning the acquisition into a product feature"
+				body="As the designer on Avast Online Security & Privacy, I led the work of shaping that acquisition into a coherent feature within the product."
+				class="mt-8"
+			>
+				<span slot="label-prefix" class="-translate-y-px text-amber-500">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 20 20"
@@ -224,18 +232,8 @@ const moreCaseStudies = [
 								clip-rule="evenodd"
 							></path>
 						</svg>
-					</span>
-					<span class="text-stone-950">My role</span>
-				</p>
-				<p class="mt-2 text-balance font-display text-[1.28rem] leading-tight tracking-tight text-stone-950 sm:text-[1.45rem]">
-					Turning the acquisition into a product feature
-				</p>
-				<p class="mt-1 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]">
-					As the designer on Avast Online Security &amp; Privacy, I led the
-					work of shaping that acquisition into a coherent feature within the
-					product.
-				</p>
-			</div>
+				</span>
+			</CalloutBlock>
 		</section>
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
@@ -248,56 +246,50 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+			<CardTitle as="h2" class="text-2xl sm:text-3xl">
 				Design goals
-			</h2>
-			<div class="mt-6 grid gap-4 lg:grid-cols-3">
+			</CardTitle>
+			<InfoCardGrid>
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Flow
-					</p>
-					<h3 class="mt-4 text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<MicroLabel>Flow</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Make browsing feel uninterrupted
-					</h3>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						Help people get cookie banners out of the way instead of repeatedly
 						breaking their flow.
 					</p>
 				</div>
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Complexity
-					</p>
-					<h3 class="mt-4 text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<MicroLabel>Complexity</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Go beyond the easy cases
-					</h3>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						Address multi-option consent flows that the original extension did
 						not fully resolve.
 					</p>
 				</div>
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Integration
-					</p>
-					<h3 class="mt-4 text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<MicroLabel>Integration</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Make it belong in the product
-					</h3>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						Integrate the new feature into the recently redesigned framework so
 						it felt native in both UX and visual language.
 					</p>
 				</div>
-			</div>
+			</InfoCardGrid>
 		</section>
 
 		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+			<CardTitle as="h2" class="text-2xl sm:text-3xl">
 				Design process
-			</h2>
+			</CardTitle>
 			<div class="mt-6 lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10">
 				<div>
-					<div class="space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+					<div class="type-section-body type-section-body-flow mt-0">
 						<p>
 							Business justification was already in place by the time design
 							began, so there was no need for a classic discovery phase. Our
@@ -307,9 +299,13 @@ const moreCaseStudies = [
 							reusing parts of its backend.
 						</p>
 					</div>
-					<div class="mt-8 max-w-3xl border-l border-stone-200 py-2 pl-6">
-						<p class="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em]">
-							<span class="-translate-y-px text-amber-500">
+					<CalloutBlock
+						label="Next steps"
+						title="From the first drafts to the user testing"
+						body="I produced wireframes covering all key ideas and requirements. We went through a few rounds of internal feedback, and then I moved on to produce hi-fi visuals to run the first external user test."
+						class="mt-8"
+					>
+						<span slot="label-prefix" class="-translate-y-px text-amber-500">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 20 20"
@@ -323,23 +319,13 @@ const moreCaseStudies = [
 										clip-rule="evenodd"
 									></path>
 								</svg>
-							</span>
-							<span class="text-stone-950">Next steps</span>
-						</p>
-						<p class="mt-2 text-balance font-display text-[1.28rem] leading-tight tracking-tight text-stone-950 sm:text-[1.45rem]">
-							From the first drafts to the user testing
-						</p>
-						<p class="mt-1 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]">
-							I produced wireframes covering all key ideas and requirements. We
-							went through a few rounds of internal feedback, and then I moved
-							on to produce hi-fi visuals to run the first external user test.
-						</p>
-					</div>
+						</span>
+					</CalloutBlock>
 				</div>
 				<aside class="mt-8 border-l border-stone-200 py-2 pl-6 lg:mt-0 lg:h-full lg:pl-8">
-					<h3 class="font-display text-[1.2rem] leading-none tracking-tight text-stone-950 sm:text-[1.3rem]">
+					<DisplayCallout as="h3" class="text-[1.2rem] sm:text-[1.3rem]">
 						The Challenge
-					</h3>
+					</DisplayCallout>
 					<p class="mt-4 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						Balance user value, usability, in-app visibility, and business
 						impact without pulling too much attention away from the core
@@ -354,11 +340,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Prototype
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Prototype">
 				<p>
 					After running the high-fidelity screens by the team and receiving
 					sign-off from our project owner, I created a prototype in Figma,
@@ -375,8 +357,7 @@ const moreCaseStudies = [
 					recordings later by myself to note the specific observations I was
 					looking for.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
@@ -387,11 +368,7 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				User experience research outcome
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="User experience research outcome">
 				<p>
 					The results were strong and, in some respects, eye-opening. It was
 					one of the most useful pieces of qualitative user research I had in
@@ -413,8 +390,7 @@ const moreCaseStudies = [
 					to minor usability issues. We presented the findings summary to the
 					team for discussion and prioritization.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
@@ -455,9 +431,9 @@ const moreCaseStudies = [
 		<section class="mt-12 w-full">
 			<div class="grid gap-4 lg:grid-cols-3">
 				<article class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<h2 class="text-[1.35rem] leading-tight tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<CardTitle as="h2" class="text-[1.35rem] leading-tight sm:text-[1.5rem]">
 						Handoff
-					</h2>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						We had a dedicated team of engineers assigned to the project, so
 						our collaboration started as soon as the project kicked off.
@@ -469,9 +445,9 @@ const moreCaseStudies = [
 				</article>
 
 				<article class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<h2 class="text-[1.35rem] leading-tight tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<CardTitle as="h2" class="text-[1.35rem] leading-tight sm:text-[1.5rem]">
 						How we measured success
-					</h2>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						The OKRs were well-defined: shipping on schedule, improving
 						adoption after release, measuring sales impact from
@@ -481,9 +457,9 @@ const moreCaseStudies = [
 				</article>
 
 				<article class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<h2 class="text-[1.35rem] leading-tight tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<CardTitle as="h2" class="text-[1.35rem] leading-tight sm:text-[1.5rem]">
 						Results
-					</h2>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						We successfully shipped Cookie Manager and launched it alongside
 						a marketing campaign. This marked an important milestone in the
@@ -494,11 +470,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Personal takeaway
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Personal takeaway">
 				<p>
 					This was a perfect example of end-to-end regular design work in a
 					corporate environment, excluding the discovery phase. It might seem
@@ -515,7 +487,6 @@ const moreCaseStudies = [
 					high-fidelity UI, ship to developers, and work with them to oversee
 					the implementation. It really had it all.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
 </CaseStudyLayout>

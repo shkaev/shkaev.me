@@ -1,5 +1,11 @@
 ---
 import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
+import ContentSection from "../../../components/sections/ContentSection.astro";
+import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
+import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
+import MicroLabel from "../../../components/typography/MicroLabel.astro";
+import DisplayCallout from "../../../components/typography/DisplayCallout.astro";
+import CardTitle from "../../../components/typography/CardTitle.astro";
 import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
 const moreCaseStudies = [
@@ -35,11 +41,8 @@ const moreCaseStudies = [
 	moreCaseStudies={moreCaseStudies}
 >
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Company and team
-			</h2>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Company and team" bodyClass="mt-6">
+			<p>
 				TrackOFF was a consumer privacy company headquartered in Baltimore,
 				Maryland (USA). Founded by <a
 					href="https://www.linkedin.com/in/chandler-givens-42a6184/"
@@ -58,13 +61,9 @@ const moreCaseStudies = [
 				the very beginning. By the end of 2019, our team had 30+ beautiful
 				people on board, many of whom I still call my friends.
 			</p>
-		</section>
+		</ContentSection>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				My role
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="My role">
 				<p>
 					I was responsible for a wide range of projects <strong
 						class="font-bold text-stone-950">covering all the company's
@@ -92,8 +91,7 @@ const moreCaseStudies = [
 					>Jon Schubbe</a> on board to help with UX design, a man with whom I
 					proceeded to work closely for the next 5 years.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
@@ -104,11 +102,7 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Website
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Website">
 				<p>
 					It all started with the TrackOFF website. Back in 2015, I was doing
 					freelance work and took on a small project for Chandler to update the
@@ -124,8 +118,7 @@ const moreCaseStudies = [
 					constantly optimizing information architecture, acquisition funnels,
 					and click-through rates.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
@@ -136,23 +129,16 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Product
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Product" bodyClass="mt-6 space-y-4">
 				<p>
 					TrackOFF was the company's flagship product and the one that gave the
 					business its name. It was a desktop-first privacy app designed to
 					make online tracking far less reliable by obfuscating the digital
 					signals websites and ad platforms used to profile people.
 				</p>
-			</div>
-			<div class="mt-8 grid gap-4 sm:grid-cols-2">
+			<InfoCardGrid class="mt-8 sm:grid-cols-2 lg:grid-cols-2">
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-5 py-4 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Core value
-					</p>
+					<MicroLabel>Core value</MicroLabel>
 					<p class="mt-2 text-sm leading-6 text-stone-700 sm:text-[0.95rem]">
 						Reduced the accuracy of third-party profiling and cross-site
 						tracking, giving users more privacy and a stronger sense of control
@@ -160,20 +146,18 @@ const moreCaseStudies = [
 					</p>
 				</div>
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-5 py-4 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Platforms
-					</p>
+					<MicroLabel>Platforms</MicroLabel>
 					<p class="mt-2 text-sm leading-6 text-stone-700 sm:text-[0.95rem]">
 						Microsoft Windows, with millions of copies sold across distribution
 						channels, later expanding to macOS, Android, and iOS.
 					</p>
 				</div>
-			</div>
+			</InfoCardGrid>
 			<div class="mt-8 grid gap-8 lg:grid-cols-3">
 				<div>
-					<p class="font-display text-[1.15rem] leading-none tracking-tight text-stone-950 sm:text-[1.3rem]">
+					<DisplayCallout class="text-[1.15rem] sm:text-[1.3rem]">
 						What it did
-					</p>
+					</DisplayCallout>
 					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 						<p>
 							In simple terms, the product scrambled the identifying data a
@@ -184,9 +168,9 @@ const moreCaseStudies = [
 					</div>
 				</div>
 				<div>
-					<p class="font-display text-[1.15rem] leading-none tracking-tight text-stone-950 sm:text-[1.3rem]">
+					<DisplayCallout class="text-[1.15rem] sm:text-[1.3rem]">
 						Why it mattered
-					</p>
+					</DisplayCallout>
 					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 						<p>
 							By 2023, similar protections had become common in privacy-focused
@@ -197,9 +181,9 @@ const moreCaseStudies = [
 					</div>
 				</div>
 				<div>
-					<p class="font-display text-[1.15rem] leading-none tracking-tight text-stone-950 sm:text-[1.3rem]">
+					<DisplayCallout class="text-[1.15rem] sm:text-[1.3rem]">
 						My role in it
-					</p>
+					</DisplayCallout>
 					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 						<p>
 							When I joined, the interface lacked clarity, polish, and the kind
@@ -210,7 +194,7 @@ const moreCaseStudies = [
 					</div>
 				</div>
 			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
@@ -221,11 +205,8 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Marketing and promo materials
-			</h2>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Marketing and promo materials" bodyClass="mt-6">
+			<p>
 				My responsibilities included creating marketing materials and
 				presentations. We had a significant need for them, especially during
 				our rapid growth phase. Having designed a ton of corporate newspapers
@@ -236,7 +217,7 @@ const moreCaseStudies = [
 				like a product box of your own design sitting on a store shelf, or a
 				handout booklet in people's hands at a conference.
 			</p>
-		</section>
+		</ContentSection>
 
 		<section class="mt-14 grid w-full gap-4 sm:gap-6">
 			<div class="overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
@@ -250,9 +231,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+			<CardTitle as="h2" class="text-2xl sm:text-3xl">
 				Reseller portal and white-labelled products
-			</h2>
+			</CardTitle>
 			<div class="mt-6 max-w-4xl text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
 					To support reseller growth, I designed an internal portal that turned
@@ -263,9 +244,7 @@ const moreCaseStudies = [
 			<div class="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
 				<div class="space-y-7">
 					<div>
-						<p class="font-display text-[1.18rem] leading-none tracking-tight text-stone-950 sm:text-[1.32rem]">
-							Who it served
-						</p>
+						<DisplayCallout>Who it served</DisplayCallout>
 						<p class="mt-3 text-base leading-8 text-stone-700 sm:text-lg">
 							Our reseller partners sold the product through their own
 							channels, either under the TrackOFF brand or as white-label
@@ -275,9 +254,7 @@ const moreCaseStudies = [
 						</p>
 					</div>
 					<div>
-						<p class="font-display text-[1.18rem] leading-none tracking-tight text-stone-950 sm:text-[1.32rem]">
-							What I designed
-						</p>
+						<DisplayCallout>What I designed</DisplayCallout>
 						<p class="mt-3 text-base leading-8 text-stone-700 sm:text-lg">
 							The dashboard surfaced activation key status, expiration,
 							renewals, and related details in a format that people could
@@ -287,9 +264,13 @@ const moreCaseStudies = [
 						</p>
 					</div>
 				</div>
-				<aside class="border-l border-stone-200 pl-4 lg:pl-8">
-					<p class="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em]">
-						<span class="-translate-y-px text-amber-500">
+				<CalloutBlock
+					label="Outcome"
+					title="A raw operational workflow became a much clearer partner product."
+					class="max-w-none pl-4 lg:pl-8"
+					bodyClass="text-sm leading-6 sm:text-[0.98rem] sm:leading-7"
+				>
+					<span slot="label-prefix" class="-translate-y-px text-amber-500">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 16 16"
@@ -303,22 +284,15 @@ const moreCaseStudies = [
 									clip-rule="evenodd"
 								></path>
 							</svg>
-						</span>
-						<span class="text-stone-950">Outcome</span>
+					</span>
+					<p>
+						That made the reseller model <strong class="font-bold text-stone-950">
+							more attractive commercially
+						</strong> and earned <strong class="font-bold text-stone-950">
+							extremely positive feedback
+						</strong> from existing partners about the improved process.
 					</p>
-					<div class="mt-4 space-y-4">
-						<p class="font-display text-[1.5rem] leading-[1.12] tracking-tight text-stone-950 sm:text-[1.8rem]">
-							A raw operational workflow became a much clearer partner product.
-						</p>
-						<p class="text-sm leading-6 text-stone-700 sm:text-[0.98rem] sm:leading-7">
-							That made the reseller model <strong class="font-bold text-stone-950">
-								more attractive commercially
-							</strong> and earned <strong class="font-bold text-stone-950">
-								extremely positive feedback
-							</strong> from existing partners about the improved process.
-						</p>
-					</div>
-				</aside>
+				</CalloutBlock>
 			</div>
 		</section>
 
@@ -331,11 +305,7 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Acquisition by Avast Software
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Acquisition by Avast Software">
 				<p>
 					By the end of 2019, as we had been carving out a significant
 					presence in the privacy software market, one of our largest partners
@@ -355,8 +325,7 @@ const moreCaseStudies = [
 						>the most profitable product</strong
 					> in Avast's entire software lineup at that time.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
@@ -367,11 +336,8 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Personal takeaway
-			</h2>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Personal takeaway" bodyClass="mt-6">
+			<p>
 				Working at TrackOFF was an incredibly rewarding and memorable period,
 				during which I made a lot of friends, and had a remarkable
 				opportunity to grow as a generalist designer. Through this holistic
@@ -382,6 +348,6 @@ const moreCaseStudies = [
 				making the transition to a larger company feel like a natural and
 				purposeful next step.
 			</p>
-		</section>
+		</ContentSection>
 
 </CaseStudyLayout>

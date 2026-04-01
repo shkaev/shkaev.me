@@ -1,0 +1,38 @@
+---
+import BackLink from "../BackLink.astro";
+import PageLead from "../typography/PageLead.astro";
+import PageTitle from "../typography/PageTitle.astro";
+
+interface Props {
+	title: string;
+	lead: string;
+	heroSrc: string;
+	heroAlt: string;
+	backHref?: string;
+	backLabel?: string;
+}
+
+const {
+	title,
+	lead,
+	heroSrc,
+	heroAlt,
+	backHref = "/design",
+	backLabel = "Case studies"
+} = Astro.props;
+---
+
+<section class="w-full">
+	<BackLink href={backHref} label={backLabel} />
+	<PageTitle class="mt-6">{title}</PageTitle>
+	<PageLead class="mt-5">{lead}</PageLead>
+</section>
+
+<section class="mt-10 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+	<img
+		src={heroSrc}
+		alt={heroAlt}
+		class="h-auto w-full"
+		loading="eager"
+	/>
+</section>

@@ -1,5 +1,10 @@
 ---
 import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
+import ContentSection from "../../../components/sections/ContentSection.astro";
+import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
+import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
+import MicroLabel from "../../../components/typography/MicroLabel.astro";
+import CardTitle from "../../../components/typography/CardTitle.astro";
 import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
 const moreCaseStudies = [
@@ -35,11 +40,7 @@ const moreCaseStudies = [
 	moreCaseStudies={moreCaseStudies}
 >
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Executive summary
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Executive summary">
 				<p>
 					We took a sidelined browser extension with 12M+ installs and brought
 					it back into the spotlight. Along with a brand new visual style,
@@ -54,12 +55,13 @@ const moreCaseStudies = [
 						>an integral role as a major digital touchpoint</strong
 					> for both existing and potential customers.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
-		<section class="mt-12 w-full border-y border-stone-200 pt-10 pb-12">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">Team</h2>
-			<div class="mt-6 space-y-8 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection
+			title="Team"
+			class="border-y border-stone-200 pt-10 pb-12"
+			bodyClass="mt-6 space-y-8"
+		>
 				<p>
 					A cross-functional effort spanning product, design, research,
 					engineering, QA, marketing, localization, and support. The core team
@@ -221,14 +223,9 @@ const moreCaseStudies = [
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+		</ContentSection>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Problem statement
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Problem statement">
 				<p>
 					Amid controversial events surrounding Avast's subsidiary Jumpshot
 					and its <a
@@ -258,92 +255,79 @@ const moreCaseStudies = [
 					> to get back on track, start bringing real value to users, and
 					deliver on Avast's renewed privacy commitment.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">Design goals</h2>
-			<div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+			<CardTitle as="h2" class="text-2xl sm:text-3xl">Design goals</CardTitle>
+			<InfoCardGrid class="md:grid-cols-2 xl:grid-cols-3">
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Framework
-					</p>
-					<h3 class="mt-4 text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<MicroLabel>Framework</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Build a new direction
-					</h3>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						Revisit an outdated framework and redefine it through design
 						thinking.
 					</p>
 				</div>
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Brand
-					</p>
-					<h3 class="mt-4 text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<MicroLabel>Brand</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Launch with a new visual system
-					</h3>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						Outfit the product with a new visual style and branding aligned
 						with Avast One.
 					</p>
 				</div>
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Privacy
-					</p>
-					<h3 class="mt-4 text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<MicroLabel>Privacy</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Ship meaningful privacy features
-					</h3>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						Design, build, and introduce a set of features centered on user
 						privacy.
 					</p>
 				</div>
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Experience
-					</p>
-					<h3 class="mt-4 text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<MicroLabel>Experience</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Design the full funnel
-					</h3>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						Create user experiences across the full journey, from acquisition
 						to retention.
 					</p>
 				</div>
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7 md:col-span-2 xl:col-span-1">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Integration
-					</p>
-					<h3 class="mt-4 text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<MicroLabel>Integration</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Connect it to the product ecosystem
-					</h3>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						Build integrations with the existing lineup and pave the way for
 						future connection to the flagship product.
 					</p>
 				</div>
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
-					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-						Retention
-					</p>
-					<h3 class="mt-4 text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
+					<MicroLabel>Retention</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Increase everyday relevance
-					</h3>
+					</CardTitle>
 					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
 						Make the extension useful enough to become part of users' regular
 						browsing habits.
 					</p>
 				</div>
-			</div>
+			</InfoCardGrid>
 		</section>
 
 		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+			<CardTitle as="h2" class="text-2xl sm:text-3xl">
 				Design process
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+			</CardTitle>
+			<div class="type-section-body type-section-body-flow">
 				<p>
 					At the core of our design process we employed the classic
 					<strong class="font-bold text-stone-950"
@@ -353,9 +337,13 @@ const moreCaseStudies = [
 					produced an extensive body of research.
 				</p>
 			</div>
-			<div class="mt-8 max-w-3xl border-l border-stone-200 py-2 pl-6">
-				<p class="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em]">
-					<span class="-translate-y-px text-amber-500">
+			<CalloutBlock
+				label="My role"
+				title="Turning discovery into a finished product direction"
+				body="I picked up the torch when it came to narrowing down the scope, defining the problem, expanding the work from concepts to high fidelity, testing, and delivering the final results."
+				class="mt-8"
+			>
+				<span slot="label-prefix" class="-translate-y-px text-amber-500">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 20 20"
@@ -369,18 +357,8 @@ const moreCaseStudies = [
 								clip-rule="evenodd"
 							></path>
 						</svg>
-					</span>
-					<span class="text-stone-950">My role</span>
-				</p>
-				<p class="mt-2 text-balance font-display text-[1.28rem] leading-tight tracking-tight text-stone-950 sm:text-[1.45rem]">
-					Turning discovery into a finished product direction
-				</p>
-				<p class="mt-1 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]">
-					I picked up the torch when it came to narrowing down the scope,
-					defining the problem, expanding the work from concepts to high
-					fidelity, testing, and delivering the final results.
-				</p>
-			</div>
+				</span>
+			</CalloutBlock>
 			<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 				<img
 				src={asset("/images/case-studies/aosp/aosp-process.png")}
@@ -391,11 +369,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Issues of the old product
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Issues of the old product">
 				<p>
 					When defining the new information architecture, our initial approach
 					was to retain the single-screen framework and use widget-style cards.
@@ -433,14 +407,13 @@ const moreCaseStudies = [
 						loading="lazy"
 					/>
 				</div>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+			<CardTitle as="h2" class="text-2xl sm:text-3xl">
 				New information architecture
-			</h2>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+			</CardTitle>
+			<p class="type-page-lead mt-6">
 				Each UI element and user journey was scrutinized and iterated on.
 				Many variables affected the decision-making process. For the purposes
 				of this case study, I focused on the refined post-feedback screens
@@ -482,11 +455,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Prototype
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Prototype">
 				<p>
 					After multiple rounds of presenting new concepts to stakeholders
 					and gathering feedback from designers and engineers, I got the
@@ -495,13 +464,12 @@ const moreCaseStudies = [
 					internally and externally, and it became the basis for qualitative
 					user testing with three target groups:
 				</p>
-				<ul class="list-inside list-disc space-y-4 text-stone-700 marker:text-stone-950">
+				<ul class="list-inside list-disc space-y-4 text-stone-700 marker:text-stone-950 dark:marker:text-stone-200">
 					<li>People who were already using this browser extension.</li>
 					<li>People who were using our products and were familiar with the brand.</li>
 					<li>General participants with no prior familiarity with our products.</li>
 				</ul>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
@@ -512,11 +480,7 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				User experience research outcome
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="User experience research outcome">
 				<p>
 					Users responded well to the redesign, especially the new light
 					visual style, and they moved through the product with ease.
@@ -531,8 +495,7 @@ const moreCaseStudies = [
 						class="font-bold text-stone-950"
 					>smooth out those rough edges</strong> in the next iteration.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
@@ -544,9 +507,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+			<CardTitle as="h2" class="text-2xl sm:text-3xl">
 				Handoff
-			</h2>
+			</CardTitle>
 			<div class="mt-6 lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-10">
 				<div class="space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 					<p>
@@ -573,9 +536,9 @@ const moreCaseStudies = [
 					</p>
 				</div>
 				<aside class="mt-8 border-l border-stone-200 py-2 pl-6 lg:mt-0 lg:h-full lg:pl-8">
-					<h3 class="font-display text-[1.2rem] leading-none tracking-tight text-stone-950 sm:text-[1.3rem]">
+					<CardTitle as="h3" class="text-[1.2rem] sm:text-[1.3rem]">
 						Some examples from this project
-					</h3>
+					</CardTitle>
 					<div class="mt-4 space-y-4 text-stone-700">
 						<div class="flex items-start gap-3">
 							<span class="mt-1 shrink-0 text-gray-400">
@@ -648,11 +611,7 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Localization to 20+ languages
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Localization to 20+ languages">
 				<p>
 					AOSP was available globally and had to be localized across
 					European, Asian, and Middle Eastern markets with every release or
@@ -666,8 +625,7 @@ const moreCaseStudies = [
 					instance where that became a problem, so we could fix it in a timely
 					manner.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
@@ -679,10 +637,10 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+			<CardTitle as="h2" class="text-2xl sm:text-3xl">
 				How we measured success
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+			</CardTitle>
+			<div class="type-section-body type-section-body-flow">
 				<p>
 					Avast has a wide array of analytics tools to establish and track
 					almost any metric, all stripped of personal data. Some of the things
@@ -749,9 +707,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
+			<CardTitle as="h2" class="text-2xl sm:text-3xl">
 				Key Results
-			</h2>
+			</CardTitle>
 			<div class="mt-6 grid gap-4 md:grid-cols-2">
 				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
 					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
@@ -937,11 +895,7 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-12 w-full">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Personal takeaway
-			</h2>
-			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+		<ContentSection title="Personal takeaway">
 				<p>
 					It was a fascinating design-driven project. I'm grateful for the
 					chance to lead such a significant part of the design process and see
@@ -953,7 +907,6 @@ const moreCaseStudies = [
 					value to people and became much more delightful to use, which is the
 					combination that ultimately matters most.
 				</p>
-			</div>
-		</section>
+		</ContentSection>
 
 </CaseStudyLayout>

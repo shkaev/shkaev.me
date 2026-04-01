@@ -1,16 +1,17 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import PageHero from "../components/sections/PageHero.astro";
 ---
 
 <SiteLayout
 	title="Dmitry Shkaev"
 	description="Personal website of Dmitry Shkaev."
 >
-	<section class="my-auto max-w-4xl">
-		<h1 class="mt-4 text-4xl font-normal tracking-tight text-balance text-stone-950 sm:mt-6 sm:text-5xl md:text-6xl">
-			Hey, it's great to meet you! I'm Dima
-		</h1>
-		<p class="mt-4 max-w-3xl text-base leading-8 text-stone-600 sm:mt-8 sm:text-lg sm:leading-8">
+	<PageHero
+		title="Hey, it's great to meet you! I'm Dima"
+		class="my-auto max-w-4xl"
+	>
+		<p class="type-page-lead mt-4 max-w-3xl text-stone-600 sm:mt-8 sm:leading-8">
 			Here you can find curated collections of the <a
 				href="/photography"
 				class="text-link"
@@ -21,5 +22,5 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 				>product designer</a
 			>.
 		</p>
-	</section>
+	</PageHero>
 </SiteLayout>

@@ -11,7 +11,7 @@ const photoSeries = defineCollection({
 		cardLocation: z.string(),
 		location: z.string(),
 		timeframe: z.string(),
-		legacyPath: z.string(),
+		legacyPath: z.string().optional(),
 		sortOrder: z.number().int(),
 		cover: z.object({
 			src: z.string(),
@@ -31,7 +31,7 @@ const photoSeries = defineCollection({
 					src: z.string(),
 					width: z.number().int().positive(),
 					height: z.number().int().positive(),
-					size: z.number().int().positive()
+					size: z.number().int().positive().optional()
 				})
 			)
 			.min(1)
