@@ -329,7 +329,7 @@ const renderRecommendationQuote = (value: string) =>
 				</h2>
 				<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
 					My core strength is
-					<span class="font-bold text-taupe-700 dark:text-taupe-300"
+					<span class="font-bold text-stone-950"
 						>solving complex problems</span
 					>
 					through elegant, well-reasoned solutions and turning them into
@@ -337,9 +337,9 @@ const renderRecommendationQuote = (value: string) =>
 					&mdash; just experience, pattern recognition, and a disciplined
 					design approach.
 				</p>
-				<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+				<p class="mt-4 text-base leading-8 text-stone-700 sm:text-lg">
 					I&rsquo;m often told that I have an eye for
-					<span class="font-bold text-taupe-700 dark:text-taupe-300">perfection</span> when it
+					<span class="font-bold text-stone-950">perfection</span> when it
 					comes to crafting high-fidelity UI, and I would consider this to be
 					my second strongest trait. Wireframes and early concepts can and
 					should be wild, but when it comes to the final product, it&rsquo;s
@@ -349,7 +349,7 @@ const renderRecommendationQuote = (value: string) =>
 			</div>
 		</div>
 
-		<div class="mt-12 border-t border-stone-200 pt-10">
+		<div class="mt-12">
 			<div>
 				<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
 					Recommendations
@@ -394,32 +394,43 @@ const renderRecommendationQuote = (value: string) =>
 							</div>
 
 							<div class="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-								<div id="featured-recommendation-meta" class="flex items-center gap-3.5 sm:gap-4">
-									<img
-										id="featured-recommendation-avatar"
-										src={featuredRecommendation.avatar}
-										alt={featuredRecommendation.name}
-										draggable="false"
-										class:list={[
-											"h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-stone-200/80 sm:h-14 sm:w-14",
-											!featuredRecommendation.avatar && "hidden"
-										]}
-									/>
-									<div
-										id="featured-recommendation-avatar-placeholder"
-										class:list={[
-											"flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-stone-100 text-stone-400 ring-1 ring-stone-200/80 sm:h-14 sm:w-14",
-											featuredRecommendation.avatar && "hidden"
-										]}
+								<div
+									id="featured-recommendation-meta"
+									class="group flex items-center gap-3.5 sm:gap-4"
+								>
+									<a
+										id="featured-recommendation-avatar-link"
+										href={featuredRecommendation.href}
+										target="_blank"
+										rel="noreferrer"
+										class="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full border border-stone-200 bg-white transition group-hover:border-stone-300 dark:border-stone-700 dark:bg-stone-900 dark:group-hover:border-stone-500 sm:h-14 sm:w-14"
 									>
-										<svg
-											aria-hidden="true"
-											viewBox="0 0 24 24"
-											class="h-6 w-6 fill-current sm:h-7 sm:w-7"
+										<img
+											id="featured-recommendation-avatar"
+											src={featuredRecommendation.avatar}
+											alt={featuredRecommendation.name}
+											draggable="false"
+											class:list={[
+												"h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]",
+												!featuredRecommendation.avatar && "hidden"
+											]}
+										/>
+										<div
+											id="featured-recommendation-avatar-placeholder"
+											class:list={[
+												"flex h-full w-full items-center justify-center bg-stone-100 text-stone-400 transition-colors dark:bg-stone-900",
+												featuredRecommendation.avatar && "hidden"
+											]}
 										>
-											<path d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2.25c-3.83 0-6.75 1.92-6.75 4.5 0 .41.34.75.75.75h12a.75.75 0 0 0 .75-.75c0-2.58-2.92-4.5-6.75-4.5Z"></path>
-										</svg>
-									</div>
+											<svg
+												aria-hidden="true"
+												viewBox="0 0 24 24"
+												class="h-6 w-6 fill-current sm:h-7 sm:w-7"
+											>
+												<path d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2.25c-3.83 0-6.75 1.92-6.75 4.5 0 .41.34.75.75.75h12a.75.75 0 0 0 .75-.75c0-2.58-2.92-4.5-6.75-4.5Z"></path>
+											</svg>
+										</div>
+									</a>
 									<div class="min-w-0 flex-1">
 										<h3 class="text-[1.2rem] font-normal leading-tight tracking-tight text-stone-950 sm:text-[1.35rem]">
 											<a
@@ -427,9 +438,23 @@ const renderRecommendationQuote = (value: string) =>
 												href={featuredRecommendation.href}
 												target="_blank"
 												rel="noreferrer"
-												class="transition-colors hover:text-stone-600"
+												class="group/name inline-flex items-end gap-1"
 											>
-												{featuredRecommendation.name}
+												<span id="featured-recommendation-name-text">
+													{featuredRecommendation.name}
+												</span>
+												<svg
+													aria-hidden="true"
+													viewBox="0 0 20 20"
+													fill="currentColor"
+													class="h-5 w-5 -translate-x-1 -translate-y-[2px] opacity-0 transition duration-200 ease-out group-hover/name:translate-x-0 group-hover/name:-translate-y-[2px] group-hover/name:opacity-100"
+												>
+													<path
+														fill-rule="evenodd"
+														d="M5.22 14.78a.75.75 0 0 0 1.06 0l7.22-7.22v5.69a.75.75 0 0 0 1.5 0v-7.5a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0 0 1.5h5.69l-7.22 7.22a.75.75 0 0 0 0 1.06Z"
+														clip-rule="evenodd"
+													></path>
+												</svg>
 											</a>
 										</h3>
 										<p class="mt-0.5 text-sm leading-5 text-stone-600 sm:text-[0.95rem] sm:leading-6 dark:text-stone-400">
@@ -495,30 +520,30 @@ const renderRecommendationQuote = (value: string) =>
 
 		</div>
 
-		<div class="mt-12 border-t border-stone-200 pt-10">
+		<div class="mt-12">
 			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
 				Leadership
 			</h2>
 			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
 				While I bring the most value as an
-				<span class="font-bold text-taupe-700 dark:text-taupe-300">individual contributor</span>,
+				<span class="font-bold text-stone-950">individual contributor</span>,
 				I have experience leading creative initiatives within business goals
 				and working closely with small, focused teams. I&rsquo;m often
 				involved in
-				<span class="font-bold text-taupe-700 dark:text-taupe-300">onboarding</span> new hires
+				<span class="font-bold text-stone-950">onboarding</span> new hires
 				and helping them get up to speed, and I&rsquo;ve taken on
-				<span class="font-bold text-taupe-700 dark:text-taupe-300">mentoring</span>
+				<span class="font-bold text-stone-950">mentoring</span>
 				responsibilities to support junior designers and guide them through
 				design processes.
 			</p>
 		</div>
 
-		<div class="mt-12 border-t border-stone-200 pt-10">
+		<div class="mt-12">
 			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
 				Hobbies
 			</h2>
 			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				My main passion is <span class="font-bold text-taupe-700 dark:text-taupe-300"
+				My main passion is <span class="font-bold text-stone-950"
 					>photography</span
 				>, which I&rsquo;ve been practicing for quite some time, starting
 				back when film cameras were still the mainstream. At one point, I was
@@ -526,26 +551,26 @@ const renderRecommendationQuote = (value: string) =>
 				contracts with companies like Omsk Carbon Group to shoot portraits
 				and environments.
 			</p>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				Another major activity for me is <span class="font-bold text-taupe-700 dark:text-taupe-300"
+			<p class="mt-4 text-base leading-8 text-stone-700 sm:text-lg">
+				Another major activity for me is <span class="font-bold text-stone-950"
 					>cycling</span
 				> &mdash; there&rsquo;s nothing better than hopping on a bike,
 				exploring new places, and meeting people along the way. It also
 				naturally complements my photography.
 			</p>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
+			<p class="mt-4 text-base leading-8 text-stone-700 sm:text-lg">
 				And, as a family man, I spend a lot of time with my wife Olga and our
 				two sons, Boris and Gleb.
 			</p>
 		</div>
 
-		<div class="mt-12 border-t border-stone-200 pt-10">
+		<div class="mt-12">
 			<h2 class="text-2xl font-normal tracking-tight text-stone-950 sm:text-3xl">
 				Contact info
 			</h2>
 			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
 				I&rsquo;m located in 🇨🇾
-				<span class="font-bold text-taupe-700 dark:text-taupe-300">Limassol</span> and always
+				<span class="font-bold text-stone-950">Limassol</span> and always
 				open to meeting new people. Feel free to hit me up on
 				<span class="whitespace-nowrap"><a
 					href="https://t.me/shkaev"
@@ -562,7 +587,13 @@ const renderRecommendationQuote = (value: string) =>
 		const recommendationCopy = document.getElementById("featured-recommendation-copy");
 		const recommendationMeta = document.getElementById("featured-recommendation-meta");
 		const recommendationText = document.getElementById("featured-recommendation-text");
+		const recommendationAvatarLink = document.getElementById(
+			"featured-recommendation-avatar-link"
+		);
 		const recommendationName = document.getElementById("featured-recommendation-name");
+		const recommendationNameText = document.getElementById(
+			"featured-recommendation-name-text"
+		);
 		const recommendationFavicon = document.getElementById(
 			"featured-recommendation-favicon"
 		);
@@ -588,7 +619,9 @@ const renderRecommendationQuote = (value: string) =>
 			recommendationCopy instanceof HTMLElement &&
 			recommendationMeta instanceof HTMLElement &&
 			recommendationText instanceof HTMLElement &&
+			recommendationAvatarLink instanceof HTMLAnchorElement &&
 			recommendationName instanceof HTMLAnchorElement &&
+			recommendationNameText instanceof HTMLElement &&
 			recommendationFavicon instanceof HTMLImageElement &&
 			recommendationRole instanceof HTMLElement &&
 			recommendationAvatar instanceof HTMLImageElement &&
@@ -616,6 +649,14 @@ const renderRecommendationQuote = (value: string) =>
 					"[...]",
 					'<span class="text-stone-300 dark:text-stone-700">[...]</span>'
 				);
+			const preloadImage = (src) => {
+				if (!src) {
+					return;
+				}
+
+				const image = new Image();
+				image.src = src;
+			};
 			const measureRecommendationHeight = () => {
 				const copyWidth = recommendationCopy.getBoundingClientRect().width;
 
@@ -667,11 +708,12 @@ const renderRecommendationQuote = (value: string) =>
 				const item = recommendationItems[recommendationIndex];
 
 				recommendationText.innerHTML = formatRecommendationQuote(item.text);
-				recommendationName.textContent = item.name;
+				recommendationAvatarLink.href = item.href;
+				recommendationNameText.textContent = item.name;
 				recommendationName.href = item.href;
+				recommendationRole.textContent = item.role;
 				recommendationFavicon.src = item.favicon;
 				recommendationFavicon.classList.toggle("hidden", !item.favicon);
-				recommendationRole.textContent = item.role;
 
 				if (item.avatar) {
 					recommendationAvatar.src = item.avatar;
@@ -700,6 +742,11 @@ const renderRecommendationQuote = (value: string) =>
 			} else {
 				window.addEventListener("resize", measureRecommendationHeight);
 			}
+
+			recommendationItems.forEach((item) => {
+				preloadImage(item.avatar);
+				preloadImage(item.favicon);
+			});
 
 			const animateElements = (elements, keyframes, options) =>
 				Promise.all(
@@ -834,7 +881,6 @@ const renderRecommendationQuote = (value: string) =>
 
 				void transitionRecommendation(1);
 			});
-
 			renderRecommendation();
 		}
 	</script>

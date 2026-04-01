@@ -4,6 +4,16 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-01</span></p>
+
+## Refined the design case studies and polished the About page
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Refined the TrackOFF, Cookie Manager, and Avast Online Security & Privacy case studies with tighter section rhythm, clearer content hierarchy, and richer cross-links between projects.
+- Reworked key AOSP and Cookie Manager story sections into more visual layouts with team snapshots, goal cards, sidebars, and result modules, while refreshing TrackOFF product, reseller, and promotional content.
+- Polished the About page with tighter paragraph spacing, cleaner section flow, and a more interactive featured recommendation presentation.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-29</span></p>
 
 ## Posting photos and correcting recommendations

@@ -4,25 +4,37 @@ import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
 const moreCaseStudies = [
 	{
 		href: "/design/case-studies/aosp",
-		title: "Avast Online Security & Privacy"
+		title: "Avast Online Security & Privacy",
+		logoSrc: "/favicons/avast.ico",
+		logoAlt: "Avast",
+		imageSrc: "/images/case-studies/aosp/aosp-hero.jpg",
+		imageAlt: "Avast Online Security & Privacy case study preview",
+		description:
+			"A major redesign of the flagship browser extension with over 10 million users."
 	},
 	{
 		href: "/design/case-studies/cookie-manager",
-		title: "Cookie Manager"
+		title: "Cookie Manager",
+		logoSrc: "/favicons/avast.ico",
+		logoAlt: "Avast",
+		imageSrc: "/images/case-studies/cookie-manager/cookie-manager-hero.jpg",
+		imageAlt: "Cookie Manager case study preview",
+		description:
+			"Designing, building, and integrating a new feature in Avast Online Security & Privacy."
 	}
 ];
 ---
 
 <CaseStudyLayout
 	title="TrackOFF | Design Case Study | Dmitry Shkaev"
-	description="A short story about creating a successful product from the ground up to being acquired by a major corporation."
+	description="A short story about building a successful product from the ground up and seeing it through to acquisition."
 	pageTitle="TrackOFF"
 	heroSrc="/images/case-studies/trackoff/trackoff-hero.jpg"
 	heroAlt="TrackOFF case study hero image"
 	moreCaseStudies={moreCaseStudies}
 >
 
-		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+		<section class="mt-12 w-full">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Company and team
 			</h2>
@@ -39,24 +51,34 @@ const moreCaseStudies = [
 					rel="noreferrer"
 					class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
 				>Ryan Flach</a>, it grew rapidly over the following four years. I
-				joined the startup as employee #2, and helped build the company from
+				joined the startup as <strong class="font-bold text-stone-950"
+					>employee number two</strong
+				>, and helped build the company from
 				the very beginning. By the end of 2019, our team had 30+ beautiful
 				people on board, many of whom I still call my friends.
 			</p>
 		</section>
 
-		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+		<section class="mt-12 w-full">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				My role
 			</h2>
-			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
-					I was responsible for a wide range of projects covering all the
-					company's needs. This work included designing UX &amp; UI for our
+					I was responsible for a wide range of projects <strong
+						class="font-bold text-stone-950">covering all the company's
+						needs</strong
+					>. This work included designing UX &amp; UI for our
 					website and software products on desktop and mobile, developing brand
 					identity, creating visuals for hundreds of presentations, emails, and
 					pitch decks, and doing print and physical design such as product
 					packaging and in-store banners.
+				</p>
+				<p class="border-l border-stone-200 pl-4 text-[1.08rem] leading-[1.68] text-stone-950 sm:text-[1.16rem]">
+					Having high responsibility, real deadlines, and a genuinely
+					fast-paced environment while caring about every facet of the work was
+					a <span class="font-bold">perfect bootcamp</span> that allowed me to
+					grow and develop as a professional in record time.
 				</p>
 				<p>
 					In hindsight, it was pretty hardcore, considering I was the only
@@ -66,14 +88,8 @@ const moreCaseStudies = [
 						target="_blank"
 						rel="noreferrer"
 						class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
-					>Jon Schubbe</a> on board to help with UX design, a guy with whom I
+					>Jon Schubbe</a> on board to help with UX design, a man with whom I
 					proceeded to work closely for the next 5 years.
-				</p>
-				<p>
-					Having high responsibility, real deadlines, and a genuinely
-					fast-paced environment while caring about every facet of the work was
-					a perfect bootcamp that allowed me to grow and develop as a
-					professional in record time.
 				</p>
 			</div>
 		</section>
@@ -87,11 +103,11 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+		<section class="mt-12 w-full">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Website
 			</h2>
-			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
 					It all started with the TrackOFF website. Back in 2015, I was doing
 					freelance work and took on a small project for Chandler to update the
@@ -100,7 +116,9 @@ const moreCaseStudies = [
 					We rapidly iterated and launched it within a month.
 				</p>
 				<p>
-					Over the next few years we designed and launched three major versions
+					Over the next few years we designed and launched <strong
+						class="font-bold text-stone-950">three major versions</strong
+					>
 					of the website, evolving the branding and style, as well as
 					constantly optimizing information architecture, acquisition funnels,
 					and click-through rates.
@@ -117,41 +135,79 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+		<section class="mt-12 w-full">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Product
 			</h2>
-			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
-					Our main product was called TrackOFF, which lent its name to the
-					parent company. It was a desktop-first app that helped people hide
-					from online tracking by utilizing a patented digital fingerprint
-					obfuscation technology.
+					TrackOFF was the company's flagship product and the one that gave the
+					business its name. It was a desktop-first privacy app designed to
+					make online tracking far less reliable by obfuscating the digital
+					signals websites and ad platforms used to profile people.
 				</p>
-				<p>
-					Without going into too many technical details: it scrambled the data
-					a tracker gathered from your computer, preventing the company behind
-					it from reliably assembling your profile. Basically, they couldn't
-					tell if it was actually you, so they couldn't sell your data to
-					advertisers, who in turn couldn't track you across multiple websites.
-				</p>
-				<p>
-					By 2023, similar functionality was built into many privacy-oriented
-					tools. Even Safari browser offered it out of the box. However, back
-					in 2015 it was a genuine innovation ahead of its time, allowing us
-					to capitalize on the growing demand.
-				</p>
-				<p>
-					When I came on board, the app's UI looked ridiculous, so I had to
-					roll up my sleeves and make it functional, good-looking, and
-					user-friendly.
-				</p>
-				<p>
-					Our main platform was Microsoft Windows, reaching millions of copies
-					sold across all distribution channels. Over the years, we also
-					released a version for macOS, as well as Android and iOS apps on
-					mobile.
-				</p>
+			</div>
+			<div class="mt-8 grid gap-4 sm:grid-cols-2">
+				<div class="rounded-[12px] border border-stone-200/70 bg-white px-5 py-4 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
+						Core value
+					</p>
+					<p class="mt-2 text-sm leading-6 text-stone-700 sm:text-[0.95rem]">
+						Reduced the accuracy of third-party profiling and cross-site
+						tracking, giving users more privacy and a stronger sense of control
+						over their browsing.
+					</p>
+				</div>
+				<div class="rounded-[12px] border border-stone-200/70 bg-white px-5 py-4 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+					<p class="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
+						Platforms
+					</p>
+					<p class="mt-2 text-sm leading-6 text-stone-700 sm:text-[0.95rem]">
+						Microsoft Windows, with millions of copies sold across distribution
+						channels, later expanding to macOS, Android, and iOS.
+					</p>
+				</div>
+			</div>
+			<div class="mt-8 grid gap-8 lg:grid-cols-3">
+				<div>
+					<p class="font-display text-[1.15rem] leading-none tracking-tight text-stone-950 sm:text-[1.3rem]">
+						What it did
+					</p>
+					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+						<p>
+							In simple terms, the product scrambled the identifying data a
+							tracker could collect from a device. That made it much harder for
+							data brokers and advertisers to confidently decide whether the
+							user on one website was the same person they had seen elsewhere.
+						</p>
+					</div>
+				</div>
+				<div>
+					<p class="font-display text-[1.15rem] leading-none tracking-tight text-stone-950 sm:text-[1.3rem]">
+						Why it mattered
+					</p>
+					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+						<p>
+							By 2023, similar protections had become common in privacy-focused
+							software and even mainstream browsers. Back in 2015, though, this
+							was a genuinely forward-looking proposition that landed well as
+							privacy awareness started to grow.
+						</p>
+					</div>
+				</div>
+				<div>
+					<p class="font-display text-[1.15rem] leading-none tracking-tight text-stone-950 sm:text-[1.3rem]">
+						My role in it
+					</p>
+					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+						<p>
+							When I joined, the interface lacked clarity, polish, and the kind
+							of trust cues a privacy product needed. My job was to turn it into
+							a product experience that felt understandable, credible, and
+							usable across desktop first and later mobile surfaces.
+						</p>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -164,7 +220,7 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+		<section class="mt-12 w-full">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Marketing and promo materials
 			</h2>
@@ -172,8 +228,9 @@ const moreCaseStudies = [
 				My responsibilities included creating marketing materials and
 				presentations. We had a significant need for them, especially during
 				our rapid growth phase. Having designed a ton of corporate newspapers
-				and magazine layouts in the past, I saw it as one of the easier and
-				more enjoyable parts of the job. The reason for that is probably the
+				and magazine layouts in the past, I saw it as one of the <strong
+					class="font-bold text-stone-950">easier and more enjoyable</strong
+				> parts of the job. The reason for that is probably the
 				special feeling you have when you see a physical creation of yours,
 				like a product box of your own design sitting on a store shelf, or a
 				handout booklet in people's hands at a conference.
@@ -189,46 +246,78 @@ const moreCaseStudies = [
 					loading="lazy"
 				/>
 			</div>
-			<div class="overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-				<img
-					src="/images/case-studies/trackoff/trackoff-promo-2.png"
-					alt="TrackOFF packaging and promo design"
-					class="h-auto w-full"
-					loading="lazy"
-				/>
-			</div>
 		</section>
 
-		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+		<section class="mt-12 w-full">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Reseller portal and white-labelled products
 			</h2>
-			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+			<div class="mt-6 max-w-4xl text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
-					Another project worth mentioning is the internal tool I designed to
-					help our reseller partners. Resellers were companies that promoted
-					our products through their channels either under the TrackOFF brand
-					or a white label, with their own logo and color scheme. I handled
-					all the white-label UI designs as well.
+					To support reseller growth, I designed an internal portal that turned
+					a clunky database-like workflow into a usable partner-facing tool for
+					managing activation keys, renewals, and white-label product setups.
 				</p>
-				<p>
-					I designed a front-end dashboard, which displayed the database of all
-					product activation keys, indicating their statuses, expiration times,
-					renewals, and other details, allowing resellers to generate new keys
-					in bulk for distribution, usually tens of thousands or more. We also
-					introduced a robust search feature, providing a way to find and
-					manage groups of keys within a specific category. With that, we
-					replaced what had previously been a cumbersome raw database workflow.
-				</p>
-				<p>
-					As a result, we started offering a <strong
-						class="font-bold text-stone-950"
-					>much more appealing business model</strong> to our potential
-					partners, and the existing resellers sent us <strong
-						class="font-bold text-stone-950"
-					>extremely positive feedback</strong> about the improved quality of
-					the overall process.
-				</p>
+			</div>
+			<div class="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
+				<div class="space-y-7">
+					<div>
+						<p class="font-display text-[1.18rem] leading-none tracking-tight text-stone-950 sm:text-[1.32rem]">
+							Who it served
+						</p>
+						<p class="mt-3 text-base leading-8 text-stone-700 sm:text-lg">
+							Our reseller partners sold the product through their own
+							channels, either under the TrackOFF brand or as white-label
+							offers with their own logo and color scheme. I designed both the
+							portal experience and the white-label UI variations that
+							supported that model.
+						</p>
+					</div>
+					<div>
+						<p class="font-display text-[1.18rem] leading-none tracking-tight text-stone-950 sm:text-[1.32rem]">
+							What I designed
+						</p>
+						<p class="mt-3 text-base leading-8 text-stone-700 sm:text-lg">
+							The dashboard surfaced activation key status, expiration,
+							renewals, and related details in a format that people could
+							actually work with. It also supported bulk key generation, often
+							at very large volumes, and included search tools for locating and
+							managing groups of keys by category.
+						</p>
+					</div>
+				</div>
+				<aside class="border-l border-stone-200 pl-4 lg:pl-8">
+					<p class="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em]">
+						<span class="-translate-y-px text-amber-500">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 16 16"
+								fill="currentColor"
+								class="h-4 w-4"
+								aria-hidden="true"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M12 1.69a.494.494 0 0 0-.438-.494 32.352 32.352 0 0 0-7.124 0A.494.494 0 0 0 4 1.689v.567c-.811.104-1.612.24-2.403.406a.75.75 0 0 0-.595.714 4.5 4.5 0 0 0 4.35 4.622A3.99 3.99 0 0 0 7 8.874V10H6a1 1 0 0 0-1 1v2h-.667C3.597 13 3 13.597 3 14.333c0 .368.298.667.667.667h8.666a.667.667 0 0 0 .667-.667c0-.736-.597-1.333-1.333-1.333H11v-2a1 1 0 0 0-1-1H9V8.874a3.99 3.99 0 0 0 1.649-.876 4.5 4.5 0 0 0 4.35-4.622.75.75 0 0 0-.596-.714A30.897 30.897 0 0 0 12 2.256v-.567ZM4 3.768c-.49.066-.976.145-1.458.235a3.004 3.004 0 0 0 1.64 2.192A3.999 3.999 0 0 1 4 5V3.769Zm8 0c.49.066.976.145 1.458.235a3.004 3.004 0 0 1-1.64 2.192C11.936 5.818 12 5.416 12 5V3.769Z"
+									clip-rule="evenodd"
+								></path>
+							</svg>
+						</span>
+						<span class="text-stone-950">Outcome</span>
+					</p>
+					<div class="mt-4 space-y-4">
+						<p class="font-display text-[1.5rem] leading-[1.12] tracking-tight text-stone-950 sm:text-[1.8rem]">
+							A raw operational workflow became a much clearer partner product.
+						</p>
+						<p class="text-sm leading-6 text-stone-700 sm:text-[0.98rem] sm:leading-7">
+							That made the reseller model <strong class="font-bold text-stone-950">
+								more attractive commercially
+							</strong> and earned <strong class="font-bold text-stone-950">
+								extremely positive feedback
+							</strong> from existing partners about the improved process.
+						</p>
+					</div>
+				</aside>
 			</div>
 		</section>
 
@@ -241,25 +330,11 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-16 w-full border-t border-stone-200 pt-10">
-			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
-				Communication and remote work
-			</h2>
-			<p class="mt-6 text-base leading-8 text-stone-700 sm:text-lg">
-				I used to work remotely long before it became commonplace during and
-				after the pandemic. We set up Slack as our main communication tool,
-				which had only recently started to gain popularity, and it quickly
-				took over the emails and Skype we had relied on in the beginning.
-				Most of the time we worked through async text-based chats, mainly due
-				to the time zone gap between Baltimore and my location.
-			</p>
-		</section>
-
-		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+		<section class="mt-12 w-full">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Acquisition by Avast Software
 			</h2>
-			<div class="mt-6 space-y-6 text-base leading-8 text-stone-700 sm:text-lg">
+			<div class="mt-6 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 				<p>
 					By the end of 2019, as we had been carving out a significant
 					presence in the privacy software market, one of our largest partners
@@ -291,7 +366,7 @@ const moreCaseStudies = [
 			/>
 		</section>
 
-		<section class="mt-16 w-full border-t border-stone-200 pt-10">
+		<section class="mt-12 w-full">
 			<h2 class="text-2xl tracking-tight text-stone-950 sm:text-3xl">
 				Personal takeaway
 			</h2>
