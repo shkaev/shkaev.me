@@ -1,5 +1,6 @@
 ---
 import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
+import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
 const moreCaseStudies = [
 	{
@@ -96,7 +97,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/trackoff/trackoff-team.jpg"
+				src={asset("/images/case-studies/trackoff/trackoff-team.jpg")}
 				alt="TrackOFF team and office visuals"
 				class="h-auto w-full"
 				loading="lazy"
@@ -128,7 +129,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/trackoff/trackoff-product.png"
+				src={asset("/images/case-studies/trackoff/trackoff-product.png")}
 				alt="TrackOFF product interfaces on desktop and mobile"
 				class="h-auto w-full"
 				loading="lazy"
@@ -213,7 +214,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/trackoff/trackoff-marketing.png"
+				src={asset("/images/case-studies/trackoff/trackoff-marketing.png")}
 				alt="TrackOFF marketing and promo materials"
 				class="h-auto w-full"
 				loading="lazy"
@@ -240,7 +241,7 @@ const moreCaseStudies = [
 		<section class="mt-14 grid w-full gap-4 sm:gap-6">
 			<div class="overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 				<img
-					src="/images/case-studies/trackoff/trackoff-promo-1.png"
+					src={asset("/images/case-studies/trackoff/trackoff-promo-1.png")}
 					alt="TrackOFF print and event collateral"
 					class="h-auto w-full"
 					loading="lazy"
@@ -323,7 +324,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/trackoff/trackoff-remote.jpg"
+				src={asset("/images/case-studies/trackoff/trackoff-remote.jpg")}
 				alt="TrackOFF remote collaboration and communication"
 				class="h-auto w-full"
 				loading="lazy"
@@ -359,7 +360,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/trackoff/trackoff-acquisition.jpg"
+				src={asset("/images/case-studies/trackoff/trackoff-acquisition.jpg")}
 				alt="TrackOFF acquisition and transition to Avast"
 				class="h-auto w-full"
 				loading="lazy"

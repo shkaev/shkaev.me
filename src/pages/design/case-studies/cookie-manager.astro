@@ -1,5 +1,6 @@
 ---
 import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
+import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
 const moreCaseStudies = [
 	{
@@ -239,7 +240,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/cookie-manager/cookie-manager-wireframes.jpg"
+				src={asset("/images/case-studies/cookie-manager/cookie-manager-wireframes.jpg")}
 				alt="Cookie Manager wireframes"
 				class="h-auto w-full"
 				loading="lazy"
@@ -379,7 +380,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/cookie-manager/cookie-manager-prototype.png"
+				src={asset("/images/case-studies/cookie-manager/cookie-manager-prototype.png")}
 				alt="Cookie Manager prototype screens"
 				class="h-auto w-full"
 				loading="lazy"
@@ -417,7 +418,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/cookie-manager/cookie-manager-research.png"
+				src={asset("/images/case-studies/cookie-manager/cookie-manager-research.png")}
 				alt="Cookie Manager user research findings"
 				class="h-auto w-full"
 				loading="lazy"
@@ -444,7 +445,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/cookie-manager/cookie-manager-handoff.png"
+				src={asset("/images/case-studies/cookie-manager/cookie-manager-handoff.png")}
 				alt="Cookie Manager final designs and handoff"
 				class="h-auto w-full"
 				loading="lazy"

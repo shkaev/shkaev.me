@@ -4,6 +4,7 @@ import ArrowLeftIcon from "../components/icons/ArrowLeftIcon.astro";
 import ArrowRightIcon from "../components/icons/ArrowRightIcon.astro";
 import ChevronDownIcon from "../components/icons/ChevronDownIcon.astro";
 import WorkTimelineCard from "../components/WorkTimelineCard.astro";
+import { resolveStaticAssetUrl } from "../lib/assetUrl";
 
 const workTimeline = [
 	{
@@ -238,10 +239,21 @@ const recommendations = [
 	}
 ];
 
-const visibleWorkTimeline = workTimeline.slice(0, 3);
-const hiddenWorkTimeline = workTimeline.slice(3);
-const featuredRecommendation = recommendations[0];
-const recommendationSliderItems = recommendations.map((item) => ({
+const resolvedWorkTimeline = workTimeline.map((item) => ({
+	...item,
+	favicon: item.favicon ? resolveStaticAssetUrl(item.favicon) : item.favicon
+}));
+
+const resolvedRecommendations = recommendations.map((item) => ({
+	...item,
+	favicon: item.favicon ? resolveStaticAssetUrl(item.favicon) : item.favicon,
+	avatar: item.avatar ? resolveStaticAssetUrl(item.avatar) : item.avatar
+}));
+
+const visibleWorkTimeline = resolvedWorkTimeline.slice(0, 3);
+const hiddenWorkTimeline = resolvedWorkTimeline.slice(3);
+const featuredRecommendation = resolvedRecommendations[0];
+const recommendationSliderItems = resolvedRecommendations.map((item) => ({
 	name: item.name,
 	href: item.href,
 	favicon: item.favicon ?? "",

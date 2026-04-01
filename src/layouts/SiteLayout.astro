@@ -4,6 +4,7 @@ import { Content as ChangelogContent } from "../../changelog.md";
 import DocumentCheckIcon from "../components/icons/DocumentCheckIcon.astro";
 import MoonIcon from "../components/icons/MoonIcon.astro";
 import SunIcon from "../components/icons/SunIcon.astro";
+import { resolveStaticAssetUrl } from "../lib/assetUrl";
 
 interface Props {
 	title: string;
@@ -54,6 +55,9 @@ const socialLinks = [
 ];
 
 const shellWidthClass = "max-w-[81.25rem]";
+const favicon32Src = resolveStaticAssetUrl("/favicons/favicon-32.png");
+const appleTouchIconSrc = resolveStaticAssetUrl("/favicons/apple-touch-icon.png");
+const avatarSrc = resolveStaticAssetUrl("/avatars/avatar.jpg");
 ---
 
 <html lang="en">
@@ -62,12 +66,12 @@ const shellWidthClass = "max-w-[81.25rem]";
 		<script is:inline>
 			document.documentElement.classList.add("js");
 		</script>
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href={favicon32Src} />
+		<link rel="apple-touch-icon" sizes="180x180" href={appleTouchIconSrc} />
 		<link
 			rel="preload"
 			as="image"
-			href="/avatars/avatar.jpg"
+			href={avatarSrc}
 			fetchpriority="high"
 		/>
 		<meta name="viewport" content="width=device-width" />
@@ -227,7 +231,7 @@ const shellWidthClass = "max-w-[81.25rem]";
 					>
 						<span class="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-stone-200 bg-white transition group-hover:border-stone-300 dark:border-stone-700 dark:bg-stone-900 dark:group-hover:border-stone-500">
 							<img
-								src="/avatars/avatar.jpg"
+								src={avatarSrc}
 								alt="Dima Shkaev"
 								width="220"
 								height="220"

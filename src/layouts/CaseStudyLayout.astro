@@ -2,6 +2,7 @@
 import SiteLayout from "./SiteLayout.astro";
 import BackLink from "../components/BackLink.astro";
 import ChevronRightIcon from "../components/icons/ChevronRightIcon.astro";
+import { resolveStaticAssetUrl } from "../lib/assetUrl";
 
 interface MoreCaseStudyLink {
 	href: string;
@@ -30,6 +31,13 @@ const {
 	heroAlt,
 	moreCaseStudies
 } = Astro.props;
+
+const resolvedHeroSrc = resolveStaticAssetUrl(heroSrc);
+const resolvedMoreCaseStudies = moreCaseStudies.map((study) => ({
+	...study,
+	logoSrc: resolveStaticAssetUrl(study.logoSrc),
+	imageSrc: resolveStaticAssetUrl(study.imageSrc)
+}));
 ---
 
 <SiteLayout title={title} description={description}>
@@ -46,7 +54,7 @@ const {
 
 		<section class="mt-10 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src={heroSrc}
+				src={resolvedHeroSrc}
 				alt={heroAlt}
 				class="h-auto w-full"
 				loading="eager"
@@ -61,7 +69,7 @@ const {
 			</p>
 			<div class="mt-6 flex flex-col gap-4">
 				{
-					moreCaseStudies.map((study) => (
+					resolvedMoreCaseStudies.map((study) => (
 						<a
 							href={study.href}
 							data-hover-card

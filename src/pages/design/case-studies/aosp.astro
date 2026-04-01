@@ -1,5 +1,6 @@
 ---
 import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
+import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
 const moreCaseStudies = [
 	{
@@ -382,7 +383,7 @@ const moreCaseStudies = [
 			</div>
 			<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 				<img
-					src="/images/case-studies/aosp/aosp-process.png"
+				src={asset("/images/case-studies/aosp/aosp-process.png")}
 					alt="AOSP design process diagram"
 					class="h-auto w-full"
 					loading="lazy"
@@ -426,7 +427,7 @@ const moreCaseStudies = [
 				</div>
 				<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 					<img
-						src="/images/case-studies/aosp/aosp-architecture.png"
+						src={asset("/images/case-studies/aosp/aosp-architecture.png")}
 						alt="AOSP information architecture redesign"
 						class="h-auto w-full"
 						loading="lazy"
@@ -473,7 +474,7 @@ const moreCaseStudies = [
 			</div>
 			<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 				<img
-					src="/images/case-studies/aosp/aosp-high-fidelity.png"
+					src={asset("/images/case-studies/aosp/aosp-high-fidelity.png")}
 					alt="AOSP high-fidelity interface designs"
 					class="h-auto w-full"
 					loading="lazy"
@@ -504,7 +505,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/aosp/aosp-research.png"
+				src={asset("/images/case-studies/aosp/aosp-research.png")}
 				alt="AOSP prototype and research screens"
 				class="h-auto w-full"
 				loading="lazy"
@@ -535,7 +536,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/aosp/aosp-handoff.jpg"
+				src={asset("/images/case-studies/aosp/aosp-handoff.jpg")}
 				alt="AOSP design handoff and implementation"
 				class="h-auto w-full"
 				loading="lazy"
@@ -670,7 +671,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/aosp/aosp-localization.png"
+				src={asset("/images/case-studies/aosp/aosp-localization.png")}
 				alt="AOSP localization and store assets"
 				class="h-auto w-full"
 				loading="lazy"
@@ -929,7 +930,7 @@ const moreCaseStudies = [
 
 		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 			<img
-				src="/images/case-studies/aosp/aosp-results.png"
+				src={asset("/images/case-studies/aosp/aosp-results.png")}
 				alt="AOSP final product results"
 				class="h-auto w-full"
 				loading="lazy"

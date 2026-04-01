@@ -5,14 +5,15 @@ import BackLink from "../../components/BackLink.astro";
 import ArrowLeftIcon from "../../components/icons/ArrowLeftIcon.astro";
 import ArrowRightIcon from "../../components/icons/ArrowRightIcon.astro";
 import { resolvePhotoAssetUrl } from "../../lib/photoAsset";
+import { resolveStaticAssetUrl } from "../../lib/assetUrl";
 
 const countryFlagByLocation: Record<string, string> = {
-	Cyprus: "/images/flags/cyprus.svg",
-	Kazakhstan: "/images/flags/kazakhstan.svg",
-	Uzbekistan: "/images/flags/uzbekistan.svg",
-	Russia: "/images/flags/russia.svg",
-	UAE: "/images/flags/uae.svg",
-	"United Arab Emirates": "/images/flags/uae.svg"
+	Cyprus: resolveStaticAssetUrl("/images/flags/cyprus.svg"),
+	Kazakhstan: resolveStaticAssetUrl("/images/flags/kazakhstan.svg"),
+	Uzbekistan: resolveStaticAssetUrl("/images/flags/uzbekistan.svg"),
+	Russia: resolveStaticAssetUrl("/images/flags/russia.svg"),
+	UAE: resolveStaticAssetUrl("/images/flags/uae.svg"),
+	"United Arab Emirates": resolveStaticAssetUrl("/images/flags/uae.svg")
 };
 const resolveCountryFlag = (location: string) => countryFlagByLocation[location];
 

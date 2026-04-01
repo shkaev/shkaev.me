@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import { resolvePhotoAssetUrl } from "../lib/photoAsset";
+import { resolveStaticAssetUrl } from "../lib/assetUrl";
 
 const parseSeriesYear = (timeframe: string) => {
 	const match = timeframe.match(/\b(19|20)\d{2}\b/u);
@@ -20,12 +21,12 @@ const series = (await getCollection("photo-series"))
 	.sort((a, b) => b.data.sortOrder - a.data.sortOrder);
 
 const countryFlagByLocation: Record<string, string> = {
-	Cyprus: "/images/flags/cyprus.svg",
-	Kazakhstan: "/images/flags/kazakhstan.svg",
-	Uzbekistan: "/images/flags/uzbekistan.svg",
-	Russia: "/images/flags/russia.svg",
-	UAE: "/images/flags/uae.svg",
-	"United Arab Emirates": "/images/flags/uae.svg"
+	Cyprus: resolveStaticAssetUrl("/images/flags/cyprus.svg"),
+	Kazakhstan: resolveStaticAssetUrl("/images/flags/kazakhstan.svg"),
+	Uzbekistan: resolveStaticAssetUrl("/images/flags/uzbekistan.svg"),
+	Russia: resolveStaticAssetUrl("/images/flags/russia.svg"),
+	UAE: resolveStaticAssetUrl("/images/flags/uae.svg"),
+	"United Arab Emirates": resolveStaticAssetUrl("/images/flags/uae.svg")
 };
 
 const sortOptions = [

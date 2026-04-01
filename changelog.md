@@ -14,6 +14,10 @@ Use completed/past tense throughout, including entry titles, and do not show com
 - Reworked key AOSP and Cookie Manager story sections into more visual layouts with team snapshots, goal cards, sidebars, and result modules, while refreshing TrackOFF product, reseller, and promotional content.
 - Polished the About page with tighter paragraph spacing, cleaner section flow, and a more interactive featured recommendation presentation.
 
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Added a dedicated static asset resolver for the remaining non-photography media and synced those asset directories to Cloudflare R2.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-03-29</span></p>
 
 ## Posting photos and correcting recommendations
