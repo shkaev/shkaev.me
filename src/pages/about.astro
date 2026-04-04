@@ -2,8 +2,6 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import ContentSection from "../components/sections/ContentSection.astro";
 import PageHero from "../components/sections/PageHero.astro";
-import SectionTitle from "../components/typography/SectionTitle.astro";
-import SectionBody from "../components/typography/SectionBody.astro";
 import ArrowLeftIcon from "../components/icons/ArrowLeftIcon.astro";
 import ArrowRightIcon from "../components/icons/ArrowRightIcon.astro";
 import ChevronDownIcon from "../components/icons/ChevronDownIcon.astro";
@@ -351,23 +349,19 @@ const renderRecommendationQuote = (value: string) =>
 			</p>
 		</ContentSection>
 
-		<div class="mt-12">
-			<div>
-				<SectionTitle>Recommendations</SectionTitle>
-				<SectionBody>
-					<p>
-						Here are some quotes from the colleagues and clients I&rsquo;ve
-						worked with over the years. They offer an external perspective on
-						my work, collaboration style, and overall contribution across
-						different roles and projects. Originally shared on <a
-							href="https://www.linkedin.com/in/shkaev/details/recommendations/"
-							target="_blank"
-							rel="noreferrer"
-							class="text-link"
-						>LinkedIn</a>.
-					</p>
-				</SectionBody>
-			</div>
+		<ContentSection title="Recommendations">
+			<p>
+				Here are some quotes from the colleagues and clients I&rsquo;ve
+				worked with over the years. They offer an external perspective on
+				my work, collaboration style, and overall contribution across
+				different roles and projects. Originally shared on <a
+					href="https://www.linkedin.com/in/shkaev/details/recommendations/"
+					target="_blank"
+					rel="noreferrer"
+					class="text-link"
+				>LinkedIn</a>.
+			</p>
+		</ContentSection>
 
 			{
 				featuredRecommendation && (
