@@ -1,5 +1,6 @@
 ---
 import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
+import CalloutColumn from "../../../components/sections/CalloutColumn.astro";
 import ContentSection from "../../../components/sections/ContentSection.astro";
 import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
 import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
@@ -149,45 +150,42 @@ const moreCaseStudies = [
 				</SurfaceCard>
 			</InfoCardGrid>
 			<div class="mt-8 grid gap-8 lg:grid-cols-3">
-				<div>
-					<DisplayCallout class="text-[1.15rem] sm:text-[1.3rem]">
-						What it did
-					</DisplayCallout>
-					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
-						<p>
-							In simple terms, the product scrambled the identifying data a
-							tracker could collect from a device. That made it much harder for
-							data brokers and advertisers to confidently decide whether the
-							user on one website was the same person they had seen elsewhere.
-						</p>
-					</div>
-				</div>
-				<div>
-					<DisplayCallout class="text-[1.15rem] sm:text-[1.3rem]">
-						Why it mattered
-					</DisplayCallout>
-					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
-						<p>
-							By 2023, similar protections had become common in privacy-focused
-							software and even mainstream browsers. Back in 2015, though, this
-							was a genuinely forward-looking proposition that landed well as
-							privacy awareness started to grow.
-						</p>
-					</div>
-				</div>
-				<div>
-					<DisplayCallout class="text-[1.15rem] sm:text-[1.3rem]">
-						My role in it
-					</DisplayCallout>
-					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
-						<p>
-							When I joined, the interface lacked clarity, polish, and the kind
-							of trust cues a privacy product needed. My job was to turn it into
-							a product experience that felt understandable, credible, and
-							usable across desktop first and later mobile surfaces.
-						</p>
-					</div>
-				</div>
+				<CalloutColumn
+					title="What it did"
+					titleClass="text-[1.15rem] sm:text-[1.3rem]"
+					bodyClass="space-y-4"
+				>
+					<p>
+						In simple terms, the product scrambled the identifying data a
+						tracker could collect from a device. That made it much harder for
+						data brokers and advertisers to confidently decide whether the
+						user on one website was the same person they had seen elsewhere.
+					</p>
+				</CalloutColumn>
+				<CalloutColumn
+					title="Why it mattered"
+					titleClass="text-[1.15rem] sm:text-[1.3rem]"
+					bodyClass="space-y-4"
+				>
+					<p>
+						By 2023, similar protections had become common in privacy-focused
+						software and even mainstream browsers. Back in 2015, though, this
+						was a genuinely forward-looking proposition that landed well as
+						privacy awareness started to grow.
+					</p>
+				</CalloutColumn>
+				<CalloutColumn
+					title="My role in it"
+					titleClass="text-[1.15rem] sm:text-[1.3rem]"
+					bodyClass="space-y-4"
+				>
+					<p>
+						When I joined, the interface lacked clarity, polish, and the kind
+						of trust cues a privacy product needed. My job was to turn it into
+						a product experience that felt understandable, credible, and
+						usable across desktop first and later mobile surfaces.
+					</p>
+				</CalloutColumn>
 			</div>
 		</ContentSection>
 
@@ -236,26 +234,24 @@ const moreCaseStudies = [
 			</SectionIntro>
 			<div class="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
 				<div class="space-y-7">
-					<div>
-						<DisplayCallout>Who it served</DisplayCallout>
-						<p class="mt-3 text-base leading-8 text-stone-700 sm:text-lg">
+					<CalloutColumn title="Who it served">
+						<p>
 							Our reseller partners sold the product through their own
 							channels, either under the TrackOFF brand or as white-label
 							offers with their own logo and color scheme. I designed both the
 							portal experience and the white-label UI variations that
 							supported that model.
 						</p>
-					</div>
-					<div>
-						<DisplayCallout>What I designed</DisplayCallout>
-						<p class="mt-3 text-base leading-8 text-stone-700 sm:text-lg">
+					</CalloutColumn>
+					<CalloutColumn title="What I designed">
+						<p>
 							The dashboard surfaced activation key status, expiration,
 							renewals, and related details in a format that people could
 							actually work with. It also supported bulk key generation, often
 							at very large volumes, and included search tools for locating and
 							managing groups of keys by category.
 						</p>
-					</div>
+					</CalloutColumn>
 				</div>
 				<CalloutBlock
 					label="Outcome"

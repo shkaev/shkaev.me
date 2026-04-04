@@ -1,0 +1,28 @@
+---
+import DisplayCallout from "../typography/DisplayCallout.astro";
+
+interface Props {
+	title: string;
+	as?: string;
+	class?: string;
+	titleClass?: string;
+	bodyClass?: string;
+}
+
+const {
+	title,
+	as = "div",
+	class: className,
+	titleClass,
+	bodyClass
+} = Astro.props;
+
+const Tag = as;
+---
+
+<Tag class={className}>
+	<DisplayCallout class={titleClass}>{title}</DisplayCallout>
+	<div class:list={["mt-3 text-base leading-8 text-stone-700 sm:text-lg", bodyClass]}>
+		<slot />
+	</div>
+</Tag>

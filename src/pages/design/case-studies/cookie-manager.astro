@@ -1,5 +1,6 @@
 ---
 import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
+import CalloutColumn from "../../../components/sections/CalloutColumn.astro";
 import ContentSection from "../../../components/sections/ContentSection.astro";
 import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
 import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
@@ -145,60 +146,45 @@ const moreCaseStudies = [
 		<section class="mt-12 w-full">
 			<SectionIntro as="div" class="mt-0" title="Problem statement" />
 			<div class="mt-6 grid gap-8 lg:grid-cols-3">
-				<div>
-					<DisplayCallout>
-						The acquired product
-					</DisplayCallout>
-					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
-						<p>
-							In 2021, Avast <a
-								href="https://www.i-dont-care-about-cookies.eu/whats-new/acquisition/"
-								target="_blank"
-								rel="noreferrer"
-								class="text-link text-stone-950"
-							>purchased</a> a popular browser extension called "I Don't Care
-							About Cookies" created by Croatian developer <a
-								href="https://www.linkedin.com/in/dkladnik/"
-								target="_blank"
-								rel="noreferrer"
-								class="text-link text-stone-950"
-							>Daniel Kladnik</a>. The product already had clear demand: it
-							removed cookie consent prompts and let people browse with fewer
-							interruptions, which was especially relevant in GDPR-heavy
-							markets.
-						</p>
-					</div>
-				</div>
-				<div>
-					<DisplayCallout>
-						Why it was paused
-					</DisplayCallout>
-					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
-						<p>
-							The intention was to embed that capability into one of Avast's
-							privacy products, initially Avast AntiTrack. But as a paid tool,
-							it was not the right environment to unlock broad user value from
-							the acquisition. Amid larger internal shifts at Avast, the
-							purchased extension was temporarily shelved.
-						</p>
-					</div>
-				</div>
-				<div>
-					<DisplayCallout>
-						Why AOSP became the fit
-					</DisplayCallout>
-					<div class="mt-3 space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
-						<p>
-							That changed with the <a
-								href="/design/case-studies/aosp"
-								class="text-link text-stone-950"
-							>revival of Avast Online Security &amp; Privacy</a> by the end of
-							2021. AOSP had quickly become one of the company's top products
-							and was the first place where this acquisition could strengthen
-							the core value proposition instead of feeling bolted on.
-						</p>
-					</div>
-				</div>
+				<CalloutColumn title="The acquired product" bodyClass="space-y-4">
+					<p>
+						In 2021, Avast <a
+							href="https://www.i-dont-care-about-cookies.eu/whats-new/acquisition/"
+							target="_blank"
+							rel="noreferrer"
+							class="text-link text-stone-950"
+						>purchased</a> a popular browser extension called "I Don't Care
+						About Cookies" created by Croatian developer <a
+							href="https://www.linkedin.com/in/dkladnik/"
+							target="_blank"
+							rel="noreferrer"
+							class="text-link text-stone-950"
+						>Daniel Kladnik</a>. The product already had clear demand: it
+						removed cookie consent prompts and let people browse with fewer
+						interruptions, which was especially relevant in GDPR-heavy
+						markets.
+					</p>
+				</CalloutColumn>
+				<CalloutColumn title="Why it was paused" bodyClass="space-y-4">
+					<p>
+						The intention was to embed that capability into one of Avast's
+						privacy products, initially Avast AntiTrack. But as a paid tool,
+						it was not the right environment to unlock broad user value from
+						the acquisition. Amid larger internal shifts at Avast, the
+						purchased extension was temporarily shelved.
+					</p>
+				</CalloutColumn>
+				<CalloutColumn title="Why AOSP became the fit" bodyClass="space-y-4">
+					<p>
+						That changed with the <a
+							href="/design/case-studies/aosp"
+							class="text-link text-stone-950"
+						>revival of Avast Online Security &amp; Privacy</a> by the end of
+						2021. AOSP had quickly become one of the company's top products
+						and was the first place where this acquisition could strengthen
+						the core value proposition instead of feeling bolted on.
+					</p>
+				</CalloutColumn>
 			</div>
 			<CalloutBlock
 				label="My role"
@@ -303,19 +289,22 @@ const moreCaseStudies = [
 					</CalloutBlock>
 				</div>
 				<aside class="mt-8 border-l border-stone-200 py-2 pl-6 lg:mt-0 lg:h-full lg:pl-8">
-					<DisplayCallout as="h3" class="text-[1.2rem] sm:text-[1.3rem]">
-						The Challenge
-					</DisplayCallout>
-					<p class="mt-4 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
-						Balance user value, usability, in-app visibility, and business
-						impact without pulling too much attention away from the core
-						features.
-					</p>
-					<p class="mt-4 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
-						Early concepts ranged from a simple checkbox to a dedicated area
-						in the UI. The richer direction won out, with an on/off toggle,
-						value indicators, customization, and whitelisting.
-					</p>
+					<CalloutColumn
+						title="The Challenge"
+						titleClass="text-[1.2rem] sm:text-[1.3rem]"
+						bodyClass="space-y-4 text-[0.98rem] leading-7 sm:text-base"
+					>
+						<p>
+							Balance user value, usability, in-app visibility, and business
+							impact without pulling too much attention away from the core
+							features.
+						</p>
+						<p>
+							Early concepts ranged from a simple checkbox to a dedicated area
+							in the UI. The richer direction won out, with an on/off toggle,
+							value indicators, customization, and whitelisting.
+						</p>
+					</CalloutColumn>
 				</aside>
 			</div>
 		</section>

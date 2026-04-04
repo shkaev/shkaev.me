@@ -15,7 +15,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
-- Continued the audit-first `v2` migration by applying shared section intros, surface cards, meta grids, media link cards, text-link styling, and media frames across the design pages and case studies.
+- Continued the audit-first `v2` migration by applying shared section intros, surface cards, meta grids, media link cards, text-link styling, media frames, and callout columns across the design pages and case studies.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-02</span></p>
 
