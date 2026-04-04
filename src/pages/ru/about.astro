@@ -1,16 +1,16 @@
 ---
-import SiteLayout from "../layouts/SiteLayout.astro";
-import ContentSection from "../components/sections/ContentSection.astro";
-import PageHero from "../components/sections/PageHero.astro";
-import ArrowLeftIcon from "../components/icons/ArrowLeftIcon.astro";
-import ArrowRightIcon from "../components/icons/ArrowRightIcon.astro";
-import ChevronDownIcon from "../components/icons/ChevronDownIcon.astro";
-import WorkTimelineCard from "../components/WorkTimelineCard.astro";
-import { getAboutPageCopy } from "../i18n/aboutPage";
-import type { Locale } from "../i18n/config";
-import { resolveStaticAssetUrl } from "../lib/assetUrl";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import ContentSection from "../../components/sections/ContentSection.astro";
+import PageHero from "../../components/sections/PageHero.astro";
+import ArrowLeftIcon from "../../components/icons/ArrowLeftIcon.astro";
+import ArrowRightIcon from "../../components/icons/ArrowRightIcon.astro";
+import ChevronDownIcon from "../../components/icons/ChevronDownIcon.astro";
+import WorkTimelineCard from "../../components/WorkTimelineCard.astro";
+import { getAboutPageCopy } from "../../i18n/aboutPage";
+import type { Locale } from "../../i18n/config";
+import { resolveStaticAssetUrl } from "../../lib/assetUrl";
 
-const locale: Locale = "en";
+const locale: Locale = "ru";
 const pageCopy = getAboutPageCopy(locale);
 
 const getCompanyPlaceholder = (company: string) =>

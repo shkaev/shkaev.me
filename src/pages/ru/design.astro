@@ -1,11 +1,11 @@
 ---
-import SiteLayout from "../layouts/SiteLayout.astro";
-import MediaLinkCard from "../components/sections/MediaLinkCard.astro";
-import PageHero from "../components/sections/PageHero.astro";
-import { getSiteCopy } from "../i18n/copy";
-import { resolveStaticAssetUrl } from "../lib/assetUrl";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import MediaLinkCard from "../../components/sections/MediaLinkCard.astro";
+import PageHero from "../../components/sections/PageHero.astro";
+import { getSiteCopy } from "../../i18n/copy";
+import { resolveStaticAssetUrl } from "../../lib/assetUrl";
 
-const locale = "en" as const;
+const locale = "ru" as const;
 const copy = getSiteCopy(locale);
 
 const resolvedCaseStudies = copy.design.caseStudies.map((study) => ({

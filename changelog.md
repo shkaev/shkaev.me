@@ -14,10 +14,15 @@ Use completed/past tense throughout, including entry titles, and do not show com
 - Restored dark-theme hierarchy and surface styling across shared meta blocks, cards, and aside accents.
 - Fixed remaining shared UI regressions including footer icon spacing, dark-theme control icon color, and the About timeline markers.
 
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added Russian versions of the homepage, About page, and Design landing page.
+
 <p class="changelog-label changelog-label--improved">Improved</p>
 
 - Continued the audit-first `v2` migration by moving more repeated page patterns into shared content components and styling tokens across the case studies and top-level pages.
 - Started the Russian localization rollout across the shared site shell with a language toggle, localized header and footer chrome, and a Russian changelog drawer.
+- Localized the main page copy, recommendation flow, and shared top-level navigation paths across the first Russian pages.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
