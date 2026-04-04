@@ -311,8 +311,8 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			metaTitle: "Дизайн | Дмитрий Шкаев",
 			metaDescription: "Избранные продуктовые кейсы и работы Дмитрия Шкаева.",
 			eyebrow: "Дизайн",
-			title: "Кейсы",
-			lead: "Посмотри на несколько ключевых продуктовых проектов, которыми я занимался в разные годы.",
+			title: "Избранные кейсы",
+			lead: "Ниже — несколько ключевых продуктовых кейсов, над которыми я работал в разные годы.",
 			caseStudyBackLabel: "Кейсы",
 			caseStudyReadMoreLabel: "Ещё кейсы",
 			caseStudies: [...sharedCaseStudyCards.ru]
