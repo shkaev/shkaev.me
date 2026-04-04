@@ -21,10 +21,12 @@
   `<p class="changelog-meta"><span class="changelog-meta__date">YYYY-MM-DD</span></p>`
   `## Past-tense entry title`
   optional section labels as:
+  `<p class="changelog-label changelog-label--fixed">Fixed</p>`
   `<p class="changelog-label changelog-label--added">Added</p>`
   `<p class="changelog-label changelog-label--improved">Improved</p>`
   `<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>`
   followed by short bullets.
+- When multiple changelog section labels are present, keep them in this order: `Fixed`, `Added`, `Improved`, `Infrastructure`.
 - Keep bullets factual and outcome-oriented. Summarize what changed for the site or project, not raw file churn.
 - Prefer compressed summaries over exhaustive detail. Capture the shipped body of work at a high level instead of listing every post, page, edge case, or micro-fix.
 - Avoid over-enumerating names, locations, or subfeatures unless they are necessary to understand the release.

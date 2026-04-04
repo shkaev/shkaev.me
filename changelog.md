@@ -8,15 +8,15 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 ## Major refactoring
 
-<p class="changelog-label changelog-label--added">Added</p>
-
-- Rich metadata to enable clean sharing previews.
-
 <p class="changelog-label changelog-label--fixed">Fixed</p>
 
 - Removed brittle assumptions from asset resolution and other shared page logic.
 - Fixed several accessibility, filtering, and mobile gallery issues across the changelog sheet and photography pages.
 - Restored reliable dark-theme typography and reduced page-transition flicker.
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Rich metadata to enable clean sharing previews.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
