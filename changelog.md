@@ -19,7 +19,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
-- Trimmed follow-up dead code from the new shared content-system slices as the v2 cleanup passes continued.
+- Trimmed follow-up dead code and duplicate prose wrappers from the new shared content-system slices as the v2 cleanup passes continued.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-02</span></p>
 

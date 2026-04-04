@@ -11,6 +11,7 @@ import SectionIntro from "../../../components/sections/SectionIntro.astro";
 import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
+import SectionBody from "../../../components/typography/SectionBody.astro";
 import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
 const moreCaseStudies = [
@@ -254,7 +255,7 @@ const moreCaseStudies = [
 			<SectionIntro as="div" class="mt-0" title="Design process" />
 			<div class="mt-6 lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10">
 				<div>
-					<div class="type-section-body type-section-body-flow mt-0">
+					<SectionBody class="mt-0">
 						<p>
 							Business justification was already in place by the time design
 							began, so there was no need for a classic discovery phase. Our
@@ -263,7 +264,7 @@ const moreCaseStudies = [
 							interface, so we were effectively starting from scratch while
 							reusing parts of its backend.
 						</p>
-					</div>
+					</SectionBody>
 					<CalloutBlock
 						label="Next steps"
 						title="From the first drafts to the user testing"

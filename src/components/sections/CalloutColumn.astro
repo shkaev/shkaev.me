@@ -1,5 +1,6 @@
 ---
 import DisplayCallout from "../typography/DisplayCallout.astro";
+import SectionBody from "../typography/SectionBody.astro";
 
 interface Props {
 	title: string;
@@ -22,7 +23,7 @@ const Tag = as;
 
 <Tag class={className}>
 	<DisplayCallout class={titleClass}>{title}</DisplayCallout>
-	<div class:list={["mt-3 text-base leading-8 text-stone-700 sm:text-lg", bodyClass]}>
+	<SectionBody class:list={["mt-3", bodyClass]}>
 		<slot />
-	</div>
+	</SectionBody>
 </Tag>

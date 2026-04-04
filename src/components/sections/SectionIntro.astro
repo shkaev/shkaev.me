@@ -1,5 +1,6 @@
 ---
 import CardTitle from "../typography/CardTitle.astro";
+import SectionBody from "../typography/SectionBody.astro";
 
 interface Props {
 	as?: string;
@@ -29,9 +30,9 @@ const hasBodySlot = Astro.slots.has("default");
 	</CardTitle>
 	{
 		hasBodySlot && (
-			<div class:list={["type-section-body type-section-body-flow mt-6", bodyClass]}>
+			<SectionBody class:list={["mt-6", bodyClass]}>
 				<slot />
-			</div>
+			</SectionBody>
 		)
 	}
 </Tag>
