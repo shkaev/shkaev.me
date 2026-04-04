@@ -6,19 +6,17 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-04</span></p>
 
-## Corrected follow-up regressions and continued the shared content system
+## Corrected follow-up regressions and continued the v2 refactor
 
 <p class="changelog-label changelog-label--fixed">Fixed</p>
 
-- Removed the duplicate font request by aligning font preloads with the local `/fonts` paths used by `@font-face`.
-- Fixed `InfoCardGrid` so case-study pages can override its column layout cleanly and the TrackOFF product cards now fill the intended two-column width.
-- Restored dark-theme hierarchy in shared meta blocks and aligned the AOSP handoff aside icons with the stone-based theme palette.
-- Fixed shared surface cards so they no longer stayed white in dark mode after the v2 component migration.
-- Fixed a few remaining shared UI regressions, including footer icon spacing, dark-theme control icon color, and the timeline marker outline on the About page.
+- Removed the duplicate font request and fixed `InfoCardGrid` so case-study layouts behaved correctly after the refactor.
+- Restored dark-theme hierarchy and surface styling across shared meta blocks, cards, and aside accents.
+- Fixed remaining shared UI regressions including footer icon spacing, dark-theme control icon color, and the About timeline markers.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
-- Continued the audit-first `v2` migration by applying shared section intros, split-aside sections, content sections, surface cards, signal cards, metric strip cards, meta grids, media link cards, text-link styling, media frames, callout columns, sidebar asides, shared filter-control styling, and shared control-button styling across the shared content pages and case studies, including broader use of `ContentSection` on the About page.
+- Continued the audit-first `v2` migration by moving more repeated page patterns into shared content components and styling tokens across the case studies and top-level pages.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
