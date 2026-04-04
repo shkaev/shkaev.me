@@ -1,5 +1,6 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import ContentSection from "../components/sections/ContentSection.astro";
 import PageHero from "../components/sections/PageHero.astro";
 import SectionTitle from "../components/typography/SectionTitle.astro";
 import SectionBody from "../components/typography/SectionBody.astro";
@@ -328,32 +329,27 @@ const renderRecommendationQuote = (value: string) =>
 			</div>
 		</div>
 
-		<div class="mt-12">
-			<div>
-				<SectionTitle>Strengths &amp; skills</SectionTitle>
-				<SectionBody>
-					<p>
-						My core strength is
-						<span class="font-bold text-stone-950"
-							>solving complex problems</span
-						>
-						through elegant, well-reasoned solutions and turning them into
-						clear, functional interfaces. There&rsquo;s no magic behind it
-						&mdash; just experience, pattern recognition, and a disciplined
-						design approach.
-					</p>
-					<p>
-						I&rsquo;m often told that I have an eye for
-						<span class="font-bold text-stone-950">perfection</span> when it
-						comes to crafting high-fidelity UI, and I would consider this to be
-						my second strongest trait. Wireframes and early concepts can and
-						should be wild, but when it comes to the final product, it&rsquo;s
-						pixel-perfect or death. Just kidding, but yes, my Figma stuff is
-						pretty neat.
-					</p>
-				</SectionBody>
-			</div>
-		</div>
+		<ContentSection title="Strengths &amp; skills">
+			<p>
+				My core strength is
+				<span class="font-bold text-stone-950"
+					>solving complex problems</span
+				>
+				through elegant, well-reasoned solutions and turning them into
+				clear, functional interfaces. There&rsquo;s no magic behind it
+				&mdash; just experience, pattern recognition, and a disciplined
+				design approach.
+			</p>
+			<p>
+				I&rsquo;m often told that I have an eye for
+				<span class="font-bold text-stone-950">perfection</span> when it
+				comes to crafting high-fidelity UI, and I would consider this to be
+				my second strongest trait. Wireframes and early concepts can and
+				should be wild, but when it comes to the final product, it&rsquo;s
+				pixel-perfect or death. Just kidding, but yes, my Figma stuff is
+				pretty neat.
+			</p>
+		</ContentSection>
 
 		<div class="mt-12">
 			<div>
@@ -526,66 +522,57 @@ const renderRecommendationQuote = (value: string) =>
 
 		</div>
 
-		<div class="mt-12">
-			<SectionTitle>Leadership</SectionTitle>
-			<SectionBody>
-				<p>
-					While I bring the most value as an
-					<span class="font-bold text-stone-950">individual contributor</span>,
-					I have experience leading creative initiatives within business goals
-					and working closely with small, focused teams. I&rsquo;m often
-					involved in
-					<span class="font-bold text-stone-950">onboarding</span> new hires
-					and helping them get up to speed, and I&rsquo;ve taken on
-					<span class="font-bold text-stone-950">mentoring</span>
-					responsibilities to support junior designers and guide them through
-					design processes.
-				</p>
-			</SectionBody>
-		</div>
+		<ContentSection title="Leadership">
+			<p>
+				While I bring the most value as an
+				<span class="font-bold text-stone-950">individual contributor</span>,
+				I have experience leading creative initiatives within business goals
+				and working closely with small, focused teams. I&rsquo;m often
+				involved in
+				<span class="font-bold text-stone-950">onboarding</span> new hires
+				and helping them get up to speed, and I&rsquo;ve taken on
+				<span class="font-bold text-stone-950">mentoring</span>
+				responsibilities to support junior designers and guide them through
+				design processes.
+			</p>
+		</ContentSection>
 
-		<div class="mt-12">
-			<SectionTitle>Hobbies</SectionTitle>
-			<SectionBody>
-				<p>
-					My main passion is <span class="font-bold text-stone-950"
-						>photography</span
-					>, which I&rsquo;ve been practicing for quite some time, starting
-					back when film cameras were still the mainstream. At one point, I was
-					comfortable enough to turn it into a side gig, even securing
-					contracts with companies like Omsk Carbon Group to shoot portraits
-					and environments.
-				</p>
-				<p>
-					Another major activity for me is <span class="font-bold text-stone-950"
-						>cycling</span
-					> &mdash; there&rsquo;s nothing better than hopping on a bike,
-					exploring new places, and meeting people along the way. It also
-					naturally complements my photography.
-				</p>
-				<p>
-					And, as a family man, I spend a lot of time with my wife Olga and our
-					two sons, Boris and Gleb.
-				</p>
-			</SectionBody>
-		</div>
+		<ContentSection title="Hobbies">
+			<p>
+				My main passion is <span class="font-bold text-stone-950"
+					>photography</span
+				>, which I&rsquo;ve been practicing for quite some time, starting
+				back when film cameras were still the mainstream. At one point, I was
+				comfortable enough to turn it into a side gig, even securing
+				contracts with companies like Omsk Carbon Group to shoot portraits
+				and environments.
+			</p>
+			<p>
+				Another major activity for me is <span class="font-bold text-stone-950"
+					>cycling</span
+				> &mdash; there&rsquo;s nothing better than hopping on a bike,
+				exploring new places, and meeting people along the way. It also
+				naturally complements my photography.
+			</p>
+			<p>
+				And, as a family man, I spend a lot of time with my wife Olga and our
+				two sons, Boris and Gleb.
+			</p>
+		</ContentSection>
 
-		<div class="mt-12">
-			<SectionTitle>Contact info</SectionTitle>
-			<SectionBody>
-				<p>
-					I&rsquo;m located in 🇨🇾
-					<span class="font-bold text-stone-950">Limassol</span> and always
-					open to meeting new people. Feel free to hit me up on
-					<span class="whitespace-nowrap"><a
-						href="https://t.me/shkaev"
-						target="_blank"
-						rel="noreferrer"
-						class="text-link"
-					>Telegram</a>.</span>
-				</p>
-			</SectionBody>
-		</div>
+		<ContentSection title="Contact info">
+			<p>
+				I&rsquo;m located in 🇨🇾
+				<span class="font-bold text-stone-950">Limassol</span> and always
+				open to meeting new people. Feel free to hit me up on
+				<span class="whitespace-nowrap"><a
+					href="https://t.me/shkaev"
+					target="_blank"
+					rel="noreferrer"
+					class="text-link"
+				>Telegram</a>.</span>
+			</p>
+		</ContentSection>
 	</section>
 
 	<script is:inline define:vars={{ recommendationSliderItems }}>
