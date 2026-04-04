@@ -15,7 +15,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
-- Continued the audit-first `v2` migration by applying shared section intros, content sections, surface cards, signal cards, meta grids, media link cards, text-link styling, media frames, callout columns, and sidebar asides across the shared content pages and case studies, including broader use of `ContentSection` on the About page.
+- Continued the audit-first `v2` migration by applying shared section intros, content sections, surface cards, signal cards, metric strip cards, meta grids, media link cards, text-link styling, media frames, callout columns, and sidebar asides across the shared content pages and case studies, including broader use of `ContentSection` on the About page.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 

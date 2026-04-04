@@ -6,6 +6,7 @@ import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
 import MediaSection from "../../../components/sections/MediaSection.astro";
 import MetaGrid from "../../../components/sections/MetaGrid.astro";
 import MetaItem from "../../../components/sections/MetaItem.astro";
+import MetricStripCard from "../../../components/sections/MetricStripCard.astro";
 import SectionIntro from "../../../components/sections/SectionIntro.astro";
 import SignalCard from "../../../components/sections/SignalCard.astro";
 import SidebarAside from "../../../components/sections/SidebarAside.astro";
@@ -608,61 +609,34 @@ const moreCaseStudies = [
 					we looked at included:
 				</p>
 				<div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-					<div class="rounded-[2px] border-l border-stone-200 bg-transparent pl-6 pr-8 py-6">
-						<h3 class="text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
-							Product adoption
-						</h3>
-						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
-							Onboarding success, core flow completion rates and feature
-							opt-ins. Engagement over the first month.
-						</p>
-					</div>
-					<div class="rounded-[2px] border-l border-stone-200 bg-transparent pl-6 pr-8 py-6">
-						<h3 class="text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
-							Usage &amp; interaction
-						</h3>
-						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
-							More specific data on how people used each feature, helping us
-							understand what brought the most value.
-						</p>
-					</div>
-					<div class="rounded-[2px] border-l border-stone-200 bg-transparent pl-6 pr-8 py-6">
-						<h3 class="text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
-							Privacy Advisor
-						</h3>
-						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
-							Guide completion, depth, popularity across guides, platform
-							rankings, and other engagement signals.
-						</p>
-					</div>
-					<div class="rounded-[2px] border-l border-stone-200 bg-transparent pl-6 pr-8 py-6">
-						<h3 class="text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
-							Promotional messaging
-						</h3>
-						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
-							Engagement with in-product promotions and cross-sell
-							opportunities, later extended into a subscription-based model.
-						</p>
-					</div>
-					<div class="rounded-[2px] border-l border-stone-200 bg-transparent pl-6 pr-8 py-6">
-						<h3 class="text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
-							User signals
-						</h3>
-						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
-							NPS, surveys, built-in quick feedback forms, store review
-							dynamics, and additional rounds of user testing.
-						</p>
-					</div>
-					<div class="rounded-[2px] border-l border-stone-200 bg-transparent pl-6 pr-8 py-6 md:col-span-2 xl:col-span-1">
-						<h3 class="text-[1.35rem] leading-[1.08] tracking-tight text-stone-950 sm:text-[1.5rem]">
-							Churn and retention
-						</h3>
-						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
-							Installs versus uninstalls after the redesign, including the
-							initial dormant-user spike and the later recovery once campaigns
-							resumed.
-						</p>
-					</div>
+					<MetricStripCard title="Product adoption">
+						Onboarding success, core flow completion rates and feature
+						opt-ins. Engagement over the first month.
+					</MetricStripCard>
+					<MetricStripCard title="Usage &amp; interaction">
+						More specific data on how people used each feature, helping us
+						understand what brought the most value.
+					</MetricStripCard>
+					<MetricStripCard title="Privacy Advisor">
+						Guide completion, depth, popularity across guides, platform
+						rankings, and other engagement signals.
+					</MetricStripCard>
+					<MetricStripCard title="Promotional messaging">
+						Engagement with in-product promotions and cross-sell
+						opportunities, later extended into a subscription-based model.
+					</MetricStripCard>
+					<MetricStripCard title="User signals">
+						NPS, surveys, built-in quick feedback forms, store review
+						dynamics, and additional rounds of user testing.
+					</MetricStripCard>
+					<MetricStripCard
+						title="Churn and retention"
+						class="md:col-span-2 xl:col-span-1"
+					>
+						Installs versus uninstalls after the redesign, including the
+						initial dormant-user spike and the later recovery once campaigns
+						resumed.
+					</MetricStripCard>
 				</div>
 			</SectionIntro>
 		</section>
