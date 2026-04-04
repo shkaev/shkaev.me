@@ -64,6 +64,8 @@ export interface DesignPageCopy {
 	title: string;
 	lead: string;
 	caseStudies: DesignCaseStudyCardCopy[];
+	caseStudyBackLabel: string;
+	caseStudyReadMoreLabel: string;
 }
 
 export interface PhotographyPageCopy {
@@ -225,6 +227,8 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			eyebrow: "Design",
 			title: "Case studies",
 			lead: "Explore some of the featured product design work I've been doing over the years.",
+			caseStudyBackLabel: "Case studies",
+			caseStudyReadMoreLabel: "Read more case studies",
 			caseStudies: [...sharedCaseStudyCards.en]
 		},
 		photography: {
@@ -309,6 +313,8 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			eyebrow: "Дизайн",
 			title: "Кейсы",
 			lead: "Посмотри на несколько ключевых продуктовых проектов, которыми я занимался в разные годы.",
+			caseStudyBackLabel: "Кейсы",
+			caseStudyReadMoreLabel: "Ещё кейсы",
 			caseStudies: [...sharedCaseStudyCards.ru]
 		},
 		photography: {

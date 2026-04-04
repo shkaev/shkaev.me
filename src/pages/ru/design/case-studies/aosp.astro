@@ -1,0 +1,842 @@
+---
+import CaseStudyLayout from "../../../../layouts/CaseStudyLayout.astro";
+import ContentSection from "../../../../components/sections/ContentSection.astro";
+import CalloutBlock from "../../../../components/sections/CalloutBlock.astro";
+import InfoCardGrid from "../../../../components/sections/InfoCardGrid.astro";
+import MediaSection from "../../../../components/sections/MediaSection.astro";
+import MetaGrid from "../../../../components/sections/MetaGrid.astro";
+import MetaItem from "../../../../components/sections/MetaItem.astro";
+import MetricStripCard from "../../../../components/sections/MetricStripCard.astro";
+import SectionIntro from "../../../../components/sections/SectionIntro.astro";
+import SignalCard from "../../../../components/sections/SignalCard.astro";
+import SplitAsideSection from "../../../../components/sections/SplitAsideSection.astro";
+import SurfaceCard from "../../../../components/sections/SurfaceCard.astro";
+import MicroLabel from "../../../../components/typography/MicroLabel.astro";
+import CardTitle from "../../../../components/typography/CardTitle.astro";
+import { resolveStaticAssetUrl as asset } from "../../../../lib/assetUrl";
+
+const moreCaseStudies = [
+	{
+		href: "/design/case-studies/cookie-manager",
+		title: "Cookie Manager",
+		logoSrc: "/favicons/avast.ico",
+		logoAlt: "Avast",
+		imageSrc: "/images/case-studies/cookie-manager/cookie-manager-hero.jpg",
+		imageAlt: "Cookie Manager case study preview",
+		description:
+			"Designing, building, and integrating a new feature in Avast Online Security & Privacy."
+	},
+	{
+		href: "/design/case-studies/trackoff",
+		title: "TrackOFF",
+		logoSrc: "/favicons/trackoff.png",
+		logoAlt: "TrackOFF",
+		imageSrc: "/images/case-studies/trackoff/trackoff-hero.jpg",
+		imageAlt: "TrackOFF case study preview",
+		description:
+			"A short story about building a successful product from the ground up and seeing it through to acquisition."
+	}
+];
+---
+
+<CaseStudyLayout
+	title="Avast Online Security & Privacy | Design Case Study | Dmitry Shkaev"
+	description="A major redesign of the flagship browser extension with over 10 million users."
+	pageTitle="Avast Online Security & Privacy"
+	heroSrc="/images/case-studies/aosp/aosp-hero.jpg"
+	heroAlt="AOSP case study hero image"
+	moreCaseStudies={moreCaseStudies}
+	locale="ru"
+>
+
+		<ContentSection title="Executive summary">
+				<p>
+					We took a sidelined browser extension with 12M+ installs and brought
+					it back into the spotlight. Along with a brand new visual style,
+					reformed information architecture, and a revised feature set, we
+					introduced an interactive Privacy Advisor guide system.
+				</p>
+				<p>
+					Through a meticulous design and development process, our team
+					delivered a fully refreshed product to praise from users and
+					leadership. Avast Online Security &amp; Privacy made a strong return
+					and started to play <strong class="font-bold text-stone-950"
+						>an integral role as a major digital touchpoint</strong
+					> for both existing and potential customers.
+				</p>
+		</ContentSection>
+
+		<ContentSection
+			title="Team"
+			class="border-y border-stone-200 pt-10 pb-12"
+			bodyClass="mt-6 space-y-8"
+		>
+				<p>
+					A cross-functional effort spanning product, design, research,
+					engineering, QA, marketing, localization, and support. The core team
+					carried the redesign from discovery through launch, with additional
+					specialists supporting rollout across channels and markets.
+				</p>
+				<MetaGrid>
+					<div class="lg:col-span-1">
+						<div class="space-y-5">
+							<MetaItem label="Product owner">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/petraverse/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Petra Moravcova</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Product design lead">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/shkaev/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Dmitry Shkaev</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Discovery">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/petr-augustin/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Petr Augustin</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="UX research">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/natalie-schinkova/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Natalie Schinkova</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Engineering lead">
+								<p>
+									<a
+										href="https://bit.ly/3WzT3GQ"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Jiri Pojezny</a>
+								</p>
+							</MetaItem>
+						</div>
+					</div>
+					<div class="lg:col-span-2">
+						<div class="space-y-5">
+							<MetaItem label="UX writing">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/alyyamada/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Alysa Yamada</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Quality assurance">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/victoriausan/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Victoria Usan</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Product marketing">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/andrew-stark-uk/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Andrew Stark</a>, <a
+										href="https://www.linkedin.com/in/jbosso/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Joe Bosso</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="PR">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/marinaziegler/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Marina Ziegler</a>, <a
+										href="https://www.linkedin.com/in/mike-healey-46a02320/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Mike Healey</a>, <a
+										href="https://www.linkedin.com/in/stephanieaskane/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Stephanie Kane</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Localization">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/jan-fiala-31b40182/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Jan Fiala</a>
+								</p>
+							</MetaItem>
+						</div>
+					</div>
+				</MetaGrid>
+		</ContentSection>
+
+		<ContentSection title="Problem statement">
+				<p>
+					Amid controversial events surrounding Avast's subsidiary Jumpshot
+					and its <a
+						href="https://press.avast.com/en-gb/avast-to-commence-wind-down-of-subsidiary-jumpshot"
+						target="_blank"
+						rel="noreferrer"
+						class="text-link text-stone-950"
+					>shutdown in January 2020</a>, the browser extension called Avast
+					Online Security was one of the immediate products that had to fall
+					from grace. The practice of manipulating user data was brought to an
+					abrupt end, and the company fundamentally shifted direction to
+					<strong class="font-bold text-stone-950"
+						>focus on protecting customer privacy</strong
+					>.
+				</p>
+				<p>
+					The extension was put into maintenance mode, its user base and store
+					reviews taking a noticeable hit. After the dust settled, it had been
+					lying on the shelf for over a year. In the meantime, privacy became
+					a key pillar of Avast's commitment to digital freedom and one of the
+					cornerstones of the upcoming rebrand.
+				</p>
+				<p>
+					With that, it was time for such a
+					<strong class="font-bold text-stone-950"
+						>high-volume and impactful customer-facing product</strong
+					> to get back on track, start bringing real value to users, and
+					deliver on Avast's renewed privacy commitment.
+				</p>
+		</ContentSection>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Design goals" />
+			<InfoCardGrid columnsClass="md:grid-cols-2 xl:grid-cols-3">
+				<SurfaceCard>
+					<MicroLabel>Framework</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Build a new direction
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						Revisit an outdated framework and redefine it through design
+						thinking.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<MicroLabel>Brand</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Launch with a new visual system
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						Outfit the product with a new visual style and branding aligned
+						with Avast One.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<MicroLabel>Privacy</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Ship meaningful privacy features
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						Design, build, and introduce a set of features centered on user
+						privacy.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<MicroLabel>Experience</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Design the full funnel
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						Create user experiences across the full journey, from acquisition
+						to retention.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard class="md:col-span-2 xl:col-span-1">
+					<MicroLabel>Integration</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Connect it to the product ecosystem
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						Build integrations with the existing lineup and pave the way for
+						future connection to the flagship product.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<MicroLabel>Retention</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Increase everyday relevance
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						Make the extension useful enough to become part of users' regular
+						browsing habits.
+					</p>
+				</SurfaceCard>
+			</InfoCardGrid>
+		</section>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Design process">
+				<p>
+					At the core of our design process we employed the classic
+					<strong class="font-bold text-stone-950"
+						>double diamond design model</strong
+					>. The initial kick-off and discovery phase were covered by my
+					teammate Petr, who thoroughly explored multiple directions and
+					produced an extensive body of research.
+				</p>
+			</SectionIntro>
+			<CalloutBlock
+				label="My role"
+				title="Turning discovery into a finished product direction"
+				body="I picked up the torch when it came to narrowing down the scope, defining the problem, expanding the work from concepts to high fidelity, testing, and delivering the final results."
+				class="mt-8"
+			>
+				<span slot="label-prefix" class="-translate-y-px text-amber-500">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 20 20"
+							fill="currentColor"
+							class="h-4 w-4"
+							aria-hidden="true"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+								clip-rule="evenodd"
+							></path>
+						</svg>
+				</span>
+			</CalloutBlock>
+			<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+				<img
+				src={asset("/images/case-studies/aosp/aosp-process.png")}
+					alt="AOSP design process diagram"
+					class="h-auto w-full"
+					loading="lazy"
+				/>
+			</div>
+		</section>
+
+		<ContentSection title="Issues of the old product">
+				<p>
+					When defining the new information architecture, our initial approach
+					was to retain the single-screen framework and use widget-style cards.
+					I quickly discovered that it would not be ideal.
+				</p>
+				<div class="mt-8 grid gap-4 md:grid-cols-2">
+					<SignalCard variant="negative">
+						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
+							It lacked a focal point on the main screen and did not make the
+							best use of UI space.
+						</p>
+					</SignalCard>
+					<SignalCard variant="negative">
+						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
+							Multiple jobs-to-be-done would compete for users' attention.
+						</p>
+					</SignalCard>
+					<SignalCard variant="negative">
+						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
+							Tons of controls would further dilute the experience.
+						</p>
+					</SignalCard>
+					<SignalCard variant="negative">
+						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
+							There were more features packed in than before, and we still
+							needed room to scale.
+						</p>
+					</SignalCard>
+				</div>
+				<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+					<img
+						src={asset("/images/case-studies/aosp/aosp-architecture.png")}
+						alt="AOSP information architecture redesign"
+						class="h-auto w-full"
+						loading="lazy"
+					/>
+				</div>
+		</ContentSection>
+
+		<section class="mt-12 w-full">
+			<SectionIntro
+				as="div"
+				class="mt-0"
+				title="New information architecture"
+				bodyVariant="lead"
+			>
+				<p>
+					Each UI element and user journey was scrutinized and iterated on.
+					Many variables affected the decision-making process. For the purposes
+					of this case study, I focused on the refined post-feedback screens
+					and the decisions behind them.
+				</p>
+			</SectionIntro>
+			<div class="mt-8 grid gap-4 md:grid-cols-2">
+				<SignalCard>
+					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
+						The focal point became immediately clear, and the layout made much
+						better use of UI space.
+					</p>
+				</SignalCard>
+				<SignalCard>
+					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
+						Jobs-to-be-done were separated into their own sections and no
+						longer interfered with each other.
+					</p>
+				</SignalCard>
+				<SignalCard>
+					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
+						Each screen had a single primary action and, at most, a secondary
+						one.
+					</p>
+				</SignalCard>
+				<SignalCard>
+					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
+						The new sidebar structure created breathing room for richer
+						feature detail and future additions.
+					</p>
+				</SignalCard>
+			</div>
+			<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+				<img
+					src={asset("/images/case-studies/aosp/aosp-high-fidelity.png")}
+					alt="AOSP high-fidelity interface designs"
+					class="h-auto w-full"
+					loading="lazy"
+				/>
+			</div>
+		</section>
+
+		<ContentSection title="Prototype">
+				<p>
+					After multiple rounds of presenting new concepts to stakeholders
+					and gathering feedback from designers and engineers, I got the
+					green light to produce high-fidelity assets and build a prototype
+					in Figma. That prototype helped us collect further feedback both
+					internally and externally, and it became the basis for qualitative
+					user testing with three target groups:
+				</p>
+				<ul class="list-inside list-disc space-y-4 text-stone-700 marker:text-stone-950 dark:marker:text-stone-200">
+					<li>People who were already using this browser extension.</li>
+					<li>People who were using our products and were familiar with the brand.</li>
+					<li>General participants with no prior familiarity with our products.</li>
+				</ul>
+		</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-research.png")}
+			alt="AOSP prototype and research screens"
+		/>
+
+		<ContentSection title="User experience research outcome">
+				<p>
+					Users responded well to the redesign, especially the new light
+					visual style, and they moved through the product with ease.
+				</p>
+				<p>
+					Some features were conceptually unfamiliar, which meant a few
+					people did not immediately understand what they were looking at. We
+					addressed that by simplifying verbose copy and, in some cases,
+					replacing full paragraphs with a single line and a link to the
+					relevant help section. We documented every moment of hesitation or
+					friction around navigation and actions, so I could <strong
+						class="font-bold text-stone-950"
+					>smooth out those rough edges</strong> in the next iteration.
+				</p>
+		</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-handoff.jpg")}
+			alt="AOSP design handoff and implementation"
+		/>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Handoff" />
+			<SplitAsideSection>
+				<div slot="main" class="space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+					<p>
+						After a couple more iteration cycles, we were satisfied with the
+						new designs, so it was time to hand them off to development. As a
+						designer, I always try to <strong class="font-bold text-stone-950"
+							>support the devs' workflow</strong
+						> by including them in the process as early as possible and
+						providing meaningful, self-contained deliverables as the project
+						moves forward.
+					</p>
+					<p>
+						This gave engineers a much easier time with sprint planning and
+						let them work on the foundation while hi-fi designs were still
+						being prepared and finalized.
+					</p>
+					<p>
+						During development I had close back-and-forth with engineers to
+						make sure everything matched the established vision. Once visuals
+						started coming in, we held regular sessions to iron out rough
+						spots. Despite the team working remotely, I happened to be in the
+						same city as our main frontend developer, so we made the most of
+						it and worked together in person.
+					</p>
+				</div>
+				<div slot="aside">
+					<CardTitle as="h3" class="text-[1.2rem] sm:text-[1.3rem]">
+						Some examples from this project
+					</CardTitle>
+					<div class="mt-4 space-y-4 text-stone-700">
+						<div class="flex items-start gap-3">
+							<span class="mt-1 shrink-0 text-stone-400 dark:text-stone-500">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									class="h-4 w-4"
+									aria-hidden="true"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+										clip-rule="evenodd"
+									></path>
+								</svg>
+							</span>
+							<p>
+								Early prioritization and alignment on which features stayed or
+								were cut. This let developers refactor old code and prepare the
+								backend foundation for new features.
+							</p>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="mt-1 shrink-0 text-stone-400 dark:text-stone-500">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									class="h-4 w-4"
+									aria-hidden="true"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+										clip-rule="evenodd"
+									></path>
+								</svg>
+							</span>
+							<p>
+								Parallel work on the general structure, giving the team a clear
+								view of what frontend development would require.
+							</p>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="mt-1 shrink-0 text-stone-400 dark:text-stone-500">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									class="h-4 w-4"
+									aria-hidden="true"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+										clip-rule="evenodd"
+									></path>
+								</svg>
+							</span>
+							<p>
+								Early delivery of collateral such as Privacy Advisor messages,
+								interactive guides, updated web pages, and scenario-specific
+								messaging before frontend work became fully occupied with the
+								main UI.
+							</p>
+						</div>
+					</div>
+				</div>
+			</SplitAsideSection>
+		</section>
+
+		<ContentSection title="Localization to 20+ languages">
+				<p>
+					AOSP was available globally and had to be localized across
+					European, Asian, and Middle Eastern markets with every release or
+					update.
+				</p>
+				<p>
+					This introduced another level of complexity. One example was
+					producing promotional materials for various online stores. Another
+					was text length variability across languages, sometimes dramatic
+					enough to break the UI. Credit to our QA team for catching every
+					instance where that became a problem, so we could fix it in a timely
+					manner.
+				</p>
+		</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-localization.png")}
+			alt="AOSP localization and store assets"
+		/>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="How we measured success">
+				<p>
+					Avast has a wide array of analytics tools to establish and track
+					almost any metric, all stripped of personal data. Some of the things
+					we looked at included:
+				</p>
+				<div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+					<MetricStripCard title="Product adoption">
+						Onboarding success, core flow completion rates and feature
+						opt-ins. Engagement over the first month.
+					</MetricStripCard>
+					<MetricStripCard title="Usage &amp; interaction">
+						More specific data on how people used each feature, helping us
+						understand what brought the most value.
+					</MetricStripCard>
+					<MetricStripCard title="Privacy Advisor">
+						Guide completion, depth, popularity across guides, platform
+						rankings, and other engagement signals.
+					</MetricStripCard>
+					<MetricStripCard title="Promotional messaging">
+						Engagement with in-product promotions and cross-sell
+						opportunities, later extended into a subscription-based model.
+					</MetricStripCard>
+					<MetricStripCard title="User signals">
+						NPS, surveys, built-in quick feedback forms, store review
+						dynamics, and additional rounds of user testing.
+					</MetricStripCard>
+					<MetricStripCard
+						title="Churn and retention"
+						class="md:col-span-2 xl:col-span-1"
+					>
+						Installs versus uninstalls after the redesign, including the
+						initial dormant-user spike and the later recovery once campaigns
+						resumed.
+					</MetricStripCard>
+				</div>
+			</SectionIntro>
+		</section>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Key Results" />
+			<div class="mt-6 grid gap-4 md:grid-cols-2">
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M6.33307 4.47774C5.91556 4.33019 5.46663 4.25 5 4.25C2.79086 4.25 1 6.04086 1 8.25C1 8.66421 1.33579 9 1.75 9H5.0716C5.64388 9.70938 6.29062 10.3561 7 10.9284V14.25C7 14.6642 7.33579 15 7.75 15C9.95914 15 11.75 13.2091 11.75 11C11.75 10.5325 11.6698 10.0837 11.5224 9.66665C13.6597 7.70226 15 4.88307 15 1.75C15 1.33579 14.6642 1 14.25 1C11.1172 1 8.29699 2.34088 6.33307 4.47774ZM12 5.5C12 6.32843 11.3284 7 10.5 7C9.67157 7 9 6.32843 9 5.5C9 4.67157 9.67157 4 10.5 4C11.3284 4 12 4.67157 12 5.5Z" fill="currentColor"></path>
+							<path d="M3.90236 10.6821C4.10255 10.3195 3.97086 9.86323 3.60823 9.66305C3.24561 9.46286 2.78936 9.59455 2.58917 9.95718C2.21351 10.6377 2 11.42 2 12.25C2 12.6158 2.0415 12.9729 2.12036 13.3165C2.18467 13.5966 2.40341 13.8153 2.68354 13.8796C3.02706 13.9585 3.38415 14 3.75 14C4.57997 14 5.36232 13.7865 6.04282 13.4108C6.40545 13.2106 6.53714 12.7544 6.33695 12.3918C6.13677 12.0291 5.68052 11.8975 5.31789 12.0976C4.85371 12.3539 4.32004 12.5 3.75 12.5C3.66878 12.5 3.58834 12.497 3.50878 12.4912C3.50296 12.4117 3.5 12.3312 3.5 12.25C3.5 11.68 3.64612 11.1463 3.90236 10.6821Z" fill="currentColor"></path>
+						</svg>
+						Strong new product
+					</p>
+					<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+						After the redesign, <a
+							href="https://www.avast.com/avast-online-security"
+							target="_blank"
+							rel="noreferrer"
+							class="text-link text-stone-950"
+						>Avast Online Security &amp; Privacy 2.0</a> became a powerful
+						standalone offer and an <strong class="font-bold text-stone-950"
+							>integral touchpoint</strong
+						> within the broader customer experience.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M5 4C5.36246 4 5.67306 4.25922 5.7379 4.61584L5.99021 6.00355C6.08335 6.51578 6.48422 6.91665 6.99645 7.00979L8.38416 7.2621C8.74078 7.32694 9 7.63754 9 8C9 8.36246 8.74078 8.67306 8.38416 8.7379L6.99645 8.99021C6.48422 9.08335 6.08335 9.48422 5.99021 9.99645L5.7379 11.3842C5.67306 11.7408 5.36246 12 5 12C4.63754 12 4.32694 11.7408 4.2621 11.3842L4.00979 9.99645C3.91665 9.48422 3.51578 9.08335 3.00355 8.99021L1.61584 8.7379C1.25922 8.67306 1 8.36246 1 8C1 7.63754 1.25922 7.32694 1.61584 7.2621L3.00355 7.00979C3.51578 6.91665 3.91665 6.51578 4.00979 6.00355L4.2621 4.61584C4.32694 4.25922 4.63754 4 5 4Z" fill="currentColor"></path>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.3349 1 12.6291 1.22198 12.7211 1.54396L12.9159 2.2256C13.0345 2.64086 13.3591 2.96546 13.7744 3.0841L14.456 3.27886C14.778 3.37085 15 3.66514 15 4C15 4.33486 14.778 4.62915 14.456 4.72114L13.7744 4.9159C13.3591 5.03454 13.0345 5.35914 12.9159 5.7744L12.7211 6.45604C12.6291 6.77802 12.3349 7 12 7C11.6651 7 11.3709 6.77802 11.2789 6.45604L11.0841 5.7744C10.9655 5.35914 10.6409 5.03454 10.2256 4.9159L9.54396 4.72114C9.22198 4.62915 9 4.33486 9 4C9 3.66514 9.22198 3.37085 9.54396 3.27886L10.2256 3.0841C10.6409 2.96546 10.9655 2.64086 11.0841 2.2256L11.2789 1.54396C11.3709 1.22198 11.6651 1 12 1Z" fill="currentColor"></path>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M10 11C10.3442 11 10.6441 11.2342 10.7276 11.5681C10.8143 11.9149 11.0851 12.1857 11.4319 12.2724C11.7658 12.3559 12 12.6558 12 13C12 13.3442 11.7658 13.6441 11.4319 13.7276C11.0851 13.8143 10.8143 14.0851 10.7276 14.4319C10.6441 14.7658 10.3442 15 10 15C9.65585 15 9.35586 14.7658 9.27239 14.4319C9.18569 14.0851 8.9149 13.8143 8.5681 13.7276C8.23422 13.6441 8 13.3442 8 13C8 12.6558 8.23422 12.3559 8.5681 12.2724C8.9149 12.1857 9.18569 11.9149 9.27239 11.5681C9.35586 11.2342 9.65585 11 10 11Z" fill="currentColor"></path>
+						</svg>
+						Flagship-aligned launch
+					</p>
+					<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+						With a fresh new look, fully reimagined UX, and a new privacy-first
+						posture, AOSP became the only <strong class="font-bold text-stone-950"
+							>rebranded product</strong
+						> launched alongside the flagship Avast One in the company's
+						latest design language.
+					</p>
+				</SurfaceCard>
+			</div>
+			<div class="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path d="M13.407 2.58984C13.3168 2.18556 12.916 1.93091 12.5117 2.02107C12.1074 2.11124 11.8528 2.51206 11.9429 2.91635C12.3077 4.55194 12.5003 6.25315 12.5003 8.00023C12.5003 9.74731 12.3077 11.4485 11.9429 13.0841C11.8528 13.4884 12.1074 13.8892 12.5117 13.9794C12.916 14.0696 13.3168 13.8149 13.407 13.4106C13.6713 12.2255 13.8506 11.0086 13.9382 9.76675C14.5699 9.43059 15 8.76552 15 8C15 7.23447 14.5699 6.56939 13.9382 6.23324C13.8505 4.99157 13.6713 3.77483 13.407 2.58984Z" fill="currentColor"></path>
+							<path d="M4.34757 11H4C2.34315 11 1 9.65685 1 8C1 6.34315 2.34315 5 4 5H6C7.64721 5 9.21691 4.66794 10.6459 4.06738C10.8783 5.34142 11 6.6554 11 7.99943C11 9.34372 10.8783 10.658 10.6457 11.9322C9.33751 11.3824 7.91134 11.0578 6.41572 11.0069C6.61941 11.7252 6.89425 12.4137 7.23216 13.0641C7.35143 13.2937 7.28883 13.5787 7.07691 13.7271L6.24892 14.3068C6.01046 14.4738 5.67952 14.4029 5.54168 14.1465C5.01475 13.1663 4.60992 12.1107 4.34757 11Z" fill="currentColor"></path>
+						</svg>
+						Market advantage
+					</p>
+					<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+						We created a <strong class="font-bold text-stone-950"
+							>significant</strong
+						> new marketing differentiator.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M5.00001 4C5.00001 2.34315 6.34316 1 8.00001 1C9.65687 1 11 2.34315 11 4V5H11.6425C12.4132 5 13.0584 5.58394 13.1351 6.35074L13.8351 13.3507C13.9234 14.2338 13.23 15 12.3425 15H3.65749C2.77006 15 2.07664 14.2338 2.16494 13.3507L2.86494 6.35075C2.94162 5.58394 3.58687 5 4.35749 5H5.00001V4ZM9.50001 4V5H6.50001V4C6.50001 3.17157 7.17159 2.5 8.00001 2.5C8.82844 2.5 9.50001 3.17157 9.50001 4ZM6.5 7.75C6.5 7.33579 6.16421 7 5.75 7C5.33579 7 5 7.33579 5 7.75V8.75C5 10.4069 6.34315 11.75 8 11.75C9.65685 11.75 11 10.4069 11 8.75V7.75C11 7.33579 10.6642 7 10.25 7C9.83579 7 9.5 7.33579 9.5 7.75V8.75C9.5 9.57843 8.82843 10.25 8 10.25C7.17157 10.25 6.5 9.57843 6.5 8.75V7.75Z" fill="currentColor"></path>
+						</svg>
+						New touchpoints
+					</p>
+					<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+						We added contextual first-purchase touchpoints for
+						<strong class="font-bold text-stone-950">meaningful</strong>
+						cross- and up-selling to other products.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path d="M2 4C2 2.89543 2.89543 2 4 2H12C13.1046 2 14 2.89543 14 4C14 5.10457 13.1046 6 12 6H4C2.89543 6 2 5.10457 2 4Z" fill="currentColor"></path>
+							<path d="M2 9.25C2 8.83579 2.33579 8.5 2.75 8.5H13.25C13.6642 8.5 14 8.83579 14 9.25C14 9.66421 13.6642 10 13.25 10H2.75C2.33579 10 2 9.66421 2 9.25Z" fill="currentColor"></path>
+							<path d="M2.75 12.5C2.33579 12.5 2 12.8358 2 13.25C2 13.6642 2.33579 14 2.75 14H13.25C13.6642 14 14 13.6642 14 13.25C14 12.8358 13.6642 12.5 13.25 12.5H2.75Z" fill="currentColor"></path>
+						</svg>
+						Easy flows
+					</p>
+					<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+						We <strong class="font-bold text-stone-950"
+							>simplified navigation</strong
+						> across all privacy settings, making key user journeys much more
+						effective.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M8.50019 1.70873C8.21543 1.45386 7.78457 1.45386 7.49981 1.70873C6.1781 2.89169 4.50633 3.6889 2.65985 3.92627C2.29508 3.97316 2.01813 4.27764 2.0059 4.64521C2.00198 4.7631 2 4.88145 2 5.00023C2 9.05223 4.29542 12.5669 7.65336 14.317C7.87059 14.4302 8.12941 14.4302 8.34664 14.317C11.7046 12.5669 14 9.05223 14 5.00023C14 4.88145 13.998 4.7631 13.9941 4.64522C13.9819 4.27764 13.7049 3.97316 13.3401 3.92627C11.4937 3.6889 9.8219 2.89169 8.50019 1.70873ZM10.8398 7.21337C11.0957 6.88766 11.0391 6.41617 10.7134 6.16026C10.3877 5.90435 9.91618 5.96093 9.66027 6.28664L7.39384 9.17119L6.23811 8.18056C5.92361 7.91099 5.45014 7.94741 5.18057 8.26191C4.911 8.5764 4.94743 9.04988 5.26192 9.31944L7.01192 10.8194C7.16716 10.9525 7.36999 11.0164 7.57347 10.9964C7.77695 10.9764 7.96343 10.8741 8.08975 10.7134L10.8398 7.21337Z" fill="currentColor"></path>
+						</svg>
+						Live privacy guidance
+					</p>
+					<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+						We introduced an <strong class="font-bold text-stone-950"
+							>interactive</strong
+						> Privacy Advisor feature to guide users in real time on platforms
+						like Facebook, Google, Twitter, and more.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path d="M10.6177 10.2608C10.2569 10.483 10 10.8578 10 11.2816C10 11.5075 9.85818 11.7112 9.64083 11.7729C9.11933 11.9208 8.56891 12 8 12C7.43109 12 6.88067 11.9208 6.35917 11.7729C6.14182 11.7112 6 11.5075 6 11.2816C6 10.8578 5.74314 10.483 5.38228 10.2608C3.95293 9.3808 3 7.80168 3 6C3 3.23858 5.23858 1 8 1C10.7614 1 13 3.23858 13 6C13 7.80168 12.0471 9.3808 10.6177 10.2608Z" fill="currentColor"></path>
+							<path d="M6.86696 13.4151C6.45741 13.3531 6.07514 13.6348 6.01313 14.0444C5.95112 14.4539 6.23286 14.8362 6.64241 14.8982C7.08559 14.9653 7.53898 15 8 15C8.46102 15 8.91442 14.9653 9.3576 14.8982C9.76715 14.8362 10.0489 14.4539 9.98688 14.0444C9.92487 13.6348 9.5426 13.3531 9.13305 13.4151C8.76394 13.471 8.3856 13.5 8 13.5C7.6144 13.5 7.23607 13.471 6.86696 13.4151Z" fill="currentColor"></path>
+						</svg>
+						Higher awareness
+					</p>
+					<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+						We measurably <strong class="font-bold text-stone-950"
+							>increased</strong
+						> user awareness of privacy issues and available solutions
+						compared to the previous version.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M15 8C15 8.98224 14.5279 9.85423 13.7983 10.4015C13.9273 11.3044 13.6446 12.2549 12.95 12.9494C12.2553 13.6441 11.3048 13.9269 10.4019 13.7978C9.85465 14.5277 8.98248 15 8 15C7.01773 15 6.14572 14.5279 5.59848 13.7983C4.69556 13.9273 3.74514 13.6445 3.05055 12.9499C2.35595 12.2553 2.07316 11.3048 2.2022 10.4019C1.47228 9.85464 1 8.98248 1 8C1 7.01773 1.47208 6.14573 2.20173 5.59848C2.07273 4.69557 2.35552 3.74513 3.0501 3.05055C3.74471 2.35595 4.69519 2.07316 5.59813 2.2022C6.14535 1.47228 7.01752 1 8 1C8.98224 1 9.85423 1.47205 10.4015 2.20167C11.3044 2.07265 12.2549 2.35544 12.9494 3.05003C13.6441 3.74465 13.9269 4.69516 13.7978 5.59813C14.5277 6.14535 15 7.01752 15 8ZM11.7086 5.15657C12.0364 5.40984 12.0967 5.88086 11.8435 6.20862L7.59347 11.7086C7.45747 11.8846 7.25037 11.9912 7.0281 11.9995C6.80583 12.0078 6.59133 11.9171 6.44254 11.7518L4.19254 9.25176C3.91544 8.94388 3.9404 8.46966 4.24828 8.19257C4.55617 7.91547 5.03038 7.94043 5.30748 8.24831L6.95616 10.0802L10.6565 5.29145C10.9098 4.96369 11.3808 4.9033 11.7086 5.15657Z" fill="currentColor"></path>
+						</svg>
+						Stakeholder response
+					</p>
+					<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+						The outcome was <strong class="font-bold text-stone-950"
+							>well received</strong
+						> by stakeholders at all levels, including the C-suite.
+					</p>
+				</SurfaceCard>
+			</div>
+		</section>
+
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-results.png")}
+			alt="AOSP final product results"
+		/>
+
+		<ContentSection title="Personal takeaway">
+				<p>
+					It was a fascinating design-driven project. I'm grateful for the
+					chance to lead such a significant part of the design process and see
+					the success of our efforts. Huge thanks to everyone involved.
+				</p>
+				<p>
+					By the end of my time with the company, AOSP was the product I felt
+					most attached to. After the redesign, it began to bring a lot of
+					value to people and became much more delightful to use, which is the
+					combination that ultimately matters most.
+				</p>
+		</ContentSection>
+
+</CaseStudyLayout>

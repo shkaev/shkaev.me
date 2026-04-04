@@ -4,6 +4,9 @@ import CaseStudyHero from "../components/sections/CaseStudyHero.astro";
 import MediaLinkCard from "../components/sections/MediaLinkCard.astro";
 import MicroLabel from "../components/typography/MicroLabel.astro";
 import { resolveStaticAssetUrl } from "../lib/assetUrl";
+import type { Locale } from "../i18n/config";
+import { getSiteCopy } from "../i18n/copy";
+import { localizePath } from "../i18n/routing";
 
 interface MoreCaseStudyLink {
 	href: string;
@@ -22,6 +25,7 @@ interface Props {
 	heroSrc: string;
 	heroAlt: string;
 	moreCaseStudies: MoreCaseStudyLink[];
+	locale?: Locale;
 }
 
 const {
@@ -30,30 +34,35 @@ const {
 	pageTitle,
 	heroSrc,
 	heroAlt,
-	moreCaseStudies
+	moreCaseStudies,
+	locale = "en"
 } = Astro.props;
 
+const copy = getSiteCopy(locale);
 const resolvedHeroSrc = resolveStaticAssetUrl(heroSrc);
 const resolvedMoreCaseStudies = moreCaseStudies.map((study) => ({
 	...study,
+	href: localizePath(study.href, locale),
 	logoSrc: resolveStaticAssetUrl(study.logoSrc),
 	imageSrc: resolveStaticAssetUrl(study.imageSrc)
 }));
 ---
 
-<SiteLayout title={title} description={description}>
+<SiteLayout title={title} description={description} locale={locale}>
 	<div class="flex w-full flex-col">
 		<CaseStudyHero
 			title={pageTitle}
 			lead={description}
 			heroSrc={resolvedHeroSrc}
 			heroAlt={heroAlt}
+			backHref={localizePath("/design", locale)}
+			backLabel={copy.design.caseStudyBackLabel}
 		/>
 
 		<slot />
 
 		<section class="mt-20 w-full">
-			<MicroLabel class="text-sm tracking-[0.24em]">Read more case studies</MicroLabel>
+			<MicroLabel class="text-sm tracking-[0.24em]">{copy.design.caseStudyReadMoreLabel}</MicroLabel>
 			<div class="mt-6 flex flex-col gap-4">
 				{
 					resolvedMoreCaseStudies.map((study) => (

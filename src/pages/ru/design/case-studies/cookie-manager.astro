@@ -1,0 +1,452 @@
+---
+import CaseStudyLayout from "../../../../layouts/CaseStudyLayout.astro";
+import CalloutColumn from "../../../../components/sections/CalloutColumn.astro";
+import ContentSection from "../../../../components/sections/ContentSection.astro";
+import CalloutBlock from "../../../../components/sections/CalloutBlock.astro";
+import InfoCardGrid from "../../../../components/sections/InfoCardGrid.astro";
+import MediaSection from "../../../../components/sections/MediaSection.astro";
+import MetaGrid from "../../../../components/sections/MetaGrid.astro";
+import MetaItem from "../../../../components/sections/MetaItem.astro";
+import SectionIntro from "../../../../components/sections/SectionIntro.astro";
+import SplitAsideSection from "../../../../components/sections/SplitAsideSection.astro";
+import SurfaceCard from "../../../../components/sections/SurfaceCard.astro";
+import MicroLabel from "../../../../components/typography/MicroLabel.astro";
+import CardTitle from "../../../../components/typography/CardTitle.astro";
+import SectionBody from "../../../../components/typography/SectionBody.astro";
+import { resolveStaticAssetUrl as asset } from "../../../../lib/assetUrl";
+
+const moreCaseStudies = [
+	{
+		href: "/design/case-studies/aosp",
+		title: "Avast Online Security & Privacy",
+		logoSrc: "/favicons/avast.ico",
+		logoAlt: "Avast",
+		imageSrc: "/images/case-studies/aosp/aosp-hero.jpg",
+		imageAlt: "Avast Online Security & Privacy case study preview",
+		description:
+			"A major redesign of the flagship browser extension with over 10 million users."
+	},
+	{
+		href: "/design/case-studies/trackoff",
+		title: "TrackOFF",
+		logoSrc: "/favicons/trackoff.png",
+		logoAlt: "TrackOFF",
+		imageSrc: "/images/case-studies/trackoff/trackoff-hero.jpg",
+		imageAlt: "TrackOFF case study preview",
+		description:
+			"A short story about building a successful product from the ground up and seeing it through to acquisition."
+	}
+];
+---
+
+<CaseStudyLayout
+	title="Cookie Manager | Design Case Study | Dmitry Shkaev"
+	description="Designing, building, and integrating a new feature in Avast Online Security & Privacy."
+	pageTitle="Cookie Manager"
+	heroSrc="/images/case-studies/cookie-manager/cookie-manager-hero.jpg"
+	heroAlt="Cookie Manager case study hero image"
+	moreCaseStudies={moreCaseStudies}
+	locale="ru"
+>
+
+		<ContentSection title="Executive summary" bodyClass="mt-6">
+			<p>
+				Building on the successful Avast Online Security &amp; Privacy
+				redesign, our team developed a new feature for the company's flagship
+				browser extension. This allowed us to expand the initial offering and
+				pave a smoother path towards transitioning to the paid model as well
+				as an integration with the <a
+					href="https://www.avast.com/avast-one"
+					target="_blank"
+					rel="noreferrer"
+						class="text-link text-stone-950"
+					>Avast One</a> suite.
+			</p>
+		</ContentSection>
+
+		<ContentSection
+			title="Team"
+			class="border-y border-stone-200 pt-10 pb-12"
+			bodyClass="mt-6 space-y-8"
+		>
+				<p>
+					A compact cross-functional team carried Cookie Manager from product
+					framing through design, research, implementation, and release.
+				</p>
+				<MetaGrid>
+					<div class="lg:col-span-1">
+						<div class="space-y-5">
+							<MetaItem label="Product owner">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/ron-ward-30432894/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Ron Ward</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Product designer">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/shkaev/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Dmitry Shkaev</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Engineering">
+								<p>
+									<a
+										href="https://bit.ly/3WzT3GQ"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Jiri Pojezny</a>, <a
+										href="https://www.linkedin.com/in/gilyov/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Anton Gilyov</a>
+								</p>
+							</MetaItem>
+						</div>
+					</div>
+					<div class="lg:col-span-2">
+						<div class="space-y-5">
+							<MetaItem label="UX research">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/natalie-schinkova/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Natalie Schinkova</a>, <a
+										href="https://www.linkedin.com/in/veronikakonecna/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Veronika Konecna</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="UX writing">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/alyyamada/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Alysa Yamada</a>
+								</p>
+							</MetaItem>
+						</div>
+					</div>
+				</MetaGrid>
+		</ContentSection>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Problem statement" />
+			<div class="mt-6 grid gap-8 lg:grid-cols-3">
+				<CalloutColumn title="The acquired product" bodyClass="space-y-4">
+					<p>
+						In 2021, Avast <a
+							href="https://www.i-dont-care-about-cookies.eu/whats-new/acquisition/"
+							target="_blank"
+							rel="noreferrer"
+							class="text-link text-stone-950"
+						>purchased</a> a popular browser extension called "I Don't Care
+						About Cookies" created by Croatian developer <a
+							href="https://www.linkedin.com/in/dkladnik/"
+							target="_blank"
+							rel="noreferrer"
+							class="text-link text-stone-950"
+						>Daniel Kladnik</a>. The product already had clear demand: it
+						removed cookie consent prompts and let people browse with fewer
+						interruptions, which was especially relevant in GDPR-heavy
+						markets.
+					</p>
+				</CalloutColumn>
+				<CalloutColumn title="Why it was paused" bodyClass="space-y-4">
+					<p>
+						The intention was to embed that capability into one of Avast's
+						privacy products, initially Avast AntiTrack. But as a paid tool,
+						it was not the right environment to unlock broad user value from
+						the acquisition. Amid larger internal shifts at Avast, the
+						purchased extension was temporarily shelved.
+					</p>
+				</CalloutColumn>
+				<CalloutColumn title="Why AOSP became the fit" bodyClass="space-y-4">
+					<p>
+						That changed with the <a
+							href="/design/case-studies/aosp"
+							class="text-link text-stone-950"
+						>revival of Avast Online Security &amp; Privacy</a> by the end of
+						2021. AOSP had quickly become one of the company's top products
+						and was the first place where this acquisition could strengthen
+						the core value proposition instead of feeling bolted on.
+					</p>
+				</CalloutColumn>
+			</div>
+			<CalloutBlock
+				label="My role"
+				title="Turning the acquisition into a product feature"
+				body="As the designer on Avast Online Security & Privacy, I led the work of shaping that acquisition into a coherent feature within the product."
+				class="mt-8"
+			>
+				<span slot="label-prefix" class="-translate-y-px text-amber-500">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 20 20"
+							fill="currentColor"
+							class="h-4 w-4"
+							aria-hidden="true"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+								clip-rule="evenodd"
+							></path>
+						</svg>
+				</span>
+			</CalloutBlock>
+		</section>
+
+		<MediaSection
+			src={asset("/images/case-studies/cookie-manager/cookie-manager-wireframes.jpg")}
+			alt="Cookie Manager wireframes"
+		/>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Design goals" />
+			<InfoCardGrid>
+				<SurfaceCard>
+					<MicroLabel>Flow</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Make browsing feel uninterrupted
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						Help people get cookie banners out of the way instead of repeatedly
+						breaking their flow.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<MicroLabel>Complexity</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Go beyond the easy cases
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						Address multi-option consent flows that the original extension did
+						not fully resolve.
+					</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<MicroLabel>Integration</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Make it belong in the product
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						Integrate the new feature into the recently redesigned framework so
+						it felt native in both UX and visual language.
+					</p>
+				</SurfaceCard>
+			</InfoCardGrid>
+		</section>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Design process" />
+			<SplitAsideSection gridClass="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10">
+				<div slot="main">
+					<SectionBody class="mt-0">
+						<p>
+							Business justification was already in place by the time design
+							began, so there was no need for a classic discovery phase. Our
+							first task was to decide where this new capability should live
+							inside the product. The original extension barely had an
+							interface, so we were effectively starting from scratch while
+							reusing parts of its backend.
+						</p>
+					</SectionBody>
+					<CalloutBlock
+						label="Next steps"
+						title="From the first drafts to the user testing"
+						body="I produced wireframes covering all key ideas and requirements. We went through a few rounds of internal feedback, and then I moved on to produce hi-fi visuals to run the first external user test."
+						class="mt-8"
+					>
+						<span slot="label-prefix" class="-translate-y-px text-amber-500">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									class="h-4 w-4"
+									aria-hidden="true"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+										clip-rule="evenodd"
+									></path>
+								</svg>
+						</span>
+					</CalloutBlock>
+				</div>
+				<div slot="aside">
+					<CalloutColumn
+						title="The Challenge"
+						titleAs="h3"
+						titleClass="text-[1.2rem] sm:text-[1.3rem]"
+						bodyClass="space-y-4 text-[0.98rem] leading-7 sm:text-base"
+					>
+						<p>
+							Balance user value, usability, in-app visibility, and business
+							impact without pulling too much attention away from the core
+							features.
+						</p>
+						<p>
+							Early concepts ranged from a simple checkbox to a dedicated area
+							in the UI. The richer direction won out, with an on/off toggle,
+							value indicators, customization, and whitelisting.
+						</p>
+					</CalloutColumn>
+				</div>
+			</SplitAsideSection>
+		</section>
+
+		<ContentSection title="Prototype">
+				<p>
+					After running the high-fidelity screens by the team and receiving
+					sign-off from our project owner, I created a prototype in Figma,
+					emulating the flow from installing the extension to discovering and
+					using the Cookie Manager feature.
+				</p>
+				<p>
+					To prepare for the user interviews, we sourced questions from all
+					stakeholders and key team members. The user interviews were
+					conducted by my colleagues Natalie and Veronika. I joined one of the
+					early calls to see if we were on the right track with gathering
+					useful information. They also did a great job of putting together an
+					extensive summary of the findings. Still, I watched all the
+					recordings later by myself to note the specific observations I was
+					looking for.
+				</p>
+		</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/cookie-manager/cookie-manager-prototype.png")}
+			alt="Cookie Manager prototype screens"
+		/>
+
+		<ContentSection title="User experience research outcome">
+				<p>
+					The results were strong and, in some respects, eye-opening. It was
+					one of the most useful pieces of qualitative user research I had in
+					a while, because of the number of important insights that people
+					shared with us. As often happens, some of our previous assumptions
+					did not hold up, and some performed really well.
+				</p>
+				<p>
+					For example, initially we adopted a tooltip system from Avast One,
+					where people would hover over a question mark icon and read a short
+					helper text. This interaction pattern has existed since the earliest
+					visual operating systems, so it seemed obvious for the user. In
+					reality, only two people out of ten found it, and only one of them
+					cared to read the text. Even that person struggled to understand the
+					intended message.
+				</p>
+				<p>
+					Overall, the feature was well received, and there were only moderate
+					to minor usability issues. We presented the findings summary to the
+					team for discussion and prioritization.
+				</p>
+		</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/cookie-manager/cookie-manager-research.png")}
+			alt="Cookie Manager user research findings"
+		/>
+
+		<section class="mt-12 w-full">
+			<div class="space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+				<p>
+					Next, I set out to structure, verify, and implement the feedback we
+					had agreed to address.
+				</p>
+				<p>
+					<strong class="font-bold text-stone-950"
+						>As a result of this research, we reimagined how we presented
+						complex cookie popups and the options provided to the user.</strong
+					> Ideally, a second round of qualitative research would have
+					followed, but given the tight timeline, we decided to proceed with
+					the release, gather quantitative data, and revisit the feature in a
+					second phase.
+				</p>
+			</div>
+		</section>
+
+		<MediaSection
+			src={asset("/images/case-studies/cookie-manager/cookie-manager-handoff.png")}
+			alt="Cookie Manager final designs and handoff"
+		/>
+
+		<section class="mt-12 w-full">
+			<div class="grid gap-4 lg:grid-cols-3">
+				<SurfaceCard as="article">
+					<CardTitle as="h2" class="text-[1.35rem] leading-tight sm:text-[1.5rem]">
+						Handoff
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						We had a dedicated team of engineers assigned to the project, so
+						our collaboration started as soon as the project kicked off.
+						Working together, we were building the feature iteratively and on
+						schedule, quickly resolving any issues as they emerged. I was
+						pleased with how faithfully the frontend implementation matched
+						the design.
+					</p>
+				</SurfaceCard>
+
+				<SurfaceCard as="article">
+					<CardTitle as="h2" class="text-[1.35rem] leading-tight sm:text-[1.5rem]">
+						How we measured success
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						The OKRs were well-defined: shipping on schedule, improving
+						adoption after release, measuring sales impact from
+						cross-promotional campaigns, increasing NPS results by a set
+						amount, and a few others.
+					</p>
+				</SurfaceCard>
+
+				<SurfaceCard as="article">
+					<CardTitle as="h2" class="text-[1.35rem] leading-tight sm:text-[1.5rem]">
+						Results
+					</CardTitle>
+					<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+						We successfully shipped Cookie Manager and launched it alongside
+						a marketing campaign. This marked an important milestone in the
+						AOSP product roadmap. Over the next few months, adoption and
+						engagement rates for Cookie Manager exceeded our expectations.
+					</p>
+				</SurfaceCard>
+			</div>
+		</section>
+
+		<ContentSection title="Personal takeaway">
+				<p>
+					This was a perfect example of end-to-end regular design work in a
+					corporate environment, excluding the discovery phase. It might seem
+					routine on the surface, but these projects are always unique and
+					present their own challenges. In this particular instance, I really
+					liked how user research reshaped our design decisions and
+					significantly affected the complexity of information presented to
+					users.
+				</p>
+				<p>
+					Within a single project I had a chance to come up with a new
+					information architecture, create raw concepts, craft prototypes,
+					validate our ideas through feedback sessions and research, build
+					high-fidelity UI, ship to developers, and work with them to oversee
+					the implementation. It really had it all.
+				</p>
+		</ContentSection>
+
+</CaseStudyLayout>
