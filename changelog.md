@@ -6,7 +6,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-04</span></p>
 
-## Corrected follow-up regressions and continued the v2 refactor
+## Corrected follow-up regressions, continued the v2 refactor, and began the Russian localization rollout
 
 <p class="changelog-label changelog-label--fixed">Fixed</p>
 
@@ -17,10 +17,12 @@ Use completed/past tense throughout, including entry titles, and do not show com
 <p class="changelog-label changelog-label--improved">Improved</p>
 
 - Continued the audit-first `v2` migration by moving more repeated page patterns into shared content components and styling tokens across the case studies and top-level pages.
+- Started the Russian localization rollout across the shared site shell with a language toggle, localized header and footer chrome, and a Russian changelog drawer.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
 - Trimmed follow-up dead code and duplicate prose wrappers from the new shared content-system slices, while tightening the semantics and body-variant APIs in the new shared components.
+- Added locale-aware routing helpers, dictionaries, and client-side locale toggle plumbing to support paired English and Russian routes.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-02</span></p>
 

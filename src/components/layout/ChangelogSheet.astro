@@ -1,5 +1,13 @@
 ---
 import { Content as ChangelogContent } from "../../../changelog.md";
+import { Content as ChangelogContentRu } from "../../../changelog.ru.md";
+import type { Locale } from "../../i18n/config";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
 ---
 
 <div
@@ -21,25 +29,29 @@ import { Content as ChangelogContent } from "../../../changelog.md";
 		<div class="site-sheet__surface">
 			<div class="site-sheet__header">
 				<div class="min-w-0">
-					<h2
-						id="changelog-sheet-title"
-						class="text-[2.5rem] leading-none tracking-tight text-stone-950 sm:text-[3rem]"
-					>
-						Changelog
-					</h2>
-					<p
-						class="site-sheet__subtitle mt-3 max-w-xl text-[0.98rem] leading-[1.8] text-stone-600"
-					>
-						A running record of meaningful production updates.
-					</p>
-				</div>
+						<h2
+							id="changelog-sheet-title"
+							class="text-[2.5rem] leading-none tracking-tight text-stone-950 sm:text-[3rem]"
+						>
+							{locale === "ru" ? "Чейнджлог" : "Changelog"}
+						</h2>
+						<p
+							class="site-sheet__subtitle mt-3 max-w-xl text-[0.98rem] leading-[1.8] text-stone-600"
+						>
+							{
+								locale === "ru"
+									? "Хроника значимых обновлений сайта и продакшена."
+									: "A running record of meaningful production updates."
+							}
+						</p>
+					</div>
 				<button
-					type="button"
-					data-sheet-close
-					data-sheet-close-button
-					class="site-sheet__icon-button"
-					aria-label="Close changelog"
-				>
+						type="button"
+						data-sheet-close
+						data-sheet-close-button
+						class="site-sheet__icon-button"
+						aria-label={locale === "ru" ? "Закрыть чейнджлог" : "Close changelog"}
+					>
 					<svg
 						aria-hidden="true"
 						viewBox="0 0 24 24"
@@ -55,11 +67,11 @@ import { Content as ChangelogContent } from "../../../changelog.md";
 					</svg>
 				</button>
 			</div>
-			<div class="site-sheet__content">
-				<div data-changelog-sheet>
-					<ChangelogContent />
+				<div class="site-sheet__content">
+					<div data-changelog-sheet>
+						{locale === "ru" ? <ChangelogContentRu /> : <ChangelogContent />}
+					</div>
 				</div>
-			</div>
 		</div>
 	</aside>
 </div>

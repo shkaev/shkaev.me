@@ -4,12 +4,18 @@ import ChangelogSheet from "../components/layout/ChangelogSheet.astro";
 import SiteFooter from "../components/layout/SiteFooter.astro";
 import SiteHead from "../components/layout/SiteHead.astro";
 import SiteHeader from "../components/layout/SiteHeader.astro";
+import { defaultLocale, getOtherLocale, type Locale } from "../i18n/config";
+import { getSiteCopy } from "../i18n/copy";
+import {
+	getAlternateLocaleLinks,
+	getLocaleFromPath,
+	getLocaleTargetPath,
+	localizePath,
+	stripLocaleFromPath
+} from "../i18n/routing";
 import { resolveStaticAssetUrl } from "../lib/assetUrl";
 import {
-	navigation,
-	socialLinks,
 	shellWidthClass,
-	siteName,
 	siteUrl
 } from "../lib/siteConfig";
 import { normalizePath } from "../lib/sitePath";
@@ -17,13 +23,17 @@ import { normalizePath } from "../lib/sitePath";
 interface Props {
 	title: string;
 	description?: string;
+	locale?: Locale;
 }
 
-const { title, description = "Personal website of Dmitry Shkaev." } =
+const { title, description = "Personal website of Dmitry Shkaev.", locale: explicitLocale } =
 	Astro.props;
 
 const pathname = normalizePath(Astro.url.pathname);
-const isHomePage = pathname === "/";
+const locale = explicitLocale ?? getLocaleFromPath(pathname);
+const copy = getSiteCopy(locale);
+const basePathname = stripLocaleFromPath(pathname);
+const isHomePage = basePathname === "/";
 const favicon32Src = resolveStaticAssetUrl("/favicons/favicon-32.png");
 const appleTouchIconSrc = resolveStaticAssetUrl("/favicons/apple-touch-icon.png");
 const avatarSrc = resolveStaticAssetUrl("/avatars/avatar.jpg");
@@ -31,26 +41,49 @@ const interLatinFontSrc = "/fonts/inter-latin-variable.woff2";
 const displayFontSemiboldSrc = "/fonts/ibm-plex-serif-latin-600.woff2";
 const canonicalUrl = new URL(pathname, siteUrl).toString();
 const socialImageUrl = new URL(avatarSrc, siteUrl).toString();
+const alternateUrls = getAlternateLocaleLinks(pathname).map((item) => ({
+	href: new URL(item.href, siteUrl).toString(),
+	hreflang: item.locale
+}));
+const localizedNavigation = copy.navigation.map((item) => ({
+	...item,
+	href: localizePath(item.href, locale)
+}));
+const homeHref = localizePath("/", locale);
+const languageTargetLocale = getOtherLocale(locale);
+const languageTargetPath = getLocaleTargetPath(pathname, languageTargetLocale);
 ---
 
-<html lang="en">
+<html lang={locale}>
 	<head>
 		<SiteHead
 			title={title}
 			description={description}
+			locale={locale}
 			favicon32Src={favicon32Src}
 			appleTouchIconSrc={appleTouchIconSrc}
 			avatarSrc={avatarSrc}
-			siteName={siteName}
+			siteName={copy.siteName}
 			canonicalUrl={canonicalUrl}
 			socialImageUrl={socialImageUrl}
 			interLatinFontSrc={interLatinFontSrc}
 			displayFontSemiboldSrc={displayFontSemiboldSrc}
+			alternateUrls={alternateUrls}
 		/>
 	</head>
 	<body class="min-h-[100svh] bg-stone-50 text-stone-900 antialiased transition-colors dark:bg-stone-950 dark:text-stone-100 sm:min-h-screen">
 		<div class="flex min-h-[100svh] flex-col px-6 py-6 sm:min-h-screen sm:px-8 sm:py-6 lg:px-12">
-			<SiteHeader pathname={pathname} navigation={navigation} avatarSrc={avatarSrc} />
+				<SiteHeader
+					pathname={basePathname}
+					navigation={localizedNavigation}
+					avatarSrc={avatarSrc}
+					siteName={copy.siteName}
+					homeHref={homeHref}
+					headerCopy={copy.header}
+					locale={locale}
+				languageTargetLocale={languageTargetLocale}
+				languageTargetPath={languageTargetPath}
+			/>
 
 			<main class:list={[
 				"mx-auto flex w-full flex-1 items-start",
@@ -60,9 +93,13 @@ const socialImageUrl = new URL(avatarSrc, siteUrl).toString();
 				<slot />
 			</main>
 
-			<SiteFooter isHomePage={isHomePage} socialLinks={socialLinks} />
+			<SiteFooter
+				isHomePage={isHomePage}
+				socialLinks={copy.socialLinks}
+				tagline={copy.footer.tagline}
+			/>
 		</div>
-		<ChangelogSheet />
+		<ChangelogSheet locale={locale} />
 		<script is:inline>
 			(() => {
 				const scrollStorageKey = "scroll-position:";
@@ -179,12 +216,14 @@ const socialImageUrl = new URL(avatarSrc, siteUrl).toString();
 				});
 			})();
 		</script>
-		<script>
-			import { setupThemeControls } from "../scripts/siteTheme";
-			import { setupChangelogSheet } from "../scripts/changelogSheet";
+			<script>
+				import { setupThemeControls } from "../scripts/siteTheme";
+				import { setupChangelogSheet } from "../scripts/changelogSheet";
+				import { setupLocaleToggle } from "../scripts/siteLocaleToggle";
 
-			setupThemeControls();
-			setupChangelogSheet();
-		</script>
-	</body>
-</html>
+				setupThemeControls();
+				setupChangelogSheet();
+				setupLocaleToggle();
+			</script>
+		</body>
+	</html>

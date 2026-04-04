@@ -1,13 +1,14 @@
 ---
 import { shellWidthClass } from "../../lib/siteConfig";
-import type { SocialLink } from "../../lib/siteConfig";
+import type { SocialLinkCopy } from "../../i18n/copy";
 
 interface Props {
 	isHomePage: boolean;
-	socialLinks: SocialLink[];
+	socialLinks: SocialLinkCopy[];
+	tagline: string;
 }
 
-const { isHomePage, socialLinks } = Astro.props;
+const { isHomePage, socialLinks, tagline } = Astro.props;
 ---
 
 <footer
@@ -20,10 +21,10 @@ const { isHomePage, socialLinks } = Astro.props;
 		"mx-auto flex w-full flex-col gap-4 text-sm text-stone-500 dark:text-stone-400 sm:flex-row sm:items-center sm:justify-between",
 		isHomePage ? "pt-4 sm:pt-6" : "pt-6",
 		shellWidthClass
-	]}>
-		<p class:list={[isHomePage ? "hidden sm:block" : "block"]}>
-			Design, photography, and the things in between.
-		</p>
+		]}>
+			<p class:list={[isHomePage ? "hidden sm:block" : "block"]}>
+				{tagline}
+			</p>
 		<div
 			class:list={[
 				"flex items-center gap-1",

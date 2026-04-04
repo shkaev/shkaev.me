@@ -8,6 +8,7 @@ import {
 interface Props {
 	title: string;
 	description: string;
+	locale: string;
 	favicon32Src: string;
 	appleTouchIconSrc: string;
 	avatarSrc: string;
@@ -16,11 +17,13 @@ interface Props {
 	socialImageUrl: string;
 	interLatinFontSrc: string;
 	displayFontSemiboldSrc: string;
+	alternateUrls?: Array<{ href: string; hreflang: string }>;
 }
 
 const {
 	title,
 	description,
+	locale,
 	favicon32Src,
 	appleTouchIconSrc,
 	avatarSrc,
@@ -28,7 +31,8 @@ const {
 	canonicalUrl,
 	socialImageUrl,
 	interLatinFontSrc,
-	displayFontSemiboldSrc
+	displayFontSemiboldSrc,
+	alternateUrls = []
 } = Astro.props;
 
 const earlyThemeScript = `(() => {
@@ -65,6 +69,12 @@ const earlyThemeScript = `(() => {
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
+<meta property="og:locale" content={locale === "ru" ? "ru_RU" : "en_US"} />
+{
+	alternateUrls.map((item) => (
+		<link rel="alternate" hreflang={item.hreflang} href={item.href} />
+	))
+}
 <meta property="og:site_name" content={siteName} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />

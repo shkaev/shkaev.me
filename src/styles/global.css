@@ -448,12 +448,14 @@
 	}
 
 	.dark [data-theme-toggle],
-	.dark [data-sheet-toggle] {
+	.dark [data-sheet-toggle],
+	.dark [data-locale-toggle] {
 		border-color: rgb(68 64 60 / 0.9);
 	}
 
 	.dark [data-theme-toggle]:hover,
-	.dark [data-sheet-toggle]:hover {
+	.dark [data-sheet-toggle]:hover,
+	.dark [data-locale-toggle]:hover {
 		color: rgb(250 250 249);
 		border-color: rgb(120 113 108);
 	}
@@ -559,6 +561,8 @@
 	@media (hover: hover) and (pointer: fine) {
 		[data-theme-toggle]:hover [data-control-tooltip],
 		[data-theme-toggle]:focus-visible [data-control-tooltip],
+		[data-locale-toggle]:hover [data-control-tooltip],
+		[data-locale-toggle]:focus-visible [data-control-tooltip],
 		[data-sheet-toggle]:hover [data-control-tooltip],
 		[data-sheet-toggle]:focus-visible [data-control-tooltip] {
 			opacity: 1;
