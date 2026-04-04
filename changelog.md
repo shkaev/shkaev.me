@@ -28,6 +28,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 - Rewrote the Russian About page copy to replace rough machine-like phrasing with more natural portfolio language across the intro, career timeline, recommendations, and personal sections.
 - Localized the Design page intro and translated the full Russian TrackOFF case study, including section copy, related-case cards, and media descriptions.
 - Translated the full Russian Cookie Manager case study, including team credits, research findings, result framing, and localized links back into the case-study set.
+- Translated and polished the full Russian AOSP case study, including team credits, design-process sections, success metrics, and result summaries.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
