@@ -3,6 +3,7 @@ import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
 import ContentSection from "../../../components/sections/ContentSection.astro";
 import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
 import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
+import MediaSection from "../../../components/sections/MediaSection.astro";
 import SectionIntro from "../../../components/sections/SectionIntro.astro";
 import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
@@ -95,14 +96,10 @@ const moreCaseStudies = [
 				</p>
 		</ContentSection>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/trackoff/trackoff-team.jpg")}
-				alt="TrackOFF team and office visuals"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/trackoff/trackoff-team.jpg")}
+			alt="TrackOFF team and office visuals"
+		/>
 
 		<ContentSection title="Website">
 				<p>
@@ -122,14 +119,10 @@ const moreCaseStudies = [
 				</p>
 		</ContentSection>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/trackoff/trackoff-product.png")}
-				alt="TrackOFF product interfaces on desktop and mobile"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/trackoff/trackoff-product.png")}
+			alt="TrackOFF product interfaces on desktop and mobile"
+		/>
 
 		<ContentSection title="Product" bodyClass="mt-6 space-y-4">
 				<p>
@@ -198,14 +191,10 @@ const moreCaseStudies = [
 			</div>
 		</ContentSection>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/trackoff/trackoff-marketing.png")}
-				alt="TrackOFF marketing and promo materials"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/trackoff/trackoff-marketing.png")}
+			alt="TrackOFF marketing and promo materials"
+		/>
 
 		<ContentSection title="Marketing and promo materials" bodyClass="mt-6">
 			<p>
@@ -300,14 +289,10 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/trackoff/trackoff-remote.jpg")}
-				alt="TrackOFF remote collaboration and communication"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/trackoff/trackoff-remote.jpg")}
+			alt="TrackOFF remote collaboration and communication"
+		/>
 
 		<ContentSection title="Acquisition by Avast Software">
 				<p>
@@ -331,14 +316,10 @@ const moreCaseStudies = [
 				</p>
 		</ContentSection>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/trackoff/trackoff-acquisition.jpg")}
-				alt="TrackOFF acquisition and transition to Avast"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/trackoff/trackoff-acquisition.jpg")}
+			alt="TrackOFF acquisition and transition to Avast"
+		/>
 
 		<ContentSection title="Personal takeaway" bodyClass="mt-6">
 			<p>

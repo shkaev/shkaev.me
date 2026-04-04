@@ -3,6 +3,7 @@ import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
 import ContentSection from "../../../components/sections/ContentSection.astro";
 import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
 import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
+import MediaSection from "../../../components/sections/MediaSection.astro";
 import MetaGrid from "../../../components/sections/MetaGrid.astro";
 import MetaItem from "../../../components/sections/MetaItem.astro";
 import SectionIntro from "../../../components/sections/SectionIntro.astro";
@@ -446,14 +447,10 @@ const moreCaseStudies = [
 				</ul>
 		</ContentSection>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/aosp/aosp-research.png")}
-				alt="AOSP prototype and research screens"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-research.png")}
+			alt="AOSP prototype and research screens"
+		/>
 
 		<ContentSection title="User experience research outcome">
 				<p>
@@ -472,14 +469,10 @@ const moreCaseStudies = [
 				</p>
 		</ContentSection>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/aosp/aosp-handoff.jpg")}
-				alt="AOSP design handoff and implementation"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-handoff.jpg")}
+			alt="AOSP design handoff and implementation"
+		/>
 
 		<section class="mt-12 w-full">
 			<SectionIntro as="div" class="mt-0" title="Handoff" />
@@ -600,14 +593,10 @@ const moreCaseStudies = [
 				</p>
 		</ContentSection>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/aosp/aosp-localization.png")}
-				alt="AOSP localization and store assets"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-localization.png")}
+			alt="AOSP localization and store assets"
+		/>
 
 		<section class="mt-12 w-full">
 			<SectionIntro as="div" class="mt-0" title="How we measured success">
@@ -854,14 +843,10 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/aosp/aosp-results.png")}
-				alt="AOSP final product results"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-results.png")}
+			alt="AOSP final product results"
+		/>
 
 		<ContentSection title="Personal takeaway">
 				<p>

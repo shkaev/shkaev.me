@@ -1,0 +1,31 @@
+---
+interface Props {
+	src: string;
+	alt: string;
+	class?: string;
+	imageClass?: string;
+	loading?: "eager" | "lazy";
+}
+
+const {
+	src,
+	alt,
+	class: className,
+	imageClass,
+	loading = "lazy"
+} = Astro.props;
+---
+
+<section
+	class:list={[
+		"mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]",
+		className
+	]}
+>
+	<img
+		src={src}
+		alt={alt}
+		class:list={["h-auto w-full", imageClass]}
+		loading={loading}
+	/>
+</section>

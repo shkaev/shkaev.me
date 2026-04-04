@@ -3,6 +3,7 @@ import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
 import ContentSection from "../../../components/sections/ContentSection.astro";
 import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
 import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
+import MediaSection from "../../../components/sections/MediaSection.astro";
 import MetaGrid from "../../../components/sections/MetaGrid.astro";
 import MetaItem from "../../../components/sections/MetaItem.astro";
 import SectionIntro from "../../../components/sections/SectionIntro.astro";
@@ -223,14 +224,10 @@ const moreCaseStudies = [
 			</CalloutBlock>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/cookie-manager/cookie-manager-wireframes.jpg")}
-				alt="Cookie Manager wireframes"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/cookie-manager/cookie-manager-wireframes.jpg")}
+			alt="Cookie Manager wireframes"
+		/>
 
 		<section class="mt-12 w-full">
 			<SectionIntro as="div" class="mt-0" title="Design goals" />
@@ -342,14 +339,10 @@ const moreCaseStudies = [
 				</p>
 		</ContentSection>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/cookie-manager/cookie-manager-prototype.png")}
-				alt="Cookie Manager prototype screens"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/cookie-manager/cookie-manager-prototype.png")}
+			alt="Cookie Manager prototype screens"
+		/>
 
 		<ContentSection title="User experience research outcome">
 				<p>
@@ -375,14 +368,10 @@ const moreCaseStudies = [
 				</p>
 		</ContentSection>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/cookie-manager/cookie-manager-research.png")}
-				alt="Cookie Manager user research findings"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/cookie-manager/cookie-manager-research.png")}
+			alt="Cookie Manager user research findings"
+		/>
 
 		<section class="mt-12 w-full">
 			<div class="space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
@@ -402,14 +391,10 @@ const moreCaseStudies = [
 			</div>
 		</section>
 
-		<section class="mt-14 w-full overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
-			<img
-				src={asset("/images/case-studies/cookie-manager/cookie-manager-handoff.png")}
-				alt="Cookie Manager final designs and handoff"
-				class="h-auto w-full"
-				loading="lazy"
-			/>
-		</section>
+		<MediaSection
+			src={asset("/images/case-studies/cookie-manager/cookie-manager-handoff.png")}
+			alt="Cookie Manager final designs and handoff"
+		/>
 
 		<section class="mt-12 w-full">
 			<div class="grid gap-4 lg:grid-cols-3">
