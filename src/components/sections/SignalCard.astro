@@ -1,0 +1,23 @@
+---
+interface Props {
+	variant?: "positive" | "negative";
+	class?: string;
+}
+
+const {
+	variant = "positive",
+	class: className
+} = Astro.props;
+---
+
+<div
+	class:list={[
+		"rounded-[2px] bg-white pl-6 pr-8 py-6 shadow-[0_1px_0_rgba(28,25,23,0.03)] dark:bg-stone-950",
+		variant === "positive"
+			? "border-l-2 border-l-emerald-500 dark:border-l-emerald-500"
+			: "border-l-2 border-l-rose-500 dark:border-l-rose-500",
+		className
+	]}
+>
+	<slot />
+</div>
