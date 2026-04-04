@@ -4,6 +4,15 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-04</span></p>
+
+## Corrected follow-up regressions
+
+<p class="changelog-label changelog-label--fixed">Fixed</p>
+
+- Removed the duplicate font request by aligning font preloads with the local `/fonts` paths used by `@font-face`.
+- Fixed `InfoCardGrid` so case-study pages can override its column layout cleanly and the TrackOFF product cards now fill the intended two-column width.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-02</span></p>
 
 ## Major refactoring

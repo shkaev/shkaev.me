@@ -27,10 +27,8 @@ const isHomePage = pathname === "/";
 const favicon32Src = resolveStaticAssetUrl("/favicons/favicon-32.png");
 const appleTouchIconSrc = resolveStaticAssetUrl("/favicons/apple-touch-icon.png");
 const avatarSrc = resolveStaticAssetUrl("/avatars/avatar.jpg");
-const interLatinFontSrc = resolveStaticAssetUrl("/fonts/inter-latin-variable.woff2");
-const displayFontSemiboldSrc = resolveStaticAssetUrl(
-	"/fonts/ibm-plex-serif-latin-600.woff2"
-);
+const interLatinFontSrc = "/fonts/inter-latin-variable.woff2";
+const displayFontSemiboldSrc = "/fonts/ibm-plex-serif-latin-600.woff2";
 const canonicalUrl = new URL(pathname, siteUrl).toString();
 const socialImageUrl = new URL(avatarSrc, siteUrl).toString();
 ---
