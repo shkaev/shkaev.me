@@ -127,7 +127,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 								aria-label="Filter by country"
 								data-hover-card
 								data-photography-country
-								class="h-11 cursor-pointer appearance-none rounded-full border border-stone-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,248,247,0.94)_100%)] px-4 pr-10 text-[0.96rem] text-stone-900 outline-none transition hover:border-stone-300 focus:border-stone-300 focus:bg-white focus:shadow-[0_0_0_1px_rgba(255,255,255,0.8),inset_0_1px_0_rgba(255,255,255,0.95)] dark:bg-[linear-gradient(180deg,rgba(41,37,36,0.96)_0%,rgba(28,25,23,0.96)_100%)] dark:text-stone-100 dark:focus:border-[rgb(120_113_108)] dark:focus:bg-stone-900 dark:focus:shadow-[0_0_0_1px_rgba(87,83,78,0.5),inset_0_1px_0_rgba(255,255,255,0.04)]"
+								class="filter-select-pill"
 						>
 						<option value="all">All countries</option>
 							{
@@ -136,7 +136,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 								))
 							}
 						</select>
-							<span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-stone-500 transition group-hover:text-stone-700 dark:text-stone-400 dark:group-hover:text-stone-200">
+							<span class="filter-select-pill-icon">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 16 16"
@@ -159,7 +159,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 								aria-label="Filter by year"
 								data-hover-card
 								data-photography-year
-								class="h-11 cursor-pointer appearance-none rounded-full border border-stone-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,248,247,0.94)_100%)] px-4 pr-10 text-[0.96rem] text-stone-900 outline-none transition hover:border-stone-300 focus:border-stone-300 focus:bg-white focus:shadow-[0_0_0_1px_rgba(255,255,255,0.8),inset_0_1px_0_rgba(255,255,255,0.95)] dark:bg-[linear-gradient(180deg,rgba(41,37,36,0.96)_0%,rgba(28,25,23,0.96)_100%)] dark:text-stone-100 dark:focus:border-[rgb(120_113_108)] dark:focus:bg-stone-900 dark:focus:shadow-[0_0_0_1px_rgba(87,83,78,0.5),inset_0_1px_0_rgba(255,255,255,0.04)]"
+								class="filter-select-pill"
 						>
 							<option value="all">All years</option>
 							{
@@ -168,7 +168,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 								))
 							}
 						</select>
-							<span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-stone-500 transition group-hover:text-stone-700 dark:text-stone-400 dark:group-hover:text-stone-200">
+							<span class="filter-select-pill-icon">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 16 16"
@@ -191,7 +191,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 								aria-label="Sort photography series"
 								data-hover-card
 								data-photography-sort
-								class="h-11 cursor-pointer appearance-none rounded-full border border-stone-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,248,247,0.94)_100%)] px-4 pr-10 text-[0.96rem] text-stone-900 outline-none transition hover:border-stone-300 focus:border-stone-300 focus:bg-white focus:shadow-[0_0_0_1px_rgba(255,255,255,0.8),inset_0_1px_0_rgba(255,255,255,0.95)] dark:bg-[linear-gradient(180deg,rgba(41,37,36,0.96)_0%,rgba(28,25,23,0.96)_100%)] dark:text-stone-100 dark:focus:border-[rgb(120_113_108)] dark:focus:bg-stone-900 dark:focus:shadow-[0_0_0_1px_rgba(87,83,78,0.5),inset_0_1px_0_rgba(255,255,255,0.04)]"
+								class="filter-select-pill"
 						>
 							{
 								sortOptions.map((option) => (
@@ -199,7 +199,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 								))
 							}
 						</select>
-							<span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-stone-500 transition group-hover:text-stone-700 dark:text-stone-400 dark:group-hover:text-stone-200">
+							<span class="filter-select-pill-icon">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 16 16"
