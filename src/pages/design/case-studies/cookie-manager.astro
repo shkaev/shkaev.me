@@ -8,7 +8,7 @@ import MediaSection from "../../../components/sections/MediaSection.astro";
 import MetaGrid from "../../../components/sections/MetaGrid.astro";
 import MetaItem from "../../../components/sections/MetaItem.astro";
 import SectionIntro from "../../../components/sections/SectionIntro.astro";
-import SidebarAside from "../../../components/sections/SidebarAside.astro";
+import SplitAsideSection from "../../../components/sections/SplitAsideSection.astro";
 import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
@@ -254,8 +254,8 @@ const moreCaseStudies = [
 
 		<section class="mt-12 w-full">
 			<SectionIntro as="div" class="mt-0" title="Design process" />
-			<div class="mt-6 lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10">
-				<div>
+			<SplitAsideSection gridClass="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10">
+				<div slot="main">
 					<SectionBody class="mt-0">
 						<p>
 							Business justification was already in place by the time design
@@ -289,7 +289,7 @@ const moreCaseStudies = [
 						</span>
 					</CalloutBlock>
 				</div>
-				<SidebarAside>
+				<div slot="aside">
 					<CalloutColumn
 						title="The Challenge"
 						titleAs="h3"
@@ -307,8 +307,8 @@ const moreCaseStudies = [
 							value indicators, customization, and whitelisting.
 						</p>
 					</CalloutColumn>
-				</SidebarAside>
-			</div>
+				</div>
+			</SplitAsideSection>
 		</section>
 
 		<ContentSection title="Prototype">

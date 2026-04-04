@@ -1,0 +1,22 @@
+---
+import SidebarAside from "./SidebarAside.astro";
+
+interface Props {
+	class?: string;
+	gridClass?: string;
+}
+
+const {
+	class: className,
+	gridClass = "lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-10"
+} = Astro.props;
+---
+
+<div class:list={["mt-6", gridClass, className]}>
+	<div>
+		<slot name="main" />
+	</div>
+	<SidebarAside>
+		<slot name="aside" />
+	</SidebarAside>
+</div>

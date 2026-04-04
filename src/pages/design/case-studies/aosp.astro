@@ -9,7 +9,7 @@ import MetaItem from "../../../components/sections/MetaItem.astro";
 import MetricStripCard from "../../../components/sections/MetricStripCard.astro";
 import SectionIntro from "../../../components/sections/SectionIntro.astro";
 import SignalCard from "../../../components/sections/SignalCard.astro";
-import SidebarAside from "../../../components/sections/SidebarAside.astro";
+import SplitAsideSection from "../../../components/sections/SplitAsideSection.astro";
 import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
@@ -479,8 +479,8 @@ const moreCaseStudies = [
 
 		<section class="mt-12 w-full">
 			<SectionIntro as="div" class="mt-0" title="Handoff" />
-			<div class="mt-6 lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-10">
-				<div class="space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+			<SplitAsideSection>
+				<div slot="main" class="space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 					<p>
 						After a couple more iteration cycles, we were satisfied with the
 						new designs, so it was time to hand them off to development. As a
@@ -504,7 +504,7 @@ const moreCaseStudies = [
 						it and worked together in person.
 					</p>
 				</div>
-				<SidebarAside>
+				<div slot="aside">
 					<CardTitle as="h3" class="text-[1.2rem] sm:text-[1.3rem]">
 						Some examples from this project
 					</CardTitle>
@@ -576,8 +576,8 @@ const moreCaseStudies = [
 							</p>
 						</div>
 					</div>
-				</SidebarAside>
-			</div>
+				</div>
+			</SplitAsideSection>
 		</section>
 
 		<ContentSection title="Localization to 20+ languages">
