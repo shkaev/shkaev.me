@@ -14,6 +14,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 - Fixed `InfoCardGrid` so case-study pages can override its column layout cleanly and the TrackOFF product cards now fill the intended two-column width.
 - Restored dark-theme hierarchy in shared meta blocks and aligned the AOSP handoff aside icons with the stone-based theme palette.
 - Fixed shared surface cards so they no longer stayed white in dark mode after the v2 component migration.
+- Fixed a few remaining shared UI regressions, including footer icon spacing, dark-theme control icon color, and the timeline marker outline on the About page.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 

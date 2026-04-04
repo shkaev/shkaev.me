@@ -443,9 +443,12 @@
 		color: rgb(250 250 249);
 	}
 
+	.dark .icon-control-button {
+		color: rgb(214 211 209);
+	}
+
 	.dark [data-theme-toggle],
 	.dark [data-sheet-toggle] {
-		color: rgb(120 113 108);
 		border-color: rgb(68 64 60 / 0.9);
 	}
 
