@@ -17,6 +17,10 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 - Continued the audit-first `v2` migration by applying shared section intros, surface cards, meta grids, media link cards, text-link styling, media frames, and callout columns across the design pages and case studies.
 
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Trimmed follow-up dead code from the new shared content-system slices as the v2 cleanup passes continued.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-02</span></p>
 
 ## Major refactoring
