@@ -6,6 +6,7 @@ interface Props {
 	as?: string;
 	title: string;
 	titleAs?: string;
+	bodyVariant?: "body" | "lead";
 	class?: string;
 	titleClass?: string;
 	bodyClass?: string;
@@ -15,6 +16,7 @@ const {
 	as = "section",
 	title,
 	titleAs = "h2",
+	bodyVariant = "body",
 	class: className,
 	titleClass,
 	bodyClass
@@ -30,9 +32,15 @@ const hasBodySlot = Astro.slots.has("default");
 	</CardTitle>
 	{
 		hasBodySlot && (
-			<SectionBody class:list={["mt-6", bodyClass]}>
-				<slot />
-			</SectionBody>
+			bodyVariant === "lead" ? (
+				<div class:list={["type-page-lead mt-6 space-y-0", bodyClass]}>
+					<slot />
+				</div>
+			) : (
+				<SectionBody class:list={["mt-6", bodyClass]}>
+					<slot />
+				</SectionBody>
+			)
 		)
 	}
 </Tag>

@@ -5,6 +5,7 @@ import SectionBody from "../typography/SectionBody.astro";
 interface Props {
 	title: string;
 	as?: string;
+	titleAs?: string;
 	class?: string;
 	titleClass?: string;
 	bodyClass?: string;
@@ -13,6 +14,7 @@ interface Props {
 const {
 	title,
 	as = "div",
+	titleAs = "p",
 	class: className,
 	titleClass,
 	bodyClass
@@ -22,7 +24,7 @@ const Tag = as;
 ---
 
 <Tag class={className}>
-	<DisplayCallout class={titleClass}>{title}</DisplayCallout>
+	<DisplayCallout as={titleAs} class={titleClass}>{title}</DisplayCallout>
 	<SectionBody class:list={["mt-3", bodyClass]}>
 		<slot />
 	</SectionBody>
