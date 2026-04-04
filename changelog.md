@@ -25,6 +25,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 - Started the Russian localization rollout across the shared site shell with a language toggle, localized header and footer chrome, and a Russian changelog drawer.
 - Localized the main page copy, recommendation flow, and shared top-level navigation paths across the first Russian pages.
 - Localized the photography archive and detail pages with translated countries, month labels, series titles, archive metadata, and photo viewer controls.
+- Rewrote the Russian About page copy to replace rough machine-like phrasing with more natural portfolio language across the intro, career timeline, recommendations, and personal sections.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
