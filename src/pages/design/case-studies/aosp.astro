@@ -7,6 +7,8 @@ import MediaSection from "../../../components/sections/MediaSection.astro";
 import MetaGrid from "../../../components/sections/MetaGrid.astro";
 import MetaItem from "../../../components/sections/MetaItem.astro";
 import SectionIntro from "../../../components/sections/SectionIntro.astro";
+import SignalCard from "../../../components/sections/SignalCard.astro";
+import SidebarAside from "../../../components/sections/SidebarAside.astro";
 import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
@@ -348,28 +350,28 @@ const moreCaseStudies = [
 					I quickly discovered that it would not be ideal.
 				</p>
 				<div class="mt-8 grid gap-4 md:grid-cols-2">
-					<div class="rounded-[2px] border-l-2 border-l-rose-500 bg-white pl-6 pr-8 py-6 shadow-[0_1px_0_rgba(28,25,23,0.03)] dark:border-l-rose-500 dark:bg-stone-950">
+					<SignalCard variant="negative">
 						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
 							It lacked a focal point on the main screen and did not make the
 							best use of UI space.
 						</p>
-					</div>
-					<div class="rounded-[2px] border-l-2 border-l-rose-500 bg-white pl-6 pr-8 py-6 shadow-[0_1px_0_rgba(28,25,23,0.03)] dark:border-l-rose-500 dark:bg-stone-950">
+					</SignalCard>
+					<SignalCard variant="negative">
 						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
 							Multiple jobs-to-be-done would compete for users' attention.
 						</p>
-					</div>
-					<div class="rounded-[2px] border-l-2 border-l-rose-500 bg-white pl-6 pr-8 py-6 shadow-[0_1px_0_rgba(28,25,23,0.03)] dark:border-l-rose-500 dark:bg-stone-950">
+					</SignalCard>
+					<SignalCard variant="negative">
 						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
 							Tons of controls would further dilute the experience.
 						</p>
-					</div>
-					<div class="rounded-[2px] border-l-2 border-l-rose-500 bg-white pl-6 pr-8 py-6 shadow-[0_1px_0_rgba(28,25,23,0.03)] dark:border-l-rose-500 dark:bg-stone-950">
+					</SignalCard>
+					<SignalCard variant="negative">
 						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
 							There were more features packed in than before, and we still
 							needed room to scale.
 						</p>
-					</div>
+					</SignalCard>
 				</div>
 				<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 					<img
@@ -396,30 +398,30 @@ const moreCaseStudies = [
 				</p>
 			</SectionIntro>
 			<div class="mt-8 grid gap-4 md:grid-cols-2">
-				<div class="rounded-[2px] border-l-2 border-l-emerald-500 bg-white pl-6 pr-8 py-6 shadow-[0_1px_0_rgba(28,25,23,0.03)] dark:border-l-emerald-500 dark:bg-stone-950">
+				<SignalCard>
 					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
 						The focal point became immediately clear, and the layout made much
 						better use of UI space.
 					</p>
-				</div>
-				<div class="rounded-[2px] border-l-2 border-l-emerald-500 bg-white pl-6 pr-8 py-6 shadow-[0_1px_0_rgba(28,25,23,0.03)] dark:border-l-emerald-500 dark:bg-stone-950">
+				</SignalCard>
+				<SignalCard>
 					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
 						Jobs-to-be-done were separated into their own sections and no
 						longer interfered with each other.
 					</p>
-				</div>
-				<div class="rounded-[2px] border-l-2 border-l-emerald-500 bg-white pl-6 pr-8 py-6 shadow-[0_1px_0_rgba(28,25,23,0.03)] dark:border-l-emerald-500 dark:bg-stone-950">
+				</SignalCard>
+				<SignalCard>
 					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
 						Each screen had a single primary action and, at most, a secondary
 						one.
 					</p>
-				</div>
-				<div class="rounded-[2px] border-l-2 border-l-emerald-500 bg-white pl-6 pr-8 py-6 shadow-[0_1px_0_rgba(28,25,23,0.03)] dark:border-l-emerald-500 dark:bg-stone-950">
+				</SignalCard>
+				<SignalCard>
 					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
 						The new sidebar structure created breathing room for richer
 						feature detail and future additions.
 					</p>
-				</div>
+				</SignalCard>
 			</div>
 			<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
 				<img
@@ -501,7 +503,7 @@ const moreCaseStudies = [
 						it and worked together in person.
 					</p>
 				</div>
-				<aside class="mt-8 border-l border-stone-200 py-2 pl-6 lg:mt-0 lg:h-full lg:pl-8">
+				<SidebarAside>
 					<CardTitle as="h3" class="text-[1.2rem] sm:text-[1.3rem]">
 						Some examples from this project
 					</CardTitle>
@@ -573,7 +575,7 @@ const moreCaseStudies = [
 							</p>
 						</div>
 					</div>
-				</aside>
+				</SidebarAside>
 			</div>
 		</section>
 

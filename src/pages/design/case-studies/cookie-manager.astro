@@ -8,6 +8,7 @@ import MediaSection from "../../../components/sections/MediaSection.astro";
 import MetaGrid from "../../../components/sections/MetaGrid.astro";
 import MetaItem from "../../../components/sections/MetaItem.astro";
 import SectionIntro from "../../../components/sections/SectionIntro.astro";
+import SidebarAside from "../../../components/sections/SidebarAside.astro";
 import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
@@ -288,7 +289,7 @@ const moreCaseStudies = [
 						</span>
 					</CalloutBlock>
 				</div>
-				<aside class="mt-8 border-l border-stone-200 py-2 pl-6 lg:mt-0 lg:h-full lg:pl-8">
+				<SidebarAside>
 					<CalloutColumn
 						title="The Challenge"
 						titleAs="h3"
@@ -306,7 +307,7 @@ const moreCaseStudies = [
 							value indicators, customization, and whitelisting.
 						</p>
 					</CalloutColumn>
-				</aside>
+				</SidebarAside>
 			</div>
 		</section>
 
