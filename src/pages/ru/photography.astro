@@ -1,18 +1,18 @@
 ---
 import { getCollection } from "astro:content";
-import SiteLayout from "../layouts/SiteLayout.astro";
-import PageHero from "../components/sections/PageHero.astro";
-import { getSiteCopy } from "../i18n/copy";
-import { localizePath } from "../i18n/routing";
-import { resolvePhotoAssetUrl } from "../lib/photoAsset";
-import { formatPhotoTimeframe } from "../lib/photoTimeframe";
-import { resolveCountryFlag, resolveCountryLabel } from "../lib/countryFlags";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PageHero from "../../components/sections/PageHero.astro";
+import { getSiteCopy } from "../../i18n/copy";
+import { localizePath } from "../../i18n/routing";
+import { resolvePhotoAssetUrl } from "../../lib/photoAsset";
+import { formatPhotoTimeframe } from "../../lib/photoTimeframe";
+import { resolveCountryFlag, resolveCountryLabel } from "../../lib/countryFlags";
 import {
 	resolveLocalizedPhotoSeriesSummary,
 	resolveLocalizedPhotoSeriesTitle
-} from "../lib/photoSeriesLocalization";
+} from "../../lib/photoSeriesLocalization";
 
-const locale = "en" as const;
+const locale = "ru" as const;
 const copy = getSiteCopy(locale);
 
 const parseSeriesYear = (timeframe: string) => {
@@ -55,7 +55,7 @@ const buildSearchTerms = (entry: (typeof series)[number]) => {
 			entry.data.summary,
 			resolveLocalizedPhotoSeriesSummary(entry.data.summary, locale),
 			entry.data.location,
-			entry.data.timeframe,
+		entry.data.timeframe,
 		formatPhotoTimeframe(entry.data.timeframe, locale),
 		entry.data.cardLocation,
 		resolveCountryLabel(entry.data.cardLocation, locale),

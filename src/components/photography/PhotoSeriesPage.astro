@@ -1,0 +1,897 @@
+---
+import { getCollection } from "astro:content";
+import BackLink from "../BackLink.astro";
+import ArrowLeftIcon from "../icons/ArrowLeftIcon.astro";
+import ArrowRightIcon from "../icons/ArrowRightIcon.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { getSiteCopy } from "../../i18n/copy";
+import type { Locale } from "../../i18n/config";
+import { localizePath } from "../../i18n/routing";
+import { resolveCountryFlag, resolveCountryLabel } from "../../lib/countryFlags";
+import { resolvePhotoAssetUrl } from "../../lib/photoAsset";
+import { formatPhotoTimeframe } from "../../lib/photoTimeframe";
+import {
+	resolveLocalizedPhotoSeriesIntro,
+	resolveLocalizedPhotoSeriesSummary,
+	resolveLocalizedPhotoSeriesTitle
+} from "../../lib/photoSeriesLocalization";
+
+interface Props {
+	entry: Awaited<ReturnType<typeof getCollection<"photo-series">>>[number];
+	locale: Locale;
+}
+
+const { entry, locale } = Astro.props;
+const copy = getSiteCopy(locale);
+const sortedSeries = (await getCollection("photo-series")).sort(
+	(a, b) => b.data.sortOrder - a.data.sortOrder
+);
+const currentSeriesIndex = sortedSeries.findIndex(
+	(seriesEntry) => seriesEntry.id === entry.id
+);
+const previousSeries =
+	currentSeriesIndex > 0 ? sortedSeries[currentSeriesIndex - 1] : null;
+const nextSeries =
+	currentSeriesIndex >= 0 && currentSeriesIndex < sortedSeries.length - 1
+		? sortedSeries[currentSeriesIndex + 1]
+		: null;
+const { title, summary, intro, cardLocation, timeframe, photos } = entry.data;
+const localizedTitle = resolveLocalizedPhotoSeriesTitle(title, locale);
+const localizedSummary = resolveLocalizedPhotoSeriesSummary(summary, locale);
+const localizedIntro = resolveLocalizedPhotoSeriesIntro(intro, locale);
+const localizedTimeframe = formatPhotoTimeframe(timeframe, locale);
+const localizedCountryLabel = resolveCountryLabel(cardLocation, locale);
+const flagSrc = resolveCountryFlag(cardLocation);
+const isCyprus = cardLocation === "Cyprus";
+const galleryPhotos = photos.map((photo) => ({
+	...photo,
+	src: resolvePhotoAssetUrl(photo.src),
+	thumbSrc: resolvePhotoAssetUrl(photo.src, "thumb")
+}));
+const photoRootPath = localizePath("/photography", locale);
+const mobileCarouselBlocks: { photos: typeof galleryPhotos }[] = [];
+const pairedHorizontalIndexes = new Set<number>();
+
+for (let index = 0; index < galleryPhotos.length; index += 1) {
+	if (pairedHorizontalIndexes.has(index)) {
+		continue;
+	}
+
+	const photo = galleryPhotos[index];
+	const isHorizontal = photo.width > photo.height;
+
+	if (!isHorizontal) {
+		mobileCarouselBlocks.push({ photos: [photo] });
+		continue;
+	}
+
+	let pairedIndex = -1;
+
+	for (let nextIndex = index + 1; nextIndex < galleryPhotos.length; nextIndex += 1) {
+		if (pairedHorizontalIndexes.has(nextIndex)) {
+			continue;
+		}
+
+		const nextPhoto = galleryPhotos[nextIndex];
+
+		if (nextPhoto.width > nextPhoto.height) {
+			pairedIndex = nextIndex;
+			break;
+		}
+	}
+
+	if (pairedIndex === -1) {
+		continue;
+	}
+
+	pairedHorizontalIndexes.add(pairedIndex);
+	mobileCarouselBlocks.push({
+		photos: [photo, galleryPhotos[pairedIndex]]
+	});
+}
+
+const desktopRows: typeof galleryPhotos[] = [];
+let currentRow: typeof galleryPhotos = [];
+let currentAspectSum = 0;
+const targetAspectSum = 2.8;
+
+for (const photo of galleryPhotos) {
+	currentRow.push(photo);
+	currentAspectSum += photo.width / photo.height;
+
+	if (currentAspectSum >= targetAspectSum) {
+		desktopRows.push(currentRow);
+		currentRow = [];
+		currentAspectSum = 0;
+	}
+}
+
+if (currentRow.length > 0) {
+	desktopRows.push(currentRow);
+}
+---
+
+<SiteLayout title={`${localizedTitle} | ${copy.photography.eyebrow} | ${copy.siteName}`} description={localizedSummary} locale={locale}>
+	<section class="w-full">
+		<BackLink href={photoRootPath} label={copy.photography.backToArchiveLabel} restoreTarget={photoRootPath} />
+		<h1
+			class="mt-6 text-4xl font-semibold tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl"
+			data-page-title
+		>
+			{localizedTitle}
+		</h1>
+		<p class="mt-3 inline-flex flex-wrap items-center gap-2 text-sm leading-7 text-stone-700 sm:text-base">
+			{
+				flagSrc && (
+					<span
+						aria-label={localizedCountryLabel}
+						role="img"
+						data-flag-icon
+						class="relative -top-px block h-[15px] w-5 shrink-0 overflow-visible"
+					>
+						<span class="tooltip tooltip--top" data-flag-tooltip aria-hidden="true">{localizedCountryLabel}</span>
+						<img
+							src={flagSrc}
+							alt=""
+							class="block size-full rounded-[2px] object-cover shadow-2xs"
+						/>
+						{isCyprus ? (
+							<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-stone-200/80"></span>
+						) : (
+							<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-black/50 mix-blend-overlay"></span>
+						)}
+					</span>
+				)
+			}
+			<span>{localizedTimeframe}</span>
+			<span class="text-stone-500">·</span>
+			<span>{copy.photography.framesLabel(photos.length)}</span>
+		</p>
+		{
+			localizedIntro && (
+				<>
+					<div class="mt-5 h-px w-full bg-stone-200/80"></div>
+					<p class="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
+						{localizedIntro}
+					</p>
+				</>
+			)
+		}
+
+		<div
+			class:list={[
+				localizedIntro ? "mt-4 sm:mt-8" : "mt-4 sm:mt-10",
+				"photo-carousel relative left-1/2 right-1/2 flex w-screen -translate-x-1/2 gap-3 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth lg:hidden"
+			]}
+			data-mobile-carousel
+		>
+			{
+				mobileCarouselBlocks.map((block, blockIndex) => (
+					<div
+						class="w-[calc(100vw-2rem)] min-w-[calc(100vw-2rem)] shrink-0 snap-center snap-always first:ml-4 last:mr-4"
+						data-mobile-carousel-slide
+						data-mobile-carousel-single={block.photos.length === 1 ? "true" : undefined}
+						data-mobile-carousel-pair={block.photos.length > 1 ? "true" : undefined}
+					>
+						<div class:list={["flex gap-3", block.photos.length > 1 ? "flex-col" : "block"]}>
+							{
+								block.photos.map((photo) => {
+									const photoIndex = galleryPhotos.indexOf(photo);
+
+									return (
+										<a
+											href={photo.src}
+											class:list={[
+												"photo-tile group block w-full",
+												block.photos.length > 1 && "photo-tile--paired overflow-hidden"
+											]}
+											data-lightbox-trigger
+											data-photo-index={photoIndex}
+											data-photo-src={photo.src}
+											data-photo-alt={`${localizedTitle} frame ${photoIndex + 1}`}
+											data-mobile-carousel-pair-item={block.photos.length > 1 ? "true" : undefined}
+										>
+										<img
+											src={photo.thumbSrc}
+											alt={`${localizedTitle} frame ${photoIndex + 1}`}
+											width={photo.width}
+											height={photo.height}
+											loading="lazy"
+											class:list={[
+												"photo-tile__image block w-full rounded-[4px] transition duration-300",
+												block.photos.length > 1
+													? "h-full object-cover"
+													: "h-auto"
+											]}
+												data-mobile-carousel-image
+												data-full-src={photo.src}
+												data-photo-index={photoIndex}
+												data-mobile-carousel-block-index={blockIndex}
+											/>
+										</a>
+									);
+								})
+							}
+						</div>
+					</div>
+				))
+			}
+			<div
+				class="h-px w-4 min-w-4 shrink-0"
+				aria-hidden="true"
+			></div>
+		</div>
+
+		<div class={localizedIntro ? "mt-8 hidden flex-col gap-1 lg:flex" : "mt-10 hidden flex-col gap-1 lg:flex"}>
+			{
+				desktopRows.map((row) => (
+					<div class="flex gap-1">
+						{
+							row.map((photo) => {
+								const photoIndex = galleryPhotos.indexOf(photo);
+								const aspectRatio = photo.width / photo.height;
+								const isSinglePhotoRow = row.length === 1;
+
+								return (
+									<a
+										href={photo.src}
+										class="photo-tile group block h-72 min-w-0 overflow-hidden"
+										style={
+											isSinglePhotoRow
+												? `flex: 0 0 auto; width: ${aspectRatio * 18}rem;`
+												: `flex: ${aspectRatio} 1 0%;`
+										}
+										data-lightbox-trigger
+										data-photo-index={photoIndex}
+										data-photo-src={photo.src}
+										data-photo-alt={`${localizedTitle} frame ${photoIndex + 1}`}
+									>
+										<img
+											src={photo.thumbSrc}
+											alt={`${localizedTitle} frame ${photoIndex + 1}`}
+											width={photo.width}
+											height={photo.height}
+											loading={photoIndex < 9 ? "eager" : "lazy"}
+											class="photo-tile__image block h-full w-full rounded-[4px] object-cover transition duration-300 group-hover:scale-[1.02]"
+										/>
+									</a>
+								);
+							})
+						}
+					</div>
+				))
+			}
+		</div>
+
+		{
+			(previousSeries || nextSeries) && (
+				<section class="mt-4 w-full sm:mt-4">
+					<div class="grid grid-cols-2 gap-4">
+						{
+							previousSeries ? (
+								<a
+									href={localizePath(`/photography/${previousSeries.data.slug}`, locale)}
+									data-hover-card
+									class="group inline-flex h-full min-w-0 items-center gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5"
+								>
+									<ArrowLeftIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
+									<p class="min-w-0 truncate text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
+										{resolveLocalizedPhotoSeriesTitle(previousSeries.data.title, locale)}
+									</p>
+								</a>
+							) : (
+								<a
+									href={photoRootPath}
+									data-restore-scroll-target={photoRootPath}
+									data-hover-card
+									class="group inline-flex h-full min-w-0 items-center gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5"
+								>
+									<ArrowLeftIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
+									<p class="min-w-0 truncate text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
+										{copy.photography.backToArchiveLabel}
+									</p>
+								</a>
+							)
+						}
+						{
+							nextSeries && (
+								<a
+									href={localizePath(`/photography/${nextSeries.data.slug}`, locale)}
+									data-hover-card
+									class="group inline-flex h-full min-w-0 items-center justify-end gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5"
+								>
+									<p class="min-w-0 flex-1 truncate text-right text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
+										{resolveLocalizedPhotoSeriesTitle(nextSeries.data.title, locale)}
+									</p>
+									<ArrowRightIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
+								</a>
+							)
+						}
+					</div>
+				</section>
+			)
+		}
+
+		<div class="lightbox" data-lightbox hidden>
+			<div class="lightbox__backdrop" data-lightbox-close aria-hidden="true"></div>
+			<div
+				class="lightbox__chrome"
+				data-lightbox-chrome
+				role="dialog"
+				aria-modal="true"
+				aria-label={copy.photography.photoViewerLabel(localizedTitle)}
+				tabindex="-1"
+			>
+				<button
+					type="button"
+					class="lightbox__button lightbox__button--close"
+					data-lightbox-close
+					data-lightbox-close-button
+					aria-label={copy.photography.closeViewerAriaLabel}
+				>
+					<svg
+						aria-hidden="true"
+						viewBox="0 0 24 24"
+						class="h-5 w-5"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.75"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M6 6 18 18"></path>
+						<path d="M18 6 6 18"></path>
+					</svg>
+				</button>
+				<button
+					type="button"
+					class="lightbox__button"
+					data-lightbox-prev
+					aria-label={copy.photography.prevPhotoAriaLabel}
+				>
+					<ArrowLeftIcon class="h-5 w-5" />
+				</button>
+				<div class="lightbox__frame" data-lightbox-frame>
+					<img data-lightbox-image alt="" class="lightbox__image mx-auto hidden md:block" />
+					<div
+						class="lightbox__mobile-scroller flex h-full w-full items-center gap-3 overflow-x-auto overflow-y-hidden px-4 snap-x snap-mandatory scroll-smooth md:hidden"
+						data-lightbox-mobile-scroller
+						aria-label={copy.photography.photoGalleryAriaLabel}
+					>
+						{
+							galleryPhotos.map((photo, index) => (
+								<div
+									class="lightbox__mobile-slide flex h-full w-[calc(100%-2.5rem)] min-w-[calc(100%-2.5rem)] shrink-0 items-center justify-center snap-center snap-always"
+									data-lightbox-mobile-slide
+									data-photo-index={index}
+								>
+								<img
+									data-photo-src={photo.src}
+									alt={`${localizedTitle} frame ${index + 1}`}
+									class="lightbox__image"
+									data-lightbox-mobile-image
+									loading="lazy"
+									decoding="async"
+								/>
+							</div>
+						))
+						}
+					</div>
+				</div>
+				<button
+					type="button"
+					class="lightbox__button"
+					data-lightbox-next
+					aria-label={copy.photography.nextPhotoAriaLabel}
+				>
+					<ArrowRightIcon class="h-5 w-5" />
+				</button>
+			</div>
+		</div>
+	</section>
+</SiteLayout>
+
+<style>
+	.photo-tile {
+		position: relative;
+		background: linear-gradient(180deg, rgb(245 245 244), rgb(241 240 239));
+	}
+
+	:global(.js) .photo-tile::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: 4px;
+		background: linear-gradient(
+			90deg,
+			rgb(255 255 255 / 0) 0%,
+			rgb(255 255 255 / 0.42) 50%,
+			rgb(255 255 255 / 0) 100%
+		);
+		transform: translateX(-100%);
+		animation: photo-tile-shimmer 1.8s ease-in-out infinite;
+		pointer-events: none;
+	}
+
+	.photo-tile__image {
+		position: relative;
+		z-index: 1;
+		opacity: 1;
+	}
+
+	:global(.js) .photo-tile__image {
+		opacity: 0;
+		transition: opacity 220ms ease;
+	}
+
+	:global(.js) .photo-tile.is-loaded::after {
+		opacity: 0;
+		animation: none;
+	}
+
+	:global(.js) .photo-tile.is-loaded .photo-tile__image {
+		opacity: 1;
+	}
+
+	:global(.dark) .photo-tile {
+		background: linear-gradient(180deg, rgb(41 37 36), rgb(28 25 23));
+	}
+
+	:global(.dark.js) .photo-tile::after,
+	:global(.dark) .js .photo-tile::after {
+		background: linear-gradient(
+			90deg,
+			rgb(255 255 255 / 0) 0%,
+			rgb(255 255 255 / 0.08) 50%,
+			rgb(255 255 255 / 0) 100%
+		);
+	}
+
+	@keyframes photo-tile-shimmer {
+		100% {
+			transform: translateX(100%);
+		}
+	}
+
+	.lightbox {
+		--lightbox-overlay-opacity: 0.8;
+		position: fixed;
+		inset: 0;
+		z-index: 60;
+		background: rgb(255 255 255 / var(--lightbox-overlay-opacity));
+		backdrop-filter: blur(32px);
+		-webkit-backdrop-filter: blur(32px);
+	}
+
+	:global(.dark) .lightbox {
+		background: rgb(0 0 0 / var(--lightbox-overlay-opacity));
+	}
+
+	.lightbox[hidden] {
+		display: none;
+	}
+
+	.lightbox__backdrop {
+		position: absolute;
+		inset: 0;
+	}
+
+	.lightbox__chrome {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 0.75rem;
+		height: 100%;
+		padding: 3rem 0.75rem;
+	}
+
+	.lightbox__frame {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		min-width: 0;
+		height: 100%;
+		overflow: hidden;
+		transition:
+			transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 220ms ease;
+		will-change: transform, opacity;
+	}
+
+	.lightbox__image {
+		display: block;
+		max-width: 100%;
+		max-height: calc(100vh - 6rem);
+		border-radius: 0.5rem;
+		cursor: pointer;
+	}
+
+	.lightbox__button {
+		position: relative;
+		z-index: 2;
+		display: inline-flex;
+		height: 2.75rem;
+		width: 2.75rem;
+		cursor: pointer;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid rgb(231 229 228 / 0.8);
+		border-radius: 9999px;
+		background: rgb(255 255 255 / 0.96);
+		color: rgb(120 113 108);
+		box-shadow: 0 1px 0 rgb(28 25 23 / 0.04);
+		transition:
+			background-color 150ms ease,
+			border-color 150ms ease,
+			color 150ms ease;
+	}
+
+	.lightbox__button svg {
+		display: block;
+		flex: none;
+	}
+
+	.lightbox__button:hover {
+		background: rgb(255 255 255 / 0.98);
+		border-color: rgb(214 211 209);
+		color: rgb(28 25 23);
+	}
+
+	:global(.dark) .lightbox__button {
+		border-color: rgb(68 64 60 / 0.9);
+		background: rgb(28 25 23 / 0.72);
+		color: rgb(168 162 158);
+		box-shadow: none;
+	}
+
+	:global(.dark) .lightbox__button:hover {
+		background: rgb(41 37 36 / 0.92);
+		border-color: rgb(120 113 108);
+		color: rgb(250 250 249);
+	}
+
+	.lightbox__button--close {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+	}
+
+	@media (max-width: 767px) {
+		.lightbox__chrome {
+			grid-template-columns: auto minmax(0, 1fr) auto;
+			padding: 4.5rem 0 1rem;
+			align-items: stretch;
+			gap: 0;
+		}
+
+		.lightbox__frame {
+			height: 100%;
+		}
+
+		.lightbox__button {
+			align-self: center;
+			margin-top: -1.5rem;
+			height: 2.5rem;
+			width: 2.5rem;
+			background: rgb(255 255 255 / 0.9);
+		}
+
+		.lightbox__button--close {
+			top: 0.75rem;
+			right: 0.75rem;
+			margin-top: 0;
+		}
+	}
+
+	[data-page-title] {
+		scroll-margin-top: 1.5rem;
+	}
+</style>
+
+<script is:inline>
+	(() => {
+		const photoTiles = document.querySelectorAll(".photo-tile");
+		const pageTitle = document.querySelector("[data-page-title]");
+		const lightbox = document.querySelector("[data-lightbox]");
+		const lightboxCloseElements = document.querySelectorAll("[data-lightbox-close]");
+		const lightboxCloseButton = document.querySelector("[data-lightbox-close-button]");
+		const lightboxPrevButton = document.querySelector("[data-lightbox-prev]");
+		const lightboxNextButton = document.querySelector("[data-lightbox-next]");
+		const lightboxImage = document.querySelector("[data-lightbox-image]");
+		const lightboxFrame = document.querySelector("[data-lightbox-frame]");
+		const lightboxChrome = document.querySelector("[data-lightbox-chrome]");
+		const lightboxMobileScroller = document.querySelector("[data-lightbox-mobile-scroller]");
+		const lightboxMobileImages = document.querySelectorAll("[data-lightbox-mobile-image]");
+		const lightboxTriggers = document.querySelectorAll("[data-lightbox-trigger]");
+
+		if (!(pageTitle instanceof HTMLElement)) {
+			return;
+		}
+
+		photoTiles.forEach((tile) => {
+			if (!(tile instanceof HTMLElement)) {
+				return;
+			}
+
+			const image = tile.querySelector("img");
+
+			if (!(image instanceof HTMLImageElement)) {
+				return;
+			}
+
+			if (image.complete) {
+				tile.classList.add("is-loaded");
+				return;
+			}
+
+			image.addEventListener(
+				"load",
+				() => {
+					tile.classList.add("is-loaded");
+				},
+				{ once: true }
+			);
+		});
+
+		if (
+			!(lightbox instanceof HTMLElement) ||
+			!(lightboxCloseButton instanceof HTMLButtonElement) ||
+			!(lightboxPrevButton instanceof HTMLButtonElement) ||
+			!(lightboxNextButton instanceof HTMLButtonElement) ||
+			!(lightboxChrome instanceof HTMLElement) ||
+			!(lightboxFrame instanceof HTMLElement) ||
+			!(lightboxImage instanceof HTMLImageElement)
+		) {
+			return;
+		}
+
+		const isMobileViewport = () => window.matchMedia("(max-width: 767px)").matches;
+
+		const triggerElements = Array.from(lightboxTriggers).filter(
+			(element): element is HTMLElement => element instanceof HTMLElement
+		);
+		const mobileImageElements = Array.from(lightboxMobileImages).filter(
+			(element): element is HTMLImageElement => element instanceof HTMLImageElement
+		);
+		const photoCount = triggerElements.length;
+
+		if (!photoCount) {
+			return;
+		}
+
+		let activeIndex = 0;
+		let closingTimer = 0;
+		let isOpen = false;
+		let lastTrigger: HTMLElement | null = null;
+
+		const getTriggerByIndex = (index) => triggerElements[index] ?? null;
+
+		const focusLightboxTarget = () => {
+			if (isMobileViewport()) {
+				lightboxChrome.focus();
+				return;
+			}
+
+			lightboxCloseButton.focus();
+		};
+
+		const setBodyOverflow = (value) => {
+			document.body.style.overflow = value;
+		};
+
+		const getPhotoData = (index) => {
+			const trigger = getTriggerByIndex(index);
+
+			if (!(trigger instanceof HTMLElement)) {
+				return null;
+			}
+
+			const src = trigger.dataset.photoSrc;
+			const alt = trigger.dataset.photoAlt ?? "";
+
+			if (!src) {
+				return null;
+			}
+
+			return { src, alt };
+		};
+
+		const renderDesktopImage = (index) => {
+			const data = getPhotoData(index);
+
+			if (!data) {
+				return;
+			}
+
+			lightboxImage.src = data.src;
+			lightboxImage.alt = data.alt;
+		};
+
+		const updateDesktopControls = () => {
+			lightboxPrevButton.disabled = activeIndex === 0;
+			lightboxNextButton.disabled = activeIndex === photoCount - 1;
+		};
+
+		const scrollMobileImageIntoView = (index, behavior = "smooth") => {
+			if (!(lightboxMobileScroller instanceof HTMLElement)) {
+				return;
+			}
+
+			const slide = lightboxMobileScroller.querySelector(`[data-photo-index="${index}"]`);
+
+			if (!(slide instanceof HTMLElement)) {
+				return;
+			}
+
+			slide.scrollIntoView({
+				block: "nearest",
+				inline: "center",
+				behavior
+			});
+		};
+
+		const loadMobileImages = () => {
+			mobileImageElements.forEach((image) => {
+				if (image.dataset.loaded === "true") {
+					return;
+				}
+
+				const src = image.dataset.photoSrc;
+
+				if (!src) {
+					return;
+				}
+
+				image.src = src;
+				image.dataset.loaded = "true";
+			});
+		};
+
+		const renderActivePhoto = (index, options = { behavior: "smooth" }) => {
+			activeIndex = Math.max(0, Math.min(index, photoCount - 1));
+
+			if (isMobileViewport()) {
+				loadMobileImages();
+				scrollMobileImageIntoView(activeIndex, options.behavior);
+				lightboxPrevButton.disabled = activeIndex === 0;
+				lightboxNextButton.disabled = activeIndex === photoCount - 1;
+				return;
+			}
+
+			renderDesktopImage(activeIndex);
+			updateDesktopControls();
+		};
+
+		const openLightbox = (trigger, index) => {
+			if (closingTimer) {
+				window.clearTimeout(closingTimer);
+				closingTimer = 0;
+			}
+
+			lastTrigger = trigger;
+			isOpen = true;
+			lightbox.hidden = false;
+			setBodyOverflow("hidden");
+			renderActivePhoto(index, { behavior: "auto" });
+
+			requestAnimationFrame(() => {
+				lightbox.dataset.state = "open";
+				focusLightboxTarget();
+			});
+		};
+
+		const closeLightbox = ({ restoreFocus = true } = {}) => {
+			if (!isOpen) {
+				return;
+			}
+
+			isOpen = false;
+			lightbox.dataset.state = "closed";
+			setBodyOverflow("");
+
+			closingTimer = window.setTimeout(() => {
+				lightbox.hidden = true;
+				if (restoreFocus && lastTrigger instanceof HTMLElement) {
+					lastTrigger.focus();
+				}
+			}, 220);
+		};
+
+		triggerElements.forEach((trigger, index) => {
+			trigger.addEventListener("click", (event) => {
+				event.preventDefault();
+				openLightbox(trigger, index);
+			});
+		});
+
+		lightboxCloseElements.forEach((element) => {
+			element.addEventListener("click", () => closeLightbox());
+		});
+
+		lightboxPrevButton.addEventListener("click", () => {
+			renderActivePhoto(activeIndex - 1);
+		});
+
+		lightboxNextButton.addEventListener("click", () => {
+			renderActivePhoto(activeIndex + 1);
+		});
+
+		document.addEventListener("keydown", (event) => {
+			if (!isOpen) {
+				return;
+			}
+
+			if (event.key === "Escape") {
+				closeLightbox({ restoreFocus: false });
+				return;
+			}
+
+			if (event.key === "ArrowLeft") {
+				renderActivePhoto(activeIndex - 1);
+				return;
+			}
+
+			if (event.key === "ArrowRight") {
+				renderActivePhoto(activeIndex + 1);
+			}
+		});
+
+		if (lightboxMobileScroller instanceof HTMLElement) {
+			lightboxMobileScroller.addEventListener("scroll", () => {
+				if (!isOpen || !isMobileViewport()) {
+					return;
+				}
+
+				const slides = Array.from(
+					lightboxMobileScroller.querySelectorAll("[data-lightbox-mobile-slide]")
+				).filter((slide): slide is HTMLElement => slide instanceof HTMLElement);
+
+				if (!slides.length) {
+					return;
+				}
+
+				const scrollerRect = lightboxMobileScroller.getBoundingClientRect();
+				const scrollerCenter = scrollerRect.left + scrollerRect.width / 2;
+
+				let closestIndex = activeIndex;
+				let closestDistance = Number.POSITIVE_INFINITY;
+
+				slides.forEach((slide) => {
+					const photoIndex = Number.parseInt(slide.dataset.photoIndex ?? "", 10);
+
+					if (!Number.isFinite(photoIndex)) {
+						return;
+					}
+
+					const slideRect = slide.getBoundingClientRect();
+					const slideCenter = slideRect.left + slideRect.width / 2;
+					const distance = Math.abs(scrollerCenter - slideCenter);
+
+					if (distance < closestDistance) {
+						closestDistance = distance;
+						closestIndex = photoIndex;
+					}
+				});
+
+				if (closestIndex !== activeIndex) {
+					activeIndex = closestIndex;
+					lightboxPrevButton.disabled = activeIndex === 0;
+					lightboxNextButton.disabled = activeIndex === photoCount - 1;
+				}
+			});
+		}
+
+		lightboxImage.addEventListener("click", () => closeLightbox());
+
+		window.addEventListener("resize", () => {
+			if (!isOpen) {
+				return;
+			}
+
+			renderActivePhoto(activeIndex, { behavior: "auto" });
+		});
+	})();
+</script>

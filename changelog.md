@@ -17,12 +17,14 @@ Use completed/past tense throughout, including entry titles, and do not show com
 <p class="changelog-label changelog-label--added">Added</p>
 
 - Added Russian versions of the homepage, About page, and Design landing page.
+- Added Russian routes for the photography archive and all individual photo-series pages.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
 - Continued the audit-first `v2` migration by moving more repeated page patterns into shared content components and styling tokens across the case studies and top-level pages.
 - Started the Russian localization rollout across the shared site shell with a language toggle, localized header and footer chrome, and a Russian changelog drawer.
 - Localized the main page copy, recommendation flow, and shared top-level navigation paths across the first Russian pages.
+- Localized the photography archive and detail pages with translated countries, month labels, series titles, archive metadata, and photo viewer controls.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
