@@ -1,9 +1,8 @@
 ---
 import SiteLayout from "./SiteLayout.astro";
 import CaseStudyHero from "../components/sections/CaseStudyHero.astro";
+import MediaLinkCard from "../components/sections/MediaLinkCard.astro";
 import MicroLabel from "../components/typography/MicroLabel.astro";
-import CardTitle from "../components/typography/CardTitle.astro";
-import ChevronRightIcon from "../components/icons/ChevronRightIcon.astro";
 import { resolveStaticAssetUrl } from "../lib/assetUrl";
 
 interface MoreCaseStudyLink {
@@ -58,44 +57,14 @@ const resolvedMoreCaseStudies = moreCaseStudies.map((study) => ({
 			<div class="mt-6 flex flex-col gap-4">
 				{
 					resolvedMoreCaseStudies.map((study) => (
-						<a
+						<MediaLinkCard
 							href={study.href}
-							data-hover-card
-							class="group grid w-full grid-cols-1 overflow-hidden rounded-[12px] border border-stone-200/70 bg-white shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:min-h-32 sm:grid-cols-[9rem_minmax(0,1fr)_2.5rem] sm:items-center sm:gap-x-7 sm:p-4"
-						>
-							<div class="aspect-[16/9] overflow-hidden bg-stone-100 sm:-my-4 sm:-ml-4 sm:aspect-auto sm:self-stretch">
-								<img
-									src={study.imageSrc}
-									alt={study.imageAlt}
-									class="block h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.08]"
-									loading="lazy"
-								/>
-							</div>
-							<div class="min-w-0 px-4 py-4 sm:px-0 sm:py-0">
-								<CardTitle
-									as="h4"
-									class="flex min-w-0 items-center gap-2 sm:gap-2.5"
-								>
-									<img
-										src={study.logoSrc}
-										alt=""
-										aria-hidden="true"
-										loading="lazy"
-										class="h-4 w-4 shrink-0 rounded-[4px] object-cover sm:h-[1.125rem] sm:w-[1.125rem]"
-									/>
-									<span class="truncate">{study.title}</span>
-								</CardTitle>
-								<p class="mt-1 text-xs leading-5 text-stone-700 sm:text-sm">
-									{study.description}
-								</p>
-							</div>
-							<span
-								data-card-accent
-								class="hidden h-10 w-10 items-center justify-center self-center text-stone-400 transition group-hover:text-stone-700 sm:flex"
-							>
-								<ChevronRightIcon class="h-5 w-5" />
-							</span>
-						</a>
+							title={study.title}
+							logoSrc={study.logoSrc}
+							imageSrc={study.imageSrc}
+							imageAlt={study.imageAlt}
+							description={study.description}
+						/>
 					))
 				}
 			</div>

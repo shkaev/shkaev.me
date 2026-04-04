@@ -1,0 +1,37 @@
+---
+import CardTitle from "../typography/CardTitle.astro";
+
+interface Props {
+	as?: string;
+	title: string;
+	titleAs?: string;
+	class?: string;
+	titleClass?: string;
+	bodyClass?: string;
+}
+
+const {
+	as = "section",
+	title,
+	titleAs = "h2",
+	class: className,
+	titleClass,
+	bodyClass
+} = Astro.props;
+
+const Tag = as;
+const hasBodySlot = Astro.slots.has("default");
+---
+
+<Tag class:list={["mt-12 w-full", className]}>
+	<CardTitle as={titleAs} class:list={["text-2xl sm:text-3xl", titleClass]}>
+		{title}
+	</CardTitle>
+	{
+		hasBodySlot && (
+			<div class:list={["type-section-body type-section-body-flow mt-6", bodyClass]}>
+				<slot />
+			</div>
+		)
+	}
+</Tag>

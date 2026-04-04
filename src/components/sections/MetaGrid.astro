@@ -1,0 +1,19 @@
+---
+interface Props {
+	as?: string;
+	class?: string;
+	columnsClass?: string;
+}
+
+const {
+	as = "div",
+	class: className,
+	columnsClass = "lg:grid-cols-3 lg:gap-6"
+} = Astro.props;
+
+const Tag = as;
+---
+
+<Tag class:list={["mt-6 grid gap-6", columnsClass, className]}>
+	<slot />
+</Tag>

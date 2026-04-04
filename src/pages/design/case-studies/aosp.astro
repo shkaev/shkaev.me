@@ -3,6 +3,10 @@ import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
 import ContentSection from "../../../components/sections/ContentSection.astro";
 import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
 import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
+import MetaGrid from "../../../components/sections/MetaGrid.astro";
+import MetaItem from "../../../components/sections/MetaItem.astro";
+import SectionIntro from "../../../components/sections/SectionIntro.astro";
+import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
 import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
@@ -68,161 +72,131 @@ const moreCaseStudies = [
 					carried the redesign from discovery through launch, with additional
 					specialists supporting rollout across channels and markets.
 				</p>
-				<div class="grid gap-6 lg:grid-cols-3 lg:gap-6">
+				<MetaGrid>
 					<div class="lg:col-span-1">
 						<div class="space-y-5">
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									Product owner
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							<MetaItem label="Product owner">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/petraverse/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Petra Moravcova</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									Product design lead
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="Product design lead">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/shkaev/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Dmitry Shkaev</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									Discovery
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="Discovery">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/petr-augustin/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Petr Augustin</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									UX research
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="UX research">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/natalie-schinkova/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Natalie Schinkova</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									Engineering lead
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="Engineering lead">
+								<p>
 									<a
 										href="https://bit.ly/3WzT3GQ"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Jiri Pojezny</a>
 								</p>
-							</div>
+							</MetaItem>
 						</div>
 					</div>
 					<div class="lg:col-span-2">
 						<div class="space-y-5">
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									UX writing
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							<MetaItem label="UX writing">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/alyyamada/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Alysa Yamada</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									Quality assurance
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="Quality assurance">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/victoriausan/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Victoria Usan</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									Product marketing
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="Product marketing">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/andrew-stark-uk/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Andrew Stark</a>, <a
 										href="https://www.linkedin.com/in/jbosso/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Joe Bosso</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									PR
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="PR">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/marinaziegler/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Marina Ziegler</a>, <a
 										href="https://www.linkedin.com/in/mike-healey-46a02320/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Mike Healey</a>, <a
 										href="https://www.linkedin.com/in/stephanieaskane/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Stephanie Kane</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									Localization
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="Localization">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/jan-fiala-31b40182/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Jan Fiala</a>
 								</p>
-							</div>
+							</MetaItem>
 						</div>
 					</div>
-				</div>
+				</MetaGrid>
 		</ContentSection>
 
 		<ContentSection title="Problem statement">
@@ -258,9 +232,9 @@ const moreCaseStudies = [
 		</ContentSection>
 
 		<section class="mt-12 w-full">
-			<CardTitle as="h2" class="text-2xl sm:text-3xl">Design goals</CardTitle>
+			<SectionIntro as="div" class="mt-0" title="Design goals" />
 			<InfoCardGrid columnsClass="md:grid-cols-2 xl:grid-cols-3">
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				<SurfaceCard>
 					<MicroLabel>Framework</MicroLabel>
 					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Build a new direction
@@ -269,8 +243,8 @@ const moreCaseStudies = [
 						Revisit an outdated framework and redefine it through design
 						thinking.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<MicroLabel>Brand</MicroLabel>
 					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Launch with a new visual system
@@ -279,8 +253,8 @@ const moreCaseStudies = [
 						Outfit the product with a new visual style and branding aligned
 						with Avast One.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<MicroLabel>Privacy</MicroLabel>
 					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Ship meaningful privacy features
@@ -289,8 +263,8 @@ const moreCaseStudies = [
 						Design, build, and introduce a set of features centered on user
 						privacy.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<MicroLabel>Experience</MicroLabel>
 					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Design the full funnel
@@ -299,8 +273,8 @@ const moreCaseStudies = [
 						Create user experiences across the full journey, from acquisition
 						to retention.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7 md:col-span-2 xl:col-span-1">
+				</SurfaceCard>
+				<SurfaceCard class="md:col-span-2 xl:col-span-1">
 					<MicroLabel>Integration</MicroLabel>
 					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Connect it to the product ecosystem
@@ -309,8 +283,8 @@ const moreCaseStudies = [
 						Build integrations with the existing lineup and pave the way for
 						future connection to the flagship product.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<MicroLabel>Retention</MicroLabel>
 					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Increase everyday relevance
@@ -319,15 +293,12 @@ const moreCaseStudies = [
 						Make the extension useful enough to become part of users' regular
 						browsing habits.
 					</p>
-				</div>
+				</SurfaceCard>
 			</InfoCardGrid>
 		</section>
 
 		<section class="mt-12 w-full">
-			<CardTitle as="h2" class="text-2xl sm:text-3xl">
-				Design process
-			</CardTitle>
-			<div class="type-section-body type-section-body-flow">
+			<SectionIntro as="div" class="mt-0" title="Design process">
 				<p>
 					At the core of our design process we employed the classic
 					<strong class="font-bold text-stone-950"
@@ -336,7 +307,7 @@ const moreCaseStudies = [
 					teammate Petr, who thoroughly explored multiple directions and
 					produced an extensive body of research.
 				</p>
-			</div>
+			</SectionIntro>
 			<CalloutBlock
 				label="My role"
 				title="Turning discovery into a finished product direction"
@@ -507,9 +478,7 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-12 w-full">
-			<CardTitle as="h2" class="text-2xl sm:text-3xl">
-				Handoff
-			</CardTitle>
+			<SectionIntro as="div" class="mt-0" title="Handoff" />
 			<div class="mt-6 lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-10">
 				<div class="space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
 					<p>
@@ -637,10 +606,7 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-12 w-full">
-			<CardTitle as="h2" class="text-2xl sm:text-3xl">
-				How we measured success
-			</CardTitle>
-			<div class="type-section-body type-section-body-flow">
+			<SectionIntro as="div" class="mt-0" title="How we measured success">
 				<p>
 					Avast has a wide array of analytics tools to establish and track
 					almost any metric, all stripped of personal data. Some of the things
@@ -703,15 +669,13 @@ const moreCaseStudies = [
 						</p>
 					</div>
 				</div>
-			</div>
+			</SectionIntro>
 		</section>
 
 		<section class="mt-12 w-full">
-			<CardTitle as="h2" class="text-2xl sm:text-3xl">
-				Key Results
-			</CardTitle>
+			<SectionIntro as="div" class="mt-0" title="Key Results" />
 			<div class="mt-6 grid gap-4 md:grid-cols-2">
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				<SurfaceCard>
 					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
 						<svg
 							viewBox="0 0 16 16"
@@ -736,8 +700,8 @@ const moreCaseStudies = [
 							>integral touchpoint</strong
 						> within the broader customer experience.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
 						<svg
 							viewBox="0 0 16 16"
@@ -759,10 +723,10 @@ const moreCaseStudies = [
 						> launched alongside the flagship Avast One in the company's
 						latest design language.
 					</p>
-				</div>
+				</SurfaceCard>
 			</div>
 			<div class="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				<SurfaceCard>
 					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
 						<svg
 							viewBox="0 0 16 16"
@@ -781,8 +745,8 @@ const moreCaseStudies = [
 							>significant</strong
 						> new marketing differentiator.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
 						<svg
 							viewBox="0 0 16 16"
@@ -800,8 +764,8 @@ const moreCaseStudies = [
 						<strong class="font-bold text-stone-950">meaningful</strong>
 						cross- and up-selling to other products.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
 						<svg
 							viewBox="0 0 16 16"
@@ -822,8 +786,8 @@ const moreCaseStudies = [
 						> across all privacy settings, making key user journeys much more
 						effective.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
 						<svg
 							viewBox="0 0 16 16"
@@ -842,8 +806,8 @@ const moreCaseStudies = [
 						> Privacy Advisor feature to guide users in real time on platforms
 						like Facebook, Google, Twitter, and more.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
 						<svg
 							viewBox="0 0 16 16"
@@ -863,8 +827,8 @@ const moreCaseStudies = [
 						> user awareness of privacy issues and available solutions
 						compared to the previous version.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
 						<svg
 							viewBox="0 0 16 16"
@@ -882,7 +846,7 @@ const moreCaseStudies = [
 							>well received</strong
 						> by stakeholders at all levels, including the C-suite.
 					</p>
-				</div>
+				</SurfaceCard>
 			</div>
 		</section>
 

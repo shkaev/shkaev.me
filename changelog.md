@@ -6,12 +6,16 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-04</span></p>
 
-## Corrected follow-up regressions
+## Corrected follow-up regressions and continued the shared content system
 
 <p class="changelog-label changelog-label--fixed">Fixed</p>
 
 - Removed the duplicate font request by aligning font preloads with the local `/fonts` paths used by `@font-face`.
 - Fixed `InfoCardGrid` so case-study pages can override its column layout cleanly and the TrackOFF product cards now fill the intended two-column width.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Continued the audit-first `v2` migration by applying shared section intros, surface cards, meta grids, and media link cards across the design pages and case studies.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-02</span></p>
 

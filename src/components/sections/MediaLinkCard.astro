@@ -1,0 +1,68 @@
+---
+import ChevronRightIcon from "../icons/ChevronRightIcon.astro";
+import CardTitle from "../typography/CardTitle.astro";
+
+interface Props {
+	href: string;
+	title: string;
+	logoSrc: string;
+	logoAlt?: string;
+	imageSrc: string;
+	imageAlt: string;
+	description: string;
+	class?: string;
+}
+
+const {
+	href,
+	title,
+	logoSrc,
+	logoAlt = "",
+	imageSrc,
+	imageAlt,
+	description,
+	class: className
+} = Astro.props;
+---
+
+<a
+	href={href}
+	data-hover-card
+	class:list={[
+		"group grid w-full grid-cols-1 overflow-hidden rounded-[12px] border border-stone-200/70 bg-white shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors hover:border-stone-300/80 sm:min-h-32 sm:grid-cols-[9rem_minmax(0,1fr)_2.5rem] sm:items-center sm:gap-x-7 sm:p-4",
+		className
+	]}
+>
+	<div class="aspect-[16/9] overflow-hidden bg-stone-100 sm:-my-4 sm:-ml-4 sm:aspect-auto sm:self-stretch">
+		<img
+			src={imageSrc}
+			alt={imageAlt}
+			class="block h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.08]"
+			loading="lazy"
+		/>
+	</div>
+	<div class="min-w-0 px-4 py-4 sm:px-0 sm:py-0">
+		<CardTitle
+			as="h4"
+			class="flex min-w-0 items-center gap-2 sm:gap-2.5"
+		>
+			<img
+				src={logoSrc}
+				alt={logoAlt}
+				aria-hidden={logoAlt ? undefined : "true"}
+				loading="lazy"
+				class="h-4 w-4 shrink-0 rounded-[4px] object-cover sm:h-[1.125rem] sm:w-[1.125rem]"
+			/>
+			<span class="truncate">{title}</span>
+		</CardTitle>
+		<p class="mt-1 text-xs leading-5 text-stone-700 sm:text-sm">
+			{description}
+		</p>
+	</div>
+	<span
+		data-card-accent
+		class="hidden h-10 w-10 items-center justify-center self-center text-stone-400 transition group-hover:text-stone-700 sm:flex"
+	>
+		<ChevronRightIcon class="h-5 w-5" />
+	</span>
+</a>

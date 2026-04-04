@@ -3,6 +3,8 @@ import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
 import ContentSection from "../../../components/sections/ContentSection.astro";
 import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
 import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
+import SectionIntro from "../../../components/sections/SectionIntro.astro";
+import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import DisplayCallout from "../../../components/typography/DisplayCallout.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
@@ -137,21 +139,21 @@ const moreCaseStudies = [
 					signals websites and ad platforms used to profile people.
 				</p>
 			<InfoCardGrid class="mt-8" columnsClass="sm:grid-cols-2 lg:grid-cols-2">
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-5 py-4 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+				<SurfaceCard padding="compact">
 					<MicroLabel>Core value</MicroLabel>
 					<p class="mt-2 text-sm leading-6 text-stone-700 sm:text-[0.95rem]">
 						Reduced the accuracy of third-party profiling and cross-site
 						tracking, giving users more privacy and a stronger sense of control
 						over their browsing.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-5 py-4 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+				</SurfaceCard>
+				<SurfaceCard padding="compact">
 					<MicroLabel>Platforms</MicroLabel>
 					<p class="mt-2 text-sm leading-6 text-stone-700 sm:text-[0.95rem]">
 						Microsoft Windows, with millions of copies sold across distribution
 						channels, later expanding to macOS, Android, and iOS.
 					</p>
-				</div>
+				</SurfaceCard>
 			</InfoCardGrid>
 			<div class="mt-8 grid gap-8 lg:grid-cols-3">
 				<div>
@@ -231,16 +233,18 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-12 w-full">
-			<CardTitle as="h2" class="text-2xl sm:text-3xl">
-				Reseller portal and white-labelled products
-			</CardTitle>
-			<div class="mt-6 max-w-4xl text-base leading-8 text-stone-700 sm:text-lg">
+			<SectionIntro
+				as="div"
+				class="mt-0"
+				title="Reseller portal and white-labelled products"
+				bodyClass="max-w-4xl"
+			>
 				<p>
 					To support reseller growth, I designed an internal portal that turned
 					a clunky database-like workflow into a usable partner-facing tool for
 					managing activation keys, renewals, and white-label product setups.
 				</p>
-			</div>
+			</SectionIntro>
 			<div class="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
 				<div class="space-y-7">
 					<div>

@@ -3,6 +3,10 @@ import CaseStudyLayout from "../../../layouts/CaseStudyLayout.astro";
 import ContentSection from "../../../components/sections/ContentSection.astro";
 import CalloutBlock from "../../../components/sections/CalloutBlock.astro";
 import InfoCardGrid from "../../../components/sections/InfoCardGrid.astro";
+import MetaGrid from "../../../components/sections/MetaGrid.astro";
+import MetaItem from "../../../components/sections/MetaItem.astro";
+import SectionIntro from "../../../components/sections/SectionIntro.astro";
+import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import DisplayCallout from "../../../components/typography/DisplayCallout.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
@@ -65,97 +69,80 @@ const moreCaseStudies = [
 					A compact cross-functional team carried Cookie Manager from product
 					framing through design, research, implementation, and release.
 				</p>
-				<div class="grid gap-6 lg:grid-cols-3 lg:gap-6">
+				<MetaGrid>
 					<div class="lg:col-span-1">
 						<div class="space-y-5">
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									Product owner
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							<MetaItem label="Product owner">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/ron-ward-30432894/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Ron Ward</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									Product designer
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="Product designer">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/shkaev/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Dmitry Shkaev</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									Engineering
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="Engineering">
+								<p>
 									<a
 										href="https://bit.ly/3WzT3GQ"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Jiri Pojezny</a>, <a
 										href="https://www.linkedin.com/in/gilyov/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Anton Gilyov</a>
 								</p>
-							</div>
+							</MetaItem>
 						</div>
 					</div>
 					<div class="lg:col-span-2">
 						<div class="space-y-5">
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									UX research
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							<MetaItem label="UX research">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/natalie-schinkova/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Natalie Schinkova</a>, <a
 										href="https://www.linkedin.com/in/veronikakonecna/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Veronika Konecna</a>
 								</p>
-							</div>
-							<div>
-								<p class="text-sm text-stone-600 dark:!text-[#FAFAF9]">
-									UX writing
-								</p>
-								<p class="mt-0.5 text-stone-950">
+							</MetaItem>
+							<MetaItem label="UX writing">
+								<p>
 									<a
 										href="https://www.linkedin.com/in/alyyamada/"
 										target="_blank"
 										rel="noreferrer"
-										class="text-stone-950 underline decoration-stone-200 underline-offset-4 transition hover:decoration-stone-400"
+										class="text-link text-stone-950"
 									>Alysa Yamada</a>
 								</p>
-							</div>
+							</MetaItem>
 						</div>
 					</div>
-				</div>
+				</MetaGrid>
 		</ContentSection>
 
 		<section class="mt-12 w-full">
-			<CardTitle as="h2" class="text-2xl sm:text-3xl">
-				Problem statement
-			</CardTitle>
+			<SectionIntro as="div" class="mt-0" title="Problem statement" />
 			<div class="mt-6 grid gap-8 lg:grid-cols-3">
 				<div>
 					<DisplayCallout>
@@ -246,11 +233,9 @@ const moreCaseStudies = [
 		</section>
 
 		<section class="mt-12 w-full">
-			<CardTitle as="h2" class="text-2xl sm:text-3xl">
-				Design goals
-			</CardTitle>
+			<SectionIntro as="div" class="mt-0" title="Design goals" />
 			<InfoCardGrid>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				<SurfaceCard>
 					<MicroLabel>Flow</MicroLabel>
 					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Make browsing feel uninterrupted
@@ -259,8 +244,8 @@ const moreCaseStudies = [
 						Help people get cookie banners out of the way instead of repeatedly
 						breaking their flow.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<MicroLabel>Complexity</MicroLabel>
 					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Go beyond the easy cases
@@ -269,8 +254,8 @@ const moreCaseStudies = [
 						Address multi-option consent flows that the original extension did
 						not fully resolve.
 					</p>
-				</div>
-				<div class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				</SurfaceCard>
+				<SurfaceCard>
 					<MicroLabel>Integration</MicroLabel>
 					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
 						Make it belong in the product
@@ -279,14 +264,12 @@ const moreCaseStudies = [
 						Integrate the new feature into the recently redesigned framework so
 						it felt native in both UX and visual language.
 					</p>
-				</div>
+				</SurfaceCard>
 			</InfoCardGrid>
 		</section>
 
 		<section class="mt-12 w-full">
-			<CardTitle as="h2" class="text-2xl sm:text-3xl">
-				Design process
-			</CardTitle>
+			<SectionIntro as="div" class="mt-0" title="Design process" />
 			<div class="mt-6 lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10">
 				<div>
 					<div class="type-section-body type-section-body-flow mt-0">
@@ -430,7 +413,7 @@ const moreCaseStudies = [
 
 		<section class="mt-12 w-full">
 			<div class="grid gap-4 lg:grid-cols-3">
-				<article class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				<SurfaceCard as="article">
 					<CardTitle as="h2" class="text-[1.35rem] leading-tight sm:text-[1.5rem]">
 						Handoff
 					</CardTitle>
@@ -442,9 +425,9 @@ const moreCaseStudies = [
 						pleased with how faithfully the frontend implementation matched
 						the design.
 					</p>
-				</article>
+				</SurfaceCard>
 
-				<article class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				<SurfaceCard as="article">
 					<CardTitle as="h2" class="text-[1.35rem] leading-tight sm:text-[1.5rem]">
 						How we measured success
 					</CardTitle>
@@ -454,9 +437,9 @@ const moreCaseStudies = [
 						cross-promotional campaigns, increasing NPS results by a set
 						amount, and a few others.
 					</p>
-				</article>
+				</SurfaceCard>
 
-				<article class="rounded-[12px] border border-stone-200/70 bg-white px-6 py-6 shadow-[0_1px_0_rgba(28,25,23,0.04)] sm:px-7 sm:py-7">
+				<SurfaceCard as="article">
 					<CardTitle as="h2" class="text-[1.35rem] leading-tight sm:text-[1.5rem]">
 						Results
 					</CardTitle>
@@ -466,7 +449,7 @@ const moreCaseStudies = [
 						AOSP product roadmap. Over the next few months, adoption and
 						engagement rates for Cookie Manager exceeded our expectations.
 					</p>
-				</article>
+				</SurfaceCard>
 			</div>
 		</section>
 

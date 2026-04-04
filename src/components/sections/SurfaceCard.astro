@@ -1,0 +1,25 @@
+---
+interface Props {
+	as?: string;
+	class?: string;
+	padding?: "compact" | "default";
+}
+
+const {
+	as = "div",
+	class: className,
+	padding = "default"
+} = Astro.props;
+
+const Tag = as;
+---
+
+<Tag
+	class:list={[
+		"surface-card",
+		padding === "compact" ? "surface-card--compact" : "surface-card--default",
+		className
+	]}
+>
+	<slot />
+</Tag>
