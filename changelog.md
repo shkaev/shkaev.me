@@ -12,6 +12,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 - Removed the duplicate font request by aligning font preloads with the local `/fonts` paths used by `@font-face`.
 - Fixed `InfoCardGrid` so case-study pages can override its column layout cleanly and the TrackOFF product cards now fill the intended two-column width.
+- Restored dark-theme hierarchy in shared meta blocks and aligned the AOSP handoff aside icons with the stone-based theme palette.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
