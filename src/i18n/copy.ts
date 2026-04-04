@@ -331,7 +331,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			],
 			legacyYearLabel: "Архив",
 			emptyStateTitle: "По этим фильтрам ничего не нашлось",
-			emptyStateDescription: "Попробуй сбросить один из фильтров или расширить запрос.",
+			emptyStateDescription: "Попробуйте поменять запрос или сбросить один из фильтров.",
 			clearAllLabel: "Сбросить всё",
 			framesLabel: (count) => `${count} кадров`,
 			backToArchiveLabel: "Фотография",

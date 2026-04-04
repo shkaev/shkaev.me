@@ -50,7 +50,10 @@ export const hasLocaleVariant = (pathname: string, locale: Locale) => {
 		return true;
 	}
 
-	return localizedBasePaths.has(basePath);
+	return (
+		localizedBasePaths.has(basePath) ||
+		basePath.startsWith("/photography/")
+	);
 };
 
 export const getLocaleTargetPath = (pathname: string, targetLocale: Locale) => {
