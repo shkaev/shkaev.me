@@ -118,8 +118,8 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 		seeMoreLabel: (count) => `See ${count} more`,
 		strengthsTitle: "Strengths & skills",
 		strengthsParagraphs: [
-			"My core strength is solving complex problems through elegant, well-reasoned solutions and turning them into clear, functional interfaces. There’s no magic behind it — just experience, pattern recognition, and a disciplined design approach.",
-			"I’m often told that I have an eye for perfection when it comes to crafting high-fidelity UI, and I would consider this to be my second strongest trait. Wireframes and early concepts can and should be wild, but when it comes to the final product, it’s pixel-perfect or death. Just kidding, but yes, my Figma stuff is pretty neat."
+			"My core strength is **solving complex problems** through elegant, well-reasoned solutions and turning them into clear, functional interfaces. There’s no magic behind it — just experience, pattern recognition, and a disciplined design approach.",
+			"I’m often told that I have an eye for **perfection** when it comes to crafting high-fidelity UI, and I would consider this to be my second strongest trait. Wireframes and early concepts can and should be wild, but when it comes to the final product, it’s pixel-perfect or death. Just kidding, but yes, my Figma stuff is pretty neat."
 		],
 		recommendationsTitle: "Recommendations",
 		recommendationsLeadBeforeLink: "Here are some quotes from the colleagues and clients I’ve worked with over the years. They offer an external perspective on my work, collaboration style, and overall contribution across different roles and projects. Originally shared on ",
@@ -127,7 +127,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 		recommendationsLeadAfterLink: ".",
 		recommendations: [
 			{
-				name: "Bulat Meshkov",
+				name: "Булат Мешков",
 				href: "https://www.linkedin.com/in/bulatmeshkov/",
 				favicon: "/favicons/exness.png",
 				role: "Senior Product Designer, Exness",
@@ -292,11 +292,11 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 		nextRecommendationAriaLabel: "Next recommendation",
 		leadershipTitle: "Leadership",
 		leadershipParagraph:
-			"While I bring the most value as an individual contributor, I have experience leading creative initiatives within business goals and working closely with small, focused teams. I’m often involved in onboarding new hires and helping them get up to speed, and I’ve taken on mentoring responsibilities to support junior designers and guide them through design processes.",
+			"While I bring the most value as an **individual contributor**, I have experience leading creative initiatives within business goals and working closely with small, focused teams. I’m often involved in **onboarding** new hires and helping them get up to speed, and I’ve taken on **mentoring** responsibilities to support junior designers and guide them through design processes.",
 		hobbiesTitle: "Hobbies",
 		hobbiesParagraphs: [
-			"My main passion is photography, which I’ve been practicing for quite some time, starting back when film cameras were still the mainstream. At one point, I was comfortable enough to turn it into a side gig, even securing contracts with companies like Omsk Carbon Group to shoot portraits and environments.",
-			"Another major activity for me is cycling — there’s nothing better than hopping on a bike, exploring new places, and meeting people along the way. It also naturally complements my photography.",
+			"My main passion is **photography**, which I’ve been practicing for quite some time, starting back when film cameras were still the mainstream. At one point, I was comfortable enough to turn it into a side gig, even securing contracts with companies like Omsk Carbon Group to shoot portraits and environments.",
+			"Another major activity for me is **cycling** — there’s nothing better than hopping on a bike, exploring new places, and meeting people along the way. It also naturally complements my photography.",
 			"And, as a family man, I spend a lot of time with my wife Olga and our two sons, Boris and Gleb."
 		],
 		contactTitle: "Contact info",
@@ -311,7 +311,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 		metaDescription: "О Дмитрии Шкаеве, его фотографии и опыте в продуктовом дизайне.",
 		eyebrow: "Обо мне",
 		title: "Продуктовый дизайнер с более чем 10-летним опытом",
-		lead: "Мой опыт — в создании цифровых продуктов для бизнеса с понятным и удобным пользовательским опытом. Я умею находить решения, которые одновременно работают на цели компании и делают взаимодействие с продуктом простым, приятным и осмысленным для людей. Сейчас я занимаюсь улучшением ключевых показателей взаимодействия в крупном продукте с десятками миллионов активных пользователей в месяц.",
+		lead: "У меня большой опыт в создании корпоративного ПО для десктопа и мобильных устройств. Я умею проектировать интерфейсы так, чтобы цели компании и потребности пользователей усиливали друг друга. Моя сильная сторона — продуманные решения, которые помогают достигать бизнес-целей и делают работу с интерфейсом простой, логичной и естественной. Сейчас я работаю над улучшением ключевых показателей в сервисе с десятками миллионов активных пользователей в месяц.",
 		workTimeline: [
 			{
 				role: "Старший продуктовый дизайнер",
@@ -321,7 +321,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				period: "Апрель 2023 — по настоящее время",
 				contractType: "Полная занятость, офис",
 				intro:
-					"Превращаю бизнес-идеи и обратную связь пользователей в дизайн, который не только хорошо работает, но и увлекает. Быстро учусь на качественных и количественных данных. Проектирую и довожу до релиза ключевые сценарии взаимодействия. Исправляю то, что действительно влияет на результат. Делаю продукты, которые легко понять и приятно использовать."
+					"Превращаю бизнес-идеи и отзывы пользователей в понятные и работающие решения. Проверяю гипотезы, опираюсь на качественные и количественные данные и довожу изменения до запуска. Проектирую ключевые пользовательские сценарии, убираю лишнюю сложность и фокусируюсь на том, что действительно важно. Делаю продукт удобным, понятным и приятным для людей."
 			},
 			{
 				role: "Старший продуктовый дизайнер",
@@ -331,7 +331,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				period: "Май 2019 — Декабрь 2022",
 				contractType: "Полная занятость, удалённо",
 				intro:
-					"Работал над продуктами в сфере приватности, включая AntiTrack, BreachGuard, SecureLine VPN и Avast Online Security & Privacy. Проектировал и выпускал функции для десктопа и мобильных устройств, превращая сложные темы приватности в простые и понятные интерфейсы. Участвовал в развитии дизайн-системы и менторил дизайнеров."
+					"Работал над продуктами в сфере приватности и защиты данных, включая AntiTrack, BreachGuard, SecureLine VPN и Avast Online Security & Privacy. Проектировал и внедрял решения для настольных и мобильных платформ, превращая сложные концепции в ясные и доступные интерфейсные решения. Участвовал в развитии дизайн-системы и выступал наставником для дизайнеров."
 			},
 			{
 				role: "Продуктовый дизайнер",
@@ -341,15 +341,15 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				period: "Июнь 2015 — Июль 2019",
 				contractType: "Контракт, удалённо",
 				intro:
-					"Я пришёл в стартап вторым сотрудником и помогал строить инновационный продукт для защиты приватности с нуля. Он показал сильные результаты, а спустя четыре года компанию купил Avast, где наша история продолжилась уже внутри более крупной организации."
+					"Пришёл в стартап вторым сотрудником и помогал строить продукт в сфере приватности с самого начала. Со временем проект вырос, а через четыре года компанию приобрела Avast. После этого мы продолжили развиваться уже как часть большой организации."
 			},
 			{
 				role: "Фриланс-дизайнер",
 				company: "Частная практика",
 				period: "Апрель 2015 — Июль 2017",
-				contractType: "Частная практика",
+				contractType: "Самозанятость",
 				intro:
-					"Работал над дизайн-проектами для клиентов по всему миру. В свободное время участвовал в конкурсах по веб- и лендинговому дизайну, чтобы прокачивать навыки и параллельно зарабатывать."
+					"Работал над дизайнерскими проектами для клиентов из разных стран. В свободное время участвовал в конкурсах по веб-дизайну и посадочным страницам, чтобы развивать насмотренность, оттачивать навыки и получать дополнительный доход."
 			},
 			{
 				role: "Веб-дизайнер",
@@ -369,46 +369,46 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				period: "Март 2008 — Июнь 2011",
 				contractType: "Полная занятость, офис",
 				intro:
-					"В мои обязанности входили ведение сайтов компании, написание ежедневных новостей и общение с клиентами, а также контроль печатной продукции — от дизайна до распространения. Я также представлял компанию на деловых и государственных мероприятиях и помогал формировать её публичный образ."
+					"Я отвечал за корпоративные сайты компании, готовил ежедневные новостные материалы, общался с клиентами и сопровождал выпуск полиграфической продукции — от дизайна до распространения. Также представлял компанию на деловых и государственных мероприятиях и участвовал в формировании её публичного образа."
 			}
 		],
 		seeMoreLabel: (count) => `Показать ещё ${count}`,
 		strengthsTitle: "Сильные стороны и навыки",
 		strengthsParagraphs: [
-			"Моя главная сильная сторона — решать сложные задачи через элегантные, хорошо продуманные решения и превращать их в ясные, рабочие интерфейсы. Никакой магии в этом нет: только опыт, насмотренность и дисциплинированный подход к дизайну.",
-			"Мне часто говорят, что у меня очень точный глаз на детальную проработку интерфейсов, и я бы назвал это своей второй сильной стороной. Черновые вайрфреймы и ранние концепты могут и должны быть смелыми, но когда дело доходит до финального продукта, я люблю доводить всё до пикселя. Шучу, конечно, но в Figma у меня и правда обычно всё очень аккуратно."
+			"Моя главная сила — находить элегантные, **продуманные решения** для сложных задач и превращать их в ясные и рабочие интерфейсы. Никакой магии: только опыт, насмотренность и дисциплинированный подход к дизайну.",
+			"Я очень **внимателен к деталям** в финальной проработке интерфейсов. Ранние идеи могут быть смелыми, быстрыми и местами хаотичными — это нормально. Но в итоговом решении для меня важны точность, аккуратность и визуальная цельность. Не то чтобы «выверено до пикселя или смерть», но близко. Это обычно заметно по моей Фигме."
 		],
 		recommendationsTitle: "Рекомендации",
-		recommendationsLeadBeforeLink: "Ниже — несколько отзывов от коллег и клиентов, с которыми я работал в разные годы. Это взгляд со стороны на мою работу, стиль взаимодействия и вклад в разных ролях и проектах. Изначально они были опубликованы в ",
+		recommendationsLeadBeforeLink: "Ниже — несколько отзывов от коллег и клиентов, с которыми я работал в разные годы. Это взгляд со стороны на мой подход, стиль взаимодействия и вклад в проектах разного масштаба и формата. Изначально отзывы были опубликованы на ",
 		recommendationsLeadLinkLabel: "LinkedIn",
 		recommendationsLeadAfterLink: ".",
 		recommendations: [
 			{
-				name: "Bulat Meshkov",
+				name: "Булат Мешков",
 				href: "https://www.linkedin.com/in/bulatmeshkov/",
 				favicon: "/favicons/exness.png",
 				role: "Старший продуктовый дизайнер, Exness",
 				avatar: "/avatars/avatar-review-16.jpg",
 				text:
-					"«Дмитрий по-настоящему болеет за пользовательский опыт и всегда отстаивает решения, где в центре внимания — потребности пользователя.»"
+					"«Дмитрий по-настоящему увлечён темой UX и всегда продвигает решения, которые ставят потребности пользователя в центр обсуждения»."
 			},
 			{
-				name: "Aleksandr Kiselev",
+				name: "Александр Киселёв",
 				href: "https://www.linkedin.com/in/aleksandr-kiselev-41a228271",
 				favicon: "/favicons/mayflower.ico",
-				role: "Старший full-stack разработчик, Mayflower",
+				role: "Старший фуллстек-разработчик, Mayflower",
 				avatar: "/avatars/avatar-review-17.jpg",
 				text:
-					"«Нам удавалось выпускать сложные и визуально сильные функции, находя идеальный баланс между качеством дизайна и реализацией.»"
+					"«Мы успешно запускали сложные и визуально впечатляющие фичи, находя точный баланс между выразительностью дизайна и качеством реализации»."
 			},
 			{
-				name: "Yurii Korotun",
+				name: "Юрий Коротун",
 				href: "https://www.linkedin.com/in/yurii-korotun/",
 				favicon: "/favicons/gen.png",
-				role: "Ведущий менеджер продукта, Gen",
+				role: "Главный менеджер продукта, Gen",
 				avatar: "/avatars/avatar-review-15.jpg",
 				text:
-					"«У него редкое внимание к деталям и глубокое понимание того, что нужно, чтобы интерфейс был одновременно функциональным и привлекательным.»"
+					"«Исключительное внимание к деталям. Глубокое понимание, каким должен быть интерфейс, чтобы оставаться одновременно функциональным и привлекательным»."
 			},
 			{
 				name: "Ron Ward",
@@ -417,7 +417,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				role: "Старший менеджер продукта, Avast Software",
 				avatar: "/avatars/avatar-review-13.jpg",
 				text:
-					"«Дмитрий сохранял позитивный настрой, несмотря на множество сложностей. [...] Он всегда держал в фокусе потребности клиента и очень тонко относился к деталям.»"
+					"«Дмитрий сохранял позитивный настрой в самых разных рабочих ситуациях. [...] Он всегда помнит о пользователе и очень внимателен к деталям»."
 			},
 			{
 				name: "Natalie Schinkova",
@@ -426,25 +426,25 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				role: "Менеджер продукта, Avast Software",
 				avatar: "/avatars/avatar-review-12.jpg",
 				text:
-					"«Как бывший UX-исследователь, ставший PM, я особенно ценила Димин фокус на пользователе и его способность превращать выводы исследований в точные изменения в дизайне.»"
+					"«Как бывший UX-исследователь, ставшая продуктовым менеджером, я особенно ценила то, как Дима работает с инсайтами и превращает результаты исследований в точные изменения в дизайне»."
 			},
 			{
-				name: "Victoria Usan",
+				name: "Виктория Усан",
 				href: "https://www.linkedin.com/in/victoriausan/",
 				favicon: "/favicons/avast.ico",
-				role: "QA-инженер, Avast Software",
+				role: "Инженер по контролю качества, Avast Software",
 				avatar: "/avatars/avatar-review-14.jpg",
 				text:
-					"«Дима уделил много времени тому, чтобы помочь мне профессионально вырасти. [...] Работать с ним над каждым нашим проектом было настоящим удовольствием.»"
+					"«Дима уделял много времени тому, чтобы помогать мне расти как специалисту. [...] Работать с ним вместе над каждым нашим проектом было настоящим удовольствием»."
 			},
 			{
 				name: "Anton Gilyov",
 				href: "https://www.linkedin.com/in/gilyov/",
 				favicon: "/favicons/avast.ico",
-				role: "Старший frontend-разработчик, Avast Software",
+				role: "Старший фронтенд-разработчик, Avast Software",
 				avatar: "/avatars/avatar-review-1.jpg",
 				text:
-					"«Это один из самых профессиональных и ответственных людей, которых я когда-либо встречал.»"
+					"«Это один из самых профессиональных и ответственных людей, которых я встречал»."
 			},
 			{
 				name: "Jon Schubbe",
@@ -453,7 +453,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				role: "Старший продуктовый дизайнер, Avast Software",
 				avatar: "/avatars/avatar-review-11.jpg",
 				text:
-					"«Одна из главных сильных сторон Димы в том, что он всегда доводит дело до конца.»"
+					"«Одно из самых сильных качеств Димы — он всегда доводит дело до конца»."
 			},
 			{
 				name: "Jan Marek",
@@ -462,15 +462,15 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				role: "Старший продуктовый дизайнер, Avast Software",
 				avatar: "/avatars/avatar-review-10.jpg",
 				text:
-					"«У него глубокое понимание принципов проектирования пользовательского опыта и интерфейсов.»"
+					"«Он глубоко понимает, как устроен пользовательский опыт, и хорошо знает принципы дизайна интерфейсов»."
 			},
 			{
 				name: "Jiří Pojezný",
 				href: "https://www.linkedin.com/in/ji%C5%99%C3%AD-pojezn%C3%BD-6a322765/",
 				favicon: "/favicons/avast.ico",
-				role: "Старший frontend-разработчик, Avast Software",
+				role: "Старший фронтенд-разработчик, Avast Software",
 				text:
-					"«Дима очень дружелюбный и отзывчивый. Он всегда рядом, когда нужен коллегам.»"
+					"«С Димой легко общаться, и он быстро откликается. Коллеги всегда могут на него рассчитывать»."
 			},
 			{
 				name: "Ilja Panić",
@@ -479,7 +479,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				role: "Старший продуктовый дизайнер, Avast Software",
 				avatar: "/avatars/avatar-review-9.jpg",
 				text:
-					"«Это один из самых надёжных и талантливых дизайнеров, с которыми я работал за последние 10 лет.»"
+					"«Один из самых надёжных и талантливых дизайнеров, с которыми мне довелось работать за последние десять лет»."
 			},
 			{
 				name: "Elena Ukolova",
@@ -488,7 +488,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				role: "Старший продуктовый дизайнер, Avast Software",
 				avatar: "/avatars/avatar-review-8.jpg",
 				text:
-					"«Если у меня возникал вопрос по Figma или дизайн-системе, именно к нему всегда можно было прийти за самым глубоким ответом.»"
+					"«Когда у меня возникали вопросы по Фигме или дизайн-системе, именно он был всегда тем, к кому можно было бы прийти за самым подробным и понятным ответом»."
 			},
 			{
 				name: "Alysa Yamada",
@@ -497,7 +497,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				role: "UX-райтер, Avast Software",
 				avatar: "/avatars/avatar-review-7.jpg",
 				text:
-					"«Его способность структурировать идеи и упрощать процессы для всех — это почти магия.»"
+					"«То, как он упорядочивает идеи и упрощает процессы для всех, — это настоящая магия»."
 			},
 			{
 				name: "Chandler Givens",
@@ -506,7 +506,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				role: "CEO, TrackOFF",
 				avatar: "/avatars/avatar-review-2.jpg",
 				text:
-					"«Дима — замечательный дизайнер.»"
+					"«Дима — замечательный дизайнер»."
 			},
 			{
 				name: "Ryan Flach",
@@ -515,25 +515,25 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				role: "CTO, TrackOFF",
 				avatar: "/avatars/avatar-review-5.jpg",
 				text:
-					"«Дима оперативен и надёжен, всегда быстро отвечает и выдаёт результаты высочайшего качества. Его внимание к деталям невозможно переоценить.»"
+					"«Дима оперативен и надёжен, всегда быстро включается в работу и выдаёт результат высочайшего качества. Его внимание к деталям — одна из его самых сильных сторон»."
 			},
 			{
-				name: "Andrey Perfilev",
+				name: "Андрей Перфильев",
 				href: "https://www.linkedin.com/in/perfilev/",
 				favicon: "/favicons/nitroseller.png",
 				role: "CEO, Nitroseller",
 				avatar: "/avatars/avatar-review-6.jpg",
 				text:
-					"«Дмитрий — очень сильный продуктовый дизайнер. Смело рекомендую!»"
+					"«Дмитрий — очень сильный продуктовый дизайнер. Смело рекомендую!»."
 			},
 			{
-				name: "Vladimir Rybas",
+				name: "Владимир Рыбас",
 				href: "https://www.linkedin.com/in/vrybas/",
 				favicon: "/favicons/typeform.ico",
 				role: "Ведущий разработчик, Typeform",
 				avatar: "/avatars/avatar-review-3.jpg",
 				text:
-					"«Он очень талантливый и трудолюбивый человек.»"
+					"«Он очень талантливый и трудолюбивый человек»."
 			},
 			{
 				name: "Faizan J. Khan",
@@ -542,24 +542,24 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 				role: "CIO, VISARY",
 				avatar: "/avatars/avatar-review-4.jpg",
 				text:
-					"«Дмитрий доводит дело до конца.»"
+					"«Если за дело берётся Дмитрий, оно будет сделано»."
 			}
 		],
 		prevRecommendationAriaLabel: "Предыдущая рекомендация",
 		nextRecommendationAriaLabel: "Следующая рекомендация",
 		leadershipTitle: "Лидерство",
 		leadershipParagraph:
-			"Больше всего пользы я приношу как самостоятельный специалист, но у меня есть опыт ведения креативных инициатив в рамках бизнес-целей и плотной работы с небольшими сфокусированными командами. Я часто помогаю новым сотрудникам быстрее освоиться, а также беру на себя наставничество для младших дизайнеров и провожу их через дизайн-процессы.",
+			"Лучше всего я проявляю себя как **самостоятельный специалист**, но при этом умею вести креативные инициативы в рамках бизнес-задач и эффективно работать с небольшими сильными командами. Я часто помогаю новым коллегам быстрее освоиться, участвую в их **онбординге** и время от времени беру на себя **наставничество**, поддерживая младших дизайнеров и помогая им расти в профессии.",
 		hobbiesTitle: "Увлечения",
 		hobbiesParagraphs: [
-			"Моё главное увлечение — фотография. Я занимаюсь ею уже давно, ещё со времён, когда плёночные камеры были обычным делом. В какой-то момент я настолько уверенно почувствовал себя в этом деле, что начал брать подработки и даже снимал для компаний вроде Omsk Carbon Group людей и пространства.",
-			"Ещё одна важная часть моей жизни — велосипед. Нет ничего лучше, чем сесть в седло, открывать новые места и знакомиться с людьми по пути. И это очень естественно сочетается с моей фотографией.",
-			"И да, я семьянин, так что много времени провожу с женой Ольгой и нашими двумя сыновьями — Борисом и Глебом."
+			"Моё главное увлечение — **фотография**, которой я занимаюсь уже много лет, ещё с тех времён, когда плёночные камеры были повсеместной нормой. В какой-то момент я настолько уверенно почувствовал себя в этом деле, что превратил его в дополнительный источник дохода и даже работал по контракту с компаниями вроде Omsk Carbon Group, снимая портреты и производственную среду.",
+			"Ещё одна важная часть моей жизни — **велопоездки**. Нет ничего лучше, чем открывать новые места и благодаря таким поездкам становиться ближе с людьми и расширять круг общения. И это, само собой, прекрасно сочетается с фотографией.",
+			"И, конечно, много времени я провожу с семьёй — женой Ольгой и нашими двумя сыновьями, Борисом и Глебом."
 		],
 		contactTitle: "Контакты",
 		contactLeadBeforeCity: "Я живу в 🇨🇾 ",
-		contactCity: "Лимасоле",
-		contactLeadAfterCity: " и всегда рад новым знакомствам. Если хочешь связаться, лучше всего написать мне в ",
+		contactCity: "Лимассоле",
+		contactLeadAfterCity: " и всегда открыт к новым контактам. Написать мне можно в ",
 		contactLinkLabel: "Telegram",
 		contactLeadAfterLink: "."
 	}

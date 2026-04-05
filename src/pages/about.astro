@@ -9,6 +9,7 @@ import WorkTimelineCard from "../components/WorkTimelineCard.astro";
 import { getAboutPageCopy } from "../i18n/aboutPage";
 import type { Locale } from "../i18n/config";
 import { resolveStaticAssetUrl } from "../lib/assetUrl";
+import { renderInlineRichText } from "../lib/renderInlineRichText";
 
 const locale: Locale = "en";
 const pageCopy = getAboutPageCopy(locale);
@@ -111,7 +112,7 @@ const renderRecommendationQuote = (value: string) =>
 			<ContentSection title={pageCopy.strengthsTitle}>
 				{
 					pageCopy.strengthsParagraphs.map((paragraph) => (
-						<p>{paragraph}</p>
+						<p set:html={renderInlineRichText(paragraph)}></p>
 					))
 				}
 			</ContentSection>
@@ -281,13 +282,13 @@ const renderRecommendationQuote = (value: string) =>
 		</div>
 
 			<ContentSection title={pageCopy.leadershipTitle}>
-				<p>{pageCopy.leadershipParagraph}</p>
+				<p set:html={renderInlineRichText(pageCopy.leadershipParagraph)}></p>
 			</ContentSection>
 
 			<ContentSection title={pageCopy.hobbiesTitle}>
 				{
 					pageCopy.hobbiesParagraphs.map((paragraph) => (
-						<p>{paragraph}</p>
+						<p set:html={renderInlineRichText(paragraph)}></p>
 					))
 				}
 			</ContentSection>

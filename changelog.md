@@ -4,6 +4,15 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-06</span></p>
+
+## Refined the Russian About page copy and restored inline emphasis
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Rewrote the Russian About page intro, work history, recommendations, strengths, leadership, hobbies, and contact copy to read more naturally and match the intended portfolio tone.
+- Restored the missing inline emphasis on the About page in both English and Russian, using the same highlighted phrases as the production version through a shared rich-text rendering path.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-05</span></p>
 
 ## Refined the Russian About intro
