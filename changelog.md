@@ -4,6 +4,16 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-11</span></p>
+
+## Refined the Russian design case studies and unified their reading width
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Rewrote the Russian TrackOFF case study to remove awkward literal phrasing and keep the long-form portfolio writing natural and direct.
+- Continued refining the Russian AOSP and Cookie Manager case studies with terminology fixes, tighter wording, and cleaner phrasing around product capabilities and partner workflows.
+- Restored working line-height controls for callout headlines, adjusted the Cookie Manager intro spacing, and aligned the reading width of Design and case-study text with the About page while keeping project cards full-width.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-10</span></p>
 
 ## Shortened Russian photography labels

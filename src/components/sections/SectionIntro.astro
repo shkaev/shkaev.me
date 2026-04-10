@@ -33,11 +33,11 @@ const hasBodySlot = Astro.slots.has("default");
 	{
 		hasBodySlot && (
 			bodyVariant === "lead" ? (
-				<div class:list={["type-page-lead mt-6 space-y-0", bodyClass]}>
+				<div class:list={["section-intro-copy type-page-lead mt-6 space-y-0", bodyClass]}>
 					<slot />
 				</div>
 			) : (
-				<SectionBody class:list={["mt-6", bodyClass]}>
+				<SectionBody class:list={["section-intro-copy mt-6", bodyClass]}>
 					<slot />
 				</SectionBody>
 			)

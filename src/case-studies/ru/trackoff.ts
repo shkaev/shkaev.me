@@ -7,5 +7,5 @@ export const caseStudyCard: CaseStudyCardMeta = {
 	logoAlt: "TrackOFF",
 	imageSrc: "/images/case-studies/trackoff/trackoff-hero.jpg",
 	imageAlt: "Превью кейса TrackOFF",
-	description: "Короткая история о том, как продукт строился с нуля и дошёл до приобретения крупной компанией."
+	description: "Короткая история о том, как мы с нуля создали успешный продукт и довели его до приобретения крупной компанией."
 };
