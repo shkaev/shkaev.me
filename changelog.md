@@ -11,6 +11,8 @@ Use completed/past tense throughout, including entry titles, and do not show com
 <p class="changelog-label changelog-label--improved">Improved</p>
 
 - Renamed the Russian photography navigation, page eyebrow, and footer label from `Фотография` to the shorter `Фото` for a cleaner site-wide UI.
+- Refined the Russian About page heading, intro, and leadership copy to read more directly and naturally.
+- Reworked the Russian Design page intro to frame the case studies more clearly and explain the original English writing plus the later AI-assisted translation.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-06</span></p>
 
