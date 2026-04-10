@@ -6,52 +6,24 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-11</span></p>
 
-## Refined the Russian design case studies and unified their reading width
+## Launched the Russian site experience and refined the translated design portfolio
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added Russian versions of the top-level pages, the photography archive and series pages, and the full Design case-study set.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
-- Rewrote the Russian TrackOFF case study to remove awkward literal phrasing and keep the long-form portfolio writing natural and direct.
-- Continued refining the Russian AOSP and Cookie Manager case studies with terminology fixes, tighter wording, and cleaner phrasing around product capabilities and partner workflows.
-- Restored working line-height controls for callout headlines, adjusted the Cookie Manager intro spacing, and aligned the reading width of Design and case-study text with the About page while keeping project cards full-width.
-- Renamed the Russian changelog UI to "History of changes" and rewrote the Russian changelog copy to read naturally instead of mirroring the English phrasing too literally.
+- Rewrote the Russian About page, the changelog UI, and the translated AOSP, Cookie Manager, and TrackOFF case studies so the copy reads naturally and consistently across the site.
+- Refined the shared layout rhythm, reading width, and case-study card metadata so Design, About, and the Russian portfolio content feel more cohesive across both locales.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
-- Added a project rule that every committed change must update both `changelog.md` and `changelog.ru.md` in the same changeset, with the Russian version kept in natural first-person singular.
-
-<p class="changelog-meta"><span class="changelog-meta__date">2026-04-10</span></p>
-
-## Shortened Russian photography labels
-
-<p class="changelog-label changelog-label--improved">Improved</p>
-
-- Renamed the Russian photography navigation, page eyebrow, and footer label from `Фотография` to the shorter `Фото` for a cleaner site-wide UI.
-- Refined the Russian About page heading, intro, and leadership copy to read more directly and naturally.
-- Reworked the Russian Design page intro to frame the case studies more clearly and explain the original English writing plus the later AI-assisted translation.
-- Moved case-study card metadata into article-specific case-study modules so the Design listing and related-case sections read their titles and descriptions from the same per-article source in both English and Russian.
-- Rewrote the Russian AOSP and Cookie Manager case studies from top to bottom to remove literal, wooden phrasing and make the long-form portfolio text read naturally in Russian.
-- Restored consistent section-heading typography in case-study intro modules and adjusted the Cookie Manager callout spacing so those narrative blocks sit more naturally in the layout.
-
-<p class="changelog-meta"><span class="changelog-meta__date">2026-04-06</span></p>
-
-## Refined the Russian About page copy and restored inline emphasis
-
-<p class="changelog-label changelog-label--improved">Improved</p>
-
-- Rewrote the Russian About page intro, work history, recommendations, strengths, leadership, hobbies, and contact copy to read more naturally and match the intended portfolio tone.
-- Restored the missing inline emphasis on the About page in both English and Russian, using the same highlighted phrases as the production version through a shared rich-text rendering path.
-
-<p class="changelog-meta"><span class="changelog-meta__date">2026-04-05</span></p>
-
-## Refined the Russian About intro
-
-<p class="changelog-label changelog-label--improved">Improved</p>
-
-- Replaced the opening paragraph on the Russian About page with a clearer business-facing summary of the product-design work and current focus.
+- Added a release workflow rule that keeps the English and Russian history entries aligned before each production push.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-04</span></p>
 
-## Corrected follow-up regressions, continued the v2 refactor, and began the Russian localization rollout
+## Corrected follow-up regressions and continued the v2 refactor
 
 <p class="changelog-label changelog-label--fixed">Fixed</p>
 
@@ -59,26 +31,13 @@ Use completed/past tense throughout, including entry titles, and do not show com
 - Restored dark-theme hierarchy and surface styling across shared meta blocks, cards, and aside accents.
 - Fixed remaining shared UI regressions including footer icon spacing, dark-theme control icon color, and the About timeline markers.
 
-<p class="changelog-label changelog-label--added">Added</p>
-
-- Added Russian versions of the homepage, About page, and Design landing page.
-- Added Russian routes for the photography archive and all individual photo-series pages.
-
 <p class="changelog-label changelog-label--improved">Improved</p>
 
 - Continued the audit-first `v2` migration by moving more repeated page patterns into shared content components and styling tokens across the case studies and top-level pages.
-- Started the Russian localization rollout across the shared site shell with a language toggle, localized header and footer chrome, and a Russian changelog drawer.
-- Localized the main page copy, recommendation flow, and shared top-level navigation paths across the first Russian pages.
-- Localized the photography archive and detail pages with translated countries, month labels, series titles, archive metadata, and photo viewer controls.
-- Rewrote the Russian About page copy to replace rough machine-like phrasing with more natural portfolio language across the intro, career timeline, recommendations, and personal sections.
-- Localized the Design page intro and translated the full Russian TrackOFF case study, including section copy, related-case cards, and media descriptions.
-- Translated the full Russian Cookie Manager case study, including team credits, research findings, result framing, and localized links back into the case-study set.
-- Translated and polished the full Russian AOSP case study, including team credits, design-process sections, success metrics, and result summaries.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 
 - Trimmed follow-up dead code and duplicate prose wrappers from the new shared content-system slices, while tightening the semantics and body-variant APIs in the new shared components.
-- Added locale-aware routing helpers, dictionaries, and client-side locale toggle plumbing to support paired English and Russian routes.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-02</span></p>
 

@@ -8,12 +8,13 @@
 
 ## Changelog
 
-- If a task ends with a git commit, update `changelog.md` in the same changeset before committing.
-- If a task ends with a git commit, update `changelog.ru.md` in the same changeset before committing.
-- Treat `changelog.md` as part of the definition of done for any committed project work. Do not leave changelog updates for later.
-- Treat `changelog.ru.md` as part of the definition of done for any committed project work. Do not leave Russian changelog updates for later.
+- Treat `changelog.md` and `changelog.ru.md` as release logs, not commit logs.
+- Do not create or expand changelog entries for every intermediate local commit during active development.
+- Prepare changelog updates when assembling a release for push/deployment, not on every local checkpoint commit.
 - Add new entries at the top of `changelog.md`, keeping the newest committed work first.
 - Keep `changelog.ru.md` structurally aligned with `changelog.md`, using the same dates, section labels, and overall release grouping unless the task explicitly requires a divergence.
+- For a normal release, write one compact new top entry in `changelog.md` and one matching compact new top entry in `changelog.ru.md` that together describe everything shipping since the previous push/deploy.
+- Aggregate all changes that will land on production together in that single top entry unless the user explicitly wants multiple separate release entries.
 - If consecutive commits belong to the same shipped body of work, keep updating the existing top changelog entry for that release instead of creating a new separate top entry for each small follow-up fix.
 - If multiple commits land on the same local date, default to one shared top changelog entry for that date and keep expanding it unless the user explicitly wants separate releases called out.
 - Do not rewrite, reorder, or "refresh" older changelog entries during normal new work. Leave historical entries alone unless the task is specifically about changelog cleanup or backfilling history.
@@ -41,16 +42,15 @@
 
 ## Commit Checklist
 
-- Before committing, append a new top entry to `changelog.md` in the accepted format.
-- Before committing, append or update the matching top entry in `changelog.ru.md` in the same changeset.
-- If the current commit is a follow-up to the same release already represented by the top entry, update that existing top entry instead of appending a new one.
-- If there is already a top entry for the current local date, keep merging same-day work into that entry by default instead of creating another entry for that date.
+- Local checkpoint commits do not require a new changelog entry if the release is not being prepared yet.
+- Before pushing, append or update one new top entry in `changelog.md` and one matching top entry in `changelog.ru.md` in the accepted format.
+- If the current push is a follow-up to the same release already represented by the top entry, update that existing top entry instead of appending a new one.
+- If there is already a top entry for the current local date, keep merging same-day shipped work into that entry by default instead of creating another entry for that date.
 - Before pushing, review the full current project worktree across all active threads and include every intended project change in the release commit and matching changelog entry instead of preparing a push from only the current thread.
 - Do not touch older changelog entries unless the task explicitly requires changelog maintenance.
 - Run verification only when the change actually needs it under the rules above.
-- Commit only after the code change and matching changelog entry are both ready.
-- Before pushing, show the user a preview of the exact new changelog entry that is about to be shipped and get explicit approval.
-- Do not push committed work until the user has approved the new changelog preview for that push.
+- Before pushing, show the user a preview of the exact new top entries in both `changelog.md` and `changelog.ru.md` that are about to be shipped and get explicit approval.
+- Do not push committed work until the user has approved those changelog previews for that release.
 
 ## Deploy Message
 
