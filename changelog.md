@@ -4,6 +4,14 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-10</span></p>
+
+## Shortened Russian photography labels
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Renamed the Russian photography navigation, page eyebrow, and footer label from `Фотография` to the shorter `Фото` for a cleaner site-wide UI.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-06</span></p>
 
 ## Refined the Russian About page copy and restored inline emphasis

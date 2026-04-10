@@ -265,7 +265,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 	ru: {
 		siteName: "Дмитрий Шкаев",
 		navigation: [
-			{ href: "/photography", label: "Фотография" },
+			{ href: "/photography", label: "Фото" },
 			{ href: "/design", label: "Дизайн" },
 			{ href: "/about", label: "Обо мне" }
 		],
@@ -288,7 +288,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			languageLabel: "EN"
 		},
 		footer: {
-			tagline: "Фотография, дизайн и всё, что между ними."
+			tagline: "Фото, дизайн и всё, что между ними."
 		},
 		changelog: {
 			title: "Чейнджлог",
@@ -320,7 +320,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 		photography: {
 			metaTitle: "Фотография | Дмитрий Шкаев",
 			metaDescription: "Фотографические коллекции и визуальные истории Дмитрия Шкаева.",
-			eyebrow: "Фотография",
+			eyebrow: "Фото",
 			title: "Моя коллекция",
 			lead: "Архив фотографий, снятых в основном на Fujifilm X-E4 и плёнку. Он сформирован по локациям и расположен в хронологическом порядке. Для удобства есть поиск с фильтрами.",
 			searchPlaceholder: "Поиск по месту, названию или году",
