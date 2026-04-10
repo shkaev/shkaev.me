@@ -2,12 +2,14 @@
 import { Content as ChangelogContent } from "../../../changelog.md";
 import { Content as ChangelogContentRu } from "../../../changelog.ru.md";
 import type { Locale } from "../../i18n/config";
+import { getSiteCopy } from "../../i18n/copy";
 
 interface Props {
 	locale: Locale;
 }
 
 const { locale } = Astro.props;
+const copy = getSiteCopy(locale);
 ---
 
 <div
@@ -33,16 +35,12 @@ const { locale } = Astro.props;
 							id="changelog-sheet-title"
 							class="text-[2.5rem] leading-none tracking-tight text-stone-950 sm:text-[3rem]"
 						>
-							{locale === "ru" ? "Чейнджлог" : "Changelog"}
+							{copy.changelog.title}
 						</h2>
 						<p
 							class="site-sheet__subtitle mt-3 max-w-xl text-[0.98rem] leading-[1.8] text-stone-600"
 						>
-							{
-								locale === "ru"
-									? "Хроника значимых обновлений сайта и продакшена."
-									: "A running record of meaningful production updates."
-							}
+							{copy.changelog.description}
 						</p>
 					</div>
 				<button
@@ -50,7 +48,7 @@ const { locale } = Astro.props;
 						data-sheet-close
 						data-sheet-close-button
 						class="site-sheet__icon-button"
-						aria-label={locale === "ru" ? "Закрыть чейнджлог" : "Close changelog"}
+						aria-label={copy.changelog.closeAriaLabel}
 					>
 					<svg
 						aria-hidden="true"

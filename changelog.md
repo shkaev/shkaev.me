@@ -13,6 +13,11 @@ Use completed/past tense throughout, including entry titles, and do not show com
 - Rewrote the Russian TrackOFF case study to remove awkward literal phrasing and keep the long-form portfolio writing natural and direct.
 - Continued refining the Russian AOSP and Cookie Manager case studies with terminology fixes, tighter wording, and cleaner phrasing around product capabilities and partner workflows.
 - Restored working line-height controls for callout headlines, adjusted the Cookie Manager intro spacing, and aligned the reading width of Design and case-study text with the About page while keeping project cards full-width.
+- Renamed the Russian changelog UI to "History of changes" and rewrote the Russian changelog copy to read naturally instead of mirroring the English phrasing too literally.
+
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Added a project rule that every committed change must update both `changelog.md` and `changelog.ru.md` in the same changeset, with the Russian version kept in natural first-person singular.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-10</span></p>
 

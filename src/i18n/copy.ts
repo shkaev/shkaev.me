@@ -197,8 +197,8 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 		header: {
 			homeAriaLabel: "Главная",
 			primaryNavAriaLabel: "Основная навигация",
-			changelogLabel: "Чейнджлог",
-			changelogAriaLabel: "Открыть чейнджлог",
+			changelogLabel: "История изменений",
+			changelogAriaLabel: "Открыть историю изменений",
 			themeToggleAriaLabelLight: "Переключить на тёмную тему",
 			themeToggleAriaLabelDark: "Переключить на светлую тему",
 			themeTooltipLight: "Тёмная тема",
@@ -211,9 +211,9 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			tagline: "Фото, дизайн и всё, что между ними."
 		},
 		changelog: {
-			title: "Чейнджлог",
-			description: "Лента значимых обновлений сайта и продакшена.",
-			closeAriaLabel: "Закрыть чейнджлог"
+			title: "История изменений",
+			description: "Хроника обновлений и улучшений сайта.",
+			closeAriaLabel: "Закрыть историю изменений"
 		},
 		home: {
 			metaTitle: "Дмитрий Шкаев",

@@ -9,12 +9,17 @@
 ## Changelog
 
 - If a task ends with a git commit, update `changelog.md` in the same changeset before committing.
+- If a task ends with a git commit, update `changelog.ru.md` in the same changeset before committing.
 - Treat `changelog.md` as part of the definition of done for any committed project work. Do not leave changelog updates for later.
+- Treat `changelog.ru.md` as part of the definition of done for any committed project work. Do not leave Russian changelog updates for later.
 - Add new entries at the top of `changelog.md`, keeping the newest committed work first.
+- Keep `changelog.ru.md` structurally aligned with `changelog.md`, using the same dates, section labels, and overall release grouping unless the task explicitly requires a divergence.
 - If consecutive commits belong to the same shipped body of work, keep updating the existing top changelog entry for that release instead of creating a new separate top entry for each small follow-up fix.
 - If multiple commits land on the same local date, default to one shared top changelog entry for that date and keep expanding it unless the user explicitly wants separate releases called out.
 - Do not rewrite, reorder, or "refresh" older changelog entries during normal new work. Leave historical entries alone unless the task is specifically about changelog cleanup or backfilling history.
 - Write changelog content in English.
+- Write `changelog.ru.md` in natural Russian, not as a literal or machine-like translation of `changelog.md`.
+- Keep `changelog.ru.md` in the first person singular when describing shipped work, unless the user explicitly asks for a different voice.
 - Keep all changelog copy in completed/past tense, including entry titles. Do not use commit-style imperative titles such as `Add`, `Refine`, `Build`, or `Migrate`.
 - Do not show commit hashes in visible changelog content.
 - Use only the established changelog structure and CSS hooks already used in `changelog.md`:
@@ -37,6 +42,7 @@
 ## Commit Checklist
 
 - Before committing, append a new top entry to `changelog.md` in the accepted format.
+- Before committing, append or update the matching top entry in `changelog.ru.md` in the same changeset.
 - If the current commit is a follow-up to the same release already represented by the top entry, update that existing top entry instead of appending a new one.
 - If there is already a top entry for the current local date, keep merging same-day work into that entry by default instead of creating another entry for that date.
 - Before pushing, review the full current project worktree across all active threads and include every intended project change in the release commit and matching changelog entry instead of preparing a push from only the current thread.
