@@ -37,12 +37,12 @@ const hasBodySlot = Astro.slots.has("default");
 	</DisplayCallout>
 	{
 		hasBodySlot ? (
-			<div class:list={["mt-1 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]", bodyClass]}>
+			<div class:list={["mt-3 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]", bodyClass]}>
 				<slot />
 			</div>
 		) : (
 			body && (
-			<p class:list={["mt-1 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]", bodyClass]}>
+			<p class:list={["mt-3 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]", bodyClass]}>
 				{body}
 			</p>
 			)

@@ -126,9 +126,12 @@ const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 				</MetaGrid>
 		</ContentSection>
 
-		<section class="mt-12 w-full">
-			<SectionIntro as="div" class="mt-0" title="Problem statement" />
-			<div class="mt-6 grid gap-8 lg:grid-cols-3">
+		<SectionIntro
+			title="Problem statement"
+			class="mt-8"
+			bodyClass="mt-8 space-y-8"
+		>
+			<div class="grid gap-8 lg:grid-cols-3">
 				<CalloutColumn title="The acquired product" bodyClass="space-y-4">
 					<p>
 						In 2021, Avast <a
@@ -169,12 +172,12 @@ const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 					</p>
 				</CalloutColumn>
 			</div>
-			<CalloutBlock
-				label="My role"
-				title="Turning the acquisition into a product feature"
-				body="As the designer on Avast Online Security & Privacy, I led the work of shaping that acquisition into a coherent feature within the product."
-				class="mt-8"
-			>
+				<CalloutBlock
+					label="My role"
+					title="Turning the acquisition into a product feature"
+					body="As the designer on Avast Online Security & Privacy, I led the work of shaping that acquisition into a coherent feature within the product."
+					class="mt-8"
+				>
 				<span slot="label-prefix" class="-translate-y-px text-amber-500">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -191,15 +194,14 @@ const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 						</svg>
 				</span>
 			</CalloutBlock>
-		</section>
+		</SectionIntro>
 
 		<MediaSection
 			src={asset("/images/case-studies/cookie-manager/cookie-manager-wireframes.jpg")}
 			alt="Cookie Manager wireframes"
 		/>
 
-		<section class="mt-12 w-full">
-			<SectionIntro as="div" class="mt-0" title="Design goals" />
+		<SectionIntro title="Design goals" bodyClass="mt-8">
 			<InfoCardGrid>
 				<SurfaceCard>
 					<MicroLabel>Flow</MicroLabel>
@@ -232,10 +234,9 @@ const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 					</p>
 				</SurfaceCard>
 			</InfoCardGrid>
-		</section>
+		</SectionIntro>
 
-		<section class="mt-12 w-full">
-			<SectionIntro as="div" class="mt-0" title="Design process" />
+		<SectionIntro title="Design process" bodyClass="mt-8">
 			<SplitAsideSection gridClass="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10">
 				<div slot="main">
 					<SectionBody class="mt-0">
@@ -291,7 +292,7 @@ const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 					</CalloutColumn>
 				</div>
 			</SplitAsideSection>
-		</section>
+		</SectionIntro>
 
 		<ContentSection title="Prototype">
 				<p>

@@ -15,6 +15,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 - Reworked the Russian Design page intro to frame the case studies more clearly and explain the original English writing plus the later AI-assisted translation.
 - Moved case-study card metadata into article-specific case-study modules so the Design listing and related-case sections read their titles and descriptions from the same per-article source in both English and Russian.
 - Rewrote the Russian AOSP and Cookie Manager case studies from top to bottom to remove literal, wooden phrasing and make the long-form portfolio text read naturally in Russian.
+- Restored consistent section-heading typography in case-study intro modules and adjusted the Cookie Manager callout spacing so those narrative blocks sit more naturally in the layout.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-06</span></p>
 

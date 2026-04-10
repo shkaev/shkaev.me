@@ -128,9 +128,12 @@ const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 				</MetaGrid>
 		</ContentSection>
 
-		<section class="mt-12 w-full">
-			<SectionIntro as="div" class="mt-0" title="Постановка задачи" />
-			<div class="mt-6 grid gap-8 lg:grid-cols-3">
+		<SectionIntro
+			title="Постановка задачи"
+			class="mt-8"
+			bodyClass="mt-8 space-y-8"
+		>
+			<div class="grid gap-8 lg:grid-cols-3">
 				<CalloutColumn title="Приобретённый продукт" bodyClass="space-y-4">
 						<p>
 							В 2021 году Avast <a
@@ -193,17 +196,16 @@ const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 							></path>
 						</svg>
 				</span>
-			</CalloutBlock>
-		</section>
+				</CalloutBlock>
+			</SectionIntro>
 
 		<MediaSection
 			src={asset("/images/case-studies/cookie-manager/cookie-manager-wireframes.jpg")}
 			alt="Вайрфреймы Cookie Manager"
 		/>
 
-		<section class="mt-12 w-full">
-			<SectionIntro as="div" class="mt-0" title="Цели дизайна" />
-			<InfoCardGrid>
+			<SectionIntro title="Цели дизайна" bodyClass="mt-8">
+				<InfoCardGrid>
 				<SurfaceCard>
 					<MicroLabel>Поток</MicroLabel>
 					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
@@ -235,12 +237,11 @@ const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 							визуальному языку.
 						</p>
 				</SurfaceCard>
-			</InfoCardGrid>
-		</section>
+				</InfoCardGrid>
+			</SectionIntro>
 
-		<section class="mt-12 w-full">
-			<SectionIntro as="div" class="mt-0" title="Процесс дизайна" />
-			<SplitAsideSection gridClass="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10">
+			<SectionIntro title="Процесс дизайна" bodyClass="mt-8">
+				<SplitAsideSection gridClass="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10">
 				<div slot="main">
 					<SectionBody class="mt-0">
 							<p>
@@ -295,8 +296,8 @@ const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 							</p>
 					</CalloutColumn>
 				</div>
-			</SplitAsideSection>
-		</section>
+				</SplitAsideSection>
+			</SectionIntro>
 
 		<ContentSection title="Прототип">
 				<p>
