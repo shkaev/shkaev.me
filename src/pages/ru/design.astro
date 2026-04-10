@@ -1,13 +1,13 @@
 ---
-import SiteLayout from "../layouts/SiteLayout.astro";
-import MediaLinkCard from "../components/sections/MediaLinkCard.astro";
-import PageHero from "../components/sections/PageHero.astro";
-import { getCaseStudyCards } from "../case-studies/en";
-import { getSiteCopy } from "../i18n/copy";
-import { localizePath } from "../i18n/routing";
-import { resolveStaticAssetUrl } from "../lib/assetUrl";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import MediaLinkCard from "../../components/sections/MediaLinkCard.astro";
+import PageHero from "../../components/sections/PageHero.astro";
+import { getCaseStudyCards } from "../../case-studies/ru";
+import { getSiteCopy } from "../../i18n/copy";
+import { localizePath } from "../../i18n/routing";
+import { resolveStaticAssetUrl } from "../../lib/assetUrl";
 
-const locale = "en" as const;
+const locale = "ru" as const;
 const copy = getSiteCopy(locale);
 
 const resolvedCaseStudies = getCaseStudyCards().map((study) => ({

@@ -4,21 +4,36 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
-<p class="changelog-meta"><span class="changelog-meta__date">2026-04-04</span></p>
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-11</span></p>
 
-## Corrected follow-up regressions and continued the shared content system
+## Launched the Russian site experience and refined the translated design portfolio
 
-<p class="changelog-label changelog-label--fixed">Fixed</p>
+<p class="changelog-label changelog-label--added">Added</p>
 
-- Removed the duplicate font request by aligning font preloads with the local `/fonts` paths used by `@font-face`.
-- Fixed `InfoCardGrid` so case-study pages can override its column layout cleanly and the TrackOFF product cards now fill the intended two-column width.
-- Restored dark-theme hierarchy in shared meta blocks and aligned the AOSP handoff aside icons with the stone-based theme palette.
-- Fixed shared surface cards so they no longer stayed white in dark mode after the v2 component migration.
-- Fixed a few remaining shared UI regressions, including footer icon spacing, dark-theme control icon color, and the timeline marker outline on the About page.
+- Added Russian versions of the top-level pages, the photography archive and series pages, and the full Design case-study set.
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
-- Continued the audit-first `v2` migration by applying shared section intros, split-aside sections, content sections, surface cards, signal cards, metric strip cards, meta grids, media link cards, text-link styling, media frames, callout columns, sidebar asides, shared filter-control styling, and shared control-button styling across the shared content pages and case studies, including broader use of `ContentSection` on the About page.
+- Rewrote the Russian About page, the changelog UI, and the translated AOSP, Cookie Manager, and TrackOFF case studies so the copy reads naturally and consistently across the site.
+- Refined the shared layout rhythm, reading width, and case-study card metadata so Design, About, and the Russian portfolio content feel more cohesive across both locales.
+
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Added a release workflow rule that keeps the English and Russian history entries aligned before each production push.
+
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-04</span></p>
+
+## Corrected follow-up regressions and continued the v2 refactor
+
+<p class="changelog-label changelog-label--fixed">Fixed</p>
+
+- Removed the duplicate font request and fixed `InfoCardGrid` so case-study layouts behaved correctly after the refactor.
+- Restored dark-theme hierarchy and surface styling across shared meta blocks, cards, and aside accents.
+- Fixed remaining shared UI regressions including footer icon spacing, dark-theme control icon color, and the About timeline markers.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Continued the audit-first `v2` migration by moving more repeated page patterns into shared content components and styling tokens across the case studies and top-level pages.
 
 <p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
 

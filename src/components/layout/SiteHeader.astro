@@ -4,18 +4,39 @@ import MoonIcon from "../icons/MoonIcon.astro";
 import SunIcon from "../icons/SunIcon.astro";
 import { shellWidthClass } from "../../lib/siteConfig";
 import { normalizePath } from "../../lib/sitePath";
-import type { NavigationItem } from "../../lib/siteConfig";
+import { stripLocaleFromPath } from "../../i18n/routing";
+import type { HeaderCopy, NavigationCopy } from "../../i18n/copy";
+import type { Locale } from "../../i18n/config";
 
 interface Props {
 	pathname: string;
-	navigation: NavigationItem[];
+	navigation: NavigationCopy[];
 	avatarSrc: string;
+	siteName: string;
+	homeHref: string;
+	headerCopy: HeaderCopy;
+	locale: Locale;
+	languageTargetLocale: Locale;
+	languageTargetPath: string | null;
 }
 
-const { pathname, navigation, avatarSrc } = Astro.props;
+const {
+	pathname,
+	navigation,
+	avatarSrc,
+	siteName,
+	homeHref,
+	headerCopy,
+	locale,
+	languageTargetLocale,
+	languageTargetPath
+} = Astro.props;
+
+const [siteFirstName, ...siteRestNameParts] = siteName.split(" ");
+const siteLastName = siteRestNameParts.join(" ");
 
 const isNavItemActive = (href: string) => {
-	const normalizedHref = normalizePath(href);
+	const normalizedHref = stripLocaleFromPath(normalizePath(href));
 
 	return pathname === normalizedHref || pathname.startsWith(`${normalizedHref}/`);
 };
@@ -25,49 +46,51 @@ const isNavItemActive = (href: string) => {
 	<div class:list={[
 		"mx-auto grid w-full grid-cols-[auto_1fr_auto] items-center gap-4 pb-6",
 		shellWidthClass
-	]}>
-		<a
-			href="/"
-			aria-label="Home"
-			data-avatar-link
-			class="group flex items-center gap-3 justify-self-start text-stone-950 dark:text-stone-50"
-		>
+		]}>
+			<a
+				href={homeHref}
+				aria-label={headerCopy.homeAriaLabel}
+				data-avatar-link
+				data-localized-route="/"
+				class="group flex items-center gap-3 justify-self-start text-stone-950 dark:text-stone-50"
+			>
 			<span class="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-stone-200 bg-white transition group-hover:border-stone-300 dark:border-stone-700 dark:bg-stone-900 dark:group-hover:border-stone-500">
-				<img
-					src={avatarSrc}
-					alt="Dima Shkaev"
-					width="220"
-					height="220"
+					<img
+						src={avatarSrc}
+						alt={siteName}
+						width="220"
+						height="220"
 					loading="eager"
 					decoding="async"
 					fetchpriority="high"
 					class="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
 				/>
 			</span>
-			<span
-				data-avatar-name
-				class="font-display flex flex-col leading-none tracking-normal text-stone-950 dark:text-stone-50"
+				<span
+					data-avatar-name
+					class="font-display flex flex-col leading-none tracking-normal text-stone-950 dark:text-stone-50"
+				>
+					<span class="text-lg">{siteFirstName}</span>
+					<span class="-mt-2 text-2xl">{siteLastName}</span>
+				</span>
+			</a>
+			<nav
+				aria-label={headerCopy.primaryNavAriaLabel}
+				class="col-start-1 col-span-3 row-start-2 mt-2 flex w-full items-center justify-center gap-8 justify-self-center sm:col-start-2 sm:col-span-1 sm:row-start-1 sm:mt-0 sm:w-auto sm:flex-wrap sm:gap-x-8 sm:gap-y-2"
 			>
-				<span class="text-lg">Dmitry</span>
-				<span class="-mt-2 text-2xl">Shkaev</span>
-			</span>
-		</a>
-		<nav
-			aria-label="Primary"
-			class="col-start-1 col-span-3 row-start-2 mt-2 flex w-full items-center justify-center gap-8 justify-self-center sm:col-start-2 sm:col-span-1 sm:row-start-1 sm:mt-0 sm:w-auto sm:flex-wrap sm:gap-x-8 sm:gap-y-2"
-		>
 			{
 				navigation.map((item) => {
 					const isActive = isNavItemActive(item.href);
 
 					return (
-						<a
-							href={item.href}
-							aria-current={isActive ? "page" : undefined}
-							data-nav-link
-							class:list={[
-								"text-center text-[0.96rem] font-normal tracking-normal transition-colors",
-								isActive
+							<a
+								href={item.href}
+								aria-current={isActive ? "page" : undefined}
+								data-nav-link
+								data-localized-route={stripLocaleFromPath(normalizePath(item.href))}
+								class:list={[
+									"text-center text-[0.96rem] font-normal tracking-normal transition-colors",
+									isActive
 									? "text-stone-950"
 									: "text-stone-500 hover:text-stone-900"
 							]}
@@ -79,21 +102,21 @@ const isNavItemActive = (href: string) => {
 			}
 		</nav>
 		<div class="flex items-center justify-self-end gap-3">
-			<button
-				type="button"
-				data-sheet-toggle
-				class="icon-control-button"
-				aria-label="Open changelog"
-				aria-haspopup="dialog"
-				aria-controls="changelog-sheet"
-				aria-expanded="false"
+				<button
+					type="button"
+					data-sheet-toggle
+					class="icon-control-button"
+					aria-label={headerCopy.changelogAriaLabel}
+					aria-haspopup="dialog"
+					aria-controls="changelog-sheet"
+					aria-expanded="false"
 			>
 				<span class="relative flex h-5 w-5 items-center justify-center">
 					<DocumentCheckIcon class="h-5 w-5" />
 				</span>
 				<span class="tooltip tooltip--bottom" data-control-tooltip aria-hidden="true">
 					<span class="flex items-center gap-2">
-						<span>Changelog</span>
+						<span>{headerCopy.changelogLabel}</span>
 						<span data-tooltip-key>C</span>
 					</span>
 				</span>
@@ -102,7 +125,11 @@ const isNavItemActive = (href: string) => {
 				type="button"
 				data-theme-toggle
 				class="icon-control-button"
-				aria-label="Switch to dark mode"
+				aria-label={headerCopy.themeToggleAriaLabelLight}
+				data-theme-label-light={headerCopy.themeToggleAriaLabelLight}
+				data-theme-label-dark={headerCopy.themeToggleAriaLabelDark}
+				data-theme-tooltip-light={headerCopy.themeTooltipLight}
+				data-theme-tooltip-dark={headerCopy.themeTooltipDark}
 				aria-pressed="false"
 			>
 				<span class="relative flex h-5 w-5 items-center justify-center">
@@ -110,14 +137,33 @@ const isNavItemActive = (href: string) => {
 					<SunIcon data-theme-icon="sun" class="hidden h-5 w-5 dark:block" />
 				</span>
 				<span class="tooltip tooltip--bottom" data-control-tooltip aria-hidden="true">
-					<span class="flex items-center gap-2 dark:hidden">
-						<span>Dark mode</span>
+					<span class="flex items-center gap-2 dark:hidden" data-theme-tooltip-light-slot>
+						<span data-theme-tooltip-light-text>{headerCopy.themeTooltipLight}</span>
 						<span data-tooltip-key>L</span>
 					</span>
-					<span class="hidden items-center gap-2 dark:flex">
-						<span>Light mode</span>
+					<span class="hidden items-center gap-2 dark:flex" data-theme-tooltip-dark-slot>
+						<span data-theme-tooltip-dark-text>{headerCopy.themeTooltipDark}</span>
 						<span data-tooltip-key>L</span>
 					</span>
+				</span>
+			</button>
+			<button
+				type="button"
+				data-locale-toggle
+				class="icon-control-button"
+				aria-label={headerCopy.languageToggleAriaLabel}
+				data-current-locale={locale}
+				data-target-locale={languageTargetLocale}
+				data-target-path={languageTargetPath ?? ""}
+			>
+				<span
+					class="flex items-center justify-center text-[0.78rem] font-semibold uppercase tracking-[0.04em]"
+					data-locale-toggle-label
+				>
+					{headerCopy.languageLabel}
+				</span>
+				<span class="tooltip tooltip--bottom" data-control-tooltip aria-hidden="true">
+					<span data-locale-toggle-tooltip>{headerCopy.languageTooltip}</span>
 				</span>
 			</button>
 		</div>

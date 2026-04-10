@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import PhotoSeriesPage from "../../components/photography/PhotoSeriesPage.astro";
+import PhotoSeriesPage from "../../../components/photography/PhotoSeriesPage.astro";
 
 export async function getStaticPaths() {
 	const series = await getCollection("photo-series");
@@ -14,4 +14,4 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 ---
 
-<PhotoSeriesPage entry={entry} locale="en" />
+<PhotoSeriesPage entry={entry} locale="ru" />

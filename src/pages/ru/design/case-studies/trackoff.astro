@@ -1,0 +1,323 @@
+---
+import CaseStudyLayout from "../../../../layouts/CaseStudyLayout.astro";
+import CalloutColumn from "../../../../components/sections/CalloutColumn.astro";
+import ContentSection from "../../../../components/sections/ContentSection.astro";
+import CalloutBlock from "../../../../components/sections/CalloutBlock.astro";
+import InfoCardGrid from "../../../../components/sections/InfoCardGrid.astro";
+import MediaSection from "../../../../components/sections/MediaSection.astro";
+import SectionIntro from "../../../../components/sections/SectionIntro.astro";
+import SurfaceCard from "../../../../components/sections/SurfaceCard.astro";
+import MicroLabel from "../../../../components/typography/MicroLabel.astro";
+import CardTitle from "../../../../components/typography/CardTitle.astro";
+import { caseStudyCard } from "../../../../case-studies/ru/trackoff";
+import { getMoreCaseStudyCards } from "../../../../case-studies/ru";
+import { resolveStaticAssetUrl as asset } from "../../../../lib/assetUrl";
+
+const caseStudy = caseStudyCard;
+const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
+---
+
+<CaseStudyLayout
+	title={`${caseStudy.title} | Дизайн-кейс | Дмитрий Шкаев`}
+	description={caseStudy.description}
+	pageTitle={caseStudy.title}
+	heroSrc="/images/case-studies/trackoff/trackoff-hero.jpg"
+	heroAlt="Обложка кейса TrackOFF"
+	moreCaseStudies={moreCaseStudies}
+	locale="ru"
+>
+
+			<ContentSection title="Компания и команда" bodyClass="mt-6">
+				<p>
+					TrackOFF была компанией в сфере цифровой приватности со
+					штаб-квартирой в Балтиморе, штат Мэриленд, США. Её основали <a
+						href="https://www.linkedin.com/in/chandler-givens-42a6184/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-link text-stone-950"
+					>Chandler Givens</a> и <a
+					href="https://www.linkedin.com/in/ryan-flach-1647b1ba/"
+					target="_blank"
+					rel="noreferrer"
+					class="text-link text-stone-950"
+					>Ryan Flach</a>, и за следующие четыре года компания быстро
+					выросла. Я пришёл в стартап вторым сотрудником и участвовал в
+					строительстве бизнеса с самого начала. К концу 2019 года в команде
+					было уже больше 30 замечательных людей, многих из которых я до сих
+					пор считаю друзьями.
+				</p>
+			</ContentSection>
+
+			<ContentSection title="Моя роль">
+				<p>
+					Я закрывал очень широкий круг задач, которые покрывали почти все
+					потребности компании. Это включало проектирование интерфейсов для
+					сайта и продуктов на десктопе и мобильных устройствах, развитие
+					бренда, подготовку сотен презентаций, писем и коммерческих
+					материалов, а также печатный и физический дизайн — от упаковки
+					продукта до баннеров для магазинов.
+				</p>
+				<p class="border-l border-stone-200 pl-4 text-[1.08rem] leading-[1.68] text-stone-950 sm:text-[1.16rem]">
+					Высокая ответственность, реальные дедлайны и по-настоящему
+					быстрый темп при внимании к каждой детали стали для меня <span
+						class="font-bold">идеальной школой</span
+					>, в которой я очень быстро вырос как специалист.
+				</p>
+				<p>
+					Оглядываясь назад, всё это было довольно сурово, особенно если
+					учесть, что больше года я оставался единственным дизайнером в
+					команде. Когда стало ясно, что мы начинаем распыляться, мы
+					позвали <a
+						href="https://www.linkedin.com/in/jon-schubbe-327aa613/"
+						target="_blank"
+						rel="noreferrer"
+						class="text-link text-stone-950"
+					>Jon Schubbe</a> помочь с проектированием пользовательского опыта, и после этого я ещё пять
+					лет тесно работал с ним бок о бок.
+				</p>
+			</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/trackoff/trackoff-team.jpg")}
+			alt="Команда TrackOFF и офисные кадры"
+		/>
+
+			<ContentSection title="Сайт">
+				<p>
+					Всё началось с сайта TrackOFF. В 2015 году я работал на фрилансе
+					и сделал для Чендлера небольшой проект по обновлению первого экрана
+					на главной. Ему понравился и результат, и то, как мы сработались,
+					поэтому дальше я занялся дизайном всего остального сайта. Мы
+					двигались очень быстро и запустили его меньше чем за месяц.
+				</p>
+				<p>
+					В следующие несколько лет мы спроектировали и запустили <strong
+						class="font-bold text-stone-950">три крупные версии</strong
+					>
+					сайта, постепенно меняя брендинг и визуальный язык, а заодно
+					постоянно улучшая информационную архитектуру, воронки привлечения
+					и кликабельность ключевых экранов.
+				</p>
+			</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/trackoff/trackoff-product.png")}
+			alt="Интерфейсы TrackOFF на десктопе и мобильных устройствах"
+		/>
+
+			<ContentSection title="Продукт" bodyClass="mt-6 space-y-4">
+				<p>
+					TrackOFF был флагманским продуктом компании, и именно он дал
+					название всему бизнесу. Это было приложение для
+					защиты приватности с фокусом на десктоп, созданное для того, чтобы
+					заметно снижать точность онлайн-трекинга, искажая цифровые
+					сигналы, которые сайты и рекламные платформы использовали для
+					профилирования людей.
+				</p>
+			<InfoCardGrid class="mt-8" columnsClass="sm:grid-cols-2 lg:grid-cols-2">
+				<SurfaceCard padding="compact">
+						<MicroLabel>Основная ценность</MicroLabel>
+						<p class="mt-2 text-sm leading-6 text-stone-700 sm:text-[0.95rem]">
+							Снижало точность стороннего профилирования и
+							кросс-сайтового трекинга, давая людям больше приватности и
+							большее ощущение контроля над тем, как их отслеживают в
+							сети.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard padding="compact">
+						<MicroLabel>Платформы</MicroLabel>
+						<p class="mt-2 text-sm leading-6 text-stone-700 sm:text-[0.95rem]">
+							Microsoft Windows; через дистрибуционные каналы были проданы
+							миллионы копий. Позже продукт вышел и на macOS, Android и iOS.
+						</p>
+				</SurfaceCard>
+			</InfoCardGrid>
+			<div class="mt-8 grid gap-8 lg:grid-cols-3">
+				<CalloutColumn
+					title="Как это работало"
+					titleClass="text-[1.15rem] sm:text-[1.3rem]"
+					bodyClass="space-y-4"
+				>
+						<p>
+							Если совсем просто, приложение искажало идентифицирующие данные,
+							которые трекеры могли собрать с устройства. Из-за этого
+							брокерам данных и рекламодателям становилось намного сложнее
+							уверенно понять, что пользователь на одном сайте и человек,
+							которого они видели где-то ещё, — это одно и то же лицо.
+						</p>
+				</CalloutColumn>
+				<CalloutColumn
+					title="Почему это было важно"
+					titleClass="text-[1.15rem] sm:text-[1.3rem]"
+					bodyClass="space-y-4"
+				>
+						<p>
+							К 2023 году похожие механики стали обычным делом и в софте с
+							фокусом на приватность, и даже в массовых браузерах. Но в
+							2015 году это было по-настоящему дальновидное решение, очень
+							точно попавшее в растущий интерес к приватности.
+						</p>
+				</CalloutColumn>
+				<CalloutColumn
+					title="Моя роль"
+					titleClass="text-[1.15rem] sm:text-[1.3rem]"
+					bodyClass="space-y-4"
+				>
+						<p>
+							Когда я пришёл, интерфейсу не хватало ясности, полировки и тех
+							сигналов доверия, которые особенно важны для продукта в сфере
+							приватности. Моя задача заключалась в том, чтобы превратить его
+							в продуктовый опыт, который воспринимался бы понятным,
+							надёжным и удобным — сначала на десктопе, а затем и на
+							мобильных поверхностях.
+						</p>
+				</CalloutColumn>
+			</div>
+		</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/trackoff/trackoff-marketing.png")}
+			alt="Маркетинговые и промо-материалы TrackOFF"
+		/>
+
+			<ContentSection title="Маркетинговые и промо-материалы" bodyClass="mt-6">
+				<p>
+					В мои обязанности входило создание маркетинговых материалов и
+					презентаций. Они нужны были в больших объёмах, особенно во время
+					быстрого роста. У меня уже был серьёзный опыт вёрстки
+					корпоративных газет и журналов, поэтому эту часть работы я
+					считал одной из самых <strong class="font-bold text-stone-950">простых и
+						приятных</strong
+					>. Наверное, всё дело в особом ощущении, когда видишь
+					физическое воплощение своей работы: например, коробку продукта
+					собственного дизайна на полке магазина или раздаточный буклет в
+					руках людей на конференции.
+				</p>
+			</ContentSection>
+
+		<section class="mt-14 grid w-full gap-4 sm:gap-6">
+			<div class="overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+				<img
+					src={asset("/images/case-studies/trackoff/trackoff-promo-1.png")}
+					alt="Печатные и ивент-материалы TrackOFF"
+					class="h-auto w-full"
+					loading="lazy"
+				/>
+			</div>
+		</section>
+
+		<section class="mt-12 w-full">
+			<SectionIntro
+				as="div"
+				class="mt-0"
+				title="Портал для реселлеров и white-label продукты"
+				bodyClass="max-w-4xl"
+			>
+					<p>
+						Чтобы поддержать рост реселлерского канала, я спроектировал
+						внутренний портал, который превратил неудобный, почти табличный
+						процесс в рабочий инструмент для партнёров, где можно было
+						управлять активационными ключами, продлениями и
+						white-label продуктами.
+					</p>
+			</SectionIntro>
+			<div class="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start">
+				<div class="space-y-7">
+					<CalloutColumn title="Для кого">
+						<p>
+							Партнёры-реселлеры продавали продукт через свои каналы либо
+							под брендом TrackOFF, либо как white-label предложения со
+							своим логотипом и цветовой схемой. Я спроектировал и сам
+							портал, и варианты white-label интерфейса, которые
+							поддерживали эту модель продаж.
+						</p>
+					</CalloutColumn>
+					<CalloutColumn title="Что я спроектировал">
+						<p>
+							На дашборде были статусы активационных ключей, сроки действия,
+							продления и другие связанные данные, с которыми реально можно
+							было работать. Он также поддерживал массовую генерацию ключей,
+							нередко в очень больших объёмах, и поиск для нахождения и
+							управления группами ключей по категориям.
+						</p>
+					</CalloutColumn>
+				</div>
+				<CalloutBlock
+					label="Результат"
+						title="Сырой операционный процесс превратился в гораздо более понятный партнёрский продукт"
+					class="max-w-none pl-4 lg:pl-8"
+					bodyClass="text-sm leading-6 sm:text-[0.98rem] sm:leading-7"
+				>
+					<span slot="label-prefix" class="-translate-y-px text-amber-500">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 16 16"
+								fill="currentColor"
+								class="h-4 w-4"
+								aria-hidden="true"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M12 1.69a.494.494 0 0 0-.438-.494 32.352 32.352 0 0 0-7.124 0A.494.494 0 0 0 4 1.689v.567c-.811.104-1.612.24-2.403.406a.75.75 0 0 0-.595.714 4.5 4.5 0 0 0 4.35 4.622A3.99 3.99 0 0 0 7 8.874V10H6a1 1 0 0 0-1 1v2h-.667C3.597 13 3 13.597 3 14.333c0 .368.298.667.667.667h8.666a.667.667 0 0 0 .667-.667c0-.736-.597-1.333-1.333-1.333H11v-2a1 1 0 0 0-1-1H9V8.874a3.99 3.99 0 0 0 1.649-.876 4.5 4.5 0 0 0 4.35-4.622.75.75 0 0 0-.596-.714A30.897 30.897 0 0 0 12 2.256v-.567ZM4 3.768c-.49.066-.976.145-1.458.235a3.004 3.004 0 0 0 1.64 2.192A3.999 3.999 0 0 1 4 5V3.769Zm8 0c.49.066.976.145 1.458.235a3.004 3.004 0 0 1-1.64 2.192C11.936 5.818 12 5.416 12 5V3.769Z"
+									clip-rule="evenodd"
+								></path>
+							</svg>
+					</span>
+						<p>
+							Это сделало реселлерскую модель <strong class="font-bold text-stone-950">
+								коммерчески более привлекательной
+							</strong> и принесло <strong class="font-bold text-stone-950">
+								очень позитивную обратную связь
+							</strong> от действующих партнёров о том, насколько удобнее стал
+							весь процесс.
+						</p>
+				</CalloutBlock>
+			</div>
+		</section>
+
+		<MediaSection
+			src={asset("/images/case-studies/trackoff/trackoff-remote.jpg")}
+			alt="Удалённая работа и коммуникация в TrackOFF"
+		/>
+
+			<ContentSection title="Поглощение компанией Avast Software">
+				<p>
+					К концу 2019 года, когда мы уже заняли заметную нишу на рынке
+					софта для приватности, один из наших крупнейших партнёров предложил <a
+						href="https://www.baltimoresun.com/business/bs-bz-trackoff-acquired-avast-20190531-story.html"
+						target="_blank"
+						rel="noreferrer"
+						class="text-link text-stone-950"
+					>выкупить компанию</a> и забрать её ключевых людей в команду. Я
+						оказался среди специалистов, которых перевели под крыло Avast, и
+						смог продолжить заниматься любимым делом уже в гораздо большем
+						масштабе.
+				</p>
+				<p>
+					Приложение TrackOFF превратилось в Avast и AVG AntiTrack и сразу
+					же стало <strong class="font-bold text-stone-950"
+						>самым прибыльным продуктом</strong
+					> во всей линейке софта Avast на тот момент.
+				</p>
+			</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/trackoff/trackoff-acquisition.jpg")}
+			alt="Поглощение TrackOFF и переход в Avast"
+		/>
+
+			<ContentSection title="Личный вывод" bodyClass="mt-6">
+				<p>
+					Работа в TrackOFF стала для меня невероятно ценным и запоминающимся
+					этапом. Именно там я завёл много друзей и получил редкую
+					возможность вырасти как дизайнер-универсал. Этот цельный опыт
+					постепенно привёл меня к пониманию, что именно <strong
+						class="font-bold text-stone-950"
+					>продуктовый дизайн позволяет мне приносить наибольшую пользу</strong
+					>, поэтому я сосредоточился на развитии именно в этой области, а
+					переход в более крупную компанию стал естественным и осознанным
+					следующим шагом.
+				</p>
+			</ContentSection>
+
+</CaseStudyLayout>

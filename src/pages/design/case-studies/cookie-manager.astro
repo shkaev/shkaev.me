@@ -13,36 +13,18 @@ import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
 import SectionBody from "../../../components/typography/SectionBody.astro";
+import { caseStudyCard } from "../../../case-studies/en/cookie-manager";
+import { getMoreCaseStudyCards } from "../../../case-studies/en";
 import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
-const moreCaseStudies = [
-	{
-		href: "/design/case-studies/aosp",
-		title: "Avast Online Security & Privacy",
-		logoSrc: "/favicons/avast.ico",
-		logoAlt: "Avast",
-		imageSrc: "/images/case-studies/aosp/aosp-hero.jpg",
-		imageAlt: "Avast Online Security & Privacy case study preview",
-		description:
-			"A major redesign of the flagship browser extension with over 10 million users."
-	},
-	{
-		href: "/design/case-studies/trackoff",
-		title: "TrackOFF",
-		logoSrc: "/favicons/trackoff.png",
-		logoAlt: "TrackOFF",
-		imageSrc: "/images/case-studies/trackoff/trackoff-hero.jpg",
-		imageAlt: "TrackOFF case study preview",
-		description:
-			"A short story about building a successful product from the ground up and seeing it through to acquisition."
-	}
-];
+const caseStudy = caseStudyCard;
+const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 ---
 
 <CaseStudyLayout
-	title="Cookie Manager | Design Case Study | Dmitry Shkaev"
-	description="Designing, building, and integrating a new feature in Avast Online Security & Privacy."
-	pageTitle="Cookie Manager"
+	title={`${caseStudy.title} | Design Case Study | Dmitry Shkaev`}
+	description={caseStudy.description}
+	pageTitle={caseStudy.title}
 	heroSrc="/images/case-studies/cookie-manager/cookie-manager-hero.jpg"
 	heroAlt="Cookie Manager case study hero image"
 	moreCaseStudies={moreCaseStudies}
@@ -144,9 +126,12 @@ const moreCaseStudies = [
 				</MetaGrid>
 		</ContentSection>
 
-		<section class="mt-12 w-full">
-			<SectionIntro as="div" class="mt-0" title="Problem statement" />
-			<div class="mt-6 grid gap-8 lg:grid-cols-3">
+		<SectionIntro
+			title="Problem statement"
+			class="mt-8"
+			bodyClass="mt-12 space-y-8"
+		>
+			<div class="grid gap-8 lg:grid-cols-3">
 				<CalloutColumn title="The acquired product" bodyClass="space-y-4">
 					<p>
 						In 2021, Avast <a
@@ -187,12 +172,12 @@ const moreCaseStudies = [
 					</p>
 				</CalloutColumn>
 			</div>
-			<CalloutBlock
-				label="My role"
-				title="Turning the acquisition into a product feature"
-				body="As the designer on Avast Online Security & Privacy, I led the work of shaping that acquisition into a coherent feature within the product."
-				class="mt-8"
-			>
+				<CalloutBlock
+					label="My role"
+					title="Turning the acquisition into a product feature"
+					body="As the designer on Avast Online Security & Privacy, I led the work of shaping that acquisition into a coherent feature within the product."
+					class="mt-8"
+				>
 				<span slot="label-prefix" class="-translate-y-px text-amber-500">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -209,15 +194,14 @@ const moreCaseStudies = [
 						</svg>
 				</span>
 			</CalloutBlock>
-		</section>
+		</SectionIntro>
 
 		<MediaSection
 			src={asset("/images/case-studies/cookie-manager/cookie-manager-wireframes.jpg")}
 			alt="Cookie Manager wireframes"
 		/>
 
-		<section class="mt-12 w-full">
-			<SectionIntro as="div" class="mt-0" title="Design goals" />
+		<SectionIntro title="Design goals" bodyClass="mt-8">
 			<InfoCardGrid>
 				<SurfaceCard>
 					<MicroLabel>Flow</MicroLabel>
@@ -250,10 +234,9 @@ const moreCaseStudies = [
 					</p>
 				</SurfaceCard>
 			</InfoCardGrid>
-		</section>
+		</SectionIntro>
 
-		<section class="mt-12 w-full">
-			<SectionIntro as="div" class="mt-0" title="Design process" />
+		<SectionIntro title="Design process" bodyClass="mt-8">
 			<SplitAsideSection gridClass="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10">
 				<div slot="main">
 					<SectionBody class="mt-0">
@@ -309,7 +292,7 @@ const moreCaseStudies = [
 					</CalloutColumn>
 				</div>
 			</SplitAsideSection>
-		</section>
+		</SectionIntro>
 
 		<ContentSection title="Prototype">
 				<p>

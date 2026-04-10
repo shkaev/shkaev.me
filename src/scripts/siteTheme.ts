@@ -14,11 +14,30 @@ const syncThemeButton = (isDark: boolean) => {
 		return;
 	}
 
+	const lightAriaLabel =
+		button.dataset.themeLabelLight ?? "Switch to dark mode";
+	const darkAriaLabel =
+		button.dataset.themeLabelDark ?? "Switch to light mode";
+	const lightTooltip =
+		button.dataset.themeTooltipLight ?? "Dark mode";
+	const darkTooltip =
+		button.dataset.themeTooltipDark ?? "Light mode";
+	const lightTooltipText = document.querySelector("[data-theme-tooltip-light-text]");
+	const darkTooltipText = document.querySelector("[data-theme-tooltip-dark-text]");
+
 	button.setAttribute("aria-pressed", String(isDark));
 	button.setAttribute(
 		"aria-label",
-		isDark ? "Switch to light mode" : "Switch to dark mode"
+		isDark ? darkAriaLabel : lightAriaLabel
 	);
+
+	if (lightTooltipText instanceof HTMLElement) {
+		lightTooltipText.textContent = lightTooltip;
+	}
+
+	if (darkTooltipText instanceof HTMLElement) {
+		darkTooltipText.textContent = darkTooltip;
+	}
 };
 
 const applyTheme = (theme: "light" | "dark") => {

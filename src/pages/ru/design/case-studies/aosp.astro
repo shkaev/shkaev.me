@@ -1,0 +1,839 @@
+---
+import CaseStudyLayout from "../../../../layouts/CaseStudyLayout.astro";
+import ContentSection from "../../../../components/sections/ContentSection.astro";
+import CalloutBlock from "../../../../components/sections/CalloutBlock.astro";
+import InfoCardGrid from "../../../../components/sections/InfoCardGrid.astro";
+import MediaSection from "../../../../components/sections/MediaSection.astro";
+import MetaGrid from "../../../../components/sections/MetaGrid.astro";
+import MetaItem from "../../../../components/sections/MetaItem.astro";
+import MetricStripCard from "../../../../components/sections/MetricStripCard.astro";
+import SectionIntro from "../../../../components/sections/SectionIntro.astro";
+import SignalCard from "../../../../components/sections/SignalCard.astro";
+import SplitAsideSection from "../../../../components/sections/SplitAsideSection.astro";
+import SurfaceCard from "../../../../components/sections/SurfaceCard.astro";
+import MicroLabel from "../../../../components/typography/MicroLabel.astro";
+import CardTitle from "../../../../components/typography/CardTitle.astro";
+import { caseStudyCard } from "../../../../case-studies/ru/aosp";
+import { getMoreCaseStudyCards } from "../../../../case-studies/ru";
+import { resolveStaticAssetUrl as asset } from "../../../../lib/assetUrl";
+
+const caseStudy = caseStudyCard;
+const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
+---
+
+<CaseStudyLayout
+	title={`${caseStudy.title} | Дизайн-кейс | Дмитрий Шкаев`}
+	description={caseStudy.description}
+	pageTitle={caseStudy.title}
+	heroSrc="/images/case-studies/aosp/aosp-hero.jpg"
+	heroAlt="Обложка кейса AOSP"
+	moreCaseStudies={moreCaseStudies}
+	locale="ru"
+>
+
+		<ContentSection title="Краткое резюме">
+				<p>
+					Мы взяли браузерное расширение с 12+ миллионами установок, которое
+					к тому моменту фактически выпало из фокуса, и вернули его в центр
+					внимания. Вместе с новым визуальным стилем, переработанной
+					информационной архитектурой и обновлённой функциональностью мы
+					запустили интерактивную систему подсказок Privacy Advisor.
+				</p>
+				<p>
+					Благодаря тщательной совместной работе дизайна и разработки команда
+					выпустила полностью обновлённый продукт, который получил сильный
+					отклик и у пользователей, и внутри компании. Avast Online Security
+					&amp; Privacy уверенно вернулся и снова стал <strong
+						class="font-bold text-stone-950"
+						>одной из ключевых цифровых точек контакта</strong
+					> для текущих и потенциальных клиентов.
+				</p>
+		</ContentSection>
+
+		<ContentSection
+			title="Команда"
+			class="border-y border-stone-200 pt-10 pb-12"
+			bodyClass="mt-6 space-y-8"
+		>
+				<p>
+					Над проектом работала кросс-функциональная команда на стыке
+					продукта, дизайна, исследований, разработки, тестирования,
+					маркетинга, локализации и поддержки. Основная команда вела
+					редизайн от исследования до запуска, а дополнительные специалисты
+					помогали с выводом продукта в разные каналы и рынки.
+				</p>
+				<MetaGrid>
+					<div class="lg:col-span-1">
+						<div class="space-y-5">
+							<MetaItem label="Владелец продукта">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/petraverse/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Petra Moravcova</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Лид продуктового дизайна">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/shkaev/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Dmitry Shkaev</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Исследование">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/petr-augustin/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Petr Augustin</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="UX-исследование">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/natalie-schinkova/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Natalie Schinkova</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Лид разработки">
+								<p>
+									<a
+										href="https://bit.ly/3WzT3GQ"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Jiri Pojezny</a>
+								</p>
+							</MetaItem>
+						</div>
+					</div>
+					<div class="lg:col-span-2">
+						<div class="space-y-5">
+							<MetaItem label="UX-райтинг">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/alyyamada/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Alysa Yamada</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Контроль качества">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/victoriausan/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Victoria Usan</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Продуктовый маркетинг">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/andrew-stark-uk/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Andrew Stark</a>, <a
+										href="https://www.linkedin.com/in/jbosso/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Joe Bosso</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="PR">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/marinaziegler/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Marina Ziegler</a>, <a
+										href="https://www.linkedin.com/in/mike-healey-46a02320/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Mike Healey</a>, <a
+										href="https://www.linkedin.com/in/stephanieaskane/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Stephanie Kane</a>
+								</p>
+							</MetaItem>
+							<MetaItem label="Локализация">
+								<p>
+									<a
+										href="https://www.linkedin.com/in/jan-fiala-31b40182/"
+										target="_blank"
+										rel="noreferrer"
+										class="text-link text-stone-950"
+									>Jan Fiala</a>
+								</p>
+							</MetaItem>
+						</div>
+					</div>
+				</MetaGrid>
+		</ContentSection>
+
+		<ContentSection title="Постановка задачи">
+				<p>
+					На фоне скандала вокруг дочерней компании Avast Jumpshot
+					и её <a
+						href="https://press.avast.com/en-gb/avast-to-commence-wind-down-of-subsidiary-jumpshot"
+						target="_blank"
+						rel="noreferrer"
+						class="text-link text-stone-950"
+					>закрытия в январе 2020 года</a> браузерное расширение Avast
+					Online Security оказалось среди первых продуктов, по которым это
+					ударило сильнее всего. Практику использования пользовательских
+					данных резко свернули, а компания кардинально сменила курс, чтобы
+					<strong class="font-bold text-stone-950"
+						>сфокусироваться на защите приватности пользователей</strong
+					>.
+				</p>
+				<p>
+					Расширение перевели в режим поддержки, его пользовательская база и
+					оценки в магазине заметно просели. Когда всё улеглось, продукт
+					пролежал на полке больше года. Тем временем приватность стала
+					одной из ключевых опор подхода Avast к цифровой свободе и важной
+					частью будущего ребрендинга.
+				</p>
+				<p>
+					Стало ясно, что такой
+					<strong class="font-bold text-stone-950"
+						>массовый и влиятельный продукт для пользователей</strong
+					> пора возвращать к жизни: он должен был снова приносить реальную
+					пользу людям и подтверждать обновлённое обещание Avast в сфере
+					приватности.
+				</p>
+		</ContentSection>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Цели дизайна" />
+			<InfoCardGrid columnsClass="md:grid-cols-2 xl:grid-cols-3">
+				<SurfaceCard>
+					<MicroLabel>Каркас</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Сформировать новое направление
+					</CardTitle>
+						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+							Переосмыслить устаревший каркас продукта и задать ему новое
+							направление через дизайн-мышление.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<MicroLabel>Бренд</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Запустить новую визуальную систему
+					</CardTitle>
+						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+							Запустить продукт с новой визуальной системой и брендингом,
+							согласованными с Avast One.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<MicroLabel>Приватность</MicroLabel>
+						<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+							Запустить значимую функциональность для защиты приватности
+						</CardTitle>
+						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+							Спроектировать, реализовать и вывести в релиз функциональность,
+							которая напрямую помогает защищать приватность пользователей.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<MicroLabel>Опыт</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Спроектировать полную воронку
+					</CardTitle>
+						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+							Построить цельный пользовательский путь от первого контакта до
+							удержания.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard class="md:col-span-2 xl:col-span-1">
+					<MicroLabel>Интеграция</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Связать его с экосистемой продуктов
+					</CardTitle>
+						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+							Связать продукт с существующей экосистемой и подготовить почву
+							для будущей интеграции с флагманским решением.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<MicroLabel>Удержание</MicroLabel>
+					<CardTitle class="mt-4 text-[1.35rem] leading-[1.08] sm:text-[1.5rem]">
+						Повысить ежедневную ценность
+					</CardTitle>
+						<p class="mt-3 text-[0.98rem] leading-7 text-stone-700 sm:text-base">
+							Сделать расширение настолько полезным, чтобы оно стало частью
+							повседневной привычки при веб-сёрфинге.
+						</p>
+				</SurfaceCard>
+			</InfoCardGrid>
+		</section>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Процесс дизайна">
+					<p>
+						В основе процесса лежала классическая
+						<strong class="font-bold text-stone-950"
+							>модель «двойной ромб»</strong
+						>. Старт проекта и исследовательскую фазу вёл мой коллега Пётр:
+						он глубоко проработал несколько направлений и собрал обширную
+						исследовательскую базу.
+					</p>
+			</SectionIntro>
+			<CalloutBlock
+				label="Моя роль"
+				title="Превратить исследование в готовое направление продукта"
+				body="Я подключился на этапе, когда нужно было сузить объём, чётко сформулировать проблему, провести работу от концептов до high-fidelity макетов, проверить решения в тестах и довести результат до финала."
+				class="mt-8"
+			>
+				<span slot="label-prefix" class="-translate-y-px text-amber-500">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 20 20"
+							fill="currentColor"
+							class="h-4 w-4"
+							aria-hidden="true"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+								clip-rule="evenodd"
+							></path>
+						</svg>
+				</span>
+			</CalloutBlock>
+			<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+				<img
+				src={asset("/images/case-studies/aosp/aosp-process.png")}
+					alt="Диаграмма процесса дизайна AOSP"
+					class="h-auto w-full"
+					loading="lazy"
+				/>
+			</div>
+		</section>
+
+		<ContentSection title="Проблемы старого продукта">
+				<p>
+					Когда мы начали собирать новую информационную архитектуру, первым
+					импульсом было сохранить одноэкранный каркас и опереться на
+					карточки в духе виджетов. Очень быстро стало понятно, что это
+					тупиковый путь.
+				</p>
+				<div class="mt-8 grid gap-4 md:grid-cols-2">
+					<SignalCard variant="negative">
+						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
+							На главном экране не было явного фокуса, а пространство
+							интерфейса использовалось не лучшим образом.
+						</p>
+					</SignalCard>
+					<SignalCard variant="negative">
+						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
+							Несколько пользовательских задач начинали конкурировать друг с
+							другом за внимание.
+						</p>
+					</SignalCard>
+					<SignalCard variant="negative">
+						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
+							Избыточное количество контролов ещё сильнее размывало бы опыт.
+						</p>
+					</SignalCard>
+					<SignalCard variant="negative">
+						<p class="[text-wrap:pretty] text-lg leading-7 text-rose-900 dark:text-rose-200">
+							Объём функциональности в продукте вырос, и при этом
+							нам всё равно нужно было оставить запас для дальнейшего роста.
+						</p>
+					</SignalCard>
+				</div>
+				<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+					<img
+						src={asset("/images/case-studies/aosp/aosp-architecture.png")}
+						alt="Редизайн информационной архитектуры AOSP"
+						class="h-auto w-full"
+						loading="lazy"
+					/>
+				</div>
+		</ContentSection>
+
+		<section class="mt-12 w-full">
+			<SectionIntro
+				as="div"
+				class="mt-0"
+				title="Новая информационная архитектура"
+				bodyVariant="lead"
+			>
+					<p>
+						Каждый элемент интерфейса и каждый пользовательский сценарий мы
+						внимательно пересобирали и уточняли. На решения влияло сразу
+						несколько факторов. В этом кейсе я показываю уже доработанные
+						после фидбека экраны и объясняю, почему мы пришли именно к ним.
+					</p>
+			</SectionIntro>
+			<div class="mt-8 grid gap-4 md:grid-cols-2">
+				<SignalCard>
+					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
+							Фокус экрана стал считываться сразу, а пространство интерфейса
+							начало работать гораздо эффективнее.
+					</p>
+				</SignalCard>
+				<SignalCard>
+					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
+							Ключевые пользовательские сценарии разошлись по отдельным
+							разделам и перестали мешать друг другу.
+					</p>
+				</SignalCard>
+				<SignalCard>
+					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
+						На каждом экране было одно основное действие и максимум одно
+						дополнительное.
+					</p>
+				</SignalCard>
+				<SignalCard>
+					<p class="[text-wrap:pretty] text-lg leading-7 text-emerald-900 dark:text-emerald-200">
+							Новая структура боковой панели дала больше воздуха для описания
+							функциональности и будущих расширений.
+					</p>
+				</SignalCard>
+			</div>
+			<div class="mt-8 overflow-hidden rounded-[12px] bg-white/80 shadow-[0_1px_0_rgba(28,25,23,0.04)]">
+				<img
+					src={asset("/images/case-studies/aosp/aosp-high-fidelity.png")}
+					alt="Высокодетализированные интерфейсные макеты AOSP"
+					class="h-auto w-full"
+					loading="lazy"
+				/>
+			</div>
+		</section>
+
+		<ContentSection title="Прототип">
+				<p>
+					После нескольких раундов презентации новых концепций
+					стейкхолдерам и сбора обратной связи от дизайнеров и инженеров я
+					получил зелёный свет на детально проработанные макеты и создание
+					прототипа в Figma. Прототип помог собрать дополнительный фидбек
+					как внутри команды, так и снаружи, а затем стал основой для
+					качественного пользовательского тестирования с тремя группами:
+				</p>
+				<ul class="list-inside list-disc space-y-4 text-stone-700 marker:text-stone-950 dark:marker:text-stone-200">
+					<li>Пользователи, уже знакомые с этим браузерным расширением.</li>
+					<li>Пользователи, которые уже пользовались нашими продуктами и знали бренд.</li>
+					<li>Участники, никак раньше не соприкасавшиеся с нашими продуктами.</li>
+				</ul>
+		</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-research.png")}
+			alt="Экраны прототипа и исследования AOSP"
+		/>
+
+		<ContentSection title="Результаты исследования пользовательского опыта">
+				<p>
+					Пользователи хорошо приняли редизайн, особенно новый светлый
+					визуальный стиль, и без труда ориентировались внутри продукта.
+				</p>
+				<p>
+					Часть функциональности была концептуально новой, поэтому часть
+					людей не сразу понимала, что именно видит перед собой. Мы решили
+					это, сократив тяжеловесные тексты и в ряде случаев заменив
+					целые абзацы одной строкой и ссылкой на нужный раздел справки.
+					Все моменты сомнения и трения в навигации и действиях мы
+					фиксировали, чтобы я мог <strong
+						class="font-bold text-stone-950"
+					>сгладить эти шероховатости</strong> в следующей итерации.
+				</p>
+		</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-handoff.jpg")}
+			alt="Передача дизайна AOSP в разработку"
+		/>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Передача в разработку" />
+			<SplitAsideSection>
+				<div slot="main" class="space-y-4 text-base leading-8 text-stone-700 sm:text-lg">
+						<p>
+							После ещё пары итераций мы остались довольны новыми макетами,
+							и пришло время передавать их в разработку. Как дизайнер, я
+							всегда стараюсь <strong class="font-bold text-stone-950"
+								>поддерживать рабочий процесс разработчиков</strong
+							>: подключаю их как можно раньше и по ходу проекта отдаю им
+							самостоятельные, осмысленные артефакты.
+						</p>
+						<p>
+							Это упрощает инженерам планирование спринтов и позволяет
+							заниматься основой продукта ещё до того, как
+							high-fidelity-макеты полностью готовы.
+						</p>
+						<p>
+							Во время разработки я постоянно держал связь с инженерами,
+							чтобы реализация не расходилась с изначальным видением.
+							Когда начали появляться первые визуалы, мы регулярно
+							созванивались и проходились по шероховатым местам. Несмотря
+							на полностью удалённую команду, я оказался в одном городе с
+							нашим главным фронтенд-разработчиком, так что мы использовали
+							этот шанс и часть работы сделали очно.
+						</p>
+				</div>
+				<div slot="aside">
+						<CardTitle as="h3" class="text-[1.2rem] sm:text-[1.3rem]">
+							Несколько практических примеров
+						</CardTitle>
+					<div class="mt-4 space-y-4 text-stone-700">
+						<div class="flex items-start gap-3">
+							<span class="mt-1 shrink-0 text-stone-400 dark:text-stone-500">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									class="h-4 w-4"
+									aria-hidden="true"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+										clip-rule="evenodd"
+									></path>
+								</svg>
+							</span>
+								<p>
+									Мы заранее приоритизировали, какая функциональность остаётся в
+									продукте, а какая уходит под нож. Это дало разработчикам
+									время на рефакторинг старого кода и подготовку серверной
+									базы под новую функциональность.
+								</p>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="mt-1 shrink-0 text-stone-400 dark:text-stone-500">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									class="h-4 w-4"
+									aria-hidden="true"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+										clip-rule="evenodd"
+									></path>
+								</svg>
+							</span>
+								<p>
+									Параллельная работа над общей структурой дала команде более
+									ясное понимание того, что потребуется от фронтенда.
+								</p>
+						</div>
+						<div class="flex items-start gap-3">
+							<span class="mt-1 shrink-0 text-stone-400 dark:text-stone-500">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									class="h-4 w-4"
+									aria-hidden="true"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
+										clip-rule="evenodd"
+									></path>
+								</svg>
+							</span>
+								<p>
+									Мы заранее готовили сопутствующие материалы: тексты для
+									Privacy Advisor, интерактивные гиды, обновлённые
+									веб-страницы и сценарные сообщения — ещё до того, как
+									фронтенд-команда полностью ушла в основной UI.
+								</p>
+						</div>
+					</div>
+				</div>
+			</SplitAsideSection>
+		</section>
+
+		<ContentSection title="Локализация на 20+ языков">
+				<p>
+					AOSP был глобальным продуктом, и каждое обновление нужно было
+					локализовывать для рынков Европы, Азии и Ближнего Востока.
+				</p>
+				<p>
+					Это добавляло ещё один слой сложности. Например, приходилось
+					готовить промоматериалы для разных онлайновых магазинов. Ещё
+					одна проблема — сильный разброс длины текста между языками,
+					который иногда буквально ломал интерфейс. Отдельное спасибо
+					QA-команде: они ловили такие случаи, и мы успевали вовремя всё
+					исправить.
+				</p>
+		</ContentSection>
+
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-localization.png")}
+			alt="Локализация AOSP и ассеты для магазинов"
+		/>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Как мы измеряли успех">
+					<p>
+						У Avast был широкий набор аналитических инструментов,
+						позволявших отслеживать почти любой показатель — при этом все
+						данные были очищены от персональной информации. Мы смотрели, в
+						частности, на следующее:
+					</p>
+				<div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+						<MetricStripCard title="Принятие продукта">
+							Успешность онбординга, завершение ключевых сценариев,
+							включение отдельных элементов функциональности и вовлечённость в течение
+							первого месяца.
+						</MetricStripCard>
+						<MetricStripCard title="Использование и взаимодействие">
+							Более детальные данные о том, как люди пользовались разными
+							элементами продукта, помогавшие понять, что приносило
+							наибольшую ценность.
+						</MetricStripCard>
+					<MetricStripCard title="Privacy Advisor">
+						Прохождение гидов, глубина использования, популярность
+						отдельных гидов, рейтинги платформ и другие сигналы
+						вовлечённости.
+					</MetricStripCard>
+						<MetricStripCard title="Промо-сообщения">
+							Вовлечённость во встроенные промо и возможности кросс-сейла,
+							которые позже расширились до подписочной модели.
+						</MetricStripCard>
+						<MetricStripCard title="Сигналы пользователей">
+							NPS, опросы, встроенные формы быстрого фидбека, динамика
+							отзывов в сторе и дополнительные раунды пользовательского
+							тестирования.
+						</MetricStripCard>
+					<MetricStripCard
+						title="Отток и удержание"
+						class="md:col-span-2 xl:col-span-1"
+					>
+							Сравнение установок и удалений после редизайна, включая
+							первоначальный всплеск возврата спящих пользователей и
+							последующее восстановление после возобновления кампаний.
+					</MetricStripCard>
+				</div>
+			</SectionIntro>
+		</section>
+
+		<section class="mt-12 w-full">
+			<SectionIntro as="div" class="mt-0" title="Ключевые результаты" />
+			<div class="mt-6 grid gap-4 md:grid-cols-2">
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M6.33307 4.47774C5.91556 4.33019 5.46663 4.25 5 4.25C2.79086 4.25 1 6.04086 1 8.25C1 8.66421 1.33579 9 1.75 9H5.0716C5.64388 9.70938 6.29062 10.3561 7 10.9284V14.25C7 14.6642 7.33579 15 7.75 15C9.95914 15 11.75 13.2091 11.75 11C11.75 10.5325 11.6698 10.0837 11.5224 9.66665C13.6597 7.70226 15 4.88307 15 1.75C15 1.33579 14.6642 1 14.25 1C11.1172 1 8.29699 2.34088 6.33307 4.47774ZM12 5.5C12 6.32843 11.3284 7 10.5 7C9.67157 7 9 6.32843 9 5.5C9 4.67157 9.67157 4 10.5 4C11.3284 4 12 4.67157 12 5.5Z" fill="currentColor"></path>
+							<path d="M3.90236 10.6821C4.10255 10.3195 3.97086 9.86323 3.60823 9.66305C3.24561 9.46286 2.78936 9.59455 2.58917 9.95718C2.21351 10.6377 2 11.42 2 12.25C2 12.6158 2.0415 12.9729 2.12036 13.3165C2.18467 13.5966 2.40341 13.8153 2.68354 13.8796C3.02706 13.9585 3.38415 14 3.75 14C4.57997 14 5.36232 13.7865 6.04282 13.4108C6.40545 13.2106 6.53714 12.7544 6.33695 12.3918C6.13677 12.0291 5.68052 11.8975 5.31789 12.0976C4.85371 12.3539 4.32004 12.5 3.75 12.5C3.66878 12.5 3.58834 12.497 3.50878 12.4912C3.50296 12.4117 3.5 12.3312 3.5 12.25C3.5 11.68 3.64612 11.1463 3.90236 10.6821Z" fill="currentColor"></path>
+						</svg>
+						Сильный новый продукт
+					</p>
+						<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+							После редизайна <a
+								href="https://www.avast.com/avast-online-security"
+								target="_blank"
+								rel="noreferrer"
+								class="text-link text-stone-950"
+							>Avast Online Security &amp; Privacy 2.0</a> превратился в
+							сильный самостоятельный продукт и <strong class="font-bold text-stone-950"
+								>неотъемлемую точку контакта</strong
+							> внутри более широкой клиентской экосистемы.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M5 4C5.36246 4 5.67306 4.25922 5.7379 4.61584L5.99021 6.00355C6.08335 6.51578 6.48422 6.91665 6.99645 7.00979L8.38416 7.2621C8.74078 7.32694 9 7.63754 9 8C9 8.36246 8.74078 8.67306 8.38416 8.7379L6.99645 8.99021C6.48422 9.08335 6.08335 9.48422 5.99021 9.99645L5.7379 11.3842C5.67306 11.7408 5.36246 12 5 12C4.63754 12 4.32694 11.7408 4.2621 11.3842L4.00979 9.99645C3.91665 9.48422 3.51578 9.08335 3.00355 8.99021L1.61584 8.7379C1.25922 8.67306 1 8.36246 1 8C1 7.63754 1.25922 7.32694 1.61584 7.2621L3.00355 7.00979C3.51578 6.91665 3.91665 6.51578 4.00979 6.00355L4.2621 4.61584C4.32694 4.25922 4.63754 4 5 4Z" fill="currentColor"></path>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M12 1C12.3349 1 12.6291 1.22198 12.7211 1.54396L12.9159 2.2256C13.0345 2.64086 13.3591 2.96546 13.7744 3.0841L14.456 3.27886C14.778 3.37085 15 3.66514 15 4C15 4.33486 14.778 4.62915 14.456 4.72114L13.7744 4.9159C13.3591 5.03454 13.0345 5.35914 12.9159 5.7744L12.7211 6.45604C12.6291 6.77802 12.3349 7 12 7C11.6651 7 11.3709 6.77802 11.2789 6.45604L11.0841 5.7744C10.9655 5.35914 10.6409 5.03454 10.2256 4.9159L9.54396 4.72114C9.22198 4.62915 9 4.33486 9 4C9 3.66514 9.22198 3.37085 9.54396 3.27886L10.2256 3.0841C10.6409 2.96546 10.9655 2.64086 11.0841 2.2256L11.2789 1.54396C11.3709 1.22198 11.6651 1 12 1Z" fill="currentColor"></path>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M10 11C10.3442 11 10.6441 11.2342 10.7276 11.5681C10.8143 11.9149 11.0851 12.1857 11.4319 12.2724C11.7658 12.3559 12 12.6558 12 13C12 13.3442 11.7658 13.6441 11.4319 13.7276C11.0851 13.8143 10.8143 14.0851 10.7276 14.4319C10.6441 14.7658 10.3442 15 10 15C9.65585 15 9.35586 14.7658 9.27239 14.4319C9.18569 14.0851 8.9149 13.8143 8.5681 13.7276C8.23422 13.6441 8 13.3442 8 13C8 12.6558 8.23422 12.3559 8.5681 12.2724C8.9149 12.1857 9.18569 11.9149 9.27239 11.5681C9.35586 11.2342 9.65585 11 10 11Z" fill="currentColor"></path>
+						</svg>
+						Запуск в едином стиле с флагманом
+					</p>
+						<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+							С новым визуальным обликом, полностью переосмысленным UX и
+							обновлённым фокусом на приватности AOSP стал единственным <strong
+								class="font-bold text-stone-950"
+								>ребрендированным продуктом</strong
+							>, запущенным вместе с флагманским Avast One в новом языке
+							компании.
+						</p>
+				</SurfaceCard>
+			</div>
+			<div class="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path d="M13.407 2.58984C13.3168 2.18556 12.916 1.93091 12.5117 2.02107C12.1074 2.11124 11.8528 2.51206 11.9429 2.91635C12.3077 4.55194 12.5003 6.25315 12.5003 8.00023C12.5003 9.74731 12.3077 11.4485 11.9429 13.0841C11.8528 13.4884 12.1074 13.8892 12.5117 13.9794C12.916 14.0696 13.3168 13.8149 13.407 13.4106C13.6713 12.2255 13.8506 11.0086 13.9382 9.76675C14.5699 9.43059 15 8.76552 15 8C15 7.23447 14.5699 6.56939 13.9382 6.23324C13.8505 4.99157 13.6713 3.77483 13.407 2.58984Z" fill="currentColor"></path>
+							<path d="M4.34757 11H4C2.34315 11 1 9.65685 1 8C1 6.34315 2.34315 5 4 5H6C7.64721 5 9.21691 4.66794 10.6459 4.06738C10.8783 5.34142 11 6.6554 11 7.99943C11 9.34372 10.8783 10.658 10.6457 11.9322C9.33751 11.3824 7.91134 11.0578 6.41572 11.0069C6.61941 11.7252 6.89425 12.4137 7.23216 13.0641C7.35143 13.2937 7.28883 13.5787 7.07691 13.7271L6.24892 14.3068C6.01046 14.4738 5.67952 14.4029 5.54168 14.1465C5.01475 13.1663 4.60992 12.1107 4.34757 11Z" fill="currentColor"></path>
+						</svg>
+						Рыночное преимущество
+					</p>
+						<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+							Мы получили <strong class="font-bold text-stone-950"
+								>значимый</strong
+							> новый маркетинговый дифференциатор.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M5.00001 4C5.00001 2.34315 6.34316 1 8.00001 1C9.65687 1 11 2.34315 11 4V5H11.6425C12.4132 5 13.0584 5.58394 13.1351 6.35074L13.8351 13.3507C13.9234 14.2338 13.23 15 12.3425 15H3.65749C2.77006 15 2.07664 14.2338 2.16494 13.3507L2.86494 6.35075C2.94162 5.58394 3.58687 5 4.35749 5H5.00001V4ZM9.50001 4V5H6.50001V4C6.50001 3.17157 7.17159 2.5 8.00001 2.5C8.82844 2.5 9.50001 3.17157 9.50001 4ZM6.5 7.75C6.5 7.33579 6.16421 7 5.75 7C5.33579 7 5 7.33579 5 7.75V8.75C5 10.4069 6.34315 11.75 8 11.75C9.65685 11.75 11 10.4069 11 8.75V7.75C11 7.33579 10.6642 7 10.25 7C9.83579 7 9.5 7.33579 9.5 7.75V8.75C9.5 9.57843 8.82843 10.25 8 10.25C7.17157 10.25 6.5 9.57843 6.5 8.75V7.75Z" fill="currentColor"></path>
+						</svg>
+						Новые точки контакта
+					</p>
+						<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+							Мы добавили контекстные точки контакта до первой покупки,
+							которые дали больше смысла кросс- и апселлу других
+							продуктов.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path d="M2 4C2 2.89543 2.89543 2 4 2H12C13.1046 2 14 2.89543 14 4C14 5.10457 13.1046 6 12 6H4C2.89543 6 2 5.10457 2 4Z" fill="currentColor"></path>
+							<path d="M2 9.25C2 8.83579 2.33579 8.5 2.75 8.5H13.25C13.6642 8.5 14 8.83579 14 9.25C14 9.66421 13.6642 10 13.25 10H2.75C2.33579 10 2 9.66421 2 9.25Z" fill="currentColor"></path>
+							<path d="M2.75 12.5C2.33579 12.5 2 12.8358 2 13.25C2 13.6642 2.33579 14 2.75 14H13.25C13.6642 14 14 13.6642 14 13.25C14 12.8358 13.6642 12.5 13.25 12.5H2.75Z" fill="currentColor"></path>
+						</svg>
+						Простые сценарии
+					</p>
+						<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+							Мы <strong class="font-bold text-stone-950"
+								>упростили навигацию</strong
+							> по всем настройкам приватности, сделав ключевые
+							пользовательские сценарии заметно эффективнее.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M8.50019 1.70873C8.21543 1.45386 7.78457 1.45386 7.49981 1.70873C6.1781 2.89169 4.50633 3.6889 2.65985 3.92627C2.29508 3.97316 2.01813 4.27764 2.0059 4.64521C2.00198 4.7631 2 4.88145 2 5.00023C2 9.05223 4.29542 12.5669 7.65336 14.317C7.87059 14.4302 8.12941 14.4302 8.34664 14.317C11.7046 12.5669 14 9.05223 14 5.00023C14 4.88145 13.998 4.7631 13.9941 4.64522C13.9819 4.27764 13.7049 3.97316 13.3401 3.92627C11.4937 3.6889 9.8219 2.89169 8.50019 1.70873ZM10.8398 7.21337C11.0957 6.88766 11.0391 6.41617 10.7134 6.16026C10.3877 5.90435 9.91618 5.96093 9.66027 6.28664L7.39384 9.17119L6.23811 8.18056C5.92361 7.91099 5.45014 7.94741 5.18057 8.26191C4.911 8.5764 4.94743 9.04988 5.26192 9.31944L7.01192 10.8194C7.16716 10.9525 7.36999 11.0164 7.57347 10.9964C7.77695 10.9764 7.96343 10.8741 8.08975 10.7134L10.8398 7.21337Z" fill="currentColor"></path>
+						</svg>
+						Подсказки по приватности в реальном времени
+					</p>
+						<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+							Мы внедрили <strong class="font-bold text-stone-950"
+								>интерактивную</strong
+							> систему Privacy Advisor, которая в реальном времени
+							подсказывала пользователям, что делать на таких платформах,
+							как Facebook, Google, Twitter и других.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path d="M10.6177 10.2608C10.2569 10.483 10 10.8578 10 11.2816C10 11.5075 9.85818 11.7112 9.64083 11.7729C9.11933 11.9208 8.56891 12 8 12C7.43109 12 6.88067 11.9208 6.35917 11.7729C6.14182 11.7112 6 11.5075 6 11.2816C6 10.8578 5.74314 10.483 5.38228 10.2608C3.95293 9.3808 3 7.80168 3 6C3 3.23858 5.23858 1 8 1C10.7614 1 13 3.23858 13 6C13 7.80168 12.0471 9.3808 10.6177 10.2608Z" fill="currentColor"></path>
+							<path d="M6.86696 13.4151C6.45741 13.3531 6.07514 13.6348 6.01313 14.0444C5.95112 14.4539 6.23286 14.8362 6.64241 14.8982C7.08559 14.9653 7.53898 15 8 15C8.46102 15 8.91442 14.9653 9.3576 14.8982C9.76715 14.8362 10.0489 14.4539 9.98688 14.0444C9.92487 13.6348 9.5426 13.3531 9.13305 13.4151C8.76394 13.471 8.3856 13.5 8 13.5C7.6144 13.5 7.23607 13.471 6.86696 13.4151Z" fill="currentColor"></path>
+						</svg>
+							Рост осведомлённости
+					</p>
+						<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+							Мы заметно <strong class="font-bold text-stone-950"
+								>повысили</strong
+							> осведомлённость пользователей о вопросах приватности и
+							доступных решениях по сравнению с предыдущей версией.
+						</p>
+				</SurfaceCard>
+				<SurfaceCard>
+					<p class="inline-flex items-center gap-2 text-base text-emerald-700 dark:text-emerald-300">
+						<svg
+							viewBox="0 0 16 16"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-5 w-5 text-emerald-700 dark:text-emerald-300"
+							aria-hidden="true"
+						>
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M15 8C15 8.98224 14.5279 9.85423 13.7983 10.4015C13.9273 11.3044 13.6446 12.2549 12.95 12.9494C12.2553 13.6441 11.3048 13.9269 10.4019 13.7978C9.85465 14.5277 8.98248 15 8 15C7.01773 15 6.14572 14.5279 5.59848 13.7983C4.69556 13.9273 3.74514 13.6445 3.05055 12.9499C2.35595 12.2553 2.07316 11.3048 2.2022 10.4019C1.47228 9.85464 1 8.98248 1 8C1 7.01773 1.47208 6.14573 2.20173 5.59848C2.07273 4.69557 2.35552 3.74513 3.0501 3.05055C3.74471 2.35595 4.69519 2.07316 5.59813 2.2022C6.14535 1.47228 7.01752 1 8 1C8.98224 1 9.85423 1.47205 10.4015 2.20167C11.3044 2.07265 12.2549 2.35544 12.9494 3.05003C13.6441 3.74465 13.9269 4.69516 13.7978 5.59813C14.5277 6.14535 15 7.01752 15 8ZM11.7086 5.15657C12.0364 5.40984 12.0967 5.88086 11.8435 6.20862L7.59347 11.7086C7.45747 11.8846 7.25037 11.9912 7.0281 11.9995C6.80583 12.0078 6.59133 11.9171 6.44254 11.7518L4.19254 9.25176C3.91544 8.94388 3.9404 8.46966 4.24828 8.19257C4.55617 7.91547 5.03038 7.94043 5.30748 8.24831L6.95616 10.0802L10.6565 5.29145C10.9098 4.96369 11.3808 4.9033 11.7086 5.15657Z" fill="currentColor"></path>
+						</svg>
+						Отклик стейкхолдеров
+					</p>
+					<p class="mt-2 text-base leading-8 text-stone-700 sm:text-lg">
+						Результат был <strong class="font-bold text-stone-950"
+							>очень хорошо принят</strong
+						> стейкхолдерами всех уровней, включая топ-менеджмент.
+					</p>
+				</SurfaceCard>
+			</div>
+		</section>
+
+		<MediaSection
+			src={asset("/images/case-studies/aosp/aosp-results.png")}
+			alt="Итоговые результаты AOSP"
+		/>
+
+		<ContentSection title="Личный вывод">
+				<p>
+					Это был по-настоящему увлекательный проект, в котором дизайн
+					играл ведущую роль. Я благодарен за возможность вести столь
+					значимую часть процесса и увидеть, к чему привели наши усилия.
+					Огромное спасибо всем, кто в нём участвовал.
+				</p>
+				<p>
+					К концу моей работы в компании именно AOSP стал продуктом, к
+					которому я был привязан сильнее всего. После редизайна он начал
+					приносить людям реальную пользу и стал заметно приятнее в
+					использовании — а именно такое сочетание для меня в итоге и
+					важнее всего.
+				</p>
+		</ContentSection>
+
+</CaseStudyLayout>

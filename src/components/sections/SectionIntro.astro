@@ -1,6 +1,6 @@
 ---
-import CardTitle from "../typography/CardTitle.astro";
 import SectionBody from "../typography/SectionBody.astro";
+import SectionTitle from "../typography/SectionTitle.astro";
 
 interface Props {
 	as?: string;
@@ -27,17 +27,17 @@ const hasBodySlot = Astro.slots.has("default");
 ---
 
 <Tag class:list={["mt-12 w-full", className]}>
-	<CardTitle as={titleAs} class:list={["text-2xl sm:text-3xl", titleClass]}>
+	<SectionTitle as={titleAs} class={titleClass}>
 		{title}
-	</CardTitle>
+	</SectionTitle>
 	{
 		hasBodySlot && (
 			bodyVariant === "lead" ? (
-				<div class:list={["type-page-lead mt-6 space-y-0", bodyClass]}>
+				<div class:list={["section-intro-copy type-page-lead mt-6 space-y-0", bodyClass]}>
 					<slot />
 				</div>
 			) : (
-				<SectionBody class:list={["mt-6", bodyClass]}>
+				<SectionBody class:list={["section-intro-copy mt-6", bodyClass]}>
 					<slot />
 				</SectionBody>
 			)

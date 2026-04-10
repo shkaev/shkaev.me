@@ -336,6 +336,11 @@
 		@apply mt-6 space-y-4;
 	}
 
+	.case-study-content .type-section-body > p,
+	.case-study-content .section-intro-copy > p {
+		@apply max-w-[60rem];
+	}
+
 	.type-micro-label {
 		@apply text-xs font-medium uppercase tracking-[0.2em] text-stone-500;
 	}
@@ -351,7 +356,8 @@
 	.type-display-callout {
 		font-family: "IBM Plex Serif", Georgia, serif;
 		font-weight: 600;
-		@apply text-[1.18rem] leading-none tracking-tight text-stone-950 sm:text-[1.32rem];
+		@apply text-[1.18rem] tracking-tight text-stone-950 sm:text-[1.32rem];
+		line-height: var(--tw-leading, 1);
 	}
 
 	.type-card-title {
@@ -448,12 +454,14 @@
 	}
 
 	.dark [data-theme-toggle],
-	.dark [data-sheet-toggle] {
+	.dark [data-sheet-toggle],
+	.dark [data-locale-toggle] {
 		border-color: rgb(68 64 60 / 0.9);
 	}
 
 	.dark [data-theme-toggle]:hover,
-	.dark [data-sheet-toggle]:hover {
+	.dark [data-sheet-toggle]:hover,
+	.dark [data-locale-toggle]:hover {
 		color: rgb(250 250 249);
 		border-color: rgb(120 113 108);
 	}
@@ -559,6 +567,8 @@
 	@media (hover: hover) and (pointer: fine) {
 		[data-theme-toggle]:hover [data-control-tooltip],
 		[data-theme-toggle]:focus-visible [data-control-tooltip],
+		[data-locale-toggle]:hover [data-control-tooltip],
+		[data-locale-toggle]:focus-visible [data-control-tooltip],
 		[data-sheet-toggle]:hover [data-control-tooltip],
 		[data-sheet-toggle]:focus-visible [data-control-tooltip] {
 			opacity: 1;
