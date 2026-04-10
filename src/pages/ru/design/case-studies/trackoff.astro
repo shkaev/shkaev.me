@@ -9,11 +9,12 @@ import SectionIntro from "../../../../components/sections/SectionIntro.astro";
 import SurfaceCard from "../../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../../components/typography/CardTitle.astro";
-import { getCaseStudyCardData, getMoreCaseStudyCards } from "../../../../data/caseStudies";
+import { caseStudyCard } from "../../../../case-studies/ru/trackoff";
+import { getMoreCaseStudyCards } from "../../../../case-studies/ru";
 import { resolveStaticAssetUrl as asset } from "../../../../lib/assetUrl";
 
-const caseStudy = getCaseStudyCardData("trackoff", "ru");
-const moreCaseStudies = getMoreCaseStudyCards("trackoff", "ru");
+const caseStudy = caseStudyCard;
+const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 ---
 
 <CaseStudyLayout

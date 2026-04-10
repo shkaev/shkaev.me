@@ -1,6 +1,4 @@
 import type { Locale } from "./config";
-import { getCaseStudyCards } from "../data/caseStudies";
-
 export interface NavigationCopy {
 	href: string;
 	label: string;
@@ -48,23 +46,12 @@ export interface HomePageCopy {
 	introAfterAbout: string;
 }
 
-export interface DesignCaseStudyCardCopy {
-	href: string;
-	title: string;
-	logoSrc: string;
-	logoAlt: string;
-	imageSrc: string;
-	imageAlt: string;
-	description: string;
-}
-
 export interface DesignPageCopy {
 	metaTitle: string;
 	metaDescription: string;
 	eyebrow: string;
 	title: string;
 	lead: string;
-	caseStudies: DesignCaseStudyCardCopy[];
 	caseStudyBackLabel: string;
 	caseStudyReadMoreLabel: string;
 }
@@ -162,8 +149,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			title: "Case studies",
 			lead: "Explore some of the featured product design work I've been doing over the years.",
 			caseStudyBackLabel: "Case studies",
-			caseStudyReadMoreLabel: "Read more case studies",
-			caseStudies: getCaseStudyCards("en")
+			caseStudyReadMoreLabel: "Read more case studies"
 		},
 		photography: {
 			metaTitle: "Photography | Dmitry Shkaev",
@@ -248,8 +234,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			title: "Проекты",
 			lead: "Несколько интересных продуктовых кейсов, над которыми я работал в разные годы. Тексты написал в 2023 году: сначала только на английском, а на русский перевёл в 2026 при поддержке ИИ.",
 			caseStudyBackLabel: "Кейсы",
-			caseStudyReadMoreLabel: "Ещё кейсы",
-			caseStudies: getCaseStudyCards("ru")
+			caseStudyReadMoreLabel: "Ещё кейсы"
 		},
 		photography: {
 			metaTitle: "Фотография | Дмитрий Шкаев",

@@ -13,11 +13,12 @@ import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
 import SectionBody from "../../../components/typography/SectionBody.astro";
-import { getCaseStudyCardData, getMoreCaseStudyCards } from "../../../data/caseStudies";
+import { caseStudyCard } from "../../../case-studies/en/cookie-manager";
+import { getMoreCaseStudyCards } from "../../../case-studies/en";
 import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
-const caseStudy = getCaseStudyCardData("cookie-manager", "en");
-const moreCaseStudies = getMoreCaseStudyCards("cookie-manager", "en");
+const caseStudy = caseStudyCard;
+const moreCaseStudies = getMoreCaseStudyCards(caseStudy.href);
 ---
 
 <CaseStudyLayout
