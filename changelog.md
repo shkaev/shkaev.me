@@ -13,6 +13,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 - Renamed the Russian photography navigation, page eyebrow, and footer label from `Фотография` to the shorter `Фото` for a cleaner site-wide UI.
 - Refined the Russian About page heading, intro, and leadership copy to read more directly and naturally.
 - Reworked the Russian Design page intro to frame the case studies more clearly and explain the original English writing plus the later AI-assisted translation.
+- Centralized case-study card metadata so the Design listing and related-case sections now pull shared titles and descriptions from one source in both English and Russian.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-06</span></p>
 

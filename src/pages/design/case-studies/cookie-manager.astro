@@ -13,36 +13,17 @@ import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
 import SectionBody from "../../../components/typography/SectionBody.astro";
+import { getCaseStudyCardData, getMoreCaseStudyCards } from "../../../data/caseStudies";
 import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
-const moreCaseStudies = [
-	{
-		href: "/design/case-studies/aosp",
-		title: "Avast Online Security & Privacy",
-		logoSrc: "/favicons/avast.ico",
-		logoAlt: "Avast",
-		imageSrc: "/images/case-studies/aosp/aosp-hero.jpg",
-		imageAlt: "Avast Online Security & Privacy case study preview",
-		description:
-			"A major redesign of the flagship browser extension with over 10 million users."
-	},
-	{
-		href: "/design/case-studies/trackoff",
-		title: "TrackOFF",
-		logoSrc: "/favicons/trackoff.png",
-		logoAlt: "TrackOFF",
-		imageSrc: "/images/case-studies/trackoff/trackoff-hero.jpg",
-		imageAlt: "TrackOFF case study preview",
-		description:
-			"A short story about building a successful product from the ground up and seeing it through to acquisition."
-	}
-];
+const caseStudy = getCaseStudyCardData("cookie-manager", "en");
+const moreCaseStudies = getMoreCaseStudyCards("cookie-manager", "en");
 ---
 
 <CaseStudyLayout
-	title="Cookie Manager | Design Case Study | Dmitry Shkaev"
-	description="Designing, building, and integrating a new feature in Avast Online Security & Privacy."
-	pageTitle="Cookie Manager"
+	title={`${caseStudy.title} | Design Case Study | Dmitry Shkaev`}
+	description={caseStudy.description}
+	pageTitle={caseStudy.title}
 	heroSrc="/images/case-studies/cookie-manager/cookie-manager-hero.jpg"
 	heroAlt="Cookie Manager case study hero image"
 	moreCaseStudies={moreCaseStudies}

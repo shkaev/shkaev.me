@@ -9,36 +9,17 @@ import SectionIntro from "../../../components/sections/SectionIntro.astro";
 import SurfaceCard from "../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../components/typography/CardTitle.astro";
+import { getCaseStudyCardData, getMoreCaseStudyCards } from "../../../data/caseStudies";
 import { resolveStaticAssetUrl as asset } from "../../../lib/assetUrl";
 
-const moreCaseStudies = [
-	{
-		href: "/design/case-studies/aosp",
-		title: "Avast Online Security & Privacy",
-		logoSrc: "/favicons/avast.ico",
-		logoAlt: "Avast",
-		imageSrc: "/images/case-studies/aosp/aosp-hero.jpg",
-		imageAlt: "Avast Online Security & Privacy case study preview",
-		description:
-			"A major redesign of the flagship browser extension with over 10 million users."
-	},
-	{
-		href: "/design/case-studies/cookie-manager",
-		title: "Cookie Manager",
-		logoSrc: "/favicons/avast.ico",
-		logoAlt: "Avast",
-		imageSrc: "/images/case-studies/cookie-manager/cookie-manager-hero.jpg",
-		imageAlt: "Cookie Manager case study preview",
-		description:
-			"Designing, building, and integrating a new feature in Avast Online Security & Privacy."
-	}
-];
+const caseStudy = getCaseStudyCardData("trackoff", "en");
+const moreCaseStudies = getMoreCaseStudyCards("trackoff", "en");
 ---
 
 <CaseStudyLayout
-	title="TrackOFF | Design Case Study | Dmitry Shkaev"
-	description="A short story about building a successful product from the ground up and seeing it through to acquisition."
-	pageTitle="TrackOFF"
+	title={`${caseStudy.title} | Design Case Study | Dmitry Shkaev`}
+	description={caseStudy.description}
+	pageTitle={caseStudy.title}
 	heroSrc="/images/case-studies/trackoff/trackoff-hero.jpg"
 	heroAlt="TrackOFF case study hero image"
 	moreCaseStudies={moreCaseStudies}

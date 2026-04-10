@@ -1,4 +1,5 @@
 import type { Locale } from "./config";
+import { getCaseStudyCards } from "../data/caseStudies";
 
 export interface NavigationCopy {
 	href: string;
@@ -108,73 +109,6 @@ export interface SiteCopy {
 	photography: PhotographyPageCopy;
 }
 
-const sharedCaseStudyCards = {
-	en: [
-		{
-			href: "/design/case-studies/aosp",
-			title: "Avast Online Security & Privacy",
-			logoSrc: "/favicons/avast.ico",
-			logoAlt: "Avast",
-			imageSrc: "/images/case-studies/aosp/aosp-hero.jpg",
-			imageAlt: "Avast Online Security & Privacy case study preview",
-			description:
-				"A major redesign of the flagship browser extension with over 10 million users."
-		},
-		{
-			href: "/design/case-studies/cookie-manager",
-			title: "Cookie Manager",
-			logoSrc: "/favicons/avast.ico",
-			logoAlt: "Avast",
-			imageSrc: "/images/case-studies/cookie-manager/cookie-manager-hero.jpg",
-			imageAlt: "Cookie Manager case study preview",
-			description:
-				"Designing, building, and integrating a new feature in Avast Online Security & Privacy."
-		},
-		{
-			href: "/design/case-studies/trackoff",
-			title: "TrackOFF",
-			logoSrc: "/favicons/trackoff.png",
-			logoAlt: "TrackOFF",
-			imageSrc: "/images/case-studies/trackoff/trackoff-hero.jpg",
-			imageAlt: "TrackOFF case study preview",
-			description:
-				"A short story about building a successful product from the ground up and seeing it through to acquisition."
-		}
-	],
-	ru: [
-		{
-			href: "/design/case-studies/aosp",
-			title: "Avast Online Security & Privacy",
-			logoSrc: "/favicons/avast.ico",
-			logoAlt: "Avast",
-			imageSrc: "/images/case-studies/aosp/aosp-hero.jpg",
-			imageAlt: "Превью кейса Avast Online Security & Privacy",
-			description:
-				"Большой редизайн флагманского браузерного расширения с аудиторией более 10 миллионов пользователей."
-		},
-		{
-			href: "/design/case-studies/cookie-manager",
-			title: "Cookie Manager",
-			logoSrc: "/favicons/avast.ico",
-			logoAlt: "Avast",
-			imageSrc: "/images/case-studies/cookie-manager/cookie-manager-hero.jpg",
-			imageAlt: "Превью кейса Cookie Manager",
-			description:
-				"Проектирование, запуск и интеграция новой функции в Avast Online Security & Privacy."
-		},
-		{
-			href: "/design/case-studies/trackoff",
-			title: "TrackOFF",
-			logoSrc: "/favicons/trackoff.png",
-			logoAlt: "TrackOFF",
-			imageSrc: "/images/case-studies/trackoff/trackoff-hero.jpg",
-			imageAlt: "Превью кейса TrackOFF",
-			description:
-				"Короткая история о том, как продукт строился с нуля и дошёл до приобретения крупной компанией."
-		}
-	]
-} as const;
-
 export const siteCopy: Record<Locale, SiteCopy> = {
 	en: {
 		siteName: "Dmitry Shkaev",
@@ -229,7 +163,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			lead: "Explore some of the featured product design work I've been doing over the years.",
 			caseStudyBackLabel: "Case studies",
 			caseStudyReadMoreLabel: "Read more case studies",
-			caseStudies: [...sharedCaseStudyCards.en]
+			caseStudies: getCaseStudyCards("en")
 		},
 		photography: {
 			metaTitle: "Photography | Dmitry Shkaev",
@@ -315,7 +249,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			lead: "Несколько интересных продуктовых кейсов, над которыми я работал в разные годы. Тексты написал в 2023 году: сначала только на английском, а на русский перевёл в 2026 при поддержке ИИ.",
 			caseStudyBackLabel: "Кейсы",
 			caseStudyReadMoreLabel: "Ещё кейсы",
-			caseStudies: [...sharedCaseStudyCards.ru]
+			caseStudies: getCaseStudyCards("ru")
 		},
 		photography: {
 			metaTitle: "Фотография | Дмитрий Шкаев",

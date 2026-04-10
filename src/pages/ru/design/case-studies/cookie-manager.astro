@@ -13,36 +13,17 @@ import SurfaceCard from "../../../../components/sections/SurfaceCard.astro";
 import MicroLabel from "../../../../components/typography/MicroLabel.astro";
 import CardTitle from "../../../../components/typography/CardTitle.astro";
 import SectionBody from "../../../../components/typography/SectionBody.astro";
+import { getCaseStudyCardData, getMoreCaseStudyCards } from "../../../../data/caseStudies";
 import { resolveStaticAssetUrl as asset } from "../../../../lib/assetUrl";
 
-const moreCaseStudies = [
-	{
-		href: "/design/case-studies/aosp",
-		title: "Avast Online Security & Privacy",
-		logoSrc: "/favicons/avast.ico",
-		logoAlt: "Avast",
-		imageSrc: "/images/case-studies/aosp/aosp-hero.jpg",
-		imageAlt: "Превью кейса Avast Online Security & Privacy",
-		description:
-			"Крупный редизайн флагманского браузерного расширения с аудиторией более 10 миллионов пользователей."
-	},
-	{
-		href: "/design/case-studies/trackoff",
-		title: "TrackOFF",
-		logoSrc: "/favicons/trackoff.png",
-		logoAlt: "TrackOFF",
-		imageSrc: "/images/case-studies/trackoff/trackoff-hero.jpg",
-		imageAlt: "Превью кейса TrackOFF",
-		description:
-			"Короткая история о том, как продукт строился с нуля и дошёл до поглощения."
-	}
-];
+const caseStudy = getCaseStudyCardData("cookie-manager", "ru");
+const moreCaseStudies = getMoreCaseStudyCards("cookie-manager", "ru");
 ---
 
 <CaseStudyLayout
-	title="Cookie Manager | Дизайн-кейс | Дмитрий Шкаев"
-	description="Проектирование, создание и интеграция новой функции в Avast Online Security & Privacy."
-	pageTitle="Cookie Manager"
+	title={`${caseStudy.title} | Дизайн-кейс | Дмитрий Шкаев`}
+	description={caseStudy.description}
+	pageTitle={caseStudy.title}
 	heroSrc="/images/case-studies/cookie-manager/cookie-manager-hero.jpg"
 	heroAlt="Обложка кейса Cookie Manager"
 	moreCaseStudies={moreCaseStudies}
