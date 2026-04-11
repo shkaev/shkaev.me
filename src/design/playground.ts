@@ -1,6 +1,7 @@
 export interface PlaygroundCardMeta {
 	title: string;
 	description: string;
+	href?: string;
 	imageSrc: string;
 	imageAlt: string;
 }
@@ -15,6 +16,7 @@ const playgroundCards = [
 	{
 		title: "Color combos",
 		description: "Quick palette sketches for atmospheres, surfaces, and visual contrast.",
+		href: "/design/playground/color-combos",
 		imageSrc: "/images/playground/color-combos-cover.svg",
 		imageAlt: "Solid muted green cover for the Color combos playground card."
 	}
