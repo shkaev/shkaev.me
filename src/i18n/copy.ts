@@ -52,7 +52,6 @@ export interface DesignPageCopy {
 	eyebrow: string;
 	title: string;
 	lead: string;
-	caseStudyBackLabel: string;
 	caseStudyReadMoreLabel: string;
 }
 
@@ -76,7 +75,6 @@ export interface PhotographyPageCopy {
 	emptyStateDescription: string;
 	clearAllLabel: string;
 	framesLabel: (count: number) => string;
-	backToArchiveLabel: string;
 	photoViewerLabel: (title: string) => string;
 	closeViewerAriaLabel: string;
 	prevPhotoAriaLabel: string;
@@ -148,7 +146,6 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			eyebrow: "Design",
 			title: "Case studies",
 			lead: "Explore some of the featured product design work I've been doing over the years.",
-			caseStudyBackLabel: "Case studies",
 			caseStudyReadMoreLabel: "Read more case studies"
 		},
 		photography: {
@@ -174,7 +171,6 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			emptyStateDescription: "Try clearing one of the filters or broadening the search.",
 			clearAllLabel: "Clear all",
 			framesLabel: (count) => `${count} frames`,
-			backToArchiveLabel: "Photography",
 			photoViewerLabel: (title) => `Photo viewer for ${title}`,
 			closeViewerAriaLabel: "Close photo viewer",
 			prevPhotoAriaLabel: "Previous photo",
@@ -233,7 +229,6 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			eyebrow: "Дизайн",
 			title: "Проекты",
 			lead: "Несколько интересных продуктовых кейсов, над которыми я работал в разные годы. Тексты написал в 2023 году: сначала только на английском, а на русский перевёл в 2026 при поддержке ИИ.",
-			caseStudyBackLabel: "Кейсы",
 			caseStudyReadMoreLabel: "Ещё кейсы"
 		},
 		photography: {
@@ -259,7 +254,6 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			emptyStateDescription: "Попробуйте поменять запрос или сбросить один из фильтров.",
 			clearAllLabel: "Сбросить всё",
 			framesLabel: (count) => `${count} кадров`,
-			backToArchiveLabel: "Фотография",
 			photoViewerLabel: (title) => `Просмотр фотографий: ${title}`,
 			closeViewerAriaLabel: "Закрыть просмотр фотографий",
 			prevPhotoAriaLabel: "Предыдущая фотография",
