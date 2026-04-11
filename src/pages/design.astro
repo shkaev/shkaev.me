@@ -23,8 +23,7 @@ const resolvedPlaygroundSection = {
 	...playgroundSection,
 	cards: playgroundSection.cards.map((card) => ({
 		...card,
-		href: card.href ? localizePath(card.href, locale) : card.href,
-		imageSrc: resolveStaticAssetUrl(card.imageSrc)
+		href: card.href ? localizePath(card.href, locale) : card.href
 	}))
 };
 ---

@@ -1,0 +1,9 @@
+---
+import { getColorCombosHtml } from "../../../design/playground/color-combos-html";
+
+export const prerender = true;
+
+const html = getColorCombosHtml("en");
+---
+
+<Fragment set:html={html} />

@@ -20,7 +20,7 @@ const playgroundCardsEn = [
 		description: "A fun tool I made featuring 10 curated color pairs and an endless mode for your inspiration. Best enjoyed in fullscreen.",
 		href: "/design/playground/color-combos",
 		imageSrc: "/images/playground/color-combos-cover.svg",
-		imageAlt: "Solid muted green cover for the Color combos playground card."
+		imageAlt: "Two color panels with an inverted circle between them for the Color combos playground card."
 	}
 ] satisfies PlaygroundCardMeta[];
 
