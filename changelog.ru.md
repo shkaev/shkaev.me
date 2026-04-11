@@ -2,7 +2,7 @@
 
 Этот файл показывает значимые продакшен-обновления `shkaev.me` в русской локали сайта.
 
-<p class="changelog-meta"><span class="changelog-meta__date">2026-04-11</span></p>
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-10</span></p>
 
 ## Запустил русскую версию сайта и довёл до ума переведённое дизайн-портфолио
 

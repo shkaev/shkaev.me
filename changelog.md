@@ -4,7 +4,7 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
-<p class="changelog-meta"><span class="changelog-meta__date">2026-04-11</span></p>
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-10</span></p>
 
 ## Launched the Russian site experience and refined the translated design portfolio
 
