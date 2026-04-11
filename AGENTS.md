@@ -50,6 +50,7 @@
 - Do not touch older changelog entries unless the task explicitly requires changelog maintenance.
 - Run verification only when the change actually needs it under the rules above.
 - Before pushing, show the user a preview of the exact new top entries in both `changelog.md` and `changelog.ru.md` that are about to be shipped and get explicit approval.
+- When preparing a release push, never run `git commit` and `git push` in parallel. Always finish and verify the changelog/release commit first, then run `git push` as a separate step after that commit has completed successfully.
 - Do not push committed work until the user has approved those changelog previews for that release.
 
 ## Deploy Message
