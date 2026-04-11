@@ -3,12 +3,14 @@ import SiteLayout from "../../layouts/SiteLayout.astro";
 import MediaLinkCard from "../../components/sections/MediaLinkCard.astro";
 import PageHero from "../../components/sections/PageHero.astro";
 import { getCaseStudyCards } from "../../case-studies/ru";
+import { getPlaygroundSection } from "../../design/playground";
 import { getSiteCopy } from "../../i18n/copy";
 import { localizePath } from "../../i18n/routing";
 import { resolveStaticAssetUrl } from "../../lib/assetUrl";
 
 const locale = "ru" as const;
 const copy = getSiteCopy(locale);
+const playgroundSection = getPlaygroundSection(locale);
 
 const resolvedCaseStudies = getCaseStudyCards().map((study) => ({
 	...study,
@@ -16,6 +18,15 @@ const resolvedCaseStudies = getCaseStudyCards().map((study) => ({
 	logoSrc: resolveStaticAssetUrl(study.logoSrc),
 	imageSrc: resolveStaticAssetUrl(study.imageSrc)
 }));
+
+const resolvedPlaygroundSection = {
+	...playgroundSection,
+	cards: playgroundSection.cards.map((card) => ({
+		...card,
+		href: card.href ? localizePath(card.href, locale) : card.href,
+		imageSrc: resolveStaticAssetUrl(card.imageSrc)
+	}))
+};
 ---
 
 <SiteLayout
@@ -42,6 +53,27 @@ const resolvedCaseStudies = getCaseStudyCards().map((study) => ({
 							imageSrc={study.imageSrc}
 							imageAlt={study.imageAlt}
 							description={study.description}
+						/>
+					))
+				}
+			</div>
+		</section>
+		<section class="mt-12 w-full sm:mt-14">
+			<div class="w-full max-w-[60rem]">
+				<PageHero
+					title={resolvedPlaygroundSection.title}
+					lead={resolvedPlaygroundSection.lead}
+				/>
+			</div>
+			<div class="mt-8 flex flex-col gap-4">
+				{
+					resolvedPlaygroundSection.cards.map((entry) => (
+						<MediaLinkCard
+							href={entry.href}
+							title={entry.title}
+							imageSrc={entry.imageSrc}
+							imageAlt={entry.imageAlt}
+							description={entry.description}
 						/>
 					))
 				}

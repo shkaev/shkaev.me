@@ -52,6 +52,7 @@ export const hasLocaleVariant = (pathname: string, locale: Locale) => {
 
 	return (
 		localizedBasePaths.has(basePath) ||
+		basePath.startsWith("/design/") ||
 		basePath.startsWith("/photography/")
 	);
 };

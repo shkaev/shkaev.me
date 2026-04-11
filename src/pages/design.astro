@@ -3,13 +3,14 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import MediaLinkCard from "../components/sections/MediaLinkCard.astro";
 import PageHero from "../components/sections/PageHero.astro";
 import { getCaseStudyCards } from "../case-studies/en";
-import { playgroundSection } from "../design/playground";
+import { getPlaygroundSection } from "../design/playground";
 import { getSiteCopy } from "../i18n/copy";
 import { localizePath } from "../i18n/routing";
 import { resolveStaticAssetUrl } from "../lib/assetUrl";
 
 const locale = "en" as const;
 const copy = getSiteCopy(locale);
+const playgroundSection = getPlaygroundSection(locale);
 
 const resolvedCaseStudies = getCaseStudyCards().map((study) => ({
 	...study,
@@ -22,6 +23,7 @@ const resolvedPlaygroundSection = {
 	...playgroundSection,
 	cards: playgroundSection.cards.map((card) => ({
 		...card,
+		href: card.href ? localizePath(card.href, locale) : card.href,
 		imageSrc: resolveStaticAssetUrl(card.imageSrc)
 	}))
 };

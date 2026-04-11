@@ -1,9 +1,9 @@
-import html from "../../../design/playground/color-combos-document.html?raw";
+import { getColorCombosHtml } from "../../../design/playground/color-combos-html";
 
 export const prerender = true;
 
 export function GET() {
-	return new Response(html, {
+	return new Response(getColorCombosHtml("en"), {
 		headers: {
 			"Content-Type": "text/html; charset=utf-8"
 		}
