@@ -74,7 +74,7 @@ interface AppState {
 	manualRotation: number;
 }
 
-const PREVIEW_MAX_SIZE = 512;
+const PREVIEW_MAX_SIZE = 400;
 
 const clamp = (value: number, min: number, max: number) =>
 	Math.min(max, Math.max(min, value));
@@ -322,6 +322,73 @@ const buildDownloadName = (file: File | null) => {
 	return `${baseName || "deal-with-it"}-deal-with-it.gif`;
 };
 
+const DOG_GIF_LOOP_MS = 3950;
+const DOG_GIF_PAUSE_MS = 5000;
+
+const createStillFrameDataUrl = async (image: HTMLImageElement) => {
+	const canvas = document.createElement("canvas");
+	canvas.width = image.naturalWidth || image.width;
+	canvas.height = image.naturalHeight || image.height;
+	const context = canvas.getContext("2d");
+
+	if (!context) {
+		return null;
+	}
+
+	context.drawImage(image, 0, 0, canvas.width, canvas.height);
+	return canvas.toDataURL("image/png");
+};
+
+const setupDogGifLoop = (root: HTMLElement) => {
+	const dogImage = root.querySelector("[data-dog-gif]");
+
+	if (!(dogImage instanceof HTMLImageElement)) {
+		return;
+	}
+
+	const originalSrc = dogImage.currentSrc || dogImage.src;
+	let frameHoldSrc: string | null = null;
+	let playIteration = 0;
+	let timeoutId: number | null = null;
+	const buildLoopSrc = () =>
+		`${originalSrc}${originalSrc.includes("?") ? "&" : "?"}loop=${playIteration}`;
+
+	const clearLoop = () => {
+		if (timeoutId !== null) {
+			window.clearTimeout(timeoutId);
+			timeoutId = null;
+		}
+	};
+
+	const queueReplay = () => {
+		clearLoop();
+		timeoutId = window.setTimeout(() => {
+			playIteration += 1;
+			dogImage.src = buildLoopSrc();
+			queuePause();
+		}, DOG_GIF_PAUSE_MS);
+	};
+
+	const queuePause = () => {
+		clearLoop();
+		timeoutId = window.setTimeout(() => {
+			if (frameHoldSrc) {
+				dogImage.src = frameHoldSrc;
+			}
+			queueReplay();
+		}, DOG_GIF_LOOP_MS);
+	};
+
+	const boot = async () => {
+		frameHoldSrc = await createStillFrameDataUrl(dogImage);
+		dogImage.src = buildLoopSrc();
+		queuePause();
+	};
+
+	void boot();
+	window.addEventListener("pagehide", clearLoop, { once: true });
+};
+
 const getAnimatedY = (frameIndex: number, targetY: number, targetHeight: number) => {
 	const progress = frameIndex / Math.max(1, EXPORT_CONFIG.frameCount - 1);
 	const eased = 1 - (1 - progress) ** 3;
@@ -453,12 +520,73 @@ const applyManualScale = (
 	};
 };
 
+const mapScaleSliderValueToMultiplier = (rawValue: number) => {
+	if (!Number.isFinite(rawValue)) {
+		return 1;
+	}
+
+	if (rawValue < 0) {
+		return 1 + (rawValue / 100) * 0.5;
+	}
+
+	return 1 + (rawValue / 100) * 1;
+};
+
+const resetSliderIfHandleDoubleClick = (
+	slider: HTMLInputElement,
+	event: MouseEvent,
+	resetValue: number,
+	applyReset: () => void
+) => {
+	const min = Number.parseFloat(slider.min);
+	const max = Number.parseFloat(slider.max);
+	const value = Number.parseFloat(slider.value);
+
+	if (
+		!Number.isFinite(min) ||
+		!Number.isFinite(max) ||
+		!Number.isFinite(value) ||
+		max <= min
+	) {
+		return;
+	}
+
+	const percent = (value - min) / (max - min);
+	const rect = slider.getBoundingClientRect();
+	const isVertical = rect.height > rect.width;
+	const threshold = 22;
+	let isNearHandle = false;
+
+	if (isVertical) {
+		const thumbY = rect.bottom - percent * rect.height;
+		const thumbX = rect.left + rect.width / 2;
+		isNearHandle =
+			Math.abs(event.clientY - thumbY) <= threshold &&
+			Math.abs(event.clientX - thumbX) <= threshold;
+	} else {
+		const thumbX = rect.left + percent * rect.width;
+		const thumbY = rect.top + rect.height / 2;
+		isNearHandle =
+			Math.abs(event.clientX - thumbX) <= threshold &&
+			Math.abs(event.clientY - thumbY) <= threshold;
+	}
+
+	if (!isNearHandle) {
+		return;
+	}
+
+	slider.value = String(resetValue);
+	applyReset();
+};
+
 export const initDealWithIt = () => {
 	const root = document.querySelector("[data-deal-with-it-root]");
 
 	if (!(root instanceof HTMLElement)) {
 		return;
 	}
+
+	setupDogGifLoop(root);
 
 	const config = parseConfig(root);
 	const detectorPromise = createFaceDetector();
@@ -467,6 +595,7 @@ export const initDealWithIt = () => {
 	const editorScreen = root.querySelector("[data-step-editor]");
 	const resultScreen = root.querySelector("[data-step-result]");
 	const uploadButton = root.querySelector("[data-upload-button]");
+	const uploadButtonLabel = root.querySelector("[data-upload-button-label]");
 	const uploadInput = root.querySelector("[data-upload-input]");
 	const uploadError = root.querySelector("[data-upload-error]");
 	const previewFrame = root.querySelector("[data-preview-frame]");
@@ -477,18 +606,18 @@ export const initDealWithIt = () => {
 	const glassesButtons = Array.from(root.querySelectorAll("[data-glasses-button]"));
 	const uploadNewButton = root.querySelector("[data-upload-new-button]");
 	const createGifButton = root.querySelector("[data-create-gif-button]");
+	const createGifButtonLabel = root.querySelector("[data-create-gif-button-label]");
 	const editorError = root.querySelector("[data-editor-error]");
 	const resultImage = root.querySelector("[data-result-image]");
 	const downloadButton = root.querySelector("[data-download-button]");
 	const restartButton = root.querySelector("[data-restart-button]");
-	const debugStatus = root.querySelector("[data-debug-status]");
-	const debugLog = root.querySelector("[data-debug-log]");
 
 	if (
 		!(uploadScreen instanceof HTMLElement) ||
 		!(editorScreen instanceof HTMLElement) ||
 		!(resultScreen instanceof HTMLElement) ||
 		!(uploadButton instanceof HTMLButtonElement) ||
+		!(uploadButtonLabel instanceof HTMLElement) ||
 		!(uploadInput instanceof HTMLInputElement) ||
 		!(uploadError instanceof HTMLElement) ||
 		!(previewFrame instanceof HTMLElement) ||
@@ -498,28 +627,14 @@ export const initDealWithIt = () => {
 		!(rotationSlider instanceof HTMLInputElement) ||
 		!(uploadNewButton instanceof HTMLButtonElement) ||
 		!(createGifButton instanceof HTMLButtonElement) ||
+		!(createGifButtonLabel instanceof HTMLElement) ||
 		!(editorError instanceof HTMLElement) ||
 		!(resultImage instanceof HTMLImageElement) ||
 		!(downloadButton instanceof HTMLButtonElement) ||
-		!(restartButton instanceof HTMLButtonElement) ||
-		!(debugStatus instanceof HTMLElement) ||
-		!(debugLog instanceof HTMLElement)
+		!(restartButton instanceof HTMLButtonElement)
 	) {
 		return;
 	}
-
-	const debugEntries: string[] = [];
-
-	const setDebug = (status: string, details?: string) => {
-		const line = details ? `${status}: ${details}` : status;
-		debugStatus.textContent = line;
-		debugEntries.unshift(line);
-		debugEntries.splice(10);
-		debugLog.textContent = debugEntries.join("\n");
-		console.log("[deal-with-it]", line);
-	};
-
-	setDebug("init", "bindings ready");
 
 	const state: AppState = {
 		step: "upload",
@@ -551,7 +666,6 @@ export const initDealWithIt = () => {
 		uploadScreen.hidden = step !== "upload";
 		editorScreen.hidden = step !== "editor";
 		resultScreen.hidden = step !== "result";
-		setDebug("step", step);
 	};
 
 	const updateSelectedGlasses = () => {
@@ -600,14 +714,14 @@ export const initDealWithIt = () => {
 
 	const syncUi = () => {
 		uploadButton.disabled = state.isUploading;
-		uploadButton.textContent = state.isUploading
+		uploadButtonLabel.textContent = state.isUploading
 			? config.copy.uploadButtonBusy
 			: config.copy.uploadButton;
 		uploadError.textContent = state.uploadError ?? "";
 		uploadError.hidden = !state.uploadError;
 
 		createGifButton.disabled = state.isGenerating || !state.previewDataUrl;
-		createGifButton.textContent = state.isGenerating
+		createGifButtonLabel.textContent = state.isGenerating
 			? config.copy.createGifButtonBusy
 			: config.copy.createGifButton;
 		editorError.textContent = state.editorError ?? "";
@@ -627,7 +741,6 @@ export const initDealWithIt = () => {
 	};
 
 	const resetState = () => {
-		setDebug("reset", "clearing runtime state");
 		if (state.generatedGifUrl) {
 			URL.revokeObjectURL(state.generatedGifUrl);
 		}
@@ -653,7 +766,7 @@ export const initDealWithIt = () => {
 		previewImage.removeAttribute("src");
 		overlayImage.removeAttribute("src");
 		resultImage.removeAttribute("src");
-		scaleSlider.value = "1";
+		scaleSlider.value = "0";
 		rotationSlider.value = "0";
 		setStep("upload");
 		syncUi();
@@ -673,7 +786,6 @@ export const initDealWithIt = () => {
 			return selectPrimaryDetection(result.detections);
 		} catch (error) {
 			console.error("Deal with it face detection failed:", error);
-			setDebug("detect:error", error instanceof Error ? error.message : "unknown");
 			return undefined;
 		}
 	};
@@ -686,7 +798,6 @@ export const initDealWithIt = () => {
 		const primaryDetection = await detectFaceWithTimeout(image);
 
 		if (!primaryDetection) {
-			setDebug("detect:fallback", "using fallback geometry");
 			return;
 		}
 
@@ -699,17 +810,14 @@ export const initDealWithIt = () => {
 		);
 
 		if (!refinedGeometry) {
-			setDebug("detect:fallback", "geometry unavailable");
 			return;
 		}
 
 		state.faceGeometry = refinedGeometry;
-		setDebug("detect:refined", `${Math.round(refinedGeometry.width)}x${Math.round(refinedGeometry.height)}`);
 		syncUi();
 	};
 
 	const preparePhoto = async (file: File) => {
-		setDebug("prepare:start", `${file.name} (${file.type || "unknown"}, ${file.size} bytes)`);
 		state.isUploading = true;
 		state.uploadError = null;
 		state.editorError = null;
@@ -717,7 +825,6 @@ export const initDealWithIt = () => {
 
 		try {
 			const image = await imageFileToLoadedImage(file);
-			setDebug("prepare:image-loaded", `${image.naturalWidth}x${image.naturalHeight}`);
 			const primaryDetection = await detectFaceWithTimeout(image);
 			const crop =
 				primaryDetection
@@ -727,9 +834,7 @@ export const initDealWithIt = () => {
 							image.naturalHeight
 						) ?? buildCenterCropRect(image.naturalWidth, image.naturalHeight)
 					: buildCenterCropRect(image.naturalWidth, image.naturalHeight);
-			setDebug("prepare:crop", `${crop.size}px square`);
 			const preview = await cropToSquarePreview(image, crop);
-			setDebug("prepare:preview", `${preview.previewSize}px`);
 			const faceGeometry =
 				primaryDetection
 					? getFaceGeometry(
@@ -752,17 +857,13 @@ export const initDealWithIt = () => {
 			state.selectedGlassesId = config.glasses[0]?.id ?? DEAL_WITH_IT_GLASSES[0].id;
 			state.generatedGifBlob = null;
 			state.generatedGifUrl = null;
-			scaleSlider.value = "1";
+			scaleSlider.value = "0";
 			rotationSlider.value = "0";
 			setStep("editor");
 			syncUi();
 			void refineFaceGeometry(image, crop, preview.previewSize);
 		} catch (error) {
 			console.error("Deal with it photo preparation failed:", error);
-			setDebug(
-				"prepare:error",
-				error instanceof Error ? error.message : "unknown error"
-			);
 			state.uploadError = config.copy.processingError;
 			setStep("upload");
 		} finally {
@@ -773,26 +874,22 @@ export const initDealWithIt = () => {
 
 	const validateFile = (file: File) => {
 		if (!ACCEPTED_IMAGE_TYPES.includes(file.type as (typeof ACCEPTED_IMAGE_TYPES)[number])) {
-			setDebug("validate:fail", "invalid type");
 			state.uploadError = config.copy.invalidTypeError;
 			syncUi();
 			return false;
 		}
 
 		if (file.size > MAX_UPLOAD_BYTES) {
-			setDebug("validate:fail", "file too large");
 			state.uploadError = config.copy.fileTooLargeError;
 			syncUi();
 			return false;
 		}
 
-		setDebug("validate:ok", "file accepted");
 		return true;
 	};
 
 	const generateGif = async () => {
 		if (!state.previewDataUrl || !state.placement) {
-			setDebug("gif:abort", "missing preview or placement");
 			return;
 		}
 
@@ -801,11 +898,9 @@ export const initDealWithIt = () => {
 		);
 
 		if (!selected) {
-			setDebug("gif:abort", "missing selected glasses");
 			return;
 		}
 
-		setDebug("gif:start", selected.id);
 		state.isGenerating = true;
 		state.editorError = null;
 		syncUi();
@@ -824,13 +919,8 @@ export const initDealWithIt = () => {
 
 			state.generatedGifBlob = blob;
 			state.generatedGifUrl = URL.createObjectURL(blob);
-			setDebug("gif:done", `${blob.size} bytes`);
 			setStep("result");
 		} catch (error) {
-			setDebug(
-				"gif:error",
-				error instanceof Error ? error.message : "render failed"
-			);
 			state.editorError = config.copy.generationError;
 			setStep("editor");
 		} finally {
@@ -840,7 +930,6 @@ export const initDealWithIt = () => {
 	};
 
 	uploadButton.addEventListener("click", () => {
-		setDebug("upload:click", "opening file picker");
 		uploadInput.click();
 	});
 
@@ -848,11 +937,9 @@ export const initDealWithIt = () => {
 		const file = uploadInput.files?.[0];
 
 		if (!file) {
-			setDebug("upload:change", "no file selected");
 			return;
 		}
 
-		setDebug("upload:change", file.name);
 		state.uploadError = null;
 
 		if (!validateFile(file)) {
@@ -874,7 +961,6 @@ export const initDealWithIt = () => {
 				return;
 			}
 
-			setDebug("glasses:select", id);
 			state.selectedGlassesId = id;
 			state.manualOffset = { x: 0, y: 0 };
 			state.editorError = null;
@@ -883,15 +969,29 @@ export const initDealWithIt = () => {
 	}
 
 	scaleSlider.addEventListener("input", () => {
-		state.manualScale = Number.parseFloat(scaleSlider.value) || 1;
-		setDebug("scale", scaleSlider.value);
+		const rawValue = Number.parseFloat(scaleSlider.value);
+		state.manualScale = mapScaleSliderValueToMultiplier(rawValue);
 		syncUi();
 	});
 
+	scaleSlider.addEventListener("dblclick", (event) => {
+		resetSliderIfHandleDoubleClick(scaleSlider, event, 0, () => {
+			scaleSlider.value = "0";
+			state.manualScale = 1;
+			syncUi();
+		});
+	});
+
 	rotationSlider.addEventListener("input", () => {
-		state.manualRotation = Number.parseFloat(rotationSlider.value) || 0;
-		setDebug("rotation", rotationSlider.value);
+		state.manualRotation = -(Number.parseFloat(rotationSlider.value) || 0);
 		syncUi();
+	});
+
+	rotationSlider.addEventListener("dblclick", (event) => {
+		resetSliderIfHandleDoubleClick(rotationSlider, event, 0, () => {
+			state.manualRotation = 0;
+			syncUi();
+		});
 	});
 
 	const handlePointerMove = (event: PointerEvent) => {
@@ -919,10 +1019,6 @@ export const initDealWithIt = () => {
 			return;
 		}
 
-		setDebug(
-			"drag:end",
-			`${Math.round(state.manualOffset.x)}, ${Math.round(state.manualOffset.y)}`
-		);
 		dragPointerId = null;
 		dragStartPointer = null;
 		dragStartOffset = null;
@@ -946,7 +1042,6 @@ export const initDealWithIt = () => {
 			y: rect.height > 0 ? state.previewSize / rect.height : 1
 		};
 		overlayImage.dataset.dragging = "true";
-		setDebug("drag:start", state.selectedGlassesId);
 		window.addEventListener("pointermove", handlePointerMove);
 		window.addEventListener("pointerup", finishDrag);
 		window.addEventListener("pointercancel", finishDrag);
@@ -966,17 +1061,13 @@ export const initDealWithIt = () => {
 
 	downloadButton.addEventListener("click", () => {
 		if (!state.generatedGifBlob || !state.generatedGifUrl) {
-			setDebug("download:abort", "missing gif");
 			return;
 		}
 
-		setDebug("download:start", buildDownloadName(state.inputFile));
 		const link = document.createElement("a");
 		link.href = state.generatedGifUrl;
 		link.download = buildDownloadName(state.inputFile);
 		link.click();
 	});
 
-	syncUi();
-	setDebug("ready", "waiting for file");
 };

@@ -1,6 +1,7 @@
 ---
 import SiteHead from "../../../components/layout/SiteHead.astro";
 import DealWithItApp from "../../../components/playground/DealWithItApp.astro";
+import "../../../styles/global.css";
 import { getAlternateLocaleLinks } from "../../../i18n/routing";
 import { getSiteCopy } from "../../../i18n/copy";
 import { siteUrl } from "../../../lib/siteConfig";
@@ -40,8 +41,18 @@ const alternateUrls = getAlternateLocaleLinks(pathname).map((item) => ({
 			displayFontSemiboldSrc={displayFontSemiboldSrc}
 			alternateUrls={alternateUrls}
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Rubik+Broken+Fax&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
-	<body>
+	<body class="bg-stone-50 text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-100">
 		<DealWithItApp locale="en" backHref="/design" />
 	</body>
 </html>

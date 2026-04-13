@@ -16,11 +16,12 @@ const glasses = DEAL_WITH_IT_GLASSES.map((item) => ({
 
 const copy: Record<"en" | "ru", DealWithItCopy> = {
 	en: {
-		uploadButton: "Upload photo",
+		uploadButton: "Pick a photo",
 		uploadButtonBusy: "Preparing…",
-		uploadHelper: "JPG or PNG, up to 1 MB.",
+		uploadHelper: "JPG or PNG, up to 10 MB.",
+		uploadPrivacyNote: "Your photo is processed locally in your browser.<br />Nothing is uploaded or stored.",
 		invalidTypeError: "Please upload a JPG or PNG image.",
-		fileTooLargeError: "The file must be 1 MB or smaller.",
+		fileTooLargeError: "The file must be 10 MB or smaller.",
 		noFaceError: "We couldn’t detect a face in this photo. Please try another one.",
 		processingError: "Something went wrong while preparing the photo. Please try again.",
 		createGifButton: "Create GIF",
@@ -33,11 +34,12 @@ const copy: Record<"en" | "ru", DealWithItCopy> = {
 		backLabel: "Go back"
 	},
 	ru: {
-		uploadButton: "Загрузить фото",
+		uploadButton: "Выберите фото",
 		uploadButtonBusy: "Подготавливаем…",
-		uploadHelper: "JPG или PNG, не больше 1 MB.",
+		uploadHelper: "JPG или PNG, не больше 10 MB.",
+		uploadPrivacyNote: "Фото обрабатывается локально в браузере.<br />Ничего не загружается и не хранится.",
 		invalidTypeError: "Загрузите изображение в формате JPG или PNG.",
-		fileTooLargeError: "Файл должен быть не больше 1 MB.",
+		fileTooLargeError: "Файл должен быть не больше 10 MB.",
 		noFaceError: "Мы не смогли определить лицо на этом фото. Попробуйте другое.",
 		processingError: "Не удалось подготовить фото. Попробуйте ещё раз.",
 		createGifButton: "Создать GIF",
@@ -58,6 +60,37 @@ const config: DealWithItAppConfig = {
 	glasses,
 	copy: copy[locale]
 };
+
+const actionButtonBaseClass =
+	"group relative inline-flex min-h-[4.5rem] w-full items-center justify-center overflow-hidden rounded-full border px-7 py-4 transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.985] disabled:cursor-default disabled:opacity-60";
+
+const primaryButtonClass = `${actionButtonBaseClass} border-[#f4d48d]/55 bg-[linear-gradient(180deg,#f4c96a_0%,#e5a934_100%)] text-[#21160b] shadow-[0_18px_36px_rgba(229,169,52,0.28),0_6px_0_rgba(132,79,19,0.55)] hover:-translate-y-0.5 hover:brightness-[1.03] hover:shadow-[0_24px_46px_rgba(229,169,52,0.34),0_7px_0_rgba(132,79,19,0.55)] active:translate-y-[2px] active:shadow-[0_12px_24px_rgba(229,169,52,0.25),0_3px_0_rgba(132,79,19,0.55)]`;
+
+const secondaryButtonClass = `${actionButtonBaseClass} border-stone-500/30 bg-[linear-gradient(180deg,#2b2927_0%,#171412_100%)] text-stone-50 shadow-[0_16px_34px_rgba(0,0,0,0.24),0_5px_0_rgba(68,64,60,0.8)] hover:-translate-y-0.5 hover:border-stone-400 hover:brightness-[1.04] hover:shadow-[0_22px_42px_rgba(0,0,0,0.3),0_6px_0_rgba(68,64,60,0.8)] active:translate-y-[2px] active:shadow-[0_12px_24px_rgba(0,0,0,0.22),0_2px_0_rgba(68,64,60,0.8)]`;
+
+const buttonChromeClass =
+	"pointer-events-none absolute inset-[1px] rounded-full border border-white/18 shadow-[inset_0_1px_0_rgba(255,255,255,0.24)]";
+
+const primaryButtonChromeClass =
+	"pointer-events-none absolute inset-[1px] rounded-full";
+
+const buttonLabelClass =
+	"relative inline-flex w-full items-center justify-center gap-2 font-['Press_Start_2P','IBM_Plex_Mono','SF_Mono','Cascadia_Mono','Menlo','Monaco',monospace] text-current text-[1.2rem] leading-[1.3] drop-shadow-[0_1px_0_rgba(255,255,255,0.12)]";
+
+const primaryButtonLabelClass =
+	`${buttonLabelClass}`;
+
+const helperTextClass =
+	"mt-2 max-w-[26rem] text-center text-sm leading-6 text-stone-950 dark:text-stone-50";
+
+const privacyBubbleClass =
+	"relative mt-6 max-w-[28rem] rounded-[1.1rem] border border-stone-400/80 bg-stone-100/90 px-4 py-3 text-center text-[0.92rem] leading-6 text-stone-700 shadow-[0_10px_24px_rgba(28,25,23,0.08)] dark:border-stone-700/90 dark:bg-stone-900/90 dark:text-stone-300";
+
+const errorTextClass =
+	"text-center text-sm leading-6 text-red-700 dark:text-red-300";
+
+const glassesButtonClass =
+	"group inline-flex aspect-square items-center justify-center rounded-[1rem] border border-stone-700/90 bg-[linear-gradient(180deg,rgba(24,24,24,0.96)_0%,rgba(14,14,14,0.98)_100%)] p-3 shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-stone-500 hover:shadow-[0_18px_32px_rgba(0,0,0,0.24)] data-[selected=true]:border-stone-100/85 data-[selected=true]:shadow-[0_18px_36px_rgba(255,255,255,0.08)]";
 ---
 
 <div class="dwi-root" data-deal-with-it-root>
@@ -74,16 +107,60 @@ const config: DealWithItAppConfig = {
 		</svg>
 	</a>
 
-	<section class="dwi-screen" data-step-upload>
+	<section class="dwi-screen dwi-screen--upload" data-step-upload>
+		<div class="dwi-upload-title-wrap" aria-hidden="true">
+			<svg class="dwi-title-rays" viewBox="0 0 1600 700" preserveAspectRatio="xMidYMin slice">
+				<defs>
+					<linearGradient id="dwi-ray-pink" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0%" stop-color="#ff4f9a" stop-opacity="0.95" />
+						<stop offset="100%" stop-color="#ff4f9a" stop-opacity="0" />
+					</linearGradient>
+					<linearGradient id="dwi-ray-cyan" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0%" stop-color="#6af6ff" stop-opacity="0.92" />
+						<stop offset="100%" stop-color="#6af6ff" stop-opacity="0" />
+					</linearGradient>
+					<linearGradient id="dwi-ray-yellow" x1="0" y1="0" x2="0" y2="1">
+						<stop offset="0%" stop-color="#ffe36d" stop-opacity="0.88" />
+						<stop offset="100%" stop-color="#ffe36d" stop-opacity="0" />
+					</linearGradient>
+					<filter id="dwi-ray-glow" x="-20%" y="-20%" width="140%" height="140%">
+						<feGaussianBlur stdDeviation="8" result="blur" />
+						<feMerge>
+							<feMergeNode in="blur" />
+							<feMergeNode in="SourceGraphic" />
+						</feMerge>
+					</filter>
+				</defs>
+				<g filter="url(#dwi-ray-glow)">
+					<polygon class="dwi-ray dwi-ray--a" points="800,0 320,700 470,700" fill="url(#dwi-ray-pink)" />
+					<polygon class="dwi-ray dwi-ray--b" points="800,0 500,700 620,700" fill="url(#dwi-ray-yellow)" />
+					<polygon class="dwi-ray dwi-ray--c" points="800,0 675,700 765,700" fill="url(#dwi-ray-cyan)" />
+					<polygon class="dwi-ray dwi-ray--d" points="800,0 835,700 925,700" fill="url(#dwi-ray-pink)" />
+					<polygon class="dwi-ray dwi-ray--e" points="800,0 980,700 1100,700" fill="url(#dwi-ray-yellow)" />
+					<polygon class="dwi-ray dwi-ray--f" points="800,0 1130,700 1280,700" fill="url(#dwi-ray-cyan)" />
+					<polygon class="dwi-ray dwi-ray--g" points="800,0 160,700 310,700" fill="url(#dwi-ray-cyan)" />
+					<polygon class="dwi-ray dwi-ray--h" points="800,0 1290,700 1440,700" fill="url(#dwi-ray-pink)" />
+				</g>
+				<circle class="dwi-ray-core" cx="800" cy="0" r="72" />
+			</svg>
+			<h1 class="dwi-title text-center text-[clamp(3.4rem,11vw,7.8rem)] uppercase leading-[0.78]">DEAL WITH IT</h1>
+		</div>
 		<div class="dwi-upload-stack">
-			<img src={dogGifSrc} alt="" class="dwi-dog" />
+			<img src={dogGifSrc} alt="" class="dwi-dog" data-dog-gif />
 			<div class="dwi-upload-controls">
 				<input data-upload-input class="dwi-upload-input" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" />
-				<button data-upload-button class="dwi-button dwi-button--primary" type="button">
-					{copy[locale].uploadButton}
+				<button data-upload-button class={primaryButtonClass} type="button">
+					<span class={primaryButtonChromeClass}></span>
+					<span class={primaryButtonLabelClass} data-upload-button-label>{copy[locale].uploadButton}</span>
 				</button>
-				<p class="dwi-helper">{copy[locale].uploadHelper}</p>
-				<p class="dwi-error" data-upload-error hidden></p>
+				<div class="dwi-upload-notes">
+					<p class={helperTextClass}>{copy[locale].uploadHelper}</p>
+					<p class={`${privacyBubbleClass} dwi-privacy-bubble`}>
+						<span class="dwi-speech-tail"></span>
+						<Fragment set:html={copy[locale].uploadPrivacyNote} />
+					</p>
+				</div>
+				<p class={errorTextClass} data-upload-error hidden></p>
 			</div>
 		</div>
 	</section>
@@ -92,34 +169,38 @@ const config: DealWithItAppConfig = {
 		<div class="dwi-editor-stack">
 			<div class="dwi-editor-stage">
 				<div class="dwi-slider-column dwi-slider-column--left">
-					<label class="dwi-slider-label" for="dwi-scale-slider">Scale</label>
-					<input
-						id="dwi-scale-slider"
-						data-scale-slider
-						class="dwi-vertical-slider"
-						type="range"
-						min="0.5"
-						max="2"
-						step="0.01"
-						value="1"
-					/>
+					<div class="dwi-slider-shell">
+						<span class="dwi-slider-midpoint" aria-hidden="true"></span>
+						<input
+							id="dwi-scale-slider"
+							data-scale-slider
+							class="dwi-vertical-slider"
+							type="range"
+							min="-100"
+							max="100"
+							step="1"
+							value="0"
+						/>
+					</div>
 				</div>
 				<div class="dwi-preview-frame" data-preview-frame>
 					<img data-preview-image class="dwi-preview-image" alt="" />
 					<img data-preview-overlay class="dwi-preview-overlay" alt="" />
 				</div>
 				<div class="dwi-slider-column dwi-slider-column--right">
-					<label class="dwi-slider-label" for="dwi-rotation-slider">Angle</label>
-					<input
-						id="dwi-rotation-slider"
-						data-rotation-slider
-						class="dwi-vertical-slider"
-						type="range"
-						min="-15"
-						max="15"
-						step="1"
-						value="0"
-					/>
+					<div class="dwi-slider-shell">
+						<span class="dwi-slider-midpoint" aria-hidden="true"></span>
+						<input
+							id="dwi-rotation-slider"
+							data-rotation-slider
+							class="dwi-vertical-slider"
+							type="range"
+							min="-15"
+							max="15"
+							step="1"
+							value="0"
+						/>
+					</div>
 				</div>
 			</div>
 			<div class="dwi-glasses-grid">
@@ -127,7 +208,7 @@ const config: DealWithItAppConfig = {
 					glasses.map((item) => (
 						<button
 							type="button"
-							class="dwi-glasses-button"
+							class={glassesButtonClass}
 							data-glasses-button={item.id}
 							data-selected={item.id === glasses[0].id ? "true" : "false"}
 						>
@@ -137,37 +218,35 @@ const config: DealWithItAppConfig = {
 				}
 			</div>
 			<div class="dwi-action-row">
-				<button data-upload-new-button class="dwi-button dwi-button--secondary" type="button">
-					{copy[locale].uploadNewPhotoButton}
+				<button data-upload-new-button class={secondaryButtonClass} type="button">
+					<span class={buttonChromeClass}></span>
+					<span class={buttonLabelClass}>{copy[locale].uploadNewPhotoButton}</span>
 				</button>
-				<button data-create-gif-button class="dwi-button dwi-button--primary" type="button">
-					{copy[locale].createGifButton}
+				<button data-create-gif-button class={primaryButtonClass} type="button">
+					<span class={primaryButtonChromeClass}></span>
+					<span class={primaryButtonLabelClass} data-create-gif-button-label>{copy[locale].createGifButton}</span>
 				</button>
 			</div>
-			<p class="dwi-error dwi-error--editor" data-editor-error hidden></p>
+			<p class={`${errorTextClass} dwi-error--editor`} data-editor-error hidden></p>
 		</div>
 	</section>
 
 	<section class="dwi-screen" data-step-result hidden>
 		<div class="dwi-result-stack">
-			<h1 class="dwi-result-title">{copy[locale].resultTitle}</h1>
+			<h1 class="font-display text-3xl text-center tracking-tight text-stone-950 sm:text-4xl dark:text-stone-50">{copy[locale].resultTitle}</h1>
 			<img data-result-image class="dwi-result-image" alt="" />
 			<div class="dwi-action-row">
-				<button data-restart-button class="dwi-button dwi-button--secondary" type="button">
-					{copy[locale].makeAnotherOneButton}
+				<button data-restart-button class={secondaryButtonClass} type="button">
+					<span class={buttonChromeClass}></span>
+					<span class={buttonLabelClass}>{copy[locale].makeAnotherOneButton}</span>
 				</button>
-				<button data-download-button class="dwi-button dwi-button--primary" type="button">
-					{copy[locale].downloadButton}
+				<button data-download-button class={primaryButtonClass} type="button">
+					<span class={primaryButtonChromeClass}></span>
+					<span class={buttonLabelClass}>{copy[locale].downloadButton}</span>
 				</button>
 			</div>
 		</div>
 	</section>
-
-	<aside class="dwi-debug" data-debug-panel>
-		<p class="dwi-debug__title">Debug</p>
-		<p class="dwi-debug__status" data-debug-status>boot</p>
-		<pre class="dwi-debug__log" data-debug-log></pre>
-	</aside>
 </div>
 
 <style>
@@ -185,7 +264,7 @@ const config: DealWithItAppConfig = {
 		--dwi-button-secondary-fg: #1c1917;
 		--dwi-button-secondary-line: rgba(214, 211, 209, 0.92);
 		--dwi-error: #b91c1c;
-		--dwi-preview-size: 512px;
+		--dwi-preview-size: 400px;
 	}
 
 	html.dark {
@@ -257,6 +336,11 @@ const config: DealWithItAppConfig = {
 		padding: 2rem 1.5rem;
 	}
 
+	.dwi-screen--upload {
+		position: relative;
+		overflow: hidden;
+	}
+
 	.dwi-screen[hidden] {
 		display: none;
 	}
@@ -264,13 +348,100 @@ const config: DealWithItAppConfig = {
 	.dwi-upload-stack,
 	.dwi-editor-stack,
 	.dwi-result-stack {
-		width: min(100%, 42rem);
+		width: min(100%, 56rem);
 		display: grid;
 		justify-items: center;
 	}
 
 	.dwi-upload-stack {
-		gap: 1.5rem;
+		position: relative;
+		z-index: 1;
+		width: min(100%, 72rem);
+		gap: 2.25rem;
+	}
+
+	.dwi-upload-title-wrap {
+		position: absolute;
+		left: 50%;
+		top: 5rem;
+		z-index: 1;
+		display: flex;
+		justify-content: center;
+		width: min(100%, 86rem);
+		pointer-events: none;
+		transform: translateX(-50%);
+	}
+
+	.dwi-title-rays {
+		position: absolute;
+		left: 50%;
+		top: -2rem;
+		width: min(100vw, 96rem);
+		height: 56rem;
+		transform: translateX(-50%);
+		overflow: visible;
+		pointer-events: none;
+		mix-blend-mode: screen;
+	}
+
+	.dwi-ray {
+		opacity: 0.82;
+		animation: dwi-ray-flicker 3.8s ease-in-out infinite;
+	}
+
+	.dwi-ray--a { animation-delay: 0s; }
+	.dwi-ray--b { animation-delay: 0.35s; }
+	.dwi-ray--c { animation-delay: 0.7s; }
+	.dwi-ray--d { animation-delay: 1.05s; }
+	.dwi-ray--e { animation-delay: 1.4s; }
+	.dwi-ray--f { animation-delay: 1.75s; }
+	.dwi-ray--g { animation-delay: 2.1s; }
+	.dwi-ray--h { animation-delay: 2.45s; }
+
+	.dwi-ray-core {
+		fill: #ffe36d;
+		filter: blur(12px);
+		opacity: 0.88;
+		animation:
+			dwi-ray-core-pulse 4.2s ease-in-out infinite alternate,
+			dwi-ray-core-color 7.5s linear infinite;
+	}
+
+	.dwi-title {
+		position: relative;
+		margin: 0;
+		white-space: nowrap;
+		font-family: "Rubik Broken Fax", "IBM Plex Serif", serif;
+		font-weight: 400;
+		letter-spacing: 0.04em;
+		color: transparent;
+		background-image: linear-gradient(
+			115deg,
+			#ff3d81 0%,
+			#ff9a2f 18%,
+			#ffe36d 34%,
+			#59f0ff 52%,
+			#7d7dff 70%,
+			#ff3d81 100%
+		);
+		background-size: 220% 220%;
+		background-clip: text;
+		-webkit-background-clip: text;
+		animation:
+			dwi-title-shift 5.5s linear infinite,
+			dwi-title-drift 10s steps(1, end) infinite;
+		filter: drop-shadow(0 0 18px rgba(255, 61, 129, 0.28))
+			drop-shadow(0 0 28px rgba(89, 240, 255, 0.16));
+	}
+
+	.dwi-title::after {
+		content: "DEAL WITH IT";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		color: rgba(255, 61, 129, 0.18);
+		transform: translate(0.06em, 0.08em);
+		filter: blur(1px);
 	}
 
 	.dwi-editor-stack {
@@ -279,6 +450,7 @@ const config: DealWithItAppConfig = {
 
 	.dwi-result-stack {
 		gap: 1.5rem;
+		width: min(100%, 64rem);
 	}
 
 	.dwi-dog {
@@ -289,9 +461,15 @@ const config: DealWithItAppConfig = {
 
 	.dwi-upload-controls {
 		display: grid;
-		width: min(100%, 18rem);
+		width: min(100%, 28rem);
 		justify-items: center;
-		gap: 0.65rem;
+		gap: 1.15rem;
+	}
+
+	.dwi-upload-notes {
+		display: grid;
+		justify-items: center;
+		gap: 2rem;
 	}
 
 	.dwi-upload-input {
@@ -300,24 +478,32 @@ const config: DealWithItAppConfig = {
 		pointer-events: none;
 	}
 
-	.dwi-helper,
-	.dwi-error {
+	.dwi-upload-controls p,
+	.dwi-editor-stack > p {
 		margin: 0;
-		text-align: center;
-		font-size: 0.92rem;
-		line-height: 1.6;
-	}
-
-	.dwi-helper {
-		color: var(--dwi-control-color);
-	}
-
-	.dwi-error {
-		color: var(--dwi-error);
 	}
 
 	.dwi-error--editor {
 		max-width: 28rem;
+	}
+
+	.dwi-speech-tail {
+		position: absolute;
+		left: 50%;
+		top: -0.5rem;
+		bottom: auto;
+		z-index: 1;
+		width: 0.85rem;
+		height: 0.85rem;
+		border-top: 1px solid rgba(168, 162, 158, 0.8);
+		border-right: 1px solid rgba(168, 162, 158, 0.8);
+		background: inherit;
+		transform: translateX(-50%) rotate(-45deg);
+	}
+
+	:global(.dark) .dwi-speech-tail {
+		border-top-color: rgba(68, 64, 60, 0.9);
+		border-right-color: rgba(68, 64, 60, 0.9);
 	}
 
 	.dwi-preview-frame {
@@ -334,34 +520,110 @@ const config: DealWithItAppConfig = {
 
 	.dwi-editor-stage {
 		display: grid;
-		grid-template-columns: auto minmax(0, 1fr) auto;
+		grid-template-columns: 3.25rem minmax(0, var(--dwi-preview-size)) 3.25rem;
 		align-items: center;
 		gap: 1rem;
-		width: min(100%, calc(var(--dwi-preview-size) + 8rem));
+		width: min(100%, calc(var(--dwi-preview-size) + 6.5rem + 1rem));
+		max-width: 100%;
+		justify-content: center;
 	}
 
 	.dwi-slider-column {
 		display: grid;
 		justify-items: center;
-		gap: 0.75rem;
-		min-width: 2.75rem;
+		width: 3.25rem;
+		min-width: 3.25rem;
 	}
 
-	.dwi-slider-label {
-		font-size: 0.72rem;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--dwi-control-color);
+	.dwi-slider-shell {
+		position: relative;
+		width: 2.75rem;
+		height: 400px;
+		overflow: visible;
+	}
+
+	.dwi-slider-midpoint {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 0.22rem;
+		height: 0.22rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--dwi-control-color) 28%, transparent);
+		transform: translate(-50%, -50%);
+		pointer-events: none;
 	}
 
 	.dwi-vertical-slider {
-		appearance: slider-vertical;
-		writing-mode: bt-lr;
-		width: 1.4rem;
-		height: min(60vw, 20rem);
-		accent-color: var(--dwi-control-hover);
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		appearance: none;
+		-webkit-appearance: none;
+		width: 400px;
+		height: 2.75rem;
+		margin: 0;
+		border: 0;
+		background: transparent;
+		transform: translate(-50%, -50%) rotate(-90deg);
+		transform-origin: center center;
 		cursor: ns-resize;
+		overflow: visible;
+	}
+
+	.dwi-vertical-slider::-webkit-slider-runnable-track {
+		height: 0.7rem;
+		border-radius: 999px;
+		background: linear-gradient(
+			270deg,
+			color-mix(in srgb, var(--dwi-control-color) 44%, transparent) 0%,
+			color-mix(in srgb, var(--dwi-control-color) 18%, transparent) 100%
+		);
+	}
+
+	.dwi-vertical-slider::-webkit-slider-thumb {
+		appearance: none;
+		-webkit-appearance: none;
+		width: 1rem;
+		height: 1.7rem;
+		margin-top: calc((0.7rem - 1.7rem) / 2);
+		border: 1px solid rgba(255, 255, 255, 0.24);
+		border-radius: 0.45rem;
+		background: linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.98) 0%,
+			rgba(231, 229, 228, 0.9) 100%
+		);
+		box-shadow:
+			0 8px 18px rgba(28, 25, 23, 0.18),
+			inset 0 1px 0 rgba(255, 255, 255, 0.65);
+	}
+
+	.dwi-vertical-slider::-moz-range-track {
+		height: 0.7rem;
+		border: 0;
+		border-radius: 999px;
+		background: linear-gradient(
+			270deg,
+			color-mix(in srgb, var(--dwi-control-color) 44%, transparent) 0%,
+			color-mix(in srgb, var(--dwi-control-color) 18%, transparent) 100%
+		);
+	}
+
+
+	.dwi-vertical-slider::-moz-range-thumb {
+		width: 1rem;
+		height: 1.7rem;
+		border: 1px solid rgba(255, 255, 255, 0.24);
+		border-radius: 0.45rem;
+		background: linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.98) 0%,
+			rgba(231, 229, 228, 0.9) 100%
+		);
+		box-shadow:
+			0 8px 18px rgba(28, 25, 23, 0.18),
+			inset 0 1px 0 rgba(255, 255, 255, 0.65);
 	}
 
 	.dwi-preview-image,
@@ -392,25 +654,8 @@ const config: DealWithItAppConfig = {
 	.dwi-glasses-grid {
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 0.75rem;
-		width: min(100%, 26rem);
-	}
-
-	.dwi-glasses-button {
-		appearance: none;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		aspect-ratio: 1;
-		padding: 0.7rem;
-		border-radius: 1rem;
-		border: 1px solid var(--dwi-surface-line);
-		background: var(--dwi-surface-strong);
-		cursor: pointer;
-		transition:
-			transform 160ms ease,
-			border-color 160ms ease,
-			background-color 160ms ease;
+		gap: 1rem;
+		width: min(100%, 36rem);
 	}
 
 	.dwi-glasses-button img {
@@ -419,77 +664,11 @@ const config: DealWithItAppConfig = {
 		height: auto;
 	}
 
-	.dwi-glasses-button:hover {
-		transform: translateY(-1px);
-		border-color: var(--dwi-control-hover);
-	}
-
-	.dwi-glasses-button[data-selected="true"] {
-		border-color: var(--dwi-control-hover);
-		background: color-mix(in srgb, var(--dwi-surface-strong) 72%, var(--dwi-control-color));
-	}
-
 	.dwi-action-row {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.75rem;
-		width: min(100%, 26rem);
-	}
-
-	.dwi-button {
-		appearance: none;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		min-height: 3rem;
-		padding: 0.85rem 1.1rem;
-		border-radius: 999px;
-		border: 1px solid transparent;
-		font: inherit;
-		font-size: 0.96rem;
-		font-weight: 600;
-		line-height: 1;
-		cursor: pointer;
-		transition:
-			transform 180ms ease,
-			opacity 180ms ease,
-			background-color 180ms ease,
-			border-color 180ms ease;
-	}
-
-	.dwi-button:hover:not(:disabled) {
-		transform: translateY(-1px);
-	}
-
-	.dwi-button:active:not(:disabled) {
-		transform: translateY(0);
-	}
-
-	.dwi-button:disabled {
-		cursor: default;
-		opacity: 0.6;
-	}
-
-	.dwi-button--primary {
-		background: var(--dwi-button-primary-bg);
-		color: var(--dwi-button-primary-fg);
-	}
-
-	.dwi-button--secondary {
-		background: var(--dwi-button-secondary-bg);
-		color: var(--dwi-button-secondary-fg);
-		border-color: var(--dwi-button-secondary-line);
-	}
-
-	.dwi-result-title {
-		margin: 0;
-		max-width: 18ch;
-		text-align: center;
-		font-family: "IBM Plex Serif", Georgia, serif;
-		font-size: clamp(1.9rem, 4vw, 3rem);
-		font-weight: 600;
-		line-height: 1;
-		letter-spacing: -0.045em;
+		gap: 1rem;
+		width: min(100%, 36rem);
 	}
 
 	.dwi-result-image {
@@ -499,54 +678,18 @@ const config: DealWithItAppConfig = {
 		image-rendering: auto;
 	}
 
-	.dwi-debug {
-		position: fixed;
-		left: 1rem;
-		bottom: 1rem;
-		z-index: 30;
-		width: min(28rem, calc(100vw - 2rem));
-		padding: 0.85rem 0.95rem;
-		border-radius: 1rem;
-		border: 1px solid var(--dwi-button-secondary-line);
-		background: color-mix(in srgb, var(--dwi-page-bg) 78%, black 6%);
-		box-shadow: 0 12px 30px rgba(28, 25, 23, 0.12);
-		backdrop-filter: blur(12px);
-	}
-
-	.dwi-debug__title,
-	.dwi-debug__status,
-	.dwi-debug__log {
-		margin: 0;
-		font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-		font-size: 0.75rem;
-		line-height: 1.45;
-	}
-
-	.dwi-debug__title {
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--dwi-control-color);
-	}
-
-	.dwi-debug__status {
-		margin-top: 0.35rem;
-		color: var(--dwi-page-fg);
-		word-break: break-word;
-	}
-
-	.dwi-debug__log {
-		margin-top: 0.55rem;
-		max-height: 12rem;
-		overflow: auto;
-		white-space: pre-wrap;
-		word-break: break-word;
-		color: var(--dwi-control-hover);
-	}
-
 	@media (max-width: 40rem) {
 		.dwi-screen {
 			padding-inline: 1rem;
+		}
+
+		.dwi-upload-title-wrap {
+			top: 3rem;
+			width: min(100%, calc(100vw - 1rem));
+		}
+
+		.dwi-title {
+			letter-spacing: 0.02em;
 		}
 
 		.dwi-editor-stage {
@@ -560,15 +703,134 @@ const config: DealWithItAppConfig = {
 			width: min(100%, var(--dwi-preview-size));
 		}
 
-		.dwi-vertical-slider {
-			appearance: auto;
-			writing-mode: horizontal-tb;
+		.dwi-slider-shell {
 			width: 100%;
-			height: auto;
+			height: 2.75rem;
+		}
+
+		.dwi-slider-midpoint {
+			left: 50%;
+			top: 50%;
+		}
+
+		.dwi-vertical-slider {
+			position: static;
+			width: 100%;
+			height: 2.5rem;
+			transform: none;
+			cursor: ew-resize;
 		}
 
 		.dwi-action-row {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@keyframes dwi-title-shift {
+		0% {
+			background-position: 0% 50%;
+		}
+
+		100% {
+			background-position: 220% 50%;
+		}
+	}
+
+	@keyframes dwi-title-drift {
+		0% {
+			transform: translate3d(-2.4rem, 0.2rem, 0) rotate(-1.2deg);
+		}
+
+		10% {
+			transform: translate3d(1.8rem, -0.35rem, 0) rotate(1.1deg);
+		}
+
+		21% {
+			transform: translate3d(-1.1rem, 0.55rem, 0) rotate(-0.8deg);
+		}
+
+		33% {
+			transform: translate3d(2.6rem, 0.05rem, 0) rotate(1.4deg);
+		}
+
+		44% {
+			transform: translate3d(-2.9rem, -0.45rem, 0) rotate(-1.3deg);
+		}
+
+		57% {
+			transform: translate3d(0.85rem, 0.7rem, 0) rotate(0.7deg);
+		}
+
+		71% {
+			transform: translate3d(-1.7rem, -0.25rem, 0) rotate(-0.9deg);
+		}
+
+		84% {
+			transform: translate3d(2.1rem, 0.45rem, 0) rotate(1deg);
+		}
+
+		100% {
+			transform: translate3d(-2.4rem, 0.2rem, 0) rotate(-1.2deg);
+		}
+	}
+
+	@keyframes dwi-ray-flicker {
+		0% {
+			opacity: 0.55;
+		}
+
+		18% {
+			opacity: 0.88;
+		}
+
+		37% {
+			opacity: 0.62;
+		}
+
+		58% {
+			opacity: 1;
+		}
+
+		76% {
+			opacity: 0.7;
+		}
+
+		100% {
+			opacity: 0.9;
+		}
+	}
+
+	@keyframes dwi-ray-core-pulse {
+		0% {
+			opacity: 0.58;
+			transform: scale(0.92);
+		}
+
+		100% {
+			opacity: 0.95;
+			transform: scale(1.08);
+		}
+	}
+
+	@keyframes dwi-ray-core-color {
+		0% {
+			fill: #ffe36d;
+		}
+
+		25% {
+			fill: #ff6fa8;
+		}
+
+		50% {
+			fill: #6af6ff;
+		}
+
+		75% {
+			fill: #8e7dff;
+		}
+
+		100% {
+			fill: #ffe36d;
 		}
 	}
 </style>

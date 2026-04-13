@@ -1,10 +1,10 @@
-export const MAX_UPLOAD_BYTES = 1_000_000;
+export const MAX_UPLOAD_BYTES = 10_000_000;
 export const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png"] as const;
 
 export const EXPORT_CONFIG = {
 	frameCount: 24,
-	frameDelayMs: 32,
-	lastFrameDelayMs: 1000,
+	frameDelayMs: 60,
+	lastFrameDelayMs: 1500,
 	outputSize: 128,
 	repeat: 0
 } as const;
@@ -45,6 +45,7 @@ export interface DealWithItCopy {
 	uploadButton: string;
 	uploadButtonBusy: string;
 	uploadHelper: string;
+	uploadPrivacyNote: string;
 	invalidTypeError: string;
 	fileTooLargeError: string;
 	noFaceError: string;
