@@ -62,7 +62,7 @@ const config: DealWithItAppConfig = {
 };
 
 const actionButtonBaseClass =
-	"group relative inline-flex min-h-[4.5rem] w-full items-center justify-center overflow-hidden rounded-full border px-7 py-4 transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.985] disabled:cursor-default disabled:opacity-60";
+	"group relative inline-flex min-h-[4.5rem] w-full cursor-pointer items-center justify-center overflow-hidden rounded-full border px-7 py-4 transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.985] disabled:cursor-default disabled:opacity-60";
 
 const primaryButtonClass = `${actionButtonBaseClass} border-[#f4d48d]/55 bg-[linear-gradient(180deg,#f4c96a_0%,#e5a934_100%)] text-[#21160b] shadow-[0_18px_36px_rgba(229,169,52,0.28),0_6px_0_rgba(132,79,19,0.55)] hover:-translate-y-0.5 hover:brightness-[1.03] hover:shadow-[0_24px_46px_rgba(229,169,52,0.34),0_7px_0_rgba(132,79,19,0.55)] active:translate-y-[2px] active:shadow-[0_12px_24px_rgba(229,169,52,0.25),0_3px_0_rgba(132,79,19,0.55)]`;
 
@@ -90,7 +90,7 @@ const errorTextClass =
 	"text-center text-sm leading-6 text-red-700 dark:text-red-300";
 
 const glassesButtonClass =
-	"group inline-flex aspect-square items-center justify-center rounded-[1rem] border border-stone-700/90 bg-[linear-gradient(180deg,rgba(24,24,24,0.96)_0%,rgba(14,14,14,0.98)_100%)] p-3 shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-stone-500 hover:shadow-[0_18px_32px_rgba(0,0,0,0.24)] data-[selected=true]:border-stone-100/85 data-[selected=true]:shadow-[0_18px_36px_rgba(255,255,255,0.08)]";
+	"group inline-flex aspect-square cursor-pointer items-center justify-center rounded-[1rem] border border-stone-700/90 bg-[linear-gradient(180deg,rgba(24,24,24,0.96)_0%,rgba(14,14,14,0.98)_100%)] p-3 shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-stone-500 hover:shadow-[0_18px_32px_rgba(0,0,0,0.24)] data-[selected=true]:border-stone-100/85 data-[selected=true]:shadow-[0_18px_36px_rgba(255,255,255,0.08)]";
 ---
 
 <div class="dwi-root" data-deal-with-it-root>
@@ -132,14 +132,14 @@ const glassesButtonClass =
 					</filter>
 				</defs>
 				<g filter="url(#dwi-ray-glow)">
-					<polygon class="dwi-ray dwi-ray--a" points="800,0 320,700 470,700" fill="url(#dwi-ray-pink)" />
-					<polygon class="dwi-ray dwi-ray--b" points="800,0 500,700 620,700" fill="url(#dwi-ray-yellow)" />
-					<polygon class="dwi-ray dwi-ray--c" points="800,0 675,700 765,700" fill="url(#dwi-ray-cyan)" />
-					<polygon class="dwi-ray dwi-ray--d" points="800,0 835,700 925,700" fill="url(#dwi-ray-pink)" />
-					<polygon class="dwi-ray dwi-ray--e" points="800,0 980,700 1100,700" fill="url(#dwi-ray-yellow)" />
-					<polygon class="dwi-ray dwi-ray--f" points="800,0 1130,700 1280,700" fill="url(#dwi-ray-cyan)" />
-					<polygon class="dwi-ray dwi-ray--g" points="800,0 160,700 310,700" fill="url(#dwi-ray-cyan)" />
-					<polygon class="dwi-ray dwi-ray--h" points="800,0 1290,700 1440,700" fill="url(#dwi-ray-pink)" />
+					<polygon class="dwi-ray dwi-ray--g" points="800,0 190,700 300,700" fill="url(#dwi-ray-cyan)" />
+					<polygon class="dwi-ray dwi-ray--a" points="800,0 335,700 445,700" fill="url(#dwi-ray-pink)" />
+					<polygon class="dwi-ray dwi-ray--b" points="800,0 480,700 590,700" fill="url(#dwi-ray-yellow)" />
+					<polygon class="dwi-ray dwi-ray--c" points="800,0 665,700 775,700" fill="url(#dwi-ray-cyan)" />
+					<polygon class="dwi-ray dwi-ray--d" points="800,0 825,700 935,700" fill="url(#dwi-ray-pink)" />
+					<polygon class="dwi-ray dwi-ray--e" points="800,0 1010,700 1120,700" fill="url(#dwi-ray-yellow)" />
+					<polygon class="dwi-ray dwi-ray--f" points="800,0 1155,700 1265,700" fill="url(#dwi-ray-cyan)" />
+					<polygon class="dwi-ray dwi-ray--h" points="800,0 1300,700 1410,700" fill="url(#dwi-ray-pink)" />
 				</g>
 				<circle class="dwi-ray-core" cx="800" cy="0" r="72" />
 			</svg>
@@ -363,25 +363,34 @@ const glassesButtonClass =
 	.dwi-upload-title-wrap {
 		position: absolute;
 		left: 50%;
-		top: 5rem;
+		top: 6.75rem;
 		z-index: 1;
 		display: flex;
 		justify-content: center;
 		width: min(100%, 86rem);
 		pointer-events: none;
 		transform: translateX(-50%);
+		perspective: 1200px;
 	}
 
 	.dwi-title-rays {
 		position: absolute;
 		left: 50%;
-		top: -2rem;
+		top: -7rem;
 		width: min(100vw, 96rem);
 		height: 56rem;
 		transform: translateX(-50%);
 		overflow: visible;
 		pointer-events: none;
 		mix-blend-mode: screen;
+	}
+
+	.dwi-title-stack {
+		position: relative;
+		display: grid;
+		place-items: center;
+		perspective: 1200px;
+		transform-style: preserve-3d;
 	}
 
 	.dwi-ray {
@@ -427,21 +436,43 @@ const glassesButtonClass =
 		background-size: 220% 220%;
 		background-clip: text;
 		-webkit-background-clip: text;
+		transform-style: preserve-3d;
 		animation:
 			dwi-title-shift 5.5s linear infinite,
-			dwi-title-drift 10s steps(1, end) infinite;
-		filter: drop-shadow(0 0 18px rgba(255, 61, 129, 0.28))
-			drop-shadow(0 0 28px rgba(89, 240, 255, 0.16));
+			dwi-title-drift 18s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
 	}
 
-	.dwi-title::after {
-		content: "DEAL WITH IT";
+	.dwi-title-trail {
 		position: absolute;
 		inset: 0;
+		display: grid;
+		place-items: center;
+		white-space: nowrap;
+		font-family: "Rubik Broken Fax", "IBM Plex Serif", serif;
+		font-weight: 400;
+		letter-spacing: 0.04em;
+		pointer-events: none;
+	}
+
+	.dwi-title-trail--a {
+		z-index: 0;
+		color: rgba(255, 61, 129, 0.92);
+		transform: translate3d(0.08em, 0.1em, -18px) rotateZ(-0.5deg);
+		animation: dwi-title-trail-a 18s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+	}
+
+	.dwi-title-trail--b {
 		z-index: -1;
-		color: rgba(255, 61, 129, 0.18);
-		transform: translate(0.06em, 0.08em);
-		filter: blur(1px);
+		color: rgba(89, 240, 255, 0.88);
+		transform: translate3d(-0.08em, 0.14em, -34px) rotateZ(0.55deg);
+		animation: dwi-title-trail-b 18s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+	}
+
+	.dwi-title-trail--c {
+		z-index: -2;
+		color: rgba(255, 227, 109, 0.76);
+		transform: translate3d(0.02em, 0.18em, -48px) rotateZ(-0.35deg);
+		animation: dwi-title-trail-c 18s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
 	}
 
 	.dwi-editor-stack {
@@ -684,7 +715,7 @@ const glassesButtonClass =
 		}
 
 		.dwi-upload-title-wrap {
-			top: 3rem;
+			top: 4rem;
 			width: min(100%, calc(100vw - 1rem));
 		}
 
@@ -738,39 +769,66 @@ const glassesButtonClass =
 
 	@keyframes dwi-title-drift {
 		0% {
-			transform: translate3d(-2.4rem, 0.2rem, 0) rotate(-1.2deg);
+			transform: translate3d(-0.06rem, 0.04rem, 0) rotateZ(-0.45deg) rotateX(8deg) rotateY(-9deg) scale(0.992);
 		}
 
-		10% {
-			transform: translate3d(1.8rem, -0.35rem, 0) rotate(1.1deg);
-		}
-
-		21% {
-			transform: translate3d(-1.1rem, 0.55rem, 0) rotate(-0.8deg);
-		}
-
-		33% {
-			transform: translate3d(2.6rem, 0.05rem, 0) rotate(1.4deg);
-		}
-
-		44% {
-			transform: translate3d(-2.9rem, -0.45rem, 0) rotate(-1.3deg);
-		}
-
-		57% {
-			transform: translate3d(0.85rem, 0.7rem, 0) rotate(0.7deg);
-		}
-
-		71% {
-			transform: translate3d(-1.7rem, -0.25rem, 0) rotate(-0.9deg);
-		}
-
-		84% {
-			transform: translate3d(2.1rem, 0.45rem, 0) rotate(1deg);
+		50% {
+			transform: translate3d(0.08rem, -0.02rem, 0) rotateZ(0.4deg) rotateX(-6deg) rotateY(7deg) scale(1.012);
 		}
 
 		100% {
-			transform: translate3d(-2.4rem, 0.2rem, 0) rotate(-1.2deg);
+			transform: translate3d(-0.08rem, -0.03rem, 0) rotateZ(-0.5deg) rotateX(9deg) rotateY(-10deg) scale(0.995);
+		}
+	}
+
+	@keyframes dwi-title-trail-a {
+		0% {
+			transform: translate3d(0.08em, 0.1em, -18px) rotateZ(-0.45deg);
+			opacity: 0.5;
+		}
+
+		50% {
+			transform: translate3d(0.12em, 0.14em, -20px) rotateZ(0.5deg);
+			opacity: 0.68;
+		}
+
+		100% {
+			transform: translate3d(0.1em, 0.08em, -19px) rotateZ(-0.55deg);
+			opacity: 0.56;
+		}
+	}
+
+	@keyframes dwi-title-trail-b {
+		0% {
+			transform: translate3d(-0.08em, 0.14em, -34px) rotateZ(0.45deg);
+			opacity: 0.44;
+		}
+
+		50% {
+			transform: translate3d(-0.14em, 0.18em, -38px) rotateZ(-0.55deg);
+			opacity: 0.62;
+		}
+
+		100% {
+			transform: translate3d(-0.1em, 0.12em, -35px) rotateZ(0.6deg);
+			opacity: 0.48;
+		}
+	}
+
+	@keyframes dwi-title-trail-c {
+		0% {
+			transform: translate3d(0.02em, 0.18em, -48px) rotateZ(-0.3deg);
+			opacity: 0.38;
+		}
+
+		50% {
+			transform: translate3d(0.06em, 0.24em, -52px) rotateZ(0.35deg);
+			opacity: 0.52;
+		}
+
+		100% {
+			transform: translate3d(0.04em, 0.2em, -50px) rotateZ(-0.4deg);
+			opacity: 0.42;
 		}
 	}
 
