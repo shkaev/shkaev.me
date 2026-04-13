@@ -21,6 +21,13 @@ const playgroundCardsEn = [
 		href: "/design/playground/color-combos",
 		imageSrc: "/images/playground/color-combos-cover.svg",
 		imageAlt: "Two color panels with an inverted circle between them for the Color combos playground card."
+	},
+	{
+		title: "Deal with it",
+		description: "A placeholder for an upcoming playground tool with custom pixel shades and a very serious dog.",
+		href: "/design/playground/deal-with-it",
+		imageSrc: "/images/playground/deal-with-it-dog.gif",
+		imageAlt: "A dog wearing pixel deal-with-it sunglasses."
 	}
 ] satisfies PlaygroundCardMeta[];
 
@@ -31,6 +38,13 @@ const playgroundCardsRu = [
 		href: "/design/playground/color-combos",
 		imageSrc: "/images/playground/color-combos-cover.svg",
 		imageAlt: "Обложка для карточки «Цветовые комбо» с двумя цветовыми панелями и инвертированным кругом по центру."
+	},
+	{
+		title: "Deal with it",
+		description: "Заглушка для будущего playground-инструмента с пиксельными очками и очень серьёзной собакой.",
+		href: "/design/playground/deal-with-it",
+		imageSrc: "/images/playground/deal-with-it-dog.gif",
+		imageAlt: "Собака в пиксельных очках deal with it."
 	}
 ] satisfies PlaygroundCardMeta[];
 

@@ -1,0 +1,580 @@
+---
+import { DEAL_WITH_IT_GLASSES, type DealWithItAppConfig, type DealWithItCopy } from "../../scripts/deal-with-it/shared";
+
+interface Props {
+	locale: "en" | "ru";
+	backHref: string;
+}
+
+const { locale, backHref } = Astro.props;
+
+const dogGifSrc = "/images/playground/deal-with-it-dog.gif";
+const glasses = DEAL_WITH_IT_GLASSES.map((item) => ({
+	...item,
+	src: `/images/playground/deal-with-it/${item.fileName}`
+}));
+
+const copy: Record<"en" | "ru", DealWithItCopy> = {
+	en: {
+		uploadButton: "Upload photo",
+		uploadButtonBusy: "Preparing…",
+		uploadHelper: "JPG or PNG, up to 1 MB.",
+		invalidTypeError: "Please upload a JPG or PNG image.",
+		fileTooLargeError: "The file must be 1 MB or smaller.",
+		noFaceError: "We couldn’t detect a face in this photo. Please try another one.",
+		processingError: "Something went wrong while preparing the photo. Please try again.",
+		createGifButton: "Create GIF",
+		createGifButtonBusy: "Creating…",
+		uploadNewPhotoButton: "← Upload new photo",
+		resultTitle: "Bravo! You created this GIF.",
+		makeAnotherOneButton: "Make another one",
+		downloadButton: "Download",
+		generationError: "We couldn’t create the GIF. Please try again.",
+		backLabel: "Go back"
+	},
+	ru: {
+		uploadButton: "Загрузить фото",
+		uploadButtonBusy: "Подготавливаем…",
+		uploadHelper: "JPG или PNG, не больше 1 MB.",
+		invalidTypeError: "Загрузите изображение в формате JPG или PNG.",
+		fileTooLargeError: "Файл должен быть не больше 1 MB.",
+		noFaceError: "Мы не смогли определить лицо на этом фото. Попробуйте другое.",
+		processingError: "Не удалось подготовить фото. Попробуйте ещё раз.",
+		createGifButton: "Создать GIF",
+		createGifButtonBusy: "Создаём…",
+		uploadNewPhotoButton: "← Загрузить другое фото",
+		resultTitle: "Браво! Гифка готова.",
+		makeAnotherOneButton: "Сделать ещё одну",
+		downloadButton: "Скачать",
+		generationError: "Не удалось создать GIF. Попробуйте ещё раз.",
+		backLabel: "Назад"
+	}
+};
+
+const config: DealWithItAppConfig = {
+	locale,
+	backHref,
+	dogGifSrc,
+	glasses,
+	copy: copy[locale]
+};
+---
+
+<div class="dwi-root" data-deal-with-it-root>
+	<script
+		type="application/json"
+		data-deal-with-it-config
+		set:html={JSON.stringify(config)}
+	></script>
+
+	<a href={backHref} aria-label={copy[locale].backLabel} class="dwi-close-link">
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+			<path d="M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+			<path d="M18 6 6 18" stroke-linecap="round" stroke-linejoin="round"></path>
+		</svg>
+	</a>
+
+	<section class="dwi-screen" data-step-upload>
+		<div class="dwi-upload-stack">
+			<img src={dogGifSrc} alt="" class="dwi-dog" />
+			<div class="dwi-upload-controls">
+				<input data-upload-input class="dwi-upload-input" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" />
+				<button data-upload-button class="dwi-button dwi-button--primary" type="button">
+					{copy[locale].uploadButton}
+				</button>
+				<p class="dwi-helper">{copy[locale].uploadHelper}</p>
+				<p class="dwi-error" data-upload-error hidden></p>
+			</div>
+		</div>
+	</section>
+
+	<section class="dwi-screen" data-step-editor hidden>
+		<div class="dwi-editor-stack">
+			<div class="dwi-editor-stage">
+				<div class="dwi-slider-column dwi-slider-column--left">
+					<label class="dwi-slider-label" for="dwi-scale-slider">Scale</label>
+					<input
+						id="dwi-scale-slider"
+						data-scale-slider
+						class="dwi-vertical-slider"
+						type="range"
+						min="0.5"
+						max="2"
+						step="0.01"
+						value="1"
+					/>
+				</div>
+				<div class="dwi-preview-frame" data-preview-frame>
+					<img data-preview-image class="dwi-preview-image" alt="" />
+					<img data-preview-overlay class="dwi-preview-overlay" alt="" />
+				</div>
+				<div class="dwi-slider-column dwi-slider-column--right">
+					<label class="dwi-slider-label" for="dwi-rotation-slider">Angle</label>
+					<input
+						id="dwi-rotation-slider"
+						data-rotation-slider
+						class="dwi-vertical-slider"
+						type="range"
+						min="-15"
+						max="15"
+						step="1"
+						value="0"
+					/>
+				</div>
+			</div>
+			<div class="dwi-glasses-grid">
+				{
+					glasses.map((item) => (
+						<button
+							type="button"
+							class="dwi-glasses-button"
+							data-glasses-button={item.id}
+							data-selected={item.id === glasses[0].id ? "true" : "false"}
+						>
+							<img src={item.src} alt="" />
+						</button>
+					))
+				}
+			</div>
+			<div class="dwi-action-row">
+				<button data-upload-new-button class="dwi-button dwi-button--secondary" type="button">
+					{copy[locale].uploadNewPhotoButton}
+				</button>
+				<button data-create-gif-button class="dwi-button dwi-button--primary" type="button">
+					{copy[locale].createGifButton}
+				</button>
+			</div>
+			<p class="dwi-error dwi-error--editor" data-editor-error hidden></p>
+		</div>
+	</section>
+
+	<section class="dwi-screen" data-step-result hidden>
+		<div class="dwi-result-stack">
+			<h1 class="dwi-result-title">{copy[locale].resultTitle}</h1>
+			<img data-result-image class="dwi-result-image" alt="" />
+			<div class="dwi-action-row">
+				<button data-restart-button class="dwi-button dwi-button--secondary" type="button">
+					{copy[locale].makeAnotherOneButton}
+				</button>
+				<button data-download-button class="dwi-button dwi-button--primary" type="button">
+					{copy[locale].downloadButton}
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<aside class="dwi-debug" data-debug-panel>
+		<p class="dwi-debug__title">Debug</p>
+		<p class="dwi-debug__status" data-debug-status>boot</p>
+		<pre class="dwi-debug__log" data-debug-log></pre>
+	</aside>
+</div>
+
+<style>
+	:root {
+		--dwi-page-bg: #fafaf9;
+		--dwi-page-fg: #1c1917;
+		--dwi-control-color: #78716c;
+		--dwi-control-hover: #44403c;
+		--dwi-surface: rgba(255, 255, 255, 0.74);
+		--dwi-surface-line: rgba(214, 211, 209, 0.88);
+		--dwi-surface-strong: rgba(255, 255, 255, 0.92);
+		--dwi-button-primary-bg: #1c1917;
+		--dwi-button-primary-fg: #fafaf9;
+		--dwi-button-secondary-bg: rgba(255, 255, 255, 0.78);
+		--dwi-button-secondary-fg: #1c1917;
+		--dwi-button-secondary-line: rgba(214, 211, 209, 0.92);
+		--dwi-error: #b91c1c;
+		--dwi-preview-size: 512px;
+	}
+
+	html.dark {
+		--dwi-page-bg: #0c0a09;
+		--dwi-page-fg: #f5f5f4;
+		--dwi-control-color: #a8a29e;
+		--dwi-control-hover: #e7e5e4;
+		--dwi-surface: rgba(28, 25, 23, 0.82);
+		--dwi-surface-line: rgba(68, 64, 60, 0.95);
+		--dwi-surface-strong: rgba(28, 25, 23, 0.95);
+		--dwi-button-primary-bg: #fafaf9;
+		--dwi-button-primary-fg: #1c1917;
+		--dwi-button-secondary-bg: rgba(28, 25, 23, 0.85);
+		--dwi-button-secondary-fg: #f5f5f4;
+		--dwi-button-secondary-line: rgba(87, 83, 78, 0.95);
+		--dwi-error: #fca5a5;
+	}
+
+	.dwi-root {
+		min-height: 100vh;
+		background:
+			radial-gradient(circle at top, rgba(120, 113, 108, 0.09), transparent 32%),
+			var(--dwi-page-bg);
+		color: var(--dwi-page-fg);
+	}
+
+	.dwi-close-link {
+		position: fixed;
+		top: 1.5rem;
+		right: 1.5rem;
+		z-index: 10;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 3rem;
+		height: 3rem;
+		color: var(--dwi-control-color);
+		text-decoration: none;
+		transition:
+			transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+			color 180ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.dwi-close-link:hover {
+		color: var(--dwi-control-hover);
+		transform: scale(1.04);
+	}
+
+	.dwi-close-link:active {
+		transform: scale(0.96);
+	}
+
+	.dwi-close-link:focus-visible {
+		outline: none;
+		color: var(--dwi-control-hover);
+	}
+
+	.dwi-close-link svg {
+		width: clamp(1.45rem, 3vw, 2.1rem);
+		height: clamp(1.45rem, 3vw, 2.1rem);
+		flex: none;
+		stroke-width: 1.2;
+	}
+
+	.dwi-screen {
+		display: grid;
+		min-height: 100vh;
+		place-items: center;
+		padding: 2rem 1.5rem;
+	}
+
+	.dwi-screen[hidden] {
+		display: none;
+	}
+
+	.dwi-upload-stack,
+	.dwi-editor-stack,
+	.dwi-result-stack {
+		width: min(100%, 42rem);
+		display: grid;
+		justify-items: center;
+	}
+
+	.dwi-upload-stack {
+		gap: 1.5rem;
+	}
+
+	.dwi-editor-stack {
+		gap: 1.25rem;
+	}
+
+	.dwi-result-stack {
+		gap: 1.5rem;
+	}
+
+	.dwi-dog {
+		display: block;
+		width: min(100%, 14rem);
+		height: auto;
+	}
+
+	.dwi-upload-controls {
+		display: grid;
+		width: min(100%, 18rem);
+		justify-items: center;
+		gap: 0.65rem;
+	}
+
+	.dwi-upload-input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.dwi-helper,
+	.dwi-error {
+		margin: 0;
+		text-align: center;
+		font-size: 0.92rem;
+		line-height: 1.6;
+	}
+
+	.dwi-helper {
+		color: var(--dwi-control-color);
+	}
+
+	.dwi-error {
+		color: var(--dwi-error);
+	}
+
+	.dwi-error--editor {
+		max-width: 28rem;
+	}
+
+	.dwi-preview-frame {
+		position: relative;
+		width: min(100%, var(--dwi-preview-size));
+		aspect-ratio: 1;
+		border-radius: 1.5rem;
+		background: var(--dwi-surface);
+		border: 1px solid var(--dwi-surface-line);
+		box-shadow: 0 18px 48px rgba(28, 25, 23, 0.08);
+		overflow: hidden;
+		backdrop-filter: blur(10px);
+	}
+
+	.dwi-editor-stage {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 1rem;
+		width: min(100%, calc(var(--dwi-preview-size) + 8rem));
+	}
+
+	.dwi-slider-column {
+		display: grid;
+		justify-items: center;
+		gap: 0.75rem;
+		min-width: 2.75rem;
+	}
+
+	.dwi-slider-label {
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--dwi-control-color);
+	}
+
+	.dwi-vertical-slider {
+		appearance: slider-vertical;
+		writing-mode: bt-lr;
+		width: 1.4rem;
+		height: min(60vw, 20rem);
+		accent-color: var(--dwi-control-hover);
+		cursor: ns-resize;
+	}
+
+	.dwi-preview-image,
+	.dwi-preview-overlay {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+
+	.dwi-preview-overlay {
+		inset: auto;
+		object-fit: fill;
+		pointer-events: auto;
+		touch-action: none;
+		cursor: grab;
+		user-select: none;
+		-webkit-user-drag: none;
+		transform-origin: center;
+	}
+
+	.dwi-preview-overlay[data-dragging="true"] {
+		cursor: grabbing;
+	}
+
+	.dwi-glasses-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 0.75rem;
+		width: min(100%, 26rem);
+	}
+
+	.dwi-glasses-button {
+		appearance: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		aspect-ratio: 1;
+		padding: 0.7rem;
+		border-radius: 1rem;
+		border: 1px solid var(--dwi-surface-line);
+		background: var(--dwi-surface-strong);
+		cursor: pointer;
+		transition:
+			transform 160ms ease,
+			border-color 160ms ease,
+			background-color 160ms ease;
+	}
+
+	.dwi-glasses-button img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.dwi-glasses-button:hover {
+		transform: translateY(-1px);
+		border-color: var(--dwi-control-hover);
+	}
+
+	.dwi-glasses-button[data-selected="true"] {
+		border-color: var(--dwi-control-hover);
+		background: color-mix(in srgb, var(--dwi-surface-strong) 72%, var(--dwi-control-color));
+	}
+
+	.dwi-action-row {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.75rem;
+		width: min(100%, 26rem);
+	}
+
+	.dwi-button {
+		appearance: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 3rem;
+		padding: 0.85rem 1.1rem;
+		border-radius: 999px;
+		border: 1px solid transparent;
+		font: inherit;
+		font-size: 0.96rem;
+		font-weight: 600;
+		line-height: 1;
+		cursor: pointer;
+		transition:
+			transform 180ms ease,
+			opacity 180ms ease,
+			background-color 180ms ease,
+			border-color 180ms ease;
+	}
+
+	.dwi-button:hover:not(:disabled) {
+		transform: translateY(-1px);
+	}
+
+	.dwi-button:active:not(:disabled) {
+		transform: translateY(0);
+	}
+
+	.dwi-button:disabled {
+		cursor: default;
+		opacity: 0.6;
+	}
+
+	.dwi-button--primary {
+		background: var(--dwi-button-primary-bg);
+		color: var(--dwi-button-primary-fg);
+	}
+
+	.dwi-button--secondary {
+		background: var(--dwi-button-secondary-bg);
+		color: var(--dwi-button-secondary-fg);
+		border-color: var(--dwi-button-secondary-line);
+	}
+
+	.dwi-result-title {
+		margin: 0;
+		max-width: 18ch;
+		text-align: center;
+		font-family: "IBM Plex Serif", Georgia, serif;
+		font-size: clamp(1.9rem, 4vw, 3rem);
+		font-weight: 600;
+		line-height: 1;
+		letter-spacing: -0.045em;
+	}
+
+	.dwi-result-image {
+		display: block;
+		width: 128px;
+		height: 128px;
+		image-rendering: auto;
+	}
+
+	.dwi-debug {
+		position: fixed;
+		left: 1rem;
+		bottom: 1rem;
+		z-index: 30;
+		width: min(28rem, calc(100vw - 2rem));
+		padding: 0.85rem 0.95rem;
+		border-radius: 1rem;
+		border: 1px solid var(--dwi-button-secondary-line);
+		background: color-mix(in srgb, var(--dwi-page-bg) 78%, black 6%);
+		box-shadow: 0 12px 30px rgba(28, 25, 23, 0.12);
+		backdrop-filter: blur(12px);
+	}
+
+	.dwi-debug__title,
+	.dwi-debug__status,
+	.dwi-debug__log {
+		margin: 0;
+		font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+		font-size: 0.75rem;
+		line-height: 1.45;
+	}
+
+	.dwi-debug__title {
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--dwi-control-color);
+	}
+
+	.dwi-debug__status {
+		margin-top: 0.35rem;
+		color: var(--dwi-page-fg);
+		word-break: break-word;
+	}
+
+	.dwi-debug__log {
+		margin-top: 0.55rem;
+		max-height: 12rem;
+		overflow: auto;
+		white-space: pre-wrap;
+		word-break: break-word;
+		color: var(--dwi-control-hover);
+	}
+
+	@media (max-width: 40rem) {
+		.dwi-screen {
+			padding-inline: 1rem;
+		}
+
+		.dwi-editor-stage {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.dwi-slider-column {
+			grid-template-columns: auto 1fr;
+			grid-template-rows: auto;
+			width: min(100%, var(--dwi-preview-size));
+		}
+
+		.dwi-vertical-slider {
+			appearance: auto;
+			writing-mode: horizontal-tb;
+			width: 100%;
+			height: auto;
+		}
+
+		.dwi-action-row {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	import { initDealWithIt } from "../../scripts/deal-with-it/init";
+
+	initDealWithIt();
+</script>

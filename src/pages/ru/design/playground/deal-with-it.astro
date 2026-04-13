@@ -1,0 +1,47 @@
+---
+import SiteHead from "../../../../components/layout/SiteHead.astro";
+import DealWithItApp from "../../../../components/playground/DealWithItApp.astro";
+import { getAlternateLocaleLinks } from "../../../../i18n/routing";
+import { getSiteCopy } from "../../../../i18n/copy";
+import { siteUrl } from "../../../../lib/siteConfig";
+
+export const prerender = true;
+
+const locale = "ru" as const;
+const copy = getSiteCopy(locale);
+const pathname = Astro.url.pathname;
+const favicon32Src = "/favicons/favicon-32.png";
+const appleTouchIconSrc = "/favicons/apple-touch-icon.png";
+const avatarSrc = "/avatars/avatar.jpg";
+const interLatinFontSrc = "/fonts/inter-latin-variable.woff2";
+const displayFontSemiboldSrc = "/fonts/ibm-plex-serif-latin-600.woff2";
+const canonicalUrl = new URL(pathname, siteUrl).toString();
+const socialImageUrl = new URL(avatarSrc, siteUrl).toString();
+const alternateUrls = getAlternateLocaleLinks(pathname).map((item) => ({
+	href: new URL(item.href, siteUrl).toString(),
+	hreflang: item.locale
+}));
+---
+
+<!doctype html>
+<html lang="ru">
+	<head>
+		<SiteHead
+			title="Deal with it"
+			description="Заглушка для будущего playground-инструмента deal with it."
+			locale={locale}
+			favicon32Src={favicon32Src}
+			appleTouchIconSrc={appleTouchIconSrc}
+			avatarSrc={avatarSrc}
+			siteName={copy.siteName}
+			canonicalUrl={canonicalUrl}
+			socialImageUrl={socialImageUrl}
+			interLatinFontSrc={interLatinFontSrc}
+			displayFontSemiboldSrc={displayFontSemiboldSrc}
+			alternateUrls={alternateUrls}
+		/>
+	</head>
+	<body>
+		<DealWithItApp locale="ru" backHref="/ru/design" />
+	</body>
+</html>

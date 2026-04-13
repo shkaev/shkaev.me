@@ -14,8 +14,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.34",
     "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.0.8",
+    "astro": "^6.1.6",
+    "gifenc": "^1.0.3",
     "tailwindcss": "^4.2.2"
   }
 }
