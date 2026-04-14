@@ -90,7 +90,7 @@ const errorTextClass =
 	"text-center text-sm leading-6 text-red-700 dark:text-red-300";
 
 const glassesButtonClass =
-	"group inline-flex aspect-square cursor-pointer items-center justify-center rounded-[1rem] border border-stone-700/90 bg-[linear-gradient(180deg,rgba(24,24,24,0.96)_0%,rgba(14,14,14,0.98)_100%)] p-3 shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-stone-500 hover:shadow-[0_18px_32px_rgba(0,0,0,0.24)] data-[selected=true]:border-stone-100/85 data-[selected=true]:shadow-[0_18px_36px_rgba(255,255,255,0.08)]";
+	"group inline-flex aspect-square cursor-pointer items-center justify-center rounded-[0.875rem] border border-stone-700/90 bg-[linear-gradient(180deg,rgba(24,24,24,0.96)_0%,rgba(14,14,14,0.98)_100%)] p-2.5 shadow-[0_12px_24px_rgba(0,0,0,0.18)] transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-stone-500 hover:shadow-[0_18px_32px_rgba(0,0,0,0.24)] data-[selected=true]:border-stone-100/85 data-[selected=true]:shadow-[0_18px_36px_rgba(255,255,255,0.08)]";
 ---
 
 <div class="dwi-root" data-deal-with-it-root>
@@ -169,38 +169,34 @@ const glassesButtonClass =
 		<div class="dwi-editor-stack">
 			<div class="dwi-editor-stage">
 				<div class="dwi-slider-column dwi-slider-column--left">
-					<div class="dwi-slider-shell">
-						<span class="dwi-slider-midpoint" aria-hidden="true"></span>
-						<input
-							id="dwi-scale-slider"
-							data-scale-slider
-							class="dwi-vertical-slider"
-							type="range"
-							min="-100"
-							max="100"
-							step="1"
-							value="0"
-						/>
-					</div>
+					<span class="dwi-slider-midpoint" aria-hidden="true"></span>
+					<input
+						id="dwi-scale-slider"
+						data-scale-slider
+						class="dwi-vertical-slider"
+						type="range"
+						min="-100"
+						max="100"
+						step="1"
+						value="0"
+					/>
 				</div>
 				<div class="dwi-preview-frame" data-preview-frame>
 					<img data-preview-image class="dwi-preview-image" alt="" />
 					<img data-preview-overlay class="dwi-preview-overlay" alt="" />
 				</div>
 				<div class="dwi-slider-column dwi-slider-column--right">
-					<div class="dwi-slider-shell">
-						<span class="dwi-slider-midpoint" aria-hidden="true"></span>
-						<input
-							id="dwi-rotation-slider"
-							data-rotation-slider
-							class="dwi-vertical-slider"
-							type="range"
-							min="-15"
-							max="15"
-							step="1"
-							value="0"
-						/>
-					</div>
+					<span class="dwi-slider-midpoint" aria-hidden="true"></span>
+					<input
+						id="dwi-rotation-slider"
+						data-rotation-slider
+						class="dwi-vertical-slider"
+						type="range"
+						min="-15"
+						max="15"
+						step="1"
+						value="0"
+					/>
 				</div>
 			</div>
 			<div class="dwi-glasses-grid">
@@ -539,7 +535,8 @@ const glassesButtonClass =
 
 	.dwi-preview-frame {
 		position: relative;
-		width: min(100%, var(--dwi-preview-size));
+		width: var(--dwi-preview-size);
+		height: var(--dwi-preview-size);
 		aspect-ratio: 1;
 		border-radius: 1.5rem;
 		background: var(--dwi-surface);
@@ -551,25 +548,19 @@ const glassesButtonClass =
 
 	.dwi-editor-stage {
 		display: grid;
-		grid-template-columns: 3.25rem minmax(0, var(--dwi-preview-size)) 3.25rem;
+		grid-template-columns: 2.75rem var(--dwi-preview-size) 2.75rem;
 		align-items: center;
-		gap: 1rem;
-		width: min(100%, calc(var(--dwi-preview-size) + 6.5rem + 1rem));
+		gap: 0.75rem;
+		width: fit-content;
 		max-width: 100%;
 		justify-content: center;
 	}
 
 	.dwi-slider-column {
-		display: grid;
-		justify-items: center;
-		width: 3.25rem;
-		min-width: 3.25rem;
-	}
-
-	.dwi-slider-shell {
 		position: relative;
 		width: 2.75rem;
-		height: 400px;
+		height: var(--dwi-preview-size);
+		display: block;
 		overflow: visible;
 	}
 
@@ -591,7 +582,7 @@ const glassesButtonClass =
 		top: 50%;
 		appearance: none;
 		-webkit-appearance: none;
-		width: 400px;
+		width: var(--dwi-preview-size);
 		height: 2.75rem;
 		margin: 0;
 		border: 0;
@@ -685,8 +676,8 @@ const glassesButtonClass =
 	.dwi-glasses-grid {
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 1rem;
-		width: min(100%, 36rem);
+		gap: 0.75rem;
+		width: min(100%, calc(var(--dwi-preview-size) + 6.25rem));
 	}
 
 	.dwi-glasses-button img {
@@ -726,16 +717,16 @@ const glassesButtonClass =
 		.dwi-editor-stage {
 			grid-template-columns: 1fr;
 			gap: 1rem;
-		}
-
-		.dwi-slider-column {
-			grid-template-columns: auto 1fr;
-			grid-template-rows: auto;
 			width: min(100%, var(--dwi-preview-size));
 		}
 
-		.dwi-slider-shell {
-			width: 100%;
+		.dwi-preview-frame {
+			width: min(100%, var(--dwi-preview-size));
+			height: auto;
+		}
+
+		.dwi-slider-column {
+			width: min(100%, var(--dwi-preview-size));
 			height: 2.75rem;
 		}
 

@@ -24,21 +24,17 @@ export interface DealWithItGlassesAsset {
 	eyesDistance: number;
 	noseOffsetX: number;
 	noseOffsetY: number;
-	anchorX: number;
-	anchorY: number;
-	offsetX: number;
-	offsetY: number;
 }
 
 export const DEAL_WITH_IT_GLASSES: DealWithItGlassesAsset[] = [
-	{ id: "glasses-01", fileName: "glasses-01.svg", width: 248, height: 64, scaleMultiplier: 0.84, eyesDistance: 104, noseOffsetX: 149, noseOffsetY: 25, anchorX: 0.5, anchorY: 0.45, offsetX: 0, offsetY: 0 },
-	{ id: "glasses-02", fileName: "glasses-02.svg", width: 200, height: 64, scaleMultiplier: 0.8, eyesDistance: 100, noseOffsetX: 120, noseOffsetY: 25, anchorX: 0.5, anchorY: 0.45, offsetX: 0, offsetY: 0 },
-	{ id: "glasses-03", fileName: "glasses-03.svg", width: 248, height: 64, scaleMultiplier: 0.86, eyesDistance: 104, noseOffsetX: 147, noseOffsetY: 25, anchorX: 0.5, anchorY: 0.45, offsetX: 0, offsetY: 0 },
-	{ id: "glasses-04", fileName: "glasses-04.svg", width: 248, height: 80, scaleMultiplier: 0.98, eyesDistance: 110, noseOffsetX: 138, noseOffsetY: 34, anchorX: 0.5, anchorY: 0.45, offsetX: 0, offsetY: 0 },
-	{ id: "glasses-05", fileName: "glasses-05.svg", width: 208, height: 48, scaleMultiplier: 0.76, eyesDistance: 96, noseOffsetX: 104, noseOffsetY: 22, anchorX: 0.5, anchorY: 0.45, offsetX: 0, offsetY: 0 },
-	{ id: "glasses-06", fileName: "glasses-06.svg", width: 256, height: 56, scaleMultiplier: 0.89, eyesDistance: 112, noseOffsetX: 146, noseOffsetY: 24, anchorX: 0.5, anchorY: 0.45, offsetX: 0, offsetY: 0 },
-	{ id: "glasses-07", fileName: "glasses-07.svg", width: 248, height: 56, scaleMultiplier: 0.85, eyesDistance: 108, noseOffsetX: 148, noseOffsetY: 24, anchorX: 0.5, anchorY: 0.45, offsetX: 0, offsetY: 0 },
-	{ id: "glasses-08", fileName: "glasses-08.svg", width: 1024, height: 165, scaleMultiplier: 0.94, eyesDistance: 385, noseOffsetX: 660, noseOffsetY: 64, anchorX: 0.5, anchorY: 0.45, offsetX: 0, offsetY: 0 }
+	{ id: "glasses-01", fileName: "glasses-01.svg", width: 248, height: 64, scaleMultiplier: 0.84, eyesDistance: 104, noseOffsetX: 128, noseOffsetY: 25 },
+	{ id: "glasses-02", fileName: "glasses-02.svg", width: 200, height: 64, scaleMultiplier: 0.8, eyesDistance: 100, noseOffsetX: 104, noseOffsetY: 25 },
+	{ id: "glasses-03", fileName: "glasses-03.svg", width: 248, height: 64, scaleMultiplier: 0.86, eyesDistance: 104, noseOffsetX: 126, noseOffsetY: 25 },
+	{ id: "glasses-04", fileName: "glasses-04.svg", width: 248, height: 80, scaleMultiplier: 0.98, eyesDistance: 110, noseOffsetX: 138, noseOffsetY: 34 },
+	{ id: "glasses-05", fileName: "glasses-05.svg", width: 208, height: 48, scaleMultiplier: 0.76, eyesDistance: 96, noseOffsetX: 104, noseOffsetY: 22 },
+	{ id: "glasses-06", fileName: "glasses-06.svg", width: 256, height: 56, scaleMultiplier: 0.89, eyesDistance: 112, noseOffsetX: 152, noseOffsetY: 24 },
+	{ id: "glasses-07", fileName: "glasses-07.svg", width: 248, height: 56, scaleMultiplier: 0.85, eyesDistance: 108, noseOffsetX: 96, noseOffsetY: 24 },
+	{ id: "glasses-08", fileName: "glasses-08.svg", width: 1024, height: 165, scaleMultiplier: 0.94, eyesDistance: 385, noseOffsetX: 660, noseOffsetY: 64 }
 ] as const;
 
 export interface DealWithItCopy {

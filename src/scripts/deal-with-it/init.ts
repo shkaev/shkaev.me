@@ -124,11 +124,6 @@ const createFaceDetector = async () => {
 	});
 };
 
-const wait = (ms: number) =>
-	new Promise<null>((resolve) => {
-		window.setTimeout(() => resolve(null), ms);
-	});
-
 const selectPrimaryDetection = (detections: Detection[]) =>
 	[...detections].sort((left, right) => {
 		const leftBox = left.boundingBox;
@@ -272,12 +267,12 @@ const buildPlacement = (
 		const eyeCenterY =
 			(faceGeometry.leftEye.y + faceGeometry.rightEye.y) / 2;
 		const x = clamp(
-			faceGeometry.nose.x - glasses.noseOffsetX * scale + width * glasses.offsetX,
+			faceGeometry.nose.x - glasses.noseOffsetX * scale,
 			0,
 			previewSize - width
 		);
 		const y = clamp(
-			eyeCenterY - glasses.noseOffsetY * scale + height * glasses.offsetY,
+			eyeCenterY - glasses.noseOffsetY * scale,
 			0,
 			previewSize - height
 		);
@@ -294,13 +289,15 @@ const buildPlacement = (
 	const faceAnchorY = faceGeometry.y + faceGeometry.height * 0.41;
 	const width = Math.min(faceGeometry.width * glasses.scaleMultiplier, previewSize * 0.92);
 	const height = width * (glasses.height / glasses.width);
+	const fallbackAnchorX = 0.5;
+	const fallbackAnchorY = 0.45;
 	const x = clamp(
-		faceAnchorX - width * glasses.anchorX + width * glasses.offsetX,
+		faceAnchorX - width * fallbackAnchorX,
 		0,
 		previewSize - width
 	);
 	const y = clamp(
-		faceAnchorY - height * glasses.anchorY + height * glasses.offsetY,
+		faceAnchorY - height * fallbackAnchorY,
 		0,
 		previewSize - height
 	);
@@ -779,49 +776,15 @@ export const initDealWithIt = () => {
 		syncUi();
 	};
 
-	const detectFaceWithTimeout = async (image: HTMLImageElement) => {
+	const detectFace = async (image: HTMLImageElement) => {
 		try {
-			const result = await Promise.race([
-				detectorPromise.then((detector) => detector.detect(image)),
-				wait(1500)
-			]);
-
-			if (!result || !("detections" in result)) {
-				return undefined;
-			}
-
+			const detector = await detectorPromise;
+			const result = await detector.detect(image);
 			return selectPrimaryDetection(result.detections);
 		} catch (error) {
 			console.error("Deal with it face detection failed:", error);
 			return undefined;
 		}
-	};
-
-	const refineFaceGeometry = async (
-		image: HTMLImageElement,
-		crop: CropRect,
-		previewSize: number
-	) => {
-		const primaryDetection = await detectFaceWithTimeout(image);
-
-		if (!primaryDetection) {
-			return;
-		}
-
-		const refinedGeometry = getFaceGeometry(
-			primaryDetection,
-			crop,
-			image.naturalWidth,
-			image.naturalHeight,
-			previewSize
-		);
-
-		if (!refinedGeometry) {
-			return;
-		}
-
-		state.faceGeometry = refinedGeometry;
-		syncUi();
 	};
 
 	const preparePhoto = async (file: File) => {
@@ -832,7 +795,7 @@ export const initDealWithIt = () => {
 
 		try {
 			const image = await imageFileToLoadedImage(file);
-			const primaryDetection = await detectFaceWithTimeout(image);
+			const primaryDetection = await detectFace(image);
 			const crop =
 				primaryDetection
 					? buildStrictCropRect(
@@ -868,7 +831,6 @@ export const initDealWithIt = () => {
 			rotationSlider.value = "0";
 			setStep("editor");
 			syncUi();
-			void refineFaceGeometry(image, crop, preview.previewSize);
 		} catch (error) {
 			console.error("Deal with it photo preparation failed:", error);
 			state.uploadError = config.copy.processingError;
