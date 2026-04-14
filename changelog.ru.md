@@ -2,6 +2,14 @@
 
 Этот файл показывает значимые продакшен-обновления `shkaev.me` в русской локали сайта.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-14</span></p>
+
+## Запустил playground-инструмент «Deal with it»
+
+<p class="changelog-label changelog-label--added">Добавлено</p>
+
+- Добавил в раздел «Дизайн» новый playground-инструмент «Deal with it» с локализованными маршрутами, обновлённой карточкой и полноценным трёхшаговым сценарием для создания скачиваемых гифок 128×128 под эмоджи в Slack.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-11</span></p>
 
 ## Добавил раздел «Эксперименты» и запустил «Цветовые комбо»

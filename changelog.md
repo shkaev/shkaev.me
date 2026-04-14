@@ -4,6 +4,14 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-14</span></p>
+
+## Launched the "Deal with it" playground tool
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added a new `Deal with it` playground to the Design section with localized routes, updated card copy, and a full three-step flow for creating downloadable 128×128 GIFs for Slack emoji use.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-11</span></p>
 
 ## Added the Playground section and launched Color combos
