@@ -640,6 +640,9 @@ export const initDealWithIt = () => {
 		return;
 	}
 
+	previewImage.draggable = false;
+	overlayImage.draggable = false;
+
 	const state: AppState = {
 		step: "upload",
 		isUploading: false,
@@ -991,17 +994,18 @@ export const initDealWithIt = () => {
 		dragPointerId = null;
 		dragStartPointer = null;
 		dragStartOffset = null;
-		overlayImage.dataset.dragging = "false";
+		previewFrame.dataset.dragging = "false";
 		window.removeEventListener("pointermove", handlePointerMove);
 		window.removeEventListener("pointerup", finishDrag);
 		window.removeEventListener("pointercancel", finishDrag);
 	};
 
-	overlayImage.addEventListener("pointerdown", (event) => {
+	previewFrame.addEventListener("pointerdown", (event) => {
 		if (!state.placement || state.step !== "editor") {
 			return;
 		}
 
+		event.preventDefault();
 		dragPointerId = event.pointerId;
 		dragStartPointer = { x: event.clientX, y: event.clientY };
 		dragStartOffset = { ...state.manualOffset };
@@ -1010,7 +1014,7 @@ export const initDealWithIt = () => {
 			x: rect.width > 0 ? state.previewSize / rect.width : 1,
 			y: rect.height > 0 ? state.previewSize / rect.height : 1
 		};
-		overlayImage.dataset.dragging = "true";
+		previewFrame.dataset.dragging = "true";
 		window.addEventListener("pointermove", handlePointerMove);
 		window.addEventListener("pointerup", finishDrag);
 		window.addEventListener("pointercancel", finishDrag);
