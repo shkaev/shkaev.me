@@ -719,6 +719,52 @@ export const initDealWithIt = () => {
 		}
 	};
 
+	const switchGlassesPreservingPlacement = (nextGlassesId: string) => {
+		const previousPlacement = state.placement;
+
+		state.selectedGlassesId = nextGlassesId;
+		state.editorError = null;
+
+		if (!previousPlacement || !state.faceGeometry || !state.previewSize) {
+			syncUi();
+			return;
+		}
+
+		const nextGlasses = config.glasses.find((item) => item.id === nextGlassesId);
+
+		if (!nextGlasses) {
+			syncUi();
+			return;
+		}
+
+		const previousCenter = {
+			x: (previousPlacement.x + previousPlacement.width / 2) * state.previewSize,
+			y: (previousPlacement.y + previousPlacement.height / 2) * state.previewSize
+		};
+
+		const nextAutoPlacement = buildPlacement(
+			state.faceGeometry,
+			state.previewSize,
+			nextGlasses
+		);
+		const nextScaledPlacement = applyManualScale(
+			nextAutoPlacement,
+			state.previewSize,
+			state.manualScale
+		);
+		const nextCenter = {
+			x: (nextScaledPlacement.x + nextScaledPlacement.width / 2) * state.previewSize,
+			y: (nextScaledPlacement.y + nextScaledPlacement.height / 2) * state.previewSize
+		};
+
+		state.manualOffset = {
+			x: previousCenter.x - nextCenter.x,
+			y: previousCenter.y - nextCenter.y
+		};
+
+		syncUi();
+	};
+
 	const syncUi = () => {
 		uploadButton.disabled = state.isUploading;
 		uploadButtonLabel.textContent = state.isUploading
@@ -933,10 +979,7 @@ export const initDealWithIt = () => {
 				return;
 			}
 
-			state.selectedGlassesId = id;
-			state.manualOffset = { x: 0, y: 0 };
-			state.editorError = null;
-			syncUi();
+			switchGlassesPreservingPlacement(id);
 		});
 	}
 
