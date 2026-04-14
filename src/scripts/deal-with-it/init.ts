@@ -324,6 +324,7 @@ const buildDownloadName = (file: File | null) => {
 
 const DOG_GIF_LOOP_MS = 3950;
 const DOG_GIF_PAUSE_MS = 5000;
+const DOG_GIF_INITIAL_DELAY_MS = 1000;
 
 const createStillFrameDataUrl = async (image: HTMLImageElement) => {
 	const canvas = document.createElement("canvas");
@@ -381,8 +382,14 @@ const setupDogGifLoop = (root: HTMLElement) => {
 
 	const boot = async () => {
 		frameHoldSrc = await createStillFrameDataUrl(dogImage);
-		dogImage.src = buildLoopSrc();
-		queuePause();
+		if (frameHoldSrc) {
+			dogImage.src = frameHoldSrc;
+		}
+		clearLoop();
+		timeoutId = window.setTimeout(() => {
+			dogImage.src = buildLoopSrc();
+			queuePause();
+		}, DOG_GIF_INITIAL_DELAY_MS);
 	};
 
 	void boot();
