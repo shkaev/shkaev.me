@@ -24,7 +24,7 @@ const playgroundCardsEn = [
 	},
 	{
 		title: "Deal with it",
-		description: "A placeholder for an upcoming playground tool with custom pixel shades and a very serious dog.",
+		description: "Add pixel shades to your profile pic in a couple of clicks. The 128×128 GIF is perfect for Slack emojis.",
 		href: "/design/playground/deal-with-it",
 		imageSrc: "/images/playground/deal-with-it-dog.gif",
 		imageAlt: "A dog wearing pixel deal-with-it sunglasses."
@@ -41,7 +41,7 @@ const playgroundCardsRu = [
 	},
 	{
 		title: "Deal with it",
-		description: "Заглушка для будущего playground-инструмента с пиксельными очками и очень серьёзной собакой.",
+		description: "Пиксельные очки на аватарку в пару кликов. Гифка 128×128 отлично подойдёт как эмоджи в Slack.",
 		href: "/design/playground/deal-with-it",
 		imageSrc: "/images/playground/deal-with-it-dog.gif",
 		imageAlt: "Собака в пиксельных очках deal with it."
