@@ -668,6 +668,19 @@ export const initDealWithIt = () => {
 	let dragStartOffset: Point | null = null;
 	let dragScale = { x: 1, y: 1 };
 
+	const syncSliderProgress = (slider: HTMLInputElement) => {
+		const min = Number.parseFloat(slider.min);
+		const max = Number.parseFloat(slider.max);
+		const value = Number.parseFloat(slider.value);
+
+		if (!Number.isFinite(min) || !Number.isFinite(max) || max <= min || !Number.isFinite(value)) {
+			return;
+		}
+
+		const progress = clamp((value - min) / (max - min), 0, 1);
+		slider.parentElement?.style.setProperty("--slider-progress", `${progress}`);
+	};
+
 	const setStep = (step: Step) => {
 		state.step = step;
 		uploadScreen.hidden = step !== "upload";
@@ -784,6 +797,8 @@ export const initDealWithIt = () => {
 		if (state.previewSize > 0) {
 			previewFrame.style.setProperty("--preview-size", `${state.previewSize}px`);
 		}
+		syncSliderProgress(scaleSlider);
+		syncSliderProgress(rotationSlider);
 		if (state.previewDataUrl) {
 			previewImage.src = state.previewDataUrl;
 			updateSelectedGlasses();
@@ -986,6 +1001,7 @@ export const initDealWithIt = () => {
 	scaleSlider.addEventListener("input", () => {
 		const rawValue = Number.parseFloat(scaleSlider.value);
 		state.manualScale = mapScaleSliderValueToMultiplier(rawValue);
+		syncSliderProgress(scaleSlider);
 		syncUi();
 	});
 
@@ -993,18 +1009,21 @@ export const initDealWithIt = () => {
 		resetSliderIfHandleDoubleClick(scaleSlider, event, 0, () => {
 			scaleSlider.value = "0";
 			state.manualScale = 1;
+			syncSliderProgress(scaleSlider);
 			syncUi();
 		});
 	});
 
 	rotationSlider.addEventListener("input", () => {
 		state.manualRotation = -(Number.parseFloat(rotationSlider.value) || 0);
+		syncSliderProgress(rotationSlider);
 		syncUi();
 	});
 
 	rotationSlider.addEventListener("dblclick", (event) => {
 		resetSliderIfHandleDoubleClick(rotationSlider, event, 0, () => {
 			state.manualRotation = 0;
+			syncSliderProgress(rotationSlider);
 			syncUi();
 		});
 	});

@@ -185,6 +185,11 @@ const roundIconButtonClass = "dwi-back-button";
 						step="1"
 						value="0"
 					/>
+					<span class="dwi-slider-handle" aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+							<path d="M144,120v88a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V120a8,8,0,0,1,8-8h88A8,8,0,0,1,144,120Zm64,56a8,8,0,0,0-8,8v16H176a8,8,0,0,0,0,16h24a16,16,0,0,0,16-16V184A8,8,0,0,0,208,176Zm0-72a8,8,0,0,0-8,8v32a8,8,0,0,0,16,0V112A8,8,0,0,0,208,104Zm-8-64H184a8,8,0,0,0,0,16h16V72a8,8,0,0,0,16,0V56A16,16,0,0,0,200,40Zm-56,0H112a8,8,0,0,0,0,16h32a8,8,0,0,0,0-16ZM48,88a8,8,0,0,0,8-8V56H72a8,8,0,0,0,0-16H56A16,16,0,0,0,40,56V80A8,8,0,0,0,48,88Z"></path>
+						</svg>
+					</span>
 				</div>
 				<div class="dwi-preview-frame" data-preview-frame>
 					<img data-preview-image class="dwi-preview-image" alt="" />
@@ -202,6 +207,11 @@ const roundIconButtonClass = "dwi-back-button";
 						step="1"
 						value="0"
 					/>
+					<span class="dwi-slider-handle" aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+							<path d="M88,104H40a8,8,0,0,1-8-8V48a8,8,0,0,1,13.66-5.66L64,60.7a95.42,95.42,0,0,1,66-26.76h.53a95.36,95.36,0,0,1,67.07,27.33,8,8,0,0,1-11.18,11.44,79.52,79.52,0,0,0-55.89-22.77h-.45A79.48,79.48,0,0,0,75.35,72L93.66,90.34A8,8,0,0,1,88,104Zm128,48H168a8,8,0,0,0-5.66,13.66L180.65,184a79.48,79.48,0,0,1-54.72,22.09h-.45a79.52,79.52,0,0,1-55.89-22.77,8,8,0,1,0-11.18,11.44,95.36,95.36,0,0,0,67.07,27.33H126a95.42,95.42,0,0,0,66-26.76l18.36,18.36A8,8,0,0,0,224,208V160A8,8,0,0,0,216,152Z"></path>
+						</svg>
+					</span>
 				</div>
 			</div>
 			<div class="dwi-glasses-grid">
@@ -578,6 +588,8 @@ const roundIconButtonClass = "dwi-back-button";
 		height: var(--dwi-preview-size);
 		display: block;
 		overflow: visible;
+		--slider-progress: 0.5;
+		--dwi-slider-handle-size: 3rem;
 	}
 
 	.dwi-slider-midpoint {
@@ -607,6 +619,7 @@ const roundIconButtonClass = "dwi-back-button";
 		transform-origin: center center;
 		cursor: ns-resize;
 		overflow: visible;
+		z-index: 2;
 	}
 
 	.dwi-vertical-slider::-webkit-slider-runnable-track {
@@ -622,19 +635,13 @@ const roundIconButtonClass = "dwi-back-button";
 	.dwi-vertical-slider::-webkit-slider-thumb {
 		appearance: none;
 		-webkit-appearance: none;
-		width: 1rem;
-		height: 1.7rem;
-		margin-top: calc((0.7rem - 1.7rem) / 2);
-		border: 1px solid rgba(255, 255, 255, 0.24);
-		border-radius: 0.45rem;
-		background: linear-gradient(
-			180deg,
-			rgba(255, 255, 255, 0.98) 0%,
-			rgba(231, 229, 228, 0.9) 100%
-		);
-		box-shadow:
-			0 8px 18px rgba(28, 25, 23, 0.18),
-			inset 0 1px 0 rgba(255, 255, 255, 0.65);
+		width: var(--dwi-slider-handle-size);
+		height: var(--dwi-slider-handle-size);
+		margin-top: calc((0.7rem - var(--dwi-slider-handle-size)) / 2);
+		border: 0;
+		border-radius: 999px;
+		background: transparent;
+		box-shadow: none;
 	}
 
 	.dwi-vertical-slider::-moz-range-track {
@@ -650,18 +657,37 @@ const roundIconButtonClass = "dwi-back-button";
 
 
 	.dwi-vertical-slider::-moz-range-thumb {
-		width: 1rem;
-		height: 1.7rem;
-		border: 1px solid rgba(255, 255, 255, 0.24);
-		border-radius: 0.45rem;
-		background: linear-gradient(
-			180deg,
-			rgba(255, 255, 255, 0.98) 0%,
-			rgba(231, 229, 228, 0.9) 100%
-		);
+		width: var(--dwi-slider-handle-size);
+		height: var(--dwi-slider-handle-size);
+		border: 0;
+		border-radius: 999px;
+		background: transparent;
+		box-shadow: none;
+	}
+
+	.dwi-slider-handle {
+		position: absolute;
+		left: 50%;
+		top: calc((1 - var(--slider-progress)) * (100% - var(--dwi-slider-handle-size)) + (var(--dwi-slider-handle-size) / 2));
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--dwi-slider-handle-size);
+		height: var(--dwi-slider-handle-size);
+		border-radius: 999px;
+		background: linear-gradient(180deg, #ffffff 0%, #e7e5e4 100%);
 		box-shadow:
-			0 8px 18px rgba(28, 25, 23, 0.18),
-			inset 0 1px 0 rgba(255, 255, 255, 0.65);
+			0 10px 22px rgba(28, 25, 23, 0.24),
+			inset 0 1px 0 rgba(255, 255, 255, 0.9);
+		transform: translate(-50%, -50%);
+		pointer-events: none;
+		z-index: 3;
+	}
+
+	.dwi-slider-handle svg {
+		display: block;
+		width: 1.25rem;
+		height: 1.25rem;
 	}
 
 	.dwi-preview-image,
@@ -845,6 +871,12 @@ const roundIconButtonClass = "dwi-back-button";
 			height: 2.5rem;
 			transform: none;
 			cursor: ew-resize;
+		}
+
+		.dwi-slider-handle {
+			top: 50%;
+			left: calc(var(--slider-progress) * (100% - var(--dwi-slider-handle-size)) + (var(--dwi-slider-handle-size) / 2));
+			transform: translate(-50%, -50%);
 		}
 
 		.dwi-action-row {
