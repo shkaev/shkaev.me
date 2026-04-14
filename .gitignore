@@ -26,3 +26,8 @@ data/photo-imports/
 
 # jetbrains setting folder
 .idea/
+
+# BMAD local agent artifacts
+.agents/
+_bmad/
+_bmad-output/
