@@ -16,6 +16,8 @@ const appleTouchIconSrc = "/favicons/apple-touch-icon.png";
 const avatarSrc = "/avatars/avatar.jpg";
 const interLatinFontSrc = "/fonts/inter-latin-variable.woff2";
 const displayFontSemiboldSrc = "/fonts/ibm-plex-serif-latin-600.woff2";
+const rubikBrokenFaxFontSrc = "/fonts/rubik-broken-fax-cyrillic-regular.woff2";
+const pressStart2PFontSrc = "/fonts/press-start-2p-cyrillic-regular.woff2";
 const canonicalUrl = new URL(pathname, siteUrl).toString();
 const socialImageUrl = new URL(avatarSrc, siteUrl).toString();
 const alternateUrls = getAlternateLocaleLinks(pathname).map((item) => ({
@@ -29,7 +31,7 @@ const alternateUrls = getAlternateLocaleLinks(pathname).map((item) => ({
 	<head>
 		<SiteHead
 			title="Deal with it"
-			description="Заглушка для будущего playground-инструмента deal with it."
+			description="Пиксельные очки на аватарку в пару кликов. Гифка 128×128 отлично подойдёт как эмоджи в Slack."
 			locale={locale}
 			favicon32Src={favicon32Src}
 			appleTouchIconSrc={appleTouchIconSrc}
@@ -41,15 +43,19 @@ const alternateUrls = getAlternateLocaleLinks(pathname).map((item) => ({
 			displayFontSemiboldSrc={displayFontSemiboldSrc}
 			alternateUrls={alternateUrls}
 		/>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Rubik+Broken+Fax&display=swap"
-			rel="stylesheet"
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href={rubikBrokenFaxFontSrc}
+			crossorigin
 		/>
 		<link
-			href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-			rel="stylesheet"
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href={pressStart2PFontSrc}
+			crossorigin
 		/>
 	</head>
 	<body class="bg-stone-50 text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-100">
