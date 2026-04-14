@@ -750,11 +750,19 @@ export const initDealWithIt = () => {
 
 	const switchGlassesPreservingPlacement = (nextGlassesId: string) => {
 		const previousPlacement = state.placement;
+		const hasManualPosition =
+			Math.abs(state.manualOffset.x) > 0.5 ||
+			Math.abs(state.manualOffset.y) > 0.5;
 
 		state.selectedGlassesId = nextGlassesId;
 		state.editorError = null;
 
-		if (!previousPlacement || !state.faceGeometry || !state.previewSize) {
+		if (
+			!hasManualPosition ||
+			!previousPlacement ||
+			!state.faceGeometry ||
+			!state.previewSize
+		) {
 			syncUi();
 			return;
 		}

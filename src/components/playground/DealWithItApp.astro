@@ -239,7 +239,7 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 						</svg>
 					</span>
 				</button>
-				<button data-create-gif-button class={`${primaryButtonClass} h-[64px] min-h-[64px] rounded-2xl border-b-[6px] border-b-[#8f6500] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_rgba(123,86,0,0.18),inset_0_-6px_8px_-6px_rgba(123,86,0,0.28),0_8px_18px_rgba(0,0,0,0.16)] hover:bg-[linear-gradient(180deg,#ffdf84_0%,#ffc526_100%)] hover:border-b-[#8f6500] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(123,86,0,0.16),inset_0_-6px_8px_-6px_rgba(123,86,0,0.24),0_10px_22px_rgba(0,0,0,0.2)] active:border-b-[3px] active:shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_2px_6px_rgba(123,86,0,0.18),inset_0_0_0_1px_rgba(255,255,255,0.02),0_0_0_rgba(0,0,0,0)]`} type="button">
+				<button data-create-gif-button class={`${primaryButtonClass} h-[64px] min-h-[64px] rounded-2xl border-b-[6px] border-b-[#8f6500] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_rgba(123,86,0,0.18),inset_0_-6px_8px_-6px_rgba(123,86,0,0.28),0_8px_18px_rgba(0,0,0,0.16)] hover:bg-[linear-gradient(180deg,#ffdf84_0%,#ffc526_100%)] hover:border-b-[#8f6500] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(123,86,0,0.16),inset_0_-6px_8px_-6px_rgba(123,86,0,0.24),0_10px_22px_rgba(0,0,0,0.2)] active:shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_2px_6px_rgba(123,86,0,0.18),inset_0_0_0_1px_rgba(255,255,255,0.02),0_0_0_rgba(0,0,0,0)]`} type="button">
 					<span class={`${primaryButtonChromeClass} rounded-2xl`}></span>
 					<span class={`${primaryButtonLabelClass} min-h-[64px] py-1 text-[1.35rem]`} data-create-gif-button-label>{copy[locale].createGifButton}</span>
 				</button>
@@ -249,7 +249,7 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 	</section>
 
 	<section class="dwi-screen dwi-screen--result" data-step-result hidden>
-		<div class="dwi-result-title-wrap" aria-hidden="true">
+		<div class="dwi-result-title-wrap">
 			<div class="dwi-result-title-block">
 				<div class="dwi-title-stack dwi-result-title-stack">
 					<span class="dwi-title-trail dwi-title-trail--c dwi-result-title-lead" aria-hidden="true">{copy[locale].resultTitleLead}</span>
@@ -266,7 +266,7 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 				<p class="dwi-result-meta" data-result-meta></p>
 			</div>
 			<div class="dwi-result-action-stack">
-				<button data-download-button class={`${primaryButtonClass} rounded-2xl border-b-[6px] border-b-[#8f6500] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_rgba(123,86,0,0.18),inset_0_-6px_8px_-6px_rgba(123,86,0,0.28),0_8px_18px_rgba(0,0,0,0.16)] hover:bg-[linear-gradient(180deg,#ffdf84_0%,#ffc526_100%)] hover:border-b-[#8f6500] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(123,86,0,0.16),inset_0_-6px_8px_-6px_rgba(123,86,0,0.24),0_10px_22px_rgba(0,0,0,0.2)] active:border-b-[3px] active:shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_2px_6px_rgba(123,86,0,0.18),inset_0_0_0_1px_rgba(255,255,255,0.02),0_0_0_rgba(0,0,0,0)]`} type="button">
+				<button data-download-button class={`${primaryButtonClass} rounded-2xl border-b-[6px] border-b-[#8f6500] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_rgba(123,86,0,0.18),inset_0_-6px_8px_-6px_rgba(123,86,0,0.28),0_8px_18px_rgba(0,0,0,0.16)] hover:bg-[linear-gradient(180deg,#ffdf84_0%,#ffc526_100%)] hover:border-b-[#8f6500] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(123,86,0,0.16),inset_0_-6px_8px_-6px_rgba(123,86,0,0.24),0_10px_22px_rgba(0,0,0,0.2)] active:shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_2px_6px_rgba(123,86,0,0.18),inset_0_0_0_1px_rgba(255,255,255,0.02),0_0_0_rgba(0,0,0,0)]`} type="button">
 					<span class={`${primaryButtonChromeClass} rounded-2xl`}></span>
 					<span class={`${primaryButtonLabelClass} min-h-[64px] py-1.5 text-[1.35rem]`} data-download-button-label>{copy[locale].downloadButton}</span>
 				</button>
