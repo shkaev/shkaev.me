@@ -157,7 +157,7 @@ const stackedSecondaryButtonClass = "dwi-result-secondary-button";
 			<img src={dogGifSrc} alt="" class="dwi-dog" data-dog-gif />
 			<div class="dwi-upload-controls">
 				<input data-upload-input class="dwi-upload-input" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" />
-				<button data-upload-button class={`${primaryButtonClass} rounded-2xl border-b-[6px] border-b-[#8f6500] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_rgba(123,86,0,0.18),inset_0_-6px_8px_-6px_rgba(123,86,0,0.28),0_8px_18px_rgba(0,0,0,0.16)] hover:bg-[linear-gradient(180deg,#ffdf84_0%,#ffc526_100%)] hover:border-b-[#8f6500] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(123,86,0,0.16),inset_0_-6px_8px_-6px_rgba(123,86,0,0.24),0_10px_22px_rgba(0,0,0,0.2)] active:border-b-[3px] active:shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_2px_6px_rgba(123,86,0,0.18),inset_0_0_0_1px_rgba(255,255,255,0.02),0_0_0_rgba(0,0,0,0)]`} type="button">
+				<button data-upload-button class={`${primaryButtonClass} rounded-2xl border-b-[6px] border-b-[#8f6500] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_rgba(123,86,0,0.18),inset_0_-6px_8px_-6px_rgba(123,86,0,0.28),0_8px_18px_rgba(0,0,0,0.16)] hover:bg-[linear-gradient(180deg,#ffdf84_0%,#ffc526_100%)] hover:border-b-[#8f6500] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(123,86,0,0.16),inset_0_-6px_8px_-6px_rgba(123,86,0,0.24),0_10px_22px_rgba(0,0,0,0.2)] active:shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_2px_6px_rgba(123,86,0,0.18),inset_0_0_0_1px_rgba(255,255,255,0.02),0_0_0_rgba(0,0,0,0)]`} type="button">
 					<span class={`${primaryButtonChromeClass} rounded-2xl`}></span>
 					<span class={`${primaryButtonLabelClass} min-h-[64px] py-1.5 text-[1.35rem]`} data-upload-button-label>{copy[locale].uploadButton}</span>
 				</button>
@@ -563,9 +563,61 @@ const stackedSecondaryButtonClass = "dwi-result-secondary-button";
 	}
 
 	.dwi-result-media-stack {
+		position: relative;
 		display: grid;
 		justify-items: center;
 		gap: 0.5rem;
+		isolation: isolate;
+	}
+
+	.dwi-result-media-stack::before,
+	.dwi-result-media-stack::after {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 140vmax;
+		height: 140vmax;
+		border-radius: 999px;
+		transform: translate(-50%, -50%);
+		transform-origin: center center;
+		pointer-events: none;
+		z-index: -1;
+		mix-blend-mode: screen;
+	}
+
+	.dwi-result-media-stack::before {
+		background:
+			repeating-conic-gradient(
+				from 0deg,
+				rgba(255, 214, 106, 0.24) 0deg 7deg,
+				transparent 7deg 18deg,
+				rgba(89, 240, 255, 0.19) 18deg 24deg,
+				transparent 24deg 36deg,
+				rgba(255, 61, 129, 0.19) 36deg 42deg,
+				transparent 42deg 58deg
+			);
+		opacity: 0.98;
+		filter: blur(2px);
+		-webkit-mask: radial-gradient(circle at center, transparent 0 6%, rgba(0, 0, 0, 0.95) 9%, rgba(0, 0, 0, 0.4) 38%, transparent 78%);
+		mask: radial-gradient(circle at center, transparent 0 6%, rgba(0, 0, 0, 0.95) 9%, rgba(0, 0, 0, 0.4) 38%, transparent 78%);
+		animation: dwi-result-rays-spin 18s linear infinite;
+	}
+
+	.dwi-result-media-stack::after {
+		background:
+			repeating-conic-gradient(
+				from 9deg,
+				rgba(125, 125, 255, 0.16) 0deg 5deg,
+				transparent 5deg 16deg,
+				rgba(255, 154, 47, 0.18) 16deg 22deg,
+				transparent 22deg 34deg
+			);
+		opacity: 0.86;
+		filter: blur(1px);
+		-webkit-mask: radial-gradient(circle at center, transparent 0 12%, rgba(0, 0, 0, 0.8) 15%, rgba(0, 0, 0, 0.22) 44%, transparent 82%);
+		mask: radial-gradient(circle at center, transparent 0 12%, rgba(0, 0, 0, 0.8) 15%, rgba(0, 0, 0, 0.22) 44%, transparent 82%);
+		animation: dwi-result-rays-spin-reverse 26s linear infinite;
 	}
 
 	.dwi-result-meta {
@@ -857,7 +909,7 @@ const stackedSecondaryButtonClass = "dwi-result-secondary-button";
 		display: grid;
 		gap: 1rem;
 		width: min(100%, 30rem);
-		margin-top: 0.75rem;
+		margin-top: 1rem;
 	}
 
 	.dwi-action-row--editor {
@@ -951,6 +1003,7 @@ const stackedSecondaryButtonClass = "dwi-result-secondary-button";
 		display: block;
 		width: 128px;
 		height: 128px;
+		border-radius: 2px;
 		image-rendering: auto;
 	}
 
@@ -1154,6 +1207,26 @@ const stackedSecondaryButtonClass = "dwi-result-secondary-button";
 
 		100% {
 			fill: #ffe36d;
+		}
+	}
+
+	@keyframes dwi-result-rays-spin {
+		from {
+			transform: translate(-50%, -50%) rotate(0deg);
+		}
+
+		to {
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+	}
+
+	@keyframes dwi-result-rays-spin-reverse {
+		from {
+			transform: translate(-50%, -50%) rotate(360deg);
+		}
+
+		to {
+			transform: translate(-50%, -50%) rotate(0deg);
 		}
 	}
 </style>
