@@ -27,7 +27,8 @@ const copy: Record<"en" | "ru", DealWithItCopy> = {
 		createGifButton: "Create GIF",
 		createGifButtonBusy: "Creating…",
 		uploadNewPhotoButton: "← Upload new photo",
-		resultTitle: "Bravo! You created this GIF.",
+		resultTitleLead: "Bravo!",
+		resultTitleRest: "You created this GIF.",
 		makeAnotherOneButton: "Make another one",
 		downloadButton: "Download",
 		generationError: "We couldn’t create the GIF. Please try again.",
@@ -45,7 +46,8 @@ const copy: Record<"en" | "ru", DealWithItCopy> = {
 		createGifButton: "Создать GIF",
 		createGifButtonBusy: "Создаём…",
 		uploadNewPhotoButton: "← Загрузить другое фото",
-		resultTitle: "Браво! Гифка готова.",
+		resultTitleLead: "Браво!",
+		resultTitleRest: "Гифка готова.",
 		makeAnotherOneButton: "Сделать ещё одну",
 		downloadButton: "Скачать",
 		generationError: "Не удалось создать GIF. Попробуйте ещё раз.",
@@ -96,6 +98,7 @@ const errorTextClass =
 const glassesButtonClass = "dwi-glasses-choice";
 
 const roundIconButtonClass = "dwi-back-button";
+const stackedSecondaryButtonClass = "dwi-result-secondary-button";
 ---
 
 <div class="dwi-root" data-deal-with-it-root>
@@ -245,20 +248,30 @@ const roundIconButtonClass = "dwi-back-button";
 		</div>
 	</section>
 
-	<section class="dwi-screen" data-step-result hidden>
+	<section class="dwi-screen dwi-screen--result" data-step-result hidden>
+		<div class="dwi-result-title-wrap" aria-hidden="true">
+			<div class="dwi-result-title-block">
+				<div class="dwi-title-stack dwi-result-title-stack">
+					<span class="dwi-title-trail dwi-title-trail--c dwi-result-title-lead" aria-hidden="true">{copy[locale].resultTitleLead}</span>
+					<span class="dwi-title-trail dwi-title-trail--b dwi-result-title-lead" aria-hidden="true">{copy[locale].resultTitleLead}</span>
+					<span class="dwi-title-trail dwi-title-trail--a dwi-result-title-lead" aria-hidden="true">{copy[locale].resultTitleLead}</span>
+					<h1 class="dwi-title dwi-result-title-lead">{copy[locale].resultTitleLead}</h1>
+				</div>
+				<p class="dwi-result-title-rest">{copy[locale].resultTitleRest}</p>
+			</div>
+		</div>
 		<div class="dwi-result-stack">
-			<h1 class="font-display text-3xl text-center tracking-tight text-stone-950 sm:text-4xl dark:text-stone-50">{copy[locale].resultTitle}</h1>
-			<img data-result-image class="dwi-result-image" alt="" />
-			<div class="dwi-action-row">
-				<button data-restart-button class={secondaryButtonClass} type="button">
-					<span class={buttonChromeClass}></span>
-					<span class={buttonSheenClass}></span>
-					<span class={buttonLabelClass}>{copy[locale].makeAnotherOneButton}</span>
+			<div class="dwi-result-media-stack">
+				<img data-result-image class="dwi-result-image" alt="" />
+				<p class="dwi-result-meta" data-result-meta></p>
+			</div>
+			<div class="dwi-result-action-stack">
+				<button data-download-button class={`${primaryButtonClass} rounded-2xl border-b-[6px] border-b-[#8f6500] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_rgba(123,86,0,0.18),inset_0_-6px_8px_-6px_rgba(123,86,0,0.28),0_8px_18px_rgba(0,0,0,0.16)] hover:bg-[linear-gradient(180deg,#ffdf84_0%,#ffc526_100%)] hover:border-b-[#8f6500] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(123,86,0,0.16),inset_0_-6px_8px_-6px_rgba(123,86,0,0.24),0_10px_22px_rgba(0,0,0,0.2)] active:border-b-[3px] active:shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_2px_6px_rgba(123,86,0,0.18),inset_0_0_0_1px_rgba(255,255,255,0.02),0_0_0_rgba(0,0,0,0)]`} type="button">
+					<span class={`${primaryButtonChromeClass} rounded-2xl`}></span>
+					<span class={`${primaryButtonLabelClass} min-h-[64px] py-1.5 text-[1.35rem]`} data-download-button-label>{copy[locale].downloadButton}</span>
 				</button>
-				<button data-download-button class={primaryButtonClass} type="button">
-					<span class={primaryButtonChromeClass}></span>
-					<span class={buttonSheenClass}></span>
-					<span class={buttonLabelClass}>{copy[locale].downloadButton}</span>
+				<button data-restart-button class={stackedSecondaryButtonClass} type="button">
+					<span class={buttonLabelClass}>{copy[locale].makeAnotherOneButton}</span>
 				</button>
 			</div>
 		</div>
@@ -353,6 +366,11 @@ const roundIconButtonClass = "dwi-back-button";
 	}
 
 	.dwi-screen--upload {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.dwi-screen--result {
 		position: relative;
 		overflow: hidden;
 	}
@@ -496,8 +514,67 @@ const roundIconButtonClass = "dwi-back-button";
 	}
 
 	.dwi-result-stack {
-		gap: 1.5rem;
-		width: min(100%, 64rem);
+		display: grid;
+		gap: 2.25rem;
+		width: min(100%, 34rem);
+		position: relative;
+		z-index: 1;
+		padding-top: 11rem;
+		justify-items: center;
+	}
+
+	.dwi-result-title-wrap {
+		position: absolute;
+		left: 50%;
+		top: 4.75rem;
+		z-index: 1;
+		display: grid;
+		justify-items: center;
+		width: min(100%, 86rem);
+		pointer-events: none;
+		transform: translateX(-50%);
+	}
+
+	.dwi-result-title-block {
+		display: grid;
+		justify-items: center;
+		gap: 3rem;
+		text-align: center;
+	}
+
+	.dwi-result-title-lead,
+	.dwi-result-title-rest {
+		margin: 0;
+	}
+
+	.dwi-result-title-lead {
+		font-size: clamp(3.4rem, 11vw, 7.8rem);
+		line-height: 0.78;
+		letter-spacing: 0.04em;
+	}
+
+	.dwi-result-title-rest {
+		font-family: "Press Start 2P", "IBM Plex Mono", "SF Mono", "Cascadia Mono", "Menlo", "Monaco", monospace;
+		font-size: clamp(1.55rem, 3.8vw, 2.1rem);
+		font-weight: 400;
+		line-height: 1.6;
+		color: #f5f5f4;
+		max-width: 28rem;
+	}
+
+	.dwi-result-media-stack {
+		display: grid;
+		justify-items: center;
+		gap: 0.5rem;
+	}
+
+	.dwi-result-meta {
+		margin: 0;
+		max-width: 26rem;
+		text-align: center;
+		font-size: 0.875rem;
+		line-height: 1.5rem;
+		color: var(--dwi-page-fg);
 	}
 
 	.dwi-dog {
@@ -776,6 +853,13 @@ const roundIconButtonClass = "dwi-back-button";
 		width: min(100%, 36rem);
 	}
 
+	.dwi-result-action-stack {
+		display: grid;
+		gap: 1rem;
+		width: min(100%, 30rem);
+		margin-top: 0.75rem;
+	}
+
 	.dwi-action-row--editor {
 		grid-template-columns: 64px minmax(0, 1fr);
 		width: min(100%, calc(var(--dwi-preview-size) + 6.25rem));
@@ -823,6 +907,46 @@ const roundIconButtonClass = "dwi-back-button";
 			0 0 0 rgba(0, 0, 0, 0);
 	}
 
+	.dwi-result-secondary-button {
+		appearance: none;
+		-webkit-appearance: none;
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		min-height: 64px;
+		padding: 0 1.5rem;
+		border: 0;
+		border-bottom: 6px solid #211d1b;
+		border-radius: 1rem;
+		background: linear-gradient(180deg, rgba(112, 106, 102, 0.58) 0%, rgba(86, 80, 76, 0.52) 100%);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.08),
+			0 8px 18px rgba(0, 0, 0, 0.16);
+		color: rgb(245 245 244);
+		cursor: pointer;
+		transition:
+			background 160ms ease,
+			box-shadow 120ms ease,
+			transform 120ms ease;
+	}
+
+	.dwi-result-secondary-button:hover {
+		background: linear-gradient(180deg, rgba(120, 114, 110, 0.62) 0%, rgba(94, 88, 84, 0.56) 100%);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.1),
+			0 10px 22px rgba(0, 0, 0, 0.16);
+	}
+
+	.dwi-result-secondary-button:active {
+		transform: translateY(2px);
+		border-bottom-width: 3px;
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.06),
+			0 0 0 rgba(0, 0, 0, 0);
+	}
+
 	.dwi-result-image {
 		display: block;
 		width: 128px;
@@ -840,8 +964,18 @@ const roundIconButtonClass = "dwi-back-button";
 			width: min(100%, calc(100vw - 1rem));
 		}
 
+		.dwi-result-title-wrap {
+			top: 3.25rem;
+			width: min(100%, calc(100vw - 1rem));
+		}
+
 		.dwi-title {
 			letter-spacing: 0.02em;
+		}
+
+		.dwi-result-stack {
+			gap: 2rem;
+			padding-top: 9rem;
 		}
 
 		.dwi-editor-stage {

@@ -49,7 +49,8 @@ export interface DealWithItCopy {
 	createGifButton: string;
 	createGifButtonBusy: string;
 	uploadNewPhotoButton: string;
-	resultTitle: string;
+	resultTitleLead: string;
+	resultTitleRest: string;
 	makeAnotherOneButton: string;
 	downloadButton: string;
 	generationError: string;

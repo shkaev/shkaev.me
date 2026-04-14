@@ -319,6 +319,20 @@ const buildDownloadName = (file: File | null) => {
 	return `${baseName || "deal-with-it"}-deal-with-it.gif`;
 };
 
+const formatBlobSize = (bytes: number, locale: "en" | "ru") => {
+	if (bytes < 1024) {
+		return locale === "ru" ? `${bytes} Б` : `${bytes} bytes`;
+	}
+
+	if (bytes < 1024 * 1024) {
+		const value = Math.max(1, Math.round(bytes / 1024));
+		return locale === "ru" ? `${value} КБ` : `${value} KB`;
+	}
+
+	const value = (bytes / (1024 * 1024)).toFixed(1).replace(/\.0$/u, "");
+	return locale === "ru" ? `${value} МБ` : `${value} MB`;
+};
+
 const DOG_GIF_LOOP_MS = 3950;
 const DOG_GIF_PAUSE_MS = 5000;
 const DOG_GIF_INITIAL_DELAY_MS = 1000;
@@ -613,6 +627,7 @@ export const initDealWithIt = () => {
 	const createGifButtonLabel = root.querySelector("[data-create-gif-button-label]");
 	const editorError = root.querySelector("[data-editor-error]");
 	const resultImage = root.querySelector("[data-result-image]");
+	const resultMeta = root.querySelector("[data-result-meta]");
 	const downloadButton = root.querySelector("[data-download-button]");
 	const restartButton = root.querySelector("[data-restart-button]");
 
@@ -634,6 +649,7 @@ export const initDealWithIt = () => {
 		!(createGifButtonLabel instanceof HTMLElement) ||
 		!(editorError instanceof HTMLElement) ||
 		!(resultImage instanceof HTMLImageElement) ||
+		!(resultMeta instanceof HTMLElement) ||
 		!(downloadButton instanceof HTMLButtonElement) ||
 		!(restartButton instanceof HTMLButtonElement)
 	) {
@@ -806,6 +822,9 @@ export const initDealWithIt = () => {
 		if (state.generatedGifUrl) {
 			resultImage.src = state.generatedGifUrl;
 		}
+		resultMeta.textContent = state.generatedGifBlob
+			? `128 × 128, ${formatBlobSize(state.generatedGifBlob.size, config.locale)}`
+			: "";
 	};
 
 	const resetState = () => {
