@@ -24,7 +24,7 @@ const playgroundCardsEn = [
 	},
 	{
 		title: "Deal with it",
-		description: "Add pixel shades to your profile pic in a couple of clicks. The 128×128 GIF is perfect for Slack emojis.",
+		description: "Add pixel shades to your profile pic in a couple of clicks. Export a crisp GIF at up to 256×256, with an optional 80×80 Slack emoji mode.",
 		href: "/design/playground/deal-with-it",
 		imageSrc: "/images/playground/deal-with-it-dog.gif",
 		imageAlt: "A dog wearing pixel deal-with-it sunglasses."
@@ -41,7 +41,7 @@ const playgroundCardsRu = [
 	},
 	{
 		title: "Deal with it",
-		description: "Пиксельные очки на аватарку в пару кликов. Гифка 128×128 отлично подойдёт как эмоджи в Slack.",
+		description: "Пиксельные очки на аватарку в пару кликов. Экспортируйте гифку вплоть до 256×256, а при желании включайте режим 80×80 для Slack-эмоджи.",
 		href: "/design/playground/deal-with-it",
 		imageSrc: "/images/playground/deal-with-it-dog.gif",
 		imageAlt: "Собака в пиксельных очках deal with it."

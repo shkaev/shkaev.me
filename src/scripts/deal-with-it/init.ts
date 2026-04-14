@@ -72,9 +72,11 @@ interface AppState {
 	manualOffset: Point;
 	manualScale: number;
 	manualRotation: number;
+	exportAsSlackEmoji: boolean;
 }
 
 const PREVIEW_MAX_SIZE = 400;
+const EXPORT_MODE_STORAGE_KEY = "deal-with-it-export-as-slack-emoji";
 
 const clamp = (value: number, min: number, max: number) =>
 	Math.min(max, Math.max(min, value));
@@ -333,6 +335,17 @@ const formatBlobSize = (bytes: number, locale: "en" | "ru") => {
 	return locale === "ru" ? `${value} МБ` : `${value} MB`;
 };
 
+const getExportOutputSize = (
+	previewSize: number,
+	exportAsSlackEmoji: boolean
+) =>
+	Math.min(
+		exportAsSlackEmoji
+			? EXPORT_CONFIG.outputSizeSlackEmoji
+			: EXPORT_CONFIG.outputSizeDefault,
+		previewSize
+	);
+
 const DOG_GIF_LOOP_MS = 3950;
 const DOG_GIF_PAUSE_MS = 5000;
 const DOG_GIF_INITIAL_DELAY_MS = 1000;
@@ -407,8 +420,13 @@ const setupDogGifLoop = (root: HTMLElement) => {
 	window.addEventListener("pagehide", clearLoop, { once: true });
 };
 
-const getAnimatedY = (frameIndex: number, targetY: number, targetHeight: number) => {
-	const progress = frameIndex / Math.max(1, EXPORT_CONFIG.frameCount - 1);
+const getAnimatedY = (
+	frameIndex: number,
+	targetY: number,
+	targetHeight: number,
+	frameCount: number
+) => {
+	const progress = frameIndex / Math.max(1, frameCount - 1);
 	const eased = 1 - (1 - progress) ** 3;
 	const startY = -targetHeight;
 	return startY + (targetY - startY) * eased;
@@ -418,7 +436,9 @@ const renderGif = async (
 	sourceDataUrl: string,
 	glassesUrl: string,
 	placement: Placement,
-	rotationDegrees: number
+	rotationDegrees: number,
+	outputSize: number,
+	frameCount: number
 ) => {
 	const [sourceImage, glassesImage] = await Promise.all([
 		loadImageElement(sourceDataUrl),
@@ -426,8 +446,8 @@ const renderGif = async (
 	]);
 
 	const canvas = document.createElement("canvas");
-	canvas.width = EXPORT_CONFIG.outputSize;
-	canvas.height = EXPORT_CONFIG.outputSize;
+	canvas.width = outputSize;
+	canvas.height = outputSize;
 	const context = canvas.getContext("2d", { willReadFrequently: true });
 
 	if (!context) {
@@ -436,21 +456,21 @@ const renderGif = async (
 
 	const gif = GIFEncoder();
 
-	for (let frameIndex = 0; frameIndex < EXPORT_CONFIG.frameCount; frameIndex += 1) {
-		context.clearRect(0, 0, EXPORT_CONFIG.outputSize, EXPORT_CONFIG.outputSize);
+	for (let frameIndex = 0; frameIndex < frameCount; frameIndex += 1) {
+		context.clearRect(0, 0, outputSize, outputSize);
 		context.drawImage(
 			sourceImage,
 			0,
 			0,
-			EXPORT_CONFIG.outputSize,
-			EXPORT_CONFIG.outputSize
+			outputSize,
+			outputSize
 		);
 
-		const targetX = placement.x * EXPORT_CONFIG.outputSize;
-		const targetY = placement.y * EXPORT_CONFIG.outputSize;
-		const targetWidth = placement.width * EXPORT_CONFIG.outputSize;
-		const targetHeight = placement.height * EXPORT_CONFIG.outputSize;
-		const animatedY = getAnimatedY(frameIndex, targetY, targetHeight);
+		const targetX = placement.x * outputSize;
+		const targetY = placement.y * outputSize;
+		const targetWidth = placement.width * outputSize;
+		const targetHeight = placement.height * outputSize;
+		const animatedY = getAnimatedY(frameIndex, targetY, targetHeight, frameCount);
 
 		context.save();
 		context.translate(
@@ -470,16 +490,16 @@ const renderGif = async (
 		const imageData = context.getImageData(
 			0,
 			0,
-			EXPORT_CONFIG.outputSize,
-			EXPORT_CONFIG.outputSize
+			outputSize,
+			outputSize
 		);
 		const palette = quantize(imageData.data, 256);
 		const indexedFrame = applyPalette(imageData.data, palette);
 
-		gif.writeFrame(indexedFrame, EXPORT_CONFIG.outputSize, EXPORT_CONFIG.outputSize, {
+		gif.writeFrame(indexedFrame, outputSize, outputSize, {
 			palette,
 			delay:
-				frameIndex === EXPORT_CONFIG.frameCount - 1
+				frameIndex === frameCount - 1
 					? EXPORT_CONFIG.lastFrameDelayMs
 					: EXPORT_CONFIG.frameDelayMs,
 			repeat: frameIndex === 0 ? EXPORT_CONFIG.repeat : undefined
@@ -621,6 +641,7 @@ export const initDealWithIt = () => {
 	const overlayImage = root.querySelector("[data-preview-overlay]");
 	const scaleSlider = root.querySelector("[data-scale-slider]");
 	const rotationSlider = root.querySelector("[data-rotation-slider]");
+	const exportModeCheckbox = root.querySelector("[data-export-mode-checkbox]");
 	const glassesButtons = Array.from(root.querySelectorAll("[data-glasses-button]"));
 	const uploadNewButton = root.querySelector("[data-upload-new-button]");
 	const createGifButton = root.querySelector("[data-create-gif-button]");
@@ -644,6 +665,7 @@ export const initDealWithIt = () => {
 		!(overlayImage instanceof HTMLImageElement) ||
 		!(scaleSlider instanceof HTMLInputElement) ||
 		!(rotationSlider instanceof HTMLInputElement) ||
+		!(exportModeCheckbox instanceof HTMLInputElement) ||
 		!(uploadNewButton instanceof HTMLButtonElement) ||
 		!(createGifButton instanceof HTMLButtonElement) ||
 		!(createGifButtonLabel instanceof HTMLElement) ||
@@ -676,7 +698,8 @@ export const initDealWithIt = () => {
 		placement: null,
 		manualOffset: { x: 0, y: 0 },
 		manualScale: 1,
-		manualRotation: 0
+		manualRotation: 0,
+		exportAsSlackEmoji: window.sessionStorage.getItem(EXPORT_MODE_STORAGE_KEY) === "true"
 	};
 
 	let dragPointerId: number | null = null;
@@ -816,6 +839,7 @@ export const initDealWithIt = () => {
 			: config.copy.createGifButton;
 		editorError.textContent = state.editorError ?? "";
 		editorError.hidden = !state.editorError;
+		exportModeCheckbox.checked = state.exportAsSlackEmoji;
 
 		downloadButton.disabled = !state.generatedGifBlob;
 		if (state.previewSize > 0) {
@@ -830,8 +854,9 @@ export const initDealWithIt = () => {
 		if (state.generatedGifUrl) {
 			resultImage.src = state.generatedGifUrl;
 		}
+		const outputSize = getExportOutputSize(state.previewSize, state.exportAsSlackEmoji);
 		resultMeta.textContent = state.generatedGifBlob
-			? `128 × 128, ${formatBlobSize(state.generatedGifBlob.size, config.locale)}`
+			? `${outputSize} × ${outputSize}, ${formatBlobSize(state.generatedGifBlob.size, config.locale)}`
 			: "";
 	};
 
@@ -966,11 +991,17 @@ export const initDealWithIt = () => {
 		syncUi();
 
 		try {
+			const outputSize = getExportOutputSize(state.previewSize, state.exportAsSlackEmoji);
+			const frameCount = state.exportAsSlackEmoji
+				? EXPORT_CONFIG.frameCountSlackEmoji
+				: EXPORT_CONFIG.frameCountDefault;
 			const blob = await renderGif(
 				state.previewDataUrl,
 				selected.src,
 				state.placement,
-				state.manualRotation
+				state.manualRotation,
+				outputSize,
+				frameCount
 			);
 
 			if (state.generatedGifUrl) {
@@ -1053,6 +1084,15 @@ export const initDealWithIt = () => {
 			syncSliderProgress(rotationSlider);
 			syncUi();
 		});
+	});
+
+	exportModeCheckbox.addEventListener("change", () => {
+		state.exportAsSlackEmoji = exportModeCheckbox.checked;
+		window.sessionStorage.setItem(
+			EXPORT_MODE_STORAGE_KEY,
+			String(state.exportAsSlackEmoji)
+		);
+		syncUi();
 	});
 
 	const handlePointerMove = (event: PointerEvent) => {

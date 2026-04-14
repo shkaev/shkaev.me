@@ -2,10 +2,12 @@ export const MAX_UPLOAD_BYTES = 10_000_000;
 export const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png"] as const;
 
 export const EXPORT_CONFIG = {
-	frameCount: 24,
+	frameCountDefault: 24,
+	frameCountSlackEmoji: 16,
 	frameDelayMs: 60,
 	lastFrameDelayMs: 1500,
-	outputSize: 128,
+	outputSizeDefault: 256,
+	outputSizeSlackEmoji: 80,
 	repeat: 0
 } as const;
 
@@ -48,6 +50,7 @@ export interface DealWithItCopy {
 	processingError: string;
 	createGifButton: string;
 	createGifButtonBusy: string;
+	exportModeSlackEmojiLabel: string;
 	uploadNewPhotoButton: string;
 	resultTitleLead: string;
 	resultTitleRest: string;
