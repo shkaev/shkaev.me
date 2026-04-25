@@ -69,9 +69,81 @@
 
 - When importing from a user-provided local folder, treat that folder as the source of truth for originals.
 - Do not copy or keep original full-resolution photos inside the project under `public/photo-imports` or `data/photo-imports`.
+- Keep originals outside the repo and outside the project tree at all times.
+
+### Input
+
+- Expect the user to provide:
+  - an absolute folder path with source photos
+  - the post title or a rule like "numbered Limassol" / "numbered Paphos"
+  - the publication month and year
+  - the country when needed
+  - the cover image filename
+  - optional exclusions
+  - optional split rules if one folder should become multiple posts
+
+### Import Rules
+
+- Read source files directly from the external folder.
+- Determine post image order from filenames unless the user explicitly says otherwise.
+- Respect any explicit exclusions and do not generate assets for excluded files.
+- If the user asks to append a file from another folder into an existing post, generate derived assets for that file and append it in the requested position without importing the original into the project.
+
+### Generated Assets
+
 - Generate and keep only derived web assets inside the project:
   - `display`
   - `thumbs`
   - `card-covers`
   - `card-covers-special` when needed
-- Keep metadata and manifests in the project, but keep originals outside the repo and outside the project tree.
+- Do not generate or keep any `images` originals inside `public/photo-imports` or `data/photo-imports`.
+- Store generated assets under the appropriate slug folder in `public/photo-imports/<slug>/...`
+- Keep metadata in `data/photo-imports/<slug>/manifest.csv`
+
+### Asset Sizes
+
+- Generate `display` images at `1920px` on the long side.
+- Generate `thumbs` at `640px`.
+- Generate `card-covers` at `1024px`.
+- Keep `card-covers-special` visually aligned with the standard `card-covers` output, but allow custom cropping when needed.
+
+### Asset Quality
+
+- Generate `display` images as JPEG at quality `80`.
+- Generate `thumbs` as JPEG at quality `70`.
+- Generate `card-covers` and `card-covers-special` as JPEG at quality `76`.
+
+### Post Creation
+
+- Create a temp review post when the folder needs human review before splitting or naming.
+- Create a final post directly when the user already knows the title, cover, and structure.
+- For numbered location posts, continue the existing sequence instead of inventing a new naming pattern.
+- When a post title becomes a numbered series later, rename the older matching post into `Part 1` and create the new one as the next part.
+
+### Covers
+
+- Use the user-specified filename as the post cover when provided.
+- If a card crop needs adjustment, generate a dedicated file in `card-covers-special` and reference it via `cardCover`.
+- Do not try to solve difficult archive-card crops with runtime CSS positioning.
+
+### Review and Splitting
+
+- When the user provides split rules, build the requested posts from the same imported folder and distribute frames exactly as specified.
+- If frames must be reassigned into earlier or neighboring posts, update those existing posts instead of duplicating frames.
+- Preserve the requested frame order, including explicit moves such as "put frames 001-005 at the end."
+
+### Verification
+
+- Run verification only when changes affect routing, content collections, manifests, or other structural behavior.
+- For a standard new photo post or split, verify with `npm run build`.
+- Do not run a full build for a minor cover-crop tweak unless another structural change also happened.
+
+### R2 Sync
+
+- When the user asks to sync assets, upload only generated web assets:
+  - `display`
+  - `thumbs`
+  - `card-covers`
+  - `card-covers-special`
+- Never upload original source photos to R2.
+- It is acceptable to sync new web assets to R2 before the eventual push so production rollout is not blocked on missing media.
