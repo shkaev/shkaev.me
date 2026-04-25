@@ -41,7 +41,7 @@ const playgroundCardsRu = [
 	},
 	{
 		title: "Deal with it",
-		description: "Пиксельные очки на аватарку в пару кликов. Экспортируйте гифку вплоть до 256×256, а при желании включайте режим 80×80 для Slack-эмоджи.",
+		description: "Пиксельные очки на аватарку в пару кликов. Есть специальный режим 80×80 для Slack-эмоджи.",
 		href: "/design/playground/deal-with-it",
 		imageSrc: "/images/playground/deal-with-it-dog.gif",
 		imageAlt: "Собака в пиксельных очках deal with it."
