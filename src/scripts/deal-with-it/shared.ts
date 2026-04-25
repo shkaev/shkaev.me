@@ -1,5 +1,5 @@
 export const MAX_UPLOAD_BYTES = 10_000_000;
-export const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png"] as const;
+export const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"] as const;
 
 export const EXPORT_CONFIG = {
 	frameCountDefault: 24,
@@ -46,8 +46,11 @@ export interface DealWithItCopy {
 	uploadPrivacyNote: string;
 	invalidTypeError: string;
 	fileTooLargeError: string;
+	clipboardEmptyError: string;
+	remoteImageError: string;
 	noFaceError: string;
 	processingError: string;
+	dropHoverLabel: string;
 	createGifButton: string;
 	createGifButtonBusy: string;
 	exportModeSlackEmojiLabel: string;

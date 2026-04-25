@@ -20,12 +20,15 @@ const copy: Record<"en" | "ru", DealWithItCopy> = {
 	en: {
 		uploadButton: "Pick a photo",
 		uploadButtonBusy: "Preparing…",
-		uploadHelper: "JPG or PNG, up to 10 MB.",
+		uploadHelper: "JPG, PNG or WebP, up to 10 MB. Or just paste it from your clipboard.",
 		uploadPrivacyNote: "Your photo is processed locally in your browser.<br />Nothing is uploaded or stored.",
-		invalidTypeError: "Please upload a JPG or PNG image.",
+		invalidTypeError: "Please upload a JPG, PNG, or WebP image.",
 		fileTooLargeError: "The file must be 10 MB or smaller.",
+		clipboardEmptyError: "Paste or drop a JPG, PNG, or WebP image.",
+		remoteImageError: "This image can’t be used from its URL. Copy the image itself or download it first.",
 		noFaceError: "We couldn’t detect a face in this photo. Please try another one.",
 		processingError: "Something went wrong while preparing the photo. Please try again.",
+		dropHoverLabel: "Drop it here",
 		createGifButton: "Create GIF",
 		createGifButtonBusy: "Creating…",
 		exportModeSlackEmojiLabel: "Make it as a small Slack emoji",
@@ -40,12 +43,15 @@ const copy: Record<"en" | "ru", DealWithItCopy> = {
 	ru: {
 		uploadButton: "Выберите фото",
 		uploadButtonBusy: "Подготавливаем…",
-		uploadHelper: "JPG или PNG, не больше 10 MB.",
+		uploadHelper: "JPG, PNG или WebP, до 10 МБ. Или просто вставьте из буфера обмена.",
 		uploadPrivacyNote: "Фото обрабатывается локально в браузере.<br />Ничего не загружается и не хранится.",
-		invalidTypeError: "Загрузите изображение в формате JPG или PNG.",
-		fileTooLargeError: "Файл должен быть не больше 10 MB.",
+		invalidTypeError: "Загрузите изображение в формате JPG, PNG или WebP.",
+		fileTooLargeError: "Файл должен быть не больше 10 МБ.",
+		clipboardEmptyError: "Вставьте или перетащите изображение в формате JPG, PNG или WebP.",
+		remoteImageError: "Не удалось использовать картинку по ссылке. Скопируйте само изображение или скачайте его.",
 		noFaceError: "Мы не смогли определить лицо на этом фото. Попробуйте другое.",
 		processingError: "Не удалось подготовить фото. Попробуйте ещё раз.",
+		dropHoverLabel: "Бросайте сюда",
 		createGifButton: "Создать GIF",
 		createGifButtonBusy: "Создаём…",
 		exportModeSlackEmojiLabel: "Сделать как Slack-emoji",
@@ -174,22 +180,27 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 			</svg>
 			<h1 class="dwi-title text-center text-[clamp(3.4rem,11vw,7.8rem)] uppercase leading-[0.78]">DEAL WITH IT</h1>
 		</div>
-		<div class="dwi-upload-stack">
-			<img src={dogGifSrc} alt="" class="dwi-dog" data-dog-gif />
-			<div class="dwi-upload-controls">
-				<input data-upload-input class="dwi-upload-input" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" />
-				<button data-upload-button class={`${primaryButtonClass} rounded-2xl border-b-[6px] border-b-[#8f6500] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_rgba(123,86,0,0.18),inset_0_-6px_8px_-6px_rgba(123,86,0,0.28),0_8px_18px_rgba(0,0,0,0.16)] hover:bg-[linear-gradient(180deg,#ffdf84_0%,#ffc526_100%)] hover:border-b-[#8f6500] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(123,86,0,0.16),inset_0_-6px_8px_-6px_rgba(123,86,0,0.24),0_10px_22px_rgba(0,0,0,0.2)] active:shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_2px_6px_rgba(123,86,0,0.18),inset_0_0_0_1px_rgba(255,255,255,0.02),0_0_0_rgba(0,0,0,0)]`} type="button">
-					<span class={`${primaryButtonChromeClass} rounded-2xl`}></span>
-					<span class={`${primaryButtonLabelClass} min-h-[64px] py-1.5 text-[1.35rem]`} data-upload-button-label>{copy[locale].uploadButton}</span>
-				</button>
-				<div class="dwi-upload-notes">
-					<p class={helperTextClass}>{copy[locale].uploadHelper}</p>
-					<p class={`${privacyBubbleClass} dwi-privacy-bubble`}>
-						<span class="dwi-speech-tail"></span>
-						<Fragment set:html={copy[locale].uploadPrivacyNote} />
-					</p>
+		<div class="dwi-upload-dropzone" data-upload-dropzone>
+			<div class="dwi-upload-stack dwi-upload-dropzone-inner">
+				<img src={dogGifSrc} alt="" class="dwi-dog" data-dog-gif />
+				<div class="dwi-upload-controls">
+					<input data-upload-input class="dwi-upload-input" type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" />
+					<button data-upload-button class={`${primaryButtonClass} rounded-2xl border-b-[6px] border-b-[#8f6500] shadow-[inset_0_1px_0_rgba(255,255,255,0.28),inset_0_-1px_0_rgba(123,86,0,0.18),inset_0_-6px_8px_-6px_rgba(123,86,0,0.28),0_8px_18px_rgba(0,0,0,0.16)] hover:bg-[linear-gradient(180deg,#ffdf84_0%,#ffc526_100%)] hover:border-b-[#8f6500] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.32),inset_0_-1px_0_rgba(123,86,0,0.16),inset_0_-6px_8px_-6px_rgba(123,86,0,0.24),0_10px_22px_rgba(0,0,0,0.2)] active:shadow-[inset_0_1px_0_rgba(255,255,255,0.16),inset_0_2px_6px_rgba(123,86,0,0.18),inset_0_0_0_1px_rgba(255,255,255,0.02),0_0_0_rgba(0,0,0,0)]`} type="button">
+						<span class={`${primaryButtonChromeClass} rounded-2xl`}></span>
+						<span class={`${primaryButtonLabelClass} min-h-[64px] py-1.5 text-[1.35rem]`} data-upload-button-label>{copy[locale].uploadButton}</span>
+					</button>
+					<div class="dwi-upload-notes">
+						<p class={helperTextClass}>{copy[locale].uploadHelper}</p>
+						<p class={`${privacyBubbleClass} dwi-privacy-bubble`}>
+							<span class="dwi-speech-tail"></span>
+							<Fragment set:html={copy[locale].uploadPrivacyNote} />
+						</p>
+					</div>
+					<p class={errorTextClass} data-upload-error hidden></p>
 				</div>
-				<p class={errorTextClass} data-upload-error hidden></p>
+			</div>
+			<div class="dwi-drop-state" aria-hidden="true">
+				<p>{copy[locale].dropHoverLabel}</p>
 			</div>
 		</div>
 	</section>
@@ -462,6 +473,55 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 		gap: 2.25rem;
 	}
 
+	.dwi-upload-dropzone {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		place-items: center;
+		width: min(100%, 72rem);
+	}
+
+	.dwi-upload-dropzone-inner {
+		transition:
+			opacity 160ms ease,
+			transform 160ms ease,
+			filter 160ms ease;
+	}
+
+	.dwi-drop-state {
+		position: absolute;
+		inset: 0;
+		display: none;
+		place-items: center;
+		pointer-events: none;
+		opacity: 0;
+		transform: scale(0.98);
+		transition:
+			opacity 160ms ease,
+			transform 160ms ease;
+	}
+
+	.dwi-drop-state p {
+		margin: 0;
+		max-width: min(100%, 34rem);
+		text-align: center;
+		font-family: "Press Start 2P", "IBM Plex Mono", "SF Mono", "Cascadia Mono", "Menlo", "Monaco", monospace;
+		font-size: clamp(1.65rem, 4vw, 2.6rem);
+		line-height: 1.35;
+		text-transform: uppercase;
+		color: #101010;
+		text-shadow:
+			0 2px 0 rgba(255, 255, 255, 0.24),
+			0 10px 28px rgba(0, 0, 0, 0.2);
+	}
+
+	:global(.dark) .dwi-drop-state p {
+		color: #fafaf9;
+		text-shadow:
+			0 2px 0 rgba(0, 0, 0, 0.3),
+			0 10px 28px rgba(255, 214, 106, 0.14);
+	}
+
 	.dwi-upload-title-wrap {
 		position: absolute;
 		left: 50%;
@@ -725,6 +785,42 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 	.dwi-upload-controls p,
 	.dwi-editor-stack > p {
 		margin: 0;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.dwi-upload-dropzone {
+			min-height: min(48vh, 30rem);
+			padding: 2rem;
+			border: 2px dashed transparent;
+			border-radius: 2rem;
+			transition:
+				border-color 160ms ease,
+				background-color 160ms ease,
+				box-shadow 160ms ease;
+		}
+
+		.dwi-upload-dropzone[data-drag-active="true"] {
+			border-color: rgba(255, 214, 106, 0.78);
+			background:
+				radial-gradient(circle at 50% 50%, rgba(255, 214, 106, 0.28), transparent 56%),
+				rgba(255, 255, 255, 0.1);
+			box-shadow:
+				inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+				0 24px 70px rgba(28, 25, 23, 0.18);
+		}
+
+		.dwi-upload-dropzone[data-drag-active="true"] .dwi-upload-dropzone-inner {
+			opacity: 0;
+			filter: blur(4px);
+			transform: scale(0.96);
+			pointer-events: none;
+		}
+
+		.dwi-upload-dropzone[data-drag-active="true"] .dwi-drop-state {
+			display: grid;
+			opacity: 1;
+			transform: scale(1);
+		}
 	}
 
 	.dwi-error--editor {

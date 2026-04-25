@@ -60,7 +60,7 @@ interface AppState {
 	isGenerating: boolean;
 	uploadError: string | null;
 	editorError: string | null;
-	inputFile: File | null;
+	inputSourceName: string | null;
 	previewDataUrl: string | null;
 	previewSize: number;
 	faceGeometry: FaceGeometry | null;
@@ -93,10 +93,16 @@ const parseConfig = (root: HTMLElement): DealWithItAppConfig => {
 	return JSON.parse(configElement.textContent) as DealWithItAppConfig;
 };
 
-const loadImageElement = (src: string): Promise<HTMLImageElement> =>
+const loadImageElement = (
+	src: string,
+	crossOrigin?: "" | "anonymous"
+): Promise<HTMLImageElement> =>
 	new Promise((resolve, reject) => {
 		const image = new Image();
 		image.decoding = "async";
+		if (crossOrigin !== undefined) {
+			image.crossOrigin = crossOrigin;
+		}
 		image.onload = () => resolve(image);
 		image.onerror = () => reject(new Error("Image could not be loaded."));
 		image.src = src;
@@ -312,13 +318,102 @@ const buildPlacement = (
 	};
 };
 
-const buildDownloadName = (file: File | null) => {
-	if (!file) {
+const buildDownloadName = (sourceName: string | null) => {
+	if (!sourceName) {
 		return "deal-with-it.gif";
 	}
 
-	const baseName = file.name.replace(/\.[^.]+$/u, "");
+	const baseName = sourceName.replace(/\.[^.]+$/u, "");
 	return `${baseName || "deal-with-it"}-deal-with-it.gif`;
+};
+
+const isAcceptedImageType = (type: string) =>
+	ACCEPTED_IMAGE_TYPES.includes(type as (typeof ACCEPTED_IMAGE_TYPES)[number]);
+
+const getFileSourceName = (file: File, fallback: string) =>
+	file.name.trim() || fallback;
+
+const getUrlSourceName = (url: string) => {
+	try {
+		const parsed = new URL(url);
+		const segment = parsed.pathname.split("/").filter(Boolean).at(-1);
+		return segment?.trim() || "remote-image";
+	} catch {
+		return "remote-image";
+	}
+};
+
+const findImageFile = (files: FileList | File[]) =>
+	Array.from(files).find((file) => isAcceptedImageType(file.type));
+
+const getFileFromDataTransfer = (dataTransfer: DataTransfer | null) => {
+	if (!dataTransfer) {
+		return null;
+	}
+
+	const files = Array.from(dataTransfer.files);
+	const file = findImageFile(files) ?? files[0];
+
+	if (file) {
+		return file;
+	}
+
+	let firstFile: File | null = null;
+
+	for (const item of Array.from(dataTransfer.items)) {
+		if (item.kind !== "file") {
+			continue;
+		}
+
+		const itemFile = item.getAsFile();
+
+		if (!itemFile) {
+			continue;
+		}
+
+		if (isAcceptedImageType(itemFile.type)) {
+			return itemFile;
+		}
+
+		firstFile ??= itemFile;
+	}
+
+	return firstFile;
+};
+
+const extractHttpUrl = (value: string | undefined | null) => {
+	if (!value) {
+		return null;
+	}
+
+	const match = value.match(/https?:\/\/[^\s"'<>]+/iu);
+
+	if (!match) {
+		return null;
+	}
+
+	try {
+		const url = new URL(match[0]);
+		return url.protocol === "http:" || url.protocol === "https:"
+			? url.toString()
+			: null;
+	} catch {
+		return null;
+	}
+};
+
+const extractImageUrlFromHtml = (html: string | undefined | null) => {
+	if (!html) {
+		return null;
+	}
+
+	const template = document.createElement("template");
+	template.innerHTML = html;
+	const image = template.content.querySelector("img[src]");
+
+	return image instanceof HTMLImageElement
+		? extractHttpUrl(image.src)
+		: extractHttpUrl(html);
 };
 
 const formatBlobSize = (bytes: number, locale: "en" | "ru") => {
@@ -636,6 +731,7 @@ export const initDealWithIt = () => {
 	const uploadButtonLabel = root.querySelector("[data-upload-button-label]");
 	const uploadInput = root.querySelector("[data-upload-input]");
 	const uploadError = root.querySelector("[data-upload-error]");
+	const uploadDropzone = root.querySelector("[data-upload-dropzone]");
 	const previewFrame = root.querySelector("[data-preview-frame]");
 	const previewImage = root.querySelector("[data-preview-image]");
 	const overlayImage = root.querySelector("[data-preview-overlay]");
@@ -660,6 +756,7 @@ export const initDealWithIt = () => {
 		!(uploadButtonLabel instanceof HTMLElement) ||
 		!(uploadInput instanceof HTMLInputElement) ||
 		!(uploadError instanceof HTMLElement) ||
+		!(uploadDropzone instanceof HTMLElement) ||
 		!(previewFrame instanceof HTMLElement) ||
 		!(previewImage instanceof HTMLImageElement) ||
 		!(overlayImage instanceof HTMLImageElement) ||
@@ -687,7 +784,7 @@ export const initDealWithIt = () => {
 		isGenerating: false,
 		uploadError: null,
 		editorError: null,
-		inputFile: null,
+		inputSourceName: null,
 		previewDataUrl: null,
 		previewSize: 0,
 		faceGeometry: null,
@@ -706,6 +803,7 @@ export const initDealWithIt = () => {
 	let dragStartPointer: Point | null = null;
 	let dragStartOffset: Point | null = null;
 	let dragScale = { x: 1, y: 1 };
+	let uploadDragDepth = 0;
 
 	const syncSliderProgress = (slider: HTMLInputElement) => {
 		const min = Number.parseFloat(slider.min);
@@ -870,7 +968,7 @@ export const initDealWithIt = () => {
 		state.isGenerating = false;
 		state.uploadError = null;
 		state.editorError = null;
-		state.inputFile = null;
+		state.inputSourceName = null;
 		state.previewDataUrl = null;
 		state.previewSize = 0;
 		state.faceGeometry = null;
@@ -888,6 +986,8 @@ export const initDealWithIt = () => {
 		resultImage.removeAttribute("src");
 		scaleSlider.value = "0";
 		rotationSlider.value = "0";
+		uploadDragDepth = 0;
+		setDropActive(false);
 		setStep("upload");
 		syncUi();
 	};
@@ -903,14 +1003,34 @@ export const initDealWithIt = () => {
 		}
 	};
 
-	const preparePhoto = async (file: File) => {
+	const validateFile = (file: File) => {
+		if (!isAcceptedImageType(file.type)) {
+			state.uploadError = config.copy.invalidTypeError;
+			syncUi();
+			return false;
+		}
+
+		if (file.size > MAX_UPLOAD_BYTES) {
+			state.uploadError = config.copy.fileTooLargeError;
+			syncUi();
+			return false;
+		}
+
+		return true;
+	};
+
+	const prepareLoadedImage = async (
+		loadImage: () => Promise<HTMLImageElement>,
+		sourceName: string,
+		errorMessage = config.copy.processingError
+	) => {
 		state.isUploading = true;
 		state.uploadError = null;
 		state.editorError = null;
 		syncUi();
 
 		try {
-			const image = await imageFileToLoadedImage(file);
+			const image = await loadImage();
 			const primaryDetection = await detectFace(image);
 			const crop =
 				primaryDetection
@@ -932,7 +1052,7 @@ export const initDealWithIt = () => {
 						) ?? buildFallbackFaceGeometry(preview.previewSize)
 					: buildFallbackFaceGeometry(preview.previewSize);
 
-			state.inputFile = file;
+			state.inputSourceName = sourceName;
 			state.previewDataUrl = preview.dataUrl;
 			state.previewSize = preview.previewSize;
 			state.faceGeometry = faceGeometry;
@@ -949,7 +1069,7 @@ export const initDealWithIt = () => {
 			syncUi();
 		} catch (error) {
 			console.error("Deal with it photo preparation failed:", error);
-			state.uploadError = config.copy.processingError;
+			state.uploadError = errorMessage;
 			setStep("upload");
 		} finally {
 			state.isUploading = false;
@@ -957,20 +1077,66 @@ export const initDealWithIt = () => {
 		}
 	};
 
-	const validateFile = (file: File) => {
-		if (!ACCEPTED_IMAGE_TYPES.includes(file.type as (typeof ACCEPTED_IMAGE_TYPES)[number])) {
-			state.uploadError = config.copy.invalidTypeError;
-			syncUi();
-			return false;
+	const prepareImageFile = async (file: File, fallbackName = "image") => {
+		state.uploadError = null;
+
+		if (!validateFile(file)) {
+			return;
 		}
 
-		if (file.size > MAX_UPLOAD_BYTES) {
-			state.uploadError = config.copy.fileTooLargeError;
-			syncUi();
-			return false;
+		await prepareLoadedImage(
+			() => imageFileToLoadedImage(file),
+			getFileSourceName(file, fallbackName)
+		);
+	};
+
+	const prepareRemoteImageUrl = async (url: string) => {
+		await prepareLoadedImage(
+			() => loadImageElement(url, "anonymous"),
+			getUrlSourceName(url),
+			config.copy.remoteImageError
+		);
+	};
+
+	const setDropActive = (isActive: boolean) => {
+		uploadDropzone.dataset.dragActive = isActive ? "true" : "false";
+	};
+
+	const isFileDrag = (event: DragEvent) =>
+		Array.from(event.dataTransfer?.types ?? []).includes("Files");
+
+	const handlePastedUpload = (event: ClipboardEvent) => {
+		if (state.step !== "upload" || state.isUploading) {
+			return;
 		}
 
-		return true;
+		const clipboardData = event.clipboardData;
+
+		if (!clipboardData) {
+			return;
+		}
+
+		const imageFile = getFileFromDataTransfer(clipboardData);
+
+		if (imageFile) {
+			event.preventDefault();
+			void prepareImageFile(imageFile, "clipboard-image");
+			return;
+		}
+
+		const textUrl = extractHttpUrl(clipboardData.getData("text/plain"));
+		const htmlUrl = extractImageUrlFromHtml(clipboardData.getData("text/html"));
+		const imageUrl = textUrl ?? htmlUrl;
+
+		if (imageUrl) {
+			event.preventDefault();
+			void prepareRemoteImageUrl(imageUrl);
+			return;
+		}
+
+		event.preventDefault();
+		state.uploadError = config.copy.clipboardEmptyError;
+		syncUi();
 	};
 
 	const generateGif = async () => {
@@ -1031,13 +1197,63 @@ export const initDealWithIt = () => {
 			return;
 		}
 
-		state.uploadError = null;
+		void prepareImageFile(file);
+	});
 
-		if (!validateFile(file)) {
+	window.addEventListener("paste", handlePastedUpload);
+
+	uploadDropzone.addEventListener("dragenter", (event) => {
+		if (state.step !== "upload" || !isFileDrag(event)) {
 			return;
 		}
 
-		void preparePhoto(file);
+		event.preventDefault();
+		uploadDragDepth += 1;
+		setDropActive(true);
+	});
+
+	uploadDropzone.addEventListener("dragover", (event) => {
+		if (state.step !== "upload" || !isFileDrag(event)) {
+			return;
+		}
+
+		event.preventDefault();
+		if (event.dataTransfer) {
+			event.dataTransfer.dropEffect = "copy";
+		}
+		setDropActive(true);
+	});
+
+	uploadDropzone.addEventListener("dragleave", (event) => {
+		if (state.step !== "upload" || !isFileDrag(event)) {
+			return;
+		}
+
+		event.preventDefault();
+		uploadDragDepth = Math.max(0, uploadDragDepth - 1);
+		if (uploadDragDepth === 0) {
+			setDropActive(false);
+		}
+	});
+
+	uploadDropzone.addEventListener("drop", (event) => {
+		if (state.step !== "upload") {
+			return;
+		}
+
+		event.preventDefault();
+		uploadDragDepth = 0;
+		setDropActive(false);
+
+		const imageFile = getFileFromDataTransfer(event.dataTransfer);
+
+		if (!imageFile) {
+			state.uploadError = config.copy.clipboardEmptyError;
+			syncUi();
+			return;
+		}
+
+		void prepareImageFile(imageFile, "dropped-image");
 	});
 
 	for (const button of glassesButtons) {
@@ -1168,7 +1384,7 @@ export const initDealWithIt = () => {
 
 		const link = document.createElement("a");
 		link.href = state.generatedGifUrl;
-		link.download = buildDownloadName(state.inputFile);
+		link.download = buildDownloadName(state.inputSourceName);
 		link.click();
 	});
 
