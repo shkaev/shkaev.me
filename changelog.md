@@ -4,6 +4,14 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-26</span></p>
+
+## Added new March 2026 Cyprus photo series
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added Omodos and Lefkara, Part 2 to the March 2026 photography archive.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-25</span></p>
 
 ## Made "Deal with it" easier to use
