@@ -2,6 +2,19 @@
 
 Этот файл показывает значимые продакшен-обновления `shkaev.me` в русской локали сайта.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-25</span></p>
+
+## Сделал «Deal with it» удобнее
+
+<p class="changelog-label changelog-label--added">Добавлено</p>
+
+- Добавил больше способов начать GIF в «Deal with it»: теперь можно загрузить WebP, вставить картинку из буфера или перетащить файл в инструмент на десктопе.
+
+<p class="changelog-label changelog-label--improved">Улучшено</p>
+
+- Сделал подсказку под загрузкой понятнее и добавил иконку Slack к режиму эмоджи, чтобы его было легче узнать.
+- Поднял playground-эксперименты выше на странице «Дизайн», чтобы небольшие интерактивные инструменты было проще найти.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-14</span></p>
 
 ## Запустил playground-инструмент «Deal with it»

@@ -4,6 +4,19 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-04-25</span></p>
+
+## Made "Deal with it" easier to use
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Added more ways to start a `Deal with it` GIF: users can now upload WebP images, paste an image from the clipboard, or drag a file into the tool on desktop.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Made the upload instructions clearer and gave the Slack emoji option a more recognizable label with the Slack logo.
+- Brought Playground experiments higher on the Design page so small interactive tools are easier to find.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-14</span></p>
 
 ## Launched the "Deal with it" playground tool
