@@ -11,6 +11,7 @@ interface Props {
 const { locale, backHref } = Astro.props;
 
 const dogGifSrc = "/images/playground/deal-with-it-dog.gif";
+const slackLogoSrc = "https://a.slack-edge.com/38f0e7c/marketing/img/nav/logo.svg";
 const glasses = DEAL_WITH_IT_GLASSES.map((item) => ({
 	...item,
 	src: `/images/playground/deal-with-it/${item.fileName}`
@@ -280,7 +281,19 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 			<label class="dwi-export-mode-toggle">
 				<input data-export-mode-checkbox class="dwi-export-mode-checkbox" type="checkbox" />
 				<span class="dwi-export-mode-box" aria-hidden="true"></span>
-				<span class="dwi-export-mode-label">{copy[locale].exportModeSlackEmojiLabel}</span>
+				<span class="dwi-export-mode-label">
+					{
+						locale === "ru" ? (
+							<>
+								Сделать как <img class="dwi-export-mode-slack-logo" src={slackLogoSrc} alt="" aria-hidden="true" />Slack-emoji
+							</>
+						) : (
+							<>
+								Make it as a small <img class="dwi-export-mode-slack-logo" src={slackLogoSrc} alt="" aria-hidden="true" />Slack emoji
+							</>
+						)
+					}
+				</span>
 			</label>
 			<p class={`${errorTextClass} dwi-error--editor`} data-editor-error hidden></p>
 		</div>
@@ -1145,8 +1158,20 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 	}
 
 	.dwi-export-mode-label {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.25rem;
+		flex-wrap: wrap;
 		font-size: 0.95rem;
 		line-height: 1.4;
+	}
+
+	.dwi-export-mode-slack-logo {
+		width: 16px;
+		height: 16px;
+		margin-left: 2px;
+		flex: 0 0 auto;
 	}
 
 	.dwi-secondary-flat {
