@@ -20,7 +20,7 @@ const copy: Record<"en" | "ru", DealWithItCopy> = {
 	en: {
 		uploadButton: "Pick a photo",
 		uploadButtonBusy: "Preparing…",
-		uploadHelper: "JPG, PNG or WebP, up to 10 MB. Or just paste it from your clipboard.",
+		uploadHelper: "JPG, PNG or WebP, up to 10 MB.<br />Or just paste it from your clipboard.",
 		uploadPrivacyNote: "Your photo is processed locally in your browser.<br />Nothing is uploaded or stored.",
 		invalidTypeError: "Please upload a JPG, PNG, or WebP image.",
 		fileTooLargeError: "The file must be 10 MB or smaller.",
@@ -43,7 +43,7 @@ const copy: Record<"en" | "ru", DealWithItCopy> = {
 	ru: {
 		uploadButton: "Выберите фото",
 		uploadButtonBusy: "Подготавливаем…",
-		uploadHelper: "JPG, PNG или WebP, до 10 МБ. Или просто вставьте из буфера обмена.",
+		uploadHelper: "JPG, PNG или WebP, до 10 МБ.<br />Или просто вставьте из буфера обмена.",
 		uploadPrivacyNote: "Фото обрабатывается локально в браузере.<br />Ничего не загружается и не хранится.",
 		invalidTypeError: "Загрузите изображение в формате JPG, PNG или WebP.",
 		fileTooLargeError: "Файл должен быть не больше 10 МБ.",
@@ -190,7 +190,7 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 						<span class={`${primaryButtonLabelClass} min-h-[64px] py-1.5 text-[1.35rem]`} data-upload-button-label>{copy[locale].uploadButton}</span>
 					</button>
 					<div class="dwi-upload-notes">
-						<p class={helperTextClass}>{copy[locale].uploadHelper}</p>
+						<p class={helperTextClass} set:html={copy[locale].uploadHelper}></p>
 						<p class={`${privacyBubbleClass} dwi-privacy-bubble`}>
 							<span class="dwi-speech-tail"></span>
 							<Fragment set:html={copy[locale].uploadPrivacyNote} />
