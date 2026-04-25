@@ -26,6 +26,7 @@ const exactPhotoSeriesLabelMap: Record<string, string> = {
 	"Abu Dhabi": "Абу-Даби",
 	"Governor's Beach": "Губернаторский пляж",
 	"Aphrodite Hills & Q Gardens": "Холмы Афродиты и Q Gardens",
+	Omodos: "Омодос",
 	Omsk: "Омск",
 	Astana: "Астана",
 	Limassol: "Лимассол",
@@ -43,6 +44,7 @@ const seriesTitlePatterns: Array<[RegExp, string]> = [
 	[/^Limassol, Part (\d+)$/u, "Лимассол, часть $1"],
 	[/^Paphos, Part (\d+)$/u, "Пафос, часть $1"],
 	[/^Larnaca, Part (\d+)$/u, "Ларнака, часть $1"],
+	[/^Lefkara, Part (\d+)$/u, "Лефкара, часть $1"],
 	[/^Nicosia, Part (\d+)$/u, "Никосия, часть $1"],
 	[/^Tashkent, Part (\d+)$/u, "Ташкент, часть $1"],
 	[/^Pissouri, Part (\d+)$/u, "Писсури, часть $1"]
