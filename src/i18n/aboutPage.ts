@@ -127,7 +127,7 @@ const aboutPageCopy: Record<Locale, AboutPageCopy> = {
 		recommendationsLeadAfterLink: ".",
 		recommendations: [
 			{
-				name: "Булат Мешков",
+				name: "Bulat Meshkov",
 				href: "https://www.linkedin.com/in/bulatmeshkov/",
 				favicon: "/favicons/exness.png",
 				role: "Senior Product Designer, Exness",
