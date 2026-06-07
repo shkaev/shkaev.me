@@ -12,11 +12,11 @@
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-26</span></p>
 
-## Добавил новые мартовские фотосерии с Кипра
+## Новые фотографии
 
 <p class="changelog-label changelog-label--added">Добавлено</p>
 
-- Добавил в фотоархив за март 2026 года серии «Омодос» и «Лефкара, часть 2».
+- Омодос и Лефкара, часть 2.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-25</span></p>
 

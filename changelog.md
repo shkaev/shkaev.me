@@ -14,11 +14,11 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-26</span></p>
 
-## Added new March 2026 Cyprus photo series
+## New photos
 
 <p class="changelog-label changelog-label--added">Added</p>
 
-- Added Omodos and Lefkara, Part 2 to the March 2026 photography archive.
+- Omodos and Lefkara, Part 2.
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-25</span></p>
 
