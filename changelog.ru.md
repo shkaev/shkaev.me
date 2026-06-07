@@ -2,6 +2,14 @@
 
 Этот файл показывает значимые продакшен-обновления `shkaev.me` в русской локали сайта.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-06-07</span></p>
+
+## Новые фотографии
+
+<p class="changelog-label changelog-label--added">Добавлено</p>
+
+- В фотоархиве появились серии «Рождение Афродиты», «Водопад Каледония», «Лимассол, части 21 и 22», «Пафос, часть 6» и «Агрос».
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-26</span></p>
 
 ## Добавил новые мартовские фотосерии с Кипра

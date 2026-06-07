@@ -4,6 +4,14 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-06-07</span></p>
+
+## New photos
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Genesis Aphrodite’s Trail, Kalidonia Waterfalls, Limassol, Part 21 & 22, Paphos, Part 6, and Agros joined the photography archive.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-04-26</span></p>
 
 ## Added new March 2026 Cyprus photo series
