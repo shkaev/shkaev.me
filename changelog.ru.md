@@ -4,7 +4,12 @@
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-06-07</span></p>
 
-## Новые фотографии
+## Новые фотографии и небольшие исправления
+
+<p class="changelog-label changelog-label--fixed">Исправлено</p>
+
+- Восстановил сохранение позиции скролла на страницах «Дизайн» и «Фото» при возврате из статей и фотоальбомов.
+- Упростил запись от 26 апреля про новые фотографии в обеих локалях.
 
 <p class="changelog-label changelog-label--added">Добавлено</p>
 

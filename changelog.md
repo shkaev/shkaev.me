@@ -6,7 +6,12 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-meta"><span class="changelog-meta__date">2026-06-07</span></p>
 
-## New photos
+## New photos & small fixes
+
+<p class="changelog-label changelog-label--fixed">Fixed</p>
+
+- Restored scroll position on the Design and Photography index pages when returning from case studies or photo series.
+- Simplified the April 26 photo changelog entry in both locales.
 
 <p class="changelog-label changelog-label--added">Added</p>
 
