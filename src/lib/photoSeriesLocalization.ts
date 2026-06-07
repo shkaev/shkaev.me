@@ -26,6 +26,7 @@ const exactPhotoSeriesLabelMap: Record<string, string> = {
 	"Abu Dhabi": "Абу-Даби",
 	"Governor's Beach": "Губернаторский пляж",
 	"Aphrodite Hills & Q Gardens": "Холмы Афродиты и Q Gardens",
+	"Genesis Aphrodite’s Trail": "Рождение Афродиты",
 	Omodos: "Омодос",
 	Omsk: "Омск",
 	Astana: "Астана",
