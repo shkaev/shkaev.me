@@ -27,6 +27,7 @@ const exactPhotoSeriesLabelMap: Record<string, string> = {
 	"Governor's Beach": "Губернаторский пляж",
 	"Aphrodite Hills & Q Gardens": "Холмы Афродиты и Q Gardens",
 	"Genesis Aphrodite’s Trail": "Рождение Афродиты",
+	"Kalidonia Waterfalls": "Водопад Каледония",
 	Omodos: "Омодос",
 	Omsk: "Омск",
 	Astana: "Астана",
