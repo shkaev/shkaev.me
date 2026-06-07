@@ -28,6 +28,7 @@ const exactPhotoSeriesLabelMap: Record<string, string> = {
 	"Aphrodite Hills & Q Gardens": "Холмы Афродиты и Q Gardens",
 	"Genesis Aphrodite’s Trail": "Рождение Афродиты",
 	"Kalidonia Waterfalls": "Водопад Каледония",
+	Agros: "Агрос",
 	Omodos: "Омодос",
 	Omsk: "Омск",
 	Astana: "Астана",
