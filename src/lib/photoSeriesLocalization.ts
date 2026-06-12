@@ -41,17 +41,7 @@ const exactPhotoSeriesLabelMap: Record<string, string> = {
 	"Bolsherechye, Omsk Oblast": "Большеречье, Омская область"
 };
 
-const seriesTitlePatterns: Array<[RegExp, string]> = [
-	[/^Omsk, Part (\d+)$/u, "Омск, часть $1"],
-	[/^Astana, Part (\d+)$/u, "Астана, часть $1"],
-	[/^Limassol, Part (\d+)$/u, "Лимассол, часть $1"],
-	[/^Paphos, Part (\d+)$/u, "Пафос, часть $1"],
-	[/^Larnaca, Part (\d+)$/u, "Ларнака, часть $1"],
-	[/^Lefkara, Part (\d+)$/u, "Лефкара, часть $1"],
-	[/^Nicosia, Part (\d+)$/u, "Никосия, часть $1"],
-	[/^Tashkent, Part (\d+)$/u, "Ташкент, часть $1"],
-	[/^Pissouri, Part (\d+)$/u, "Писсури, часть $1"]
-];
+const seriesPartTitlePattern = /^(.+), Part (\d+)$/u;
 
 const specialSummaryMap: Record<string, string> = {
 	"Pictures were taken approximately in between 2003 and 2007. Scanned on Noritsu professional photo lab in Saint-Petersburg by me without any post-processing.":
@@ -70,9 +60,13 @@ const translateRussianPhotoSeriesLabel = (value: string) => {
 		return exactLabel;
 	}
 
-	for (const [pattern, replacement] of seriesTitlePatterns) {
-		if (pattern.test(value)) {
-			return value.replace(pattern, replacement);
+	const partMatch = value.match(seriesPartTitlePattern);
+
+	if (partMatch) {
+		const baseLabel = exactPhotoSeriesLabelMap[partMatch[1]];
+
+		if (baseLabel) {
+			return `${baseLabel}, часть ${partMatch[2]}`;
 		}
 	}
 

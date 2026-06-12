@@ -6,6 +6,10 @@ const assetBaseUrl = trimTrailingSlash(
 		""
 );
 
+export const staticAssetOrigin = assetBaseUrl
+	? new URL(assetBaseUrl).origin
+	: null;
+
 export const resolveStaticAssetUrl = (src: string) => {
 	if (!assetBaseUrl || /^https?:\/\//.test(src)) {
 		return src;

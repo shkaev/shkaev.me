@@ -9,7 +9,10 @@ import WorkTimelineCard from "../../components/WorkTimelineCard.astro";
 import { getAboutPageCopy } from "../../i18n/aboutPage";
 import type { Locale } from "../../i18n/config";
 import { resolveStaticAssetUrl } from "../../lib/assetUrl";
-import { renderInlineRichText } from "../../lib/renderInlineRichText";
+import {
+	renderInlineRichText,
+	renderRecommendationQuote
+} from "../../lib/renderInlineRichText";
 
 const locale: Locale = "ru";
 const pageCopy = getAboutPageCopy(locale);
@@ -44,20 +47,6 @@ const recommendationSliderItems = resolvedRecommendations.map((item) => ({
 	avatar: item.avatar ?? "",
 	text: item.text
 }));
-
-const escapeRecommendationHtml = (value: string) =>
-	value
-		.replaceAll("&", "&amp;")
-		.replaceAll("<", "&lt;")
-		.replaceAll(">", "&gt;")
-		.replaceAll('"', "&quot;")
-		.replaceAll("'", "&#39;");
-
-const renderRecommendationQuote = (value: string) =>
-	escapeRecommendationHtml(value).replaceAll(
-		"[...]",
-		'<span class="text-stone-300 dark:text-stone-700">[...]</span>'
-	);
 ---
 
 <SiteLayout

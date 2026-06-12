@@ -1,4 +1,5 @@
 ---
+import { staticAssetOrigin } from "../../lib/assetUrl";
 import {
 	applyThemeToRoot,
 	resolveStoredTheme,
@@ -47,6 +48,7 @@ const earlyThemeScript = `(() => {
 <script is:inline>
 	document.documentElement.classList.add("js");
 </script>
+{staticAssetOrigin && <link rel="preconnect" href={staticAssetOrigin} />}
 <link rel="icon" type="image/png" sizes="32x32" href={favicon32Src} />
 <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIconSrc} />
 <link rel="preload" as="image" href={avatarSrc} fetchpriority="high" />
