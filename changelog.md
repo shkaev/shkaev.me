@@ -4,6 +4,20 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-06-13</span></p>
+
+## Ran a full site audit with Fable
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- Photo pages now start loading images sooner and ship less inline code.
+- Tightened the SEO basics along the way — sitemap, robots.txt, structured data, and unique photo series descriptions.
+
+<p class="changelog-label changelog-label--infrastructure">Infrastructure</p>
+
+- Updated Astro and Tailwind to their latest versions — zero known vulnerabilities left in the stack.
+- Collected the site's typography and layout sizes into a single set of design tokens instead of magic numbers scattered across pages.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-06-07</span></p>
 
 ## New photos & small fixes
