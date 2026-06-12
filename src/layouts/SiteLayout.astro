@@ -16,7 +16,8 @@ import {
 import { resolveStaticAssetUrl } from "../lib/assetUrl";
 import {
 	shellWidthClass,
-	siteUrl
+	siteUrl,
+	socialLinks
 } from "../lib/siteConfig";
 import { normalizePath } from "../lib/sitePath";
 
@@ -52,6 +53,19 @@ const localizedNavigation = copy.navigation.map((item) => ({
 const homeHref = localizePath("/", locale);
 const languageTargetLocale = getOtherLocale(locale);
 const languageTargetPath = getLocaleTargetPath(pathname, languageTargetLocale);
+const isPersonPage = isHomePage || basePathname === "/about";
+const personStructuredData = isPersonPage
+	? JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Person",
+			name: copy.siteName,
+			alternateName: getSiteCopy(languageTargetLocale).siteName,
+			jobTitle: locale === "ru" ? "Продуктовый дизайнер" : "Product Designer",
+			url: siteUrl,
+			image: socialImageUrl,
+			sameAs: socialLinks.map((link) => link.href)
+		})
+	: undefined;
 ---
 
 <html lang={locale}>
@@ -69,6 +83,7 @@ const languageTargetPath = getLocaleTargetPath(pathname, languageTargetLocale);
 			interLatinFontSrc={interLatinFontSrc}
 			displayFontSemiboldSrc={displayFontSemiboldSrc}
 			alternateUrls={alternateUrls}
+			structuredData={personStructuredData}
 		/>
 	</head>
 	<body class="min-h-[100svh] bg-stone-50 text-stone-900 antialiased transition-colors dark:bg-stone-950 dark:text-stone-100 sm:min-h-screen">
