@@ -26,7 +26,7 @@ const {
 
 const isInteractive = Boolean(href);
 const rootClass = [
-	"group grid w-full grid-cols-1 overflow-hidden rounded-[12px] border border-stone-200/70 bg-white shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors sm:min-h-32 sm:grid-cols-[9rem_minmax(0,1fr)_2.5rem] sm:items-center sm:gap-x-7 sm:p-4",
+	"group grid w-full grid-cols-1 overflow-hidden rounded-xl border border-stone-200/70 bg-white shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors sm:min-h-32 sm:grid-cols-[9rem_minmax(0,1fr)_2.5rem] sm:items-center sm:gap-x-7 sm:p-4",
 	isInteractive ? "hover:border-stone-300/80" : "",
 	className
 ];
@@ -62,7 +62,7 @@ const imageClass = [
 							alt={logoAlt}
 							aria-hidden={logoAlt ? undefined : "true"}
 							loading="lazy"
-							class="h-4 w-4 shrink-0 rounded-[4px] object-cover sm:h-[1.125rem] sm:w-[1.125rem]"
+							class="h-4 w-4 shrink-0 rounded-sm object-cover sm:h-[1.125rem] sm:w-[1.125rem]"
 						/>
 					)}
 					<span class="truncate">{title}</span>

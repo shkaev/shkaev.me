@@ -355,6 +355,19 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+	/* Typography scale used by case studies, cards, and feature pages. */
+	--text-body-sm: 0.95rem;
+	--text-body-md: 0.98rem;
+	--text-heading-sm: 1.3rem;
+	--text-heading-md: 1.35rem;
+	--text-heading-lg: 1.5rem;
+
+	/* Content column and page shell widths. */
+	--container-content: 60rem;
+	--container-shell: 81.25rem;
+}
+
 @layer base {
 	:root {
 		font-family: "Inter", "Segoe UI", sans-serif;
@@ -374,7 +387,6 @@
 	}
 
 	[data-photography-search]::-webkit-search-cancel-button {
-		-webkit-appearance: none;
 		appearance: none;
 		display: none;
 	}
@@ -422,7 +434,7 @@
 
 	.case-study-content .type-section-body > p,
 	.case-study-content .section-intro-copy > p {
-		@apply max-w-[60rem];
+		@apply max-w-content;
 	}
 
 	.type-micro-label {
@@ -449,7 +461,7 @@
 	}
 
 	.surface-card {
-		@apply rounded-[12px] border border-stone-200/70 bg-white shadow-[0_1px_0_rgba(28,25,23,0.04)];
+		@apply rounded-xl border border-stone-200/70 bg-white shadow-[0_1px_0_rgba(28,25,23,0.04)];
 	}
 
 	.surface-card--default {
@@ -478,6 +490,10 @@
 
 	.filter-select-pill-icon {
 		@apply pointer-events-none absolute inset-y-0 right-3 flex items-center text-stone-500 transition group-hover:text-stone-700;
+	}
+
+	.photo-nav-pill {
+		@apply inline-flex h-full min-w-0 items-center gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5;
 	}
 
 	.icon-control-button {

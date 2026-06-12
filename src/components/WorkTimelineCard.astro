@@ -78,14 +78,14 @@ const { item, getCompanyPlaceholder } = Astro.props;
 			<div class="mt-1.5 w-full sm:mt-2.5">
 				{
 					item.intro && (
-						<p class="text-sm leading-6 text-stone-700 sm:text-[0.95rem] sm:leading-7">
+						<p class="text-sm leading-6 text-stone-700 sm:text-body-sm sm:leading-7">
 							{item.intro}
 						</p>
 					)
 				}
 				{
 					item.description && (
-						<ul class="mt-4 space-y-2 text-sm leading-6 text-stone-700 sm:text-[0.95rem] sm:leading-7">
+						<ul class="mt-4 space-y-2 text-sm leading-6 text-stone-700 sm:text-body-sm sm:leading-7">
 							{
 								item.description.map((point) => (
 									<li class="flex gap-3">

@@ -32,4 +32,4 @@ export const socialLinks: SocialLink[] = [
 	}
 ];
 
-export const shellWidthClass = "max-w-[81.25rem]";
+export const shellWidthClass = "max-w-shell";

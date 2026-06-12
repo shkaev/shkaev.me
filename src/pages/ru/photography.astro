@@ -304,7 +304,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 								data-sort-order={String(entry.data.sortOrder)}
 								data-title={entry.data.title}
 								data-search-index={searchIndex}
-								class="group flex flex-col overflow-visible rounded-[12px] border border-stone-200/80 bg-white transition hover:border-stone-300"
+								class="group flex flex-col overflow-visible rounded-xl border border-stone-200/80 bg-white transition hover:border-stone-300"
 							>
 								<div class="overflow-hidden rounded-t-[12px] bg-stone-100">
 									<img
@@ -332,12 +332,12 @@ const renderedSeries = series.map((entry, index, entries) => {
 														<img
 															src={flagSrc}
 															alt=""
-															class="block size-full rounded-[2px] object-cover shadow-2xs"
+															class="block size-full rounded-xs object-cover shadow-2xs"
 														/>
 														{isCyprus ? (
-															<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-stone-200/80"></span>
+															<span class="pointer-events-none absolute inset-0 rounded-xs border border-stone-200/80"></span>
 														) : (
-															<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-black/50 mix-blend-overlay"></span>
+															<span class="pointer-events-none absolute inset-0 rounded-xs border border-black/50 mix-blend-overlay"></span>
 														)}
 													</span>
 												)

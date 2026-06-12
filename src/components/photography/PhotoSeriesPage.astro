@@ -139,12 +139,12 @@ if (currentRow.length > 0) {
 						<img
 							src={flagSrc}
 							alt=""
-							class="block size-full rounded-[2px] object-cover shadow-2xs"
+							class="block size-full rounded-xs object-cover shadow-2xs"
 						/>
 						{isCyprus ? (
-							<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-stone-200/80"></span>
+							<span class="pointer-events-none absolute inset-0 rounded-xs border border-stone-200/80"></span>
 						) : (
-							<span class="pointer-events-none absolute inset-0 rounded-[2px] border border-black/50 mix-blend-overlay"></span>
+							<span class="pointer-events-none absolute inset-0 rounded-xs border border-black/50 mix-blend-overlay"></span>
 						)}
 					</span>
 				)
@@ -204,7 +204,7 @@ if (currentRow.length > 0) {
 											height={photo.height}
 											loading="lazy"
 											class:list={[
-												"photo-tile__image block w-full rounded-[4px] transition duration-300",
+												"photo-tile__image block w-full rounded-sm transition duration-300",
 												block.photos.length > 1
 													? "h-full object-cover"
 													: "h-auto"
@@ -258,7 +258,7 @@ if (currentRow.length > 0) {
 											width={photo.width}
 											height={photo.height}
 											loading={photoIndex < 9 ? "eager" : "lazy"}
-											class="photo-tile__image block h-full w-full rounded-[4px] object-cover transition duration-300 group-hover:scale-[1.02]"
+											class="photo-tile__image block h-full w-full rounded-sm object-cover transition duration-300 group-hover:scale-[1.02]"
 										/>
 									</a>
 								);
@@ -278,7 +278,7 @@ if (currentRow.length > 0) {
 								<a
 									href={localizePath(`/photography/${previousSeries.data.slug}`, locale)}
 									data-hover-card
-									class="group inline-flex h-full min-w-0 items-center gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5"
+									class="group photo-nav-pill"
 								>
 									<ArrowLeftIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
 									<p class="min-w-0 truncate text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
@@ -290,7 +290,7 @@ if (currentRow.length > 0) {
 									href={photoRootPath}
 									data-restore-scroll-target={photoRootPath}
 									data-hover-card
-									class="group inline-flex h-full min-w-0 items-center gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5"
+									class="group photo-nav-pill"
 								>
 									<ArrowLeftIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
 									<p class="min-w-0 truncate text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
@@ -304,7 +304,7 @@ if (currentRow.length > 0) {
 								<a
 									href={localizePath(`/photography/${nextSeries.data.slug}`, locale)}
 									data-hover-card
-									class="group inline-flex h-full min-w-0 items-center justify-end gap-3 rounded-full border border-stone-200/80 bg-white px-4 py-3 text-stone-800 transition hover:border-stone-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-400 sm:px-5"
+									class="group photo-nav-pill justify-end"
 								>
 									<p class="min-w-0 flex-1 truncate text-right text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
 										{resolveLocalizedPhotoSeriesTitle(nextSeries.data.title, locale)}
