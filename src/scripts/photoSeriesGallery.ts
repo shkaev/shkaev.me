@@ -453,6 +453,8 @@ export const setupPhotoSeriesGallery = () => {
 		updateImage();
 		preloadMobileWindow(index);
 		lightbox.hidden = false;
+		void lightbox.offsetWidth;
+		lightbox.classList.add("lightbox--visible");
 		document.body.style.overflow = "hidden";
 		resetDismissDrag(false);
 
@@ -467,6 +469,7 @@ export const setupPhotoSeriesGallery = () => {
 	};
 
 	const close = () => {
+		lightbox.classList.remove("lightbox--visible");
 		lightbox.hidden = true;
 		image.removeAttribute("src");
 		document.body.style.overflow = "";
@@ -480,14 +483,14 @@ export const setupPhotoSeriesGallery = () => {
 	};
 
 	const closeWithFade = () => {
+		lightbox.classList.remove("lightbox--visible");
 		frame.style.transition =
 			"transform 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms ease";
 		frame.style.transform = "scale(0.985)";
 		frame.style.opacity = "0";
-		lightbox.style.setProperty("--lightbox-overlay-opacity", "0");
 		window.setTimeout(() => {
 			close();
-		}, 100);
+		}, 120);
 	};
 
 	const closeWithDismiss = (offsetY) => {
@@ -495,6 +498,7 @@ export const setupPhotoSeriesGallery = () => {
 			offsetY + Math.sign(offsetY || 1) * Math.max(window.innerHeight * 0.35, 220);
 
 		applyDismissDrag(exitOffset, true);
+		lightbox.classList.remove("lightbox--visible");
 		window.setTimeout(() => {
 			close();
 		}, 180);

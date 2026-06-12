@@ -204,7 +204,7 @@ if (currentRow.length > 0) {
 											height={photo.height}
 											loading="lazy"
 											class:list={[
-												"photo-tile__image block w-full rounded-sm transition duration-300",
+												"photo-tile__image block w-full rounded-sm",
 												block.photos.length > 1
 													? "h-full object-cover"
 													: "h-auto"
@@ -258,7 +258,7 @@ if (currentRow.length > 0) {
 											width={photo.width}
 											height={photo.height}
 											loading={photoIndex < 9 ? "eager" : "lazy"}
-											class="photo-tile__image block h-full w-full rounded-sm object-cover transition duration-300 group-hover:scale-[1.02]"
+											class="photo-tile__image block h-full w-full rounded-sm object-cover group-hover:scale-[1.02]"
 										/>
 									</a>
 								);
@@ -423,11 +423,14 @@ if (currentRow.length > 0) {
 		position: relative;
 		z-index: 1;
 		opacity: 1;
+		transition: scale 200ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	:global(.js) .photo-tile__image {
 		opacity: 0;
-		transition: opacity 220ms ease;
+		transition:
+			opacity 220ms ease,
+			scale 200ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	:global(.js) .photo-tile.is-loaded::after {
@@ -459,6 +462,12 @@ if (currentRow.length > 0) {
 		}
 	}
 
+	@media (prefers-reduced-motion: reduce) {
+		.photo-tile::after {
+			animation: none;
+		}
+	}
+
 	.lightbox {
 		--lightbox-overlay-opacity: 0.8;
 		position: fixed;
@@ -467,6 +476,13 @@ if (currentRow.length > 0) {
 		background: rgb(255 255 255 / var(--lightbox-overlay-opacity));
 		backdrop-filter: blur(32px);
 		-webkit-backdrop-filter: blur(32px);
+		opacity: 0;
+		transition: opacity 120ms ease;
+	}
+
+	.lightbox--visible {
+		opacity: 1;
+		transition: opacity 180ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	:global(.dark) .lightbox {
@@ -532,7 +548,12 @@ if (currentRow.length > 0) {
 		transition:
 			background-color 150ms ease,
 			border-color 150ms ease,
-			color 150ms ease;
+			color 150ms ease,
+			transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.lightbox__button:active {
+		transform: scale(0.95);
 	}
 
 	.lightbox__button svg {

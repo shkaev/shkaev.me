@@ -120,13 +120,13 @@ const renderedSeries = series.map((entry, index, entries) => {
 									type="button"
 									aria-label={copy.photography.clearSearchAriaLabel}
 								data-search-clear
-									class="group absolute inset-y-0 right-1.5 my-auto hidden size-8 cursor-pointer items-center justify-center rounded-full text-stone-400 transition hover:bg-stone-100 hover:text-stone-700 dark:text-stone-500 dark:hover:bg-stone-800"
+									class="group absolute inset-y-0 right-1.5 my-auto hidden size-8 cursor-pointer items-center justify-center rounded-full text-stone-400 transition-colors hover:bg-stone-100 hover:text-stone-700 dark:text-stone-500 dark:hover:bg-stone-800"
 							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 20 20"
 									fill="currentColor"
-									class="size-5 transition group-hover:text-stone-700 dark:group-hover:text-white"
+									class="size-5 transition-colors group-hover:text-stone-700 dark:group-hover:text-white"
 									aria-hidden="true"
 								>
 								<path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
@@ -246,7 +246,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 			<button
 				type="button"
 				data-clear-all
-					class="mt-6 inline-flex h-11 cursor-pointer items-center justify-center rounded-full border border-stone-300 bg-white px-5 text-sm font-medium text-stone-900 transition hover:border-stone-400 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:hover:border-stone-500 dark:hover:bg-stone-700"
+					class="mt-6 inline-flex h-11 cursor-pointer items-center justify-center rounded-full border border-stone-300 bg-white px-5 text-sm font-medium text-stone-900 transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:hover:border-stone-500 dark:hover:bg-stone-700"
 				>
 					{copy.photography.clearAllLabel}
 				</button>
@@ -304,7 +304,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 								data-sort-order={String(entry.data.sortOrder)}
 								data-title={entry.data.title}
 								data-search-index={searchIndex}
-								class="group flex flex-col overflow-visible rounded-xl border border-stone-200/80 bg-white transition hover:border-stone-300"
+								class="group flex flex-col overflow-visible rounded-xl border border-stone-200/80 bg-white transition-colors hover:border-stone-300"
 							>
 								<div class="overflow-hidden rounded-t-[12px] bg-stone-100">
 									<img
@@ -312,7 +312,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 										alt={entry.data.title}
 										width={cardCover.width}
 										height={cardCover.height}
-										class="aspect-[16/10] h-auto w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+										class="aspect-[16/10] h-auto w-full object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]"
 									/>
 								</div>
 									<div class="min-w-0 p-5 xl:p-4">

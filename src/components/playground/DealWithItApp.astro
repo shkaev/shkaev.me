@@ -1190,7 +1190,12 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 		transition:
 			background-color 160ms ease,
 			box-shadow 160ms ease,
-			color 160ms ease;
+			color 160ms ease,
+			transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.dwi-secondary-flat:active {
+		transform: scale(0.97);
 	}
 
 	.dwi-secondary-flat--icon {
@@ -1521,6 +1526,19 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 
 		to {
 			transform: translate(-50%, -50%) rotate(0deg);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.dwi-ray,
+		.dwi-ray-core,
+		.dwi-title,
+		.dwi-title-trail--a,
+		.dwi-title-trail--b,
+		.dwi-title-trail--c,
+		.dwi-result-media-stack::before,
+		.dwi-result-media-stack::after {
+			animation: none;
 		}
 	}
 </style>

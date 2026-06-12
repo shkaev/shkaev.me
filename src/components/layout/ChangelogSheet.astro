@@ -84,7 +84,7 @@ const copy = getSiteCopy(locale);
 		backdrop-filter: blur(32px);
 		-webkit-backdrop-filter: blur(32px);
 		opacity: 0;
-		transition: opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
+		transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.dark .site-sheet {
@@ -93,6 +93,7 @@ const copy = getSiteCopy(locale);
 
 	.site-sheet[data-state="open"] {
 		opacity: 1;
+		transition: opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.site-sheet[hidden] {
@@ -115,13 +116,16 @@ const copy = getSiteCopy(locale);
 		transform: translate3d(100%, 0, 0);
 		opacity: 0;
 		transition:
-			transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
-			opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
+			transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.site-sheet[data-state="open"] .site-sheet__panel {
 		transform: translate3d(0, 0, 0);
 		opacity: 1;
+		transition:
+			transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+			opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.site-sheet__surface {
@@ -135,7 +139,7 @@ const copy = getSiteCopy(locale);
 			0 1px 0 rgb(28 25 23 / 0.04),
 			-24px 0 64px rgb(28 25 23 / 0.16);
 		transform: scale(0.985);
-		transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+		transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.dark .site-sheet__surface {
@@ -148,6 +152,7 @@ const copy = getSiteCopy(locale);
 
 	.site-sheet[data-state="open"] .site-sheet__surface {
 		transform: scale(1);
+		transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.site-sheet__header {
