@@ -10,6 +10,7 @@ Use completed/past tense throughout, including entry titles, and do not show com
 
 <p class="changelog-label changelog-label--improved">Improved</p>
 
+- Polished motion across the site: the photo viewer now fades in, buttons respond to presses, and decorative animations pause for reduced-motion users.
 - Photo pages now start loading images sooner and ship less inline code.
 - Tightened the SEO basics along the way — sitemap, robots.txt, structured data, and unique photo series descriptions.
 
