@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import PageHero from "../components/sections/PageHero.astro";
+import ChevronDownIcon from "../components/icons/ChevronDownIcon.astro";
 import { getSiteCopy } from "../i18n/copy";
 import { localizePath } from "../i18n/routing";
 import { resolvePhotoAssetUrl } from "../lib/photoAsset";
@@ -100,9 +101,22 @@ const renderedSeries = series.map((entry, index, entries) => {
 			leadClass="max-w-4xl"
 		/>
 
-		<div class="mt-7">
+		<div class="mt-3 lg:mt-7">
+			<button
+				type="button"
+				data-photography-filters-toggle
+				data-divider-link
+				class="group flex w-full cursor-pointer items-center gap-4 py-3 text-sm font-medium text-ink-subtle transition-colors hover:text-stone-900 sm:text-body-sm lg:hidden"
+			>
+				<span data-divider-line class="h-px flex-1 bg-stone-200/80 transition-colors group-hover:bg-stone-400 dark:bg-stone-800/80"></span>
+				<span class="inline-flex items-center gap-2 whitespace-nowrap">
+					<span>{copy.photography.filtersToggleLabel}</span>
+					<ChevronDownIcon class="h-4 w-4 transition-transform group-hover:translate-y-[1px]" />
+				</span>
+				<span data-divider-line class="h-px flex-1 bg-stone-200/80 transition-colors group-hover:bg-stone-400 dark:bg-stone-800/80"></span>
+			</button>
 			<div
-				class="grid gap-2 lg:grid-cols-[minmax(0,1.8fr)_repeat(3,minmax(0,0.8fr))]"
+				class="hidden gap-2 lg:grid lg:grid-cols-[minmax(0,1.8fr)_repeat(3,minmax(0,0.8fr))]"
 				data-photography-controls
 			>
 					<label class="relative flex min-w-0 flex-col">
@@ -252,7 +266,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 				</button>
 		</div>
 
-		<div class="mt-3 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 xl:gap-3" data-series-grid>
+		<div class="mt-1 grid grid-cols-1 gap-4 lg:mt-3 lg:grid-cols-2 xl:grid-cols-3 xl:gap-3" data-series-grid>
 			{
 				renderedSeries.map(
 					({ entry, currentYear, shouldRenderDivider, searchIndex }) => {
@@ -369,6 +383,79 @@ const renderedSeries = series.map((entry, index, entries) => {
 
 		if (!(root instanceof HTMLElement)) {
 			return;
+		}
+
+		const filtersToggle = root.querySelector("[data-photography-filters-toggle]");
+		const controls = root.querySelector("[data-photography-controls]");
+
+		if (filtersToggle instanceof HTMLButtonElement && controls instanceof HTMLElement) {
+			const filtersWrapper = filtersToggle.parentElement;
+			const seriesGrid = root.querySelector("[data-series-grid]");
+
+			filtersToggle.addEventListener("click", () => {
+				const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+				const canAnimate = typeof controls.animate === "function" && !reduceMotion;
+				const easeOut = "cubic-bezier(0.23, 1, 0.32, 1)";
+				const duration = 260;
+
+				controls.classList.remove("hidden");
+				controls.classList.add("grid");
+
+				// The tighter spacing only applies while the bar is collapsed. Once the
+				// filters are revealed, restore the original rhythm (mt-7 above / mt-3
+				// below) and ease the margin shift so it doesn't jump on tap.
+				if (canAnimate) {
+					const marginTransition = `margin-top ${duration}ms ${easeOut}`;
+					if (filtersWrapper instanceof HTMLElement) filtersWrapper.style.transition = marginTransition;
+					if (seriesGrid instanceof HTMLElement) seriesGrid.style.transition = marginTransition;
+				}
+				if (filtersWrapper instanceof HTMLElement) {
+					filtersWrapper.classList.remove("mt-3");
+					filtersWrapper.classList.add("mt-7");
+				}
+				if (seriesGrid instanceof HTMLElement) {
+					seriesGrid.classList.remove("mt-1");
+					seriesGrid.classList.add("mt-3");
+				}
+
+				if (!canAnimate) {
+					if (typeof controls.animate === "function") {
+						controls.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150, easing: "ease" });
+					}
+					filtersToggle.remove();
+					return;
+				}
+
+				const targetHeight = controls.scrollHeight;
+				const buttonHeight = filtersToggle.offsetHeight;
+				const previousOverflow = controls.style.overflow;
+
+				controls.style.overflow = "hidden";
+				controls
+					.animate(
+						[
+							{ height: "0px", opacity: 0, transform: "translateY(-4px)" },
+							{ height: targetHeight + "px", opacity: 1, transform: "translateY(0)" }
+						],
+						{ duration, easing: easeOut }
+					)
+					.addEventListener("finish", () => {
+						controls.style.overflow = previousOverflow;
+						if (filtersWrapper instanceof HTMLElement) filtersWrapper.style.transition = "";
+						if (seriesGrid instanceof HTMLElement) seriesGrid.style.transition = "";
+					});
+
+				filtersToggle.style.overflow = "hidden";
+				filtersToggle
+					.animate(
+						[
+							{ height: buttonHeight + "px", opacity: 1 },
+							{ height: "0px", opacity: 0, paddingTop: "0px", paddingBottom: "0px" }
+						],
+						{ duration, easing: easeOut, fill: "forwards" }
+					)
+					.addEventListener("finish", () => filtersToggle.remove());
+			});
 		}
 
 		const searchInput = root.querySelector("[data-photography-search]");

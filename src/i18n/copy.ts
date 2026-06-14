@@ -63,6 +63,7 @@ export interface PhotographyPageCopy {
 	lead: string;
 	searchPlaceholder: string;
 	searchAriaLabel: string;
+	filtersToggleLabel: string;
 	clearSearchAriaLabel: string;
 	countryAriaLabel: string;
 	allCountriesLabel: string;
@@ -156,6 +157,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			lead: "This is an archive of photos taken with my Fujifilm X-E4. It’s built series by series, with every collection kept in sequence to preserve the feeling of time, place, and movement.",
 			searchPlaceholder: "Search by place, title, or year",
 			searchAriaLabel: "Search photography series",
+			filtersToggleLabel: "Search & filters",
 			clearSearchAriaLabel: "Clear search",
 			countryAriaLabel: "Filter by country",
 			allCountriesLabel: "All countries",
@@ -239,6 +241,7 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			lead: "Архив фотографий, снятых в основном на Fujifilm X-E4 и плёнку. Он сформирован по локациям и расположен в хронологическом порядке. Для удобства есть поиск с фильтрами.",
 			searchPlaceholder: "Поиск по месту, названию или году",
 			searchAriaLabel: "Искать серии фотографий",
+			filtersToggleLabel: "Поиск и фильтры",
 			clearSearchAriaLabel: "Очистить поиск",
 			countryAriaLabel: "Фильтр по стране",
 			allCountriesLabel: "Все страны",
