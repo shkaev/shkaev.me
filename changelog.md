@@ -4,6 +4,20 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-06-14</span></p>
+
+## Mobile polish for the "Deal with it" tool and dark theme
+
+<p class="changelog-label changelog-label--fixed">Fixed</p>
+
+- The "Deal with it" GIF maker now runs smoothly on phones — heavy decorative animations are frozen on touch devices and the editor stays responsive while dragging the glasses or moving the sliders.
+- Reworked the tool's mobile editor so the top controls no longer overlap and the "Create GIF" button stays within the screen.
+- Cleaned up dark-theme colors so the photo navigation buttons no longer appeared white.
+
+<p class="changelog-label changelog-label--improved">Improved</p>
+
+- On phones, the photography filters now tuck behind a toggle to save space.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-06-13</span></p>
 
 ## Ran a full site audit with Fable
