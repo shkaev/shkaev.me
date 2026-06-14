@@ -121,12 +121,12 @@ if (currentRow.length > 0) {
 	<section class="w-full">
 		<BackLink href={photoRootPath} label={copy.photography.eyebrow} restoreTarget={photoRootPath} />
 		<h1
-			class="mt-6 text-4xl font-semibold tracking-tight text-balance text-stone-950 sm:text-5xl md:text-6xl"
+			class="mt-6 text-4xl font-semibold tracking-tight text-balance text-ink sm:text-5xl md:text-6xl"
 			data-page-title
 		>
 			{localizedTitle}
 		</h1>
-		<p class="mt-3 inline-flex flex-wrap items-center gap-2 text-sm leading-7 text-stone-700 sm:text-base">
+		<p class="mt-3 inline-flex flex-wrap items-center gap-2 text-sm leading-7 text-ink-muted sm:text-base">
 			{
 				flagSrc && (
 					<span
@@ -142,7 +142,7 @@ if (currentRow.length > 0) {
 							class="block size-full rounded-xs object-cover shadow-2xs"
 						/>
 						{isCyprus ? (
-							<span class="pointer-events-none absolute inset-0 rounded-xs border border-stone-200/80"></span>
+							<span class="pointer-events-none absolute inset-0 rounded-xs border border-line/80"></span>
 						) : (
 							<span class="pointer-events-none absolute inset-0 rounded-xs border border-black/50 mix-blend-overlay"></span>
 						)}
@@ -150,14 +150,14 @@ if (currentRow.length > 0) {
 				)
 			}
 			<span>{localizedTimeframe}</span>
-			<span class="text-stone-500">·</span>
+			<span class="text-ink-subtle">·</span>
 			<span>{copy.photography.framesLabel(photos.length)}</span>
 		</p>
 		{
 			localizedIntro && (
 				<>
 					<div class="mt-5 h-px w-full bg-stone-200/80"></div>
-					<p class="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
+					<p class="mt-5 text-base leading-8 text-ink-muted sm:text-lg">
 						{localizedIntro}
 					</p>
 				</>
@@ -280,8 +280,8 @@ if (currentRow.length > 0) {
 									data-hover-card
 									class="group photo-nav-pill"
 								>
-									<ArrowLeftIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
-									<p class="min-w-0 truncate text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
+									<ArrowLeftIcon class="h-4 w-4 shrink-0 text-ink-subtle transition-colors group-hover:text-stone-900" />
+									<p class="min-w-0 truncate text-sm leading-7 text-ink-muted transition-colors group-hover:text-stone-900 sm:text-base">
 										{resolveLocalizedPhotoSeriesTitle(previousSeries.data.title, locale)}
 									</p>
 								</a>
@@ -292,8 +292,8 @@ if (currentRow.length > 0) {
 									data-hover-card
 									class="group photo-nav-pill"
 								>
-									<ArrowLeftIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
-									<p class="min-w-0 truncate text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
+									<ArrowLeftIcon class="h-4 w-4 shrink-0 text-ink-subtle transition-colors group-hover:text-stone-900" />
+									<p class="min-w-0 truncate text-sm leading-7 text-ink-muted transition-colors group-hover:text-stone-900 sm:text-base">
 										{copy.photography.eyebrow}
 									</p>
 								</a>
@@ -306,10 +306,10 @@ if (currentRow.length > 0) {
 									data-hover-card
 									class="group photo-nav-pill justify-end"
 								>
-									<p class="min-w-0 flex-1 truncate text-right text-sm leading-7 text-stone-700 transition-colors group-hover:text-stone-900 sm:text-base">
+									<p class="min-w-0 flex-1 truncate text-right text-sm leading-7 text-ink-muted transition-colors group-hover:text-stone-900 sm:text-base">
 										{resolveLocalizedPhotoSeriesTitle(nextSeries.data.title, locale)}
 									</p>
-									<ArrowRightIcon class="h-4 w-4 shrink-0 text-stone-500 transition-colors group-hover:text-stone-900" />
+									<ArrowRightIcon class="h-4 w-4 shrink-0 text-ink-subtle transition-colors group-hover:text-stone-900" />
 								</a>
 							)
 						}

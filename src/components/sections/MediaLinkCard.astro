@@ -26,7 +26,7 @@ const {
 
 const isInteractive = Boolean(href);
 const rootClass = [
-	"group grid w-full grid-cols-1 overflow-hidden rounded-xl border border-stone-200/70 bg-white shadow-[0_1px_0_rgba(28,25,23,0.04)] transition-colors sm:min-h-32 sm:grid-cols-[9rem_minmax(0,1fr)_2.5rem] sm:items-center sm:gap-x-7 sm:p-4",
+	"group grid w-full grid-cols-1 overflow-hidden rounded-xl border border-line/70 bg-surface-raised shadow-hairline transition-colors sm:min-h-32 sm:grid-cols-[9rem_minmax(0,1fr)_2.5rem] sm:items-center sm:gap-x-7 sm:p-4",
 	isInteractive ? "hover:border-stone-300/80" : "",
 	className
 ];
@@ -43,7 +43,7 @@ const imageClass = [
 			data-hover-card
 			class:list={rootClass}
 		>
-			<div class="aspect-[16/9] overflow-hidden bg-stone-100 sm:-my-4 sm:-ml-4 sm:aspect-auto sm:self-stretch">
+			<div class="aspect-[16/9] overflow-hidden bg-surface-muted sm:-my-4 sm:-ml-4 sm:aspect-auto sm:self-stretch">
 				<img
 					src={imageSrc}
 					alt={imageAlt}
@@ -67,20 +67,20 @@ const imageClass = [
 					)}
 					<span class="truncate">{title}</span>
 				</CardTitle>
-				<p class="mt-1 text-xs leading-5 text-stone-700 sm:text-sm">
+				<p class="mt-1 text-xs leading-5 text-ink-muted sm:text-sm">
 					{description}
 				</p>
 			</div>
 			<span
 				data-card-accent
-				class="hidden h-10 w-10 items-center justify-center self-center text-stone-400 transition-colors group-hover:text-stone-700 sm:flex"
+				class="hidden h-10 w-10 items-center justify-center self-center text-ink-faint transition-colors group-hover:text-stone-700 sm:flex"
 			>
 				<ChevronRightIcon class="h-5 w-5" />
 			</span>
 		</a>
 	) : (
 		<div class:list={rootClass}>
-			<div class="aspect-[16/9] overflow-hidden bg-stone-100 sm:-my-4 sm:-ml-4 sm:aspect-auto sm:self-stretch">
+			<div class="aspect-[16/9] overflow-hidden bg-surface-muted sm:-my-4 sm:-ml-4 sm:aspect-auto sm:self-stretch">
 				<img
 					src={imageSrc}
 					alt={imageAlt}
@@ -92,7 +92,7 @@ const imageClass = [
 				<CardTitle as="h4" class="min-w-0">
 					<span class="truncate">{title}</span>
 				</CardTitle>
-				<p class="mt-1 text-xs leading-5 text-stone-700 sm:text-sm">
+				<p class="mt-1 text-xs leading-5 text-ink-muted sm:text-sm">
 					{description}
 				</p>
 			</div>

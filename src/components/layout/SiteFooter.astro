@@ -13,12 +13,12 @@ const { isHomePage, socialLinks, tagline } = Astro.props;
 
 <footer
 	class:list={[
-		"w-full border-t border-stone-200/80 dark:border-stone-800/80",
+		"w-full border-t border-line/80",
 		isHomePage ? "mt-auto" : "mt-8"
 	]}
 >
 	<div class:list={[
-		"mx-auto flex w-full flex-col gap-4 text-sm text-stone-500 dark:text-stone-400 sm:flex-row sm:items-center sm:justify-between",
+		"mx-auto flex w-full flex-col gap-4 text-sm text-ink-subtle sm:flex-row sm:items-center sm:justify-between",
 		isHomePage ? "pt-4 sm:pt-6" : "pt-6",
 		shellWidthClass
 		]}>
@@ -40,7 +40,7 @@ const { isHomePage, socialLinks, tagline } = Astro.props;
 						aria-label={item.label}
 						data-footer-icon
 						class:list={[
-							"relative flex items-center justify-center text-stone-500 transition hover:text-stone-950",
+							"relative flex items-center justify-center text-ink-subtle transition hover:text-stone-950",
 							isHomePage ? "h-12 w-12 sm:h-10 sm:w-10" : "h-10 w-10"
 						]}
 					>

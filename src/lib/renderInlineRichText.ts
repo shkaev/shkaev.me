@@ -9,7 +9,7 @@ const escapeHtml = (value: string) =>
 export const renderInlineRichText = (value: string) =>
 	escapeHtml(value).replaceAll(
 		/\*\*(.+?)\*\*/g,
-		'<strong class="font-bold text-stone-950 dark:text-stone-50">$1</strong>'
+		'<strong class="font-bold text-ink">$1</strong>'
 	);
 
 export const renderRecommendationQuote = (value: string) =>

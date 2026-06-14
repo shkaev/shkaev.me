@@ -114,13 +114,13 @@ const renderedSeries = series.map((entry, index, entries) => {
 									aria-label={copy.photography.searchAriaLabel}
 								data-hover-card
 								data-photography-search
-								class="h-11 rounded-full border border-stone-200/80 bg-white px-4 pr-11 text-[0.96rem] text-stone-900 outline-none shadow-[inset_0_1px_2px_rgba(120,113,108,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] transition placeholder:text-stone-500 hover:border-stone-300 focus:border-stone-300 focus:bg-white focus:shadow-[inset_0_1px_2px_rgba(120,113,108,0.1),0_0_0_1px_rgba(255,255,255,0.75)] dark:bg-stone-900 dark:text-stone-100 dark:placeholder:text-stone-400 dark:shadow-[inset_0_1px_2px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.05)] dark:focus:border-[rgb(120_113_108)] dark:focus:bg-stone-900 dark:focus:shadow-[inset_0_1px_2px_rgba(0,0,0,0.42),0_0_0_1px_rgba(87,83,78,0.5)]"
+								class="h-11 rounded-full border border-line/80 bg-surface-raised px-4 pr-11 text-[0.96rem] text-ink-base outline-none shadow-[inset_0_1px_2px_rgba(120,113,108,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] transition placeholder:text-stone-500 hover:border-stone-300 focus:border-stone-300 focus:bg-white focus:shadow-[inset_0_1px_2px_rgba(120,113,108,0.1),0_0_0_1px_rgba(255,255,255,0.75)] dark:placeholder:text-stone-400 dark:shadow-[inset_0_1px_2px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.05)] dark:focus:border-[rgb(120_113_108)] dark:focus:bg-stone-900 dark:focus:shadow-[inset_0_1px_2px_rgba(0,0,0,0.42),0_0_0_1px_rgba(87,83,78,0.5)]"
 							/>
 								<button
 									type="button"
 									aria-label={copy.photography.clearSearchAriaLabel}
 								data-search-clear
-									class="group absolute inset-y-0 right-1.5 my-auto hidden size-8 cursor-pointer items-center justify-center rounded-full text-stone-400 transition-colors hover:bg-stone-100 hover:text-stone-700 dark:text-stone-500 dark:hover:bg-stone-800"
+									class="group absolute inset-y-0 right-1.5 my-auto hidden size-8 cursor-pointer items-center justify-center rounded-full text-ink-faint transition-colors hover:bg-stone-100 hover:text-stone-700 dark:hover:bg-stone-800"
 							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -237,16 +237,16 @@ const renderedSeries = series.map((entry, index, entries) => {
 			data-empty-state
 			hidden
 		>
-					<h3 class="text-xl tracking-tight text-stone-900 sm:text-[2.125rem] dark:text-stone-100">
+					<h3 class="text-xl tracking-tight text-ink-base sm:text-[2.125rem]">
 						{copy.photography.emptyStateTitle}
 					</h3>
-					<p class="mt-1.5 text-sm text-stone-500">
+					<p class="mt-1.5 text-sm text-ink-subtle">
 						{copy.photography.emptyStateDescription}
 					</p>
 			<button
 				type="button"
 				data-clear-all
-					class="mt-6 inline-flex h-11 cursor-pointer items-center justify-center rounded-full border border-stone-300 bg-white px-5 text-sm font-medium text-stone-900 transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-100 dark:hover:border-stone-500 dark:hover:bg-stone-700"
+					class="mt-6 inline-flex h-11 cursor-pointer items-center justify-center rounded-full border border-stone-300 bg-surface-raised px-5 text-sm font-medium text-ink-base transition-colors hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-500 dark:hover:bg-stone-700"
 				>
 					{copy.photography.clearAllLabel}
 				</button>
@@ -278,7 +278,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 												xmlns="http://www.w3.org/2000/svg"
 												viewBox="0 0 16 16"
 												fill="currentColor"
-												class="size-4 shrink-0 text-stone-500 dark:text-stone-400"
+												class="size-4 shrink-0 text-ink-subtle"
 												aria-hidden="true"
 											>
 												<path
@@ -287,7 +287,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 													clip-rule="evenodd"
 												/>
 											</svg>
-											<span class="shrink-0 text-sm font-medium tracking-tight text-stone-500 dark:text-stone-400">
+											<span class="shrink-0 text-sm font-medium tracking-tight text-ink-subtle">
 												{formatYearLabel(currentYear)}
 											</span>
 										</span>
@@ -304,9 +304,9 @@ const renderedSeries = series.map((entry, index, entries) => {
 								data-sort-order={String(entry.data.sortOrder)}
 								data-title={entry.data.title}
 								data-search-index={searchIndex}
-								class="group flex flex-col overflow-visible rounded-xl border border-stone-200/80 bg-white transition-colors hover:border-stone-300"
+								class="group flex flex-col overflow-visible rounded-xl border border-line/80 bg-surface-raised transition-colors hover:border-stone-300"
 							>
-								<div class="overflow-hidden rounded-t-[12px] bg-stone-100">
+								<div class="overflow-hidden rounded-t-[12px] bg-surface-muted">
 									<img
 										src={cardCoverSrc}
 										alt={entry.data.title}
@@ -316,7 +316,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 									/>
 								</div>
 									<div class="min-w-0 p-5 xl:p-4">
-										<p class="inline-flex flex-wrap items-center gap-2 text-sm text-stone-500 xl:text-[0.82rem]">
+										<p class="inline-flex flex-wrap items-center gap-2 text-sm text-ink-subtle xl:text-[0.82rem]">
 										<span class="inline-flex items-center gap-2">
 											{
 												flagSrc && (
@@ -335,7 +335,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 															class="block size-full rounded-xs object-cover shadow-2xs"
 														/>
 														{isCyprus ? (
-															<span class="pointer-events-none absolute inset-0 rounded-xs border border-stone-200/80"></span>
+															<span class="pointer-events-none absolute inset-0 rounded-xs border border-line/80"></span>
 														) : (
 															<span class="pointer-events-none absolute inset-0 rounded-xs border border-black/50 mix-blend-overlay"></span>
 														)}
@@ -344,11 +344,11 @@ const renderedSeries = series.map((entry, index, entries) => {
 											}
 										</span>
 											<span>{formatPhotoTimeframe(entry.data.timeframe, locale)}</span>
-											<span class="text-stone-500">·</span>
+											<span class="text-ink-subtle">·</span>
 											<span>{copy.photography.framesLabel(entry.data.photos.length)}</span>
 										</p>
 										<div class="mt-px">
-											<h2 class="min-w-0 text-xl tracking-tight text-stone-950 sm:text-2xl xl:text-[1.42rem]">
+											<h2 class="min-w-0 text-xl tracking-tight text-ink sm:text-2xl xl:text-[1.42rem]">
 													{resolveLocalizedPhotoSeriesTitle(entry.data.title, locale)}
 												</h2>
 										</div>
@@ -438,7 +438,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 				icon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 				icon.setAttribute("viewBox", "0 0 16 16");
 				icon.setAttribute("fill", "currentColor");
-				icon.setAttribute("class", "size-4 shrink-0 text-stone-500 dark:text-stone-400");
+				icon.setAttribute("class", "size-4 shrink-0 text-ink-subtle");
 				icon.setAttribute("aria-hidden", "true");
 
 				path.setAttribute("fill-rule", "evenodd");
@@ -450,7 +450,7 @@ const renderedSeries = series.map((entry, index, entries) => {
 				icon.append(path);
 
 				label.className =
-					"shrink-0 text-sm font-medium tracking-tight text-stone-500 dark:text-stone-400";
+					"shrink-0 text-sm font-medium tracking-tight text-ink-subtle";
 				label.textContent = year === "2003" ? "Legacy" : year;
 
 				line.className = "h-px w-full bg-stone-200/80 dark:bg-stone-800/80";

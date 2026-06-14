@@ -25,11 +25,11 @@ const {
 const hasBodySlot = Astro.slots.has("default");
 ---
 
-<div class:list={["max-w-3xl border-l border-stone-200 py-2 pl-6", className]}>
+<div class:list={["max-w-3xl border-l border-line py-2 pl-6", className]}>
 	<MicroLabel class={labelClass}>
 		<span class="inline-flex items-center gap-2">
 			<slot name="label-prefix" />
-			<span class="text-stone-950">{label}</span>
+			<span class="text-ink">{label}</span>
 		</span>
 	</MicroLabel>
 	<DisplayCallout class:list={["mt-2 text-balance text-[1.28rem] leading-normal sm:text-[1.45rem]", titleClass]}>
@@ -37,12 +37,12 @@ const hasBodySlot = Astro.slots.has("default");
 	</DisplayCallout>
 	{
 		hasBodySlot ? (
-			<div class:list={["mt-3 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]", bodyClass]}>
+			<div class:list={["mt-3 text-[1rem] leading-[1.78] text-ink-muted sm:text-[1.06rem] sm:leading-[1.72]", bodyClass]}>
 				<slot />
 			</div>
 		) : (
 			body && (
-			<p class:list={["mt-3 text-[1rem] leading-[1.78] text-stone-700 sm:text-[1.06rem] sm:leading-[1.72]", bodyClass]}>
+			<p class:list={["mt-3 text-[1rem] leading-[1.78] text-ink-muted sm:text-[1.06rem] sm:leading-[1.72]", bodyClass]}>
 				{body}
 			</p>
 			)

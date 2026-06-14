@@ -109,7 +109,7 @@ export const setupRecommendationSlider = () => {
 
 				const measurementText = document.createElement("p");
 				measurementText.className =
-					"text-[1.7rem] font-medium leading-[1.26] tracking-tight text-stone-950 sm:text-[2.2rem] sm:leading-[1.28]";
+					"text-[1.7rem] font-medium leading-[1.26] tracking-tight text-ink sm:text-[2.2rem] sm:leading-[1.28]";
 				measurementNode.append(measurementText);
 				document.body.append(measurementNode);
 

@@ -366,6 +366,23 @@
 	/* Content column and page shell widths. */
 	--container-content: 60rem;
 	--container-shell: 81.25rem;
+
+	/* Semantic color tokens. Light values here; dark overrides in @layer base
+	   under html.dark. These replace the old per-utility dark remap block. */
+	--color-surface: #fafaf9;
+	--color-surface-raised: #ffffff;
+	--color-surface-muted: #f5f5f4;
+	--color-surface-sunken: #e7e5e4;
+	--color-ink: #0c0a09;
+	--color-ink-base: #1c1917;
+	--color-ink-muted: #44403c;
+	--color-ink-soft: #57534e;
+	--color-ink-subtle: #78716c;
+	--color-ink-faint: #a8a29e;
+	--color-line: #e7e5e4;
+
+	/* Hairline card shadow (flips to a darker shadow in dark mode). */
+	--shadow-hairline: 0 1px 0 rgba(28, 25, 23, 0.04);
 }
 
 @layer base {
@@ -379,6 +396,19 @@
 
 	html.dark {
 		background-color: #0c0a09;
+
+		/* Dark values for the semantic color tokens (see @theme above). */
+		--color-surface: #0c0a09;
+		--color-surface-raised: rgb(28 25 23 / 0.9);
+		--color-surface-muted: #292524;
+		--color-surface-sunken: #44403c;
+		--color-ink: #fafaf9;
+		--color-ink-base: #fafaf9;
+		--color-ink-muted: #d6d3d1;
+		--color-ink-soft: #d6d3d1;
+		--color-ink-subtle: #a8a29e;
+		--color-ink-faint: #78716c;
+		--color-line: rgb(68 64 60 / 0.9);
 	}
 
 	body {
@@ -525,10 +555,6 @@
 		color: rgb(250 250 249);
 	}
 
-	.dark [data-footer-icon] {
-		color: rgb(120 113 108);
-	}
-
 	.dark [data-footer-icon]:hover {
 		color: rgb(250 250 249);
 	}
@@ -588,10 +614,6 @@
 
 	.dark [data-divider-link] {
 		color: rgb(168 162 158);
-	}
-
-	.dark [data-divider-line] {
-		background-color: rgb(68 64 60 / 0.9);
 	}
 
 	.dark [data-divider-link]:hover {
@@ -707,41 +729,6 @@
 		}
 	}
 
-	.dark .bg-stone-50 {
-		background-color: rgb(12 10 9);
-	}
-
-	.dark .bg-white,
-	.dark .bg-white\/80 {
-		background-color: rgb(28 25 23 / 0.9);
-	}
-
-	.dark .bg-stone-100 {
-		background-color: rgb(41 37 36);
-	}
-
-	.dark .bg-stone-200 {
-		background-color: rgb(68 64 60);
-	}
-
-	.dark .text-stone-950,
-	.dark .text-stone-900 {
-		color: rgb(250 250 249);
-	}
-
-	.dark .text-stone-700,
-	.dark .text-stone-600 {
-		color: rgb(214 211 209);
-	}
-
-	.dark .text-stone-500 {
-		color: rgb(168 162 158);
-	}
-
-	.dark .text-stone-400 {
-		color: rgb(120 113 108);
-	}
-
 	.dark .filter-select-pill {
 		background-image: linear-gradient(
 			180deg,
@@ -798,17 +785,7 @@
 		box-shadow: 0 1px 0 rgb(0 0 0 / 0.35);
 	}
 
-	.dark .border-stone-200,
-	.dark .border-stone-200\/80,
-	.dark .border-stone-200\/70 {
-		border-color: rgb(68 64 60 / 0.9);
-	}
-
-	.dark .ring-stone-200\/80 {
-		--tw-ring-color: rgb(68 64 60 / 0.9);
-	}
-
-	.dark .shadow-\[0_1px_0_rgba\(28\2c 25\2c 23\2c 0\.04\)\] {
+	.dark .shadow-hairline {
 		box-shadow: 0 1px 0 rgb(0 0 0 / 0.35);
 	}
 }
