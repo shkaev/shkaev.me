@@ -804,6 +804,9 @@ export const initDealWithIt = () => {
 	let dragStartOffset: Point | null = null;
 	let dragScale = { x: 1, y: 1 };
 	let uploadDragDepth = 0;
+	let overlayRenderHandle: number | null = null;
+	let lastOverlaySrc: string | null = null;
+	let lastPreviewSrc: string | null = null;
 
 	const syncSliderProgress = (slider: HTMLInputElement) => {
 		const min = Number.parseFloat(slider.min);
@@ -825,13 +828,13 @@ export const initDealWithIt = () => {
 		resultScreen.hidden = step !== "result";
 	};
 
-	const updateSelectedGlasses = () => {
+	const recomputePlacement = () => {
 		const selected = config.glasses.find(
 			(item) => item.id === state.selectedGlassesId
 		);
 
 		if (!selected || !state.faceGeometry || !state.previewSize) {
-			return;
+			return null;
 		}
 
 		const autoPlacement = buildPlacement(
@@ -851,12 +854,33 @@ export const initDealWithIt = () => {
 			state.manualOffset
 		);
 
-		overlayImage.src = selected.src;
+		return selected;
+	};
+
+	const writeOverlayGeometry = () => {
+		if (!state.placement) {
+			return;
+		}
+
 		overlayImage.style.left = `${state.placement.x * 100}%`;
 		overlayImage.style.top = `${state.placement.y * 100}%`;
 		overlayImage.style.width = `${state.placement.width * 100}%`;
 		overlayImage.style.height = `${state.placement.height * 100}%`;
 		overlayImage.style.transform = `rotate(${state.manualRotation}deg)`;
+	};
+
+	const updateSelectedGlasses = () => {
+		const selected = recomputePlacement();
+
+		if (!selected) {
+			return;
+		}
+
+		if (lastOverlaySrc !== selected.src) {
+			overlayImage.src = selected.src;
+			lastOverlaySrc = selected.src;
+		}
+		writeOverlayGeometry();
 
 		for (const button of glassesButtons) {
 			if (!(button instanceof HTMLButtonElement)) {
@@ -867,6 +891,22 @@ export const initDealWithIt = () => {
 				? "true"
 				: "false";
 		}
+	};
+
+	// During drag / slider scrubbing only the overlay geometry changes. Update
+	// just that (coalesced to one write per animation frame) instead of running
+	// the full syncUi(), which re-assigns image sources and rewrites unrelated
+	// DOM every frame and stutters on mobile.
+	const scheduleInteractiveRender = () => {
+		if (overlayRenderHandle !== null) {
+			return;
+		}
+
+		overlayRenderHandle = window.requestAnimationFrame(() => {
+			overlayRenderHandle = null;
+			recomputePlacement();
+			writeOverlayGeometry();
+		});
 	};
 
 	const switchGlassesPreservingPlacement = (nextGlassesId: string) => {
@@ -946,7 +986,10 @@ export const initDealWithIt = () => {
 		syncSliderProgress(scaleSlider);
 		syncSliderProgress(rotationSlider);
 		if (state.previewDataUrl) {
-			previewImage.src = state.previewDataUrl;
+			if (lastPreviewSrc !== state.previewDataUrl) {
+				previewImage.src = state.previewDataUrl;
+				lastPreviewSrc = state.previewDataUrl;
+			}
 			updateSelectedGlasses();
 		}
 		if (state.generatedGifUrl) {
@@ -984,6 +1027,8 @@ export const initDealWithIt = () => {
 		previewImage.removeAttribute("src");
 		overlayImage.removeAttribute("src");
 		resultImage.removeAttribute("src");
+		lastPreviewSrc = null;
+		lastOverlaySrc = null;
 		scaleSlider.value = "0";
 		rotationSlider.value = "0";
 		uploadDragDepth = 0;
@@ -1276,7 +1321,7 @@ export const initDealWithIt = () => {
 		const rawValue = Number.parseFloat(scaleSlider.value);
 		state.manualScale = mapScaleSliderValueToMultiplier(rawValue);
 		syncSliderProgress(scaleSlider);
-		syncUi();
+		scheduleInteractiveRender();
 	});
 
 	scaleSlider.addEventListener("dblclick", (event) => {
@@ -1291,7 +1336,7 @@ export const initDealWithIt = () => {
 	rotationSlider.addEventListener("input", () => {
 		state.manualRotation = -(Number.parseFloat(rotationSlider.value) || 0);
 		syncSliderProgress(rotationSlider);
-		syncUi();
+		scheduleInteractiveRender();
 	});
 
 	rotationSlider.addEventListener("dblclick", (event) => {
@@ -1328,7 +1373,7 @@ export const initDealWithIt = () => {
 				dragStartOffset.y +
 				(event.clientY - dragStartPointer.y) * dragScale.y
 		};
-		syncUi();
+		scheduleInteractiveRender();
 	};
 
 	const finishDrag = (event: PointerEvent) => {

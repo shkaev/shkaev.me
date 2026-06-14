@@ -1312,6 +1312,19 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 			width: min(100%, calc(100vw - 1rem));
 		}
 
+		/* Push only the title text clear of the fixed top controls; the rays
+		   SVG is absolutely anchored to the wrap, so it stays put. */
+		.dwi-upload-title-wrap .dwi-title {
+			margin-top: 5.5rem;
+		}
+
+		/* Lower the rest of the upload content (dog, button, notes, bubble) to
+		   match the lowered title. It's the centered grid item, so a translate
+		   shifts the whole block down without disturbing the rays. */
+		.dwi-upload-dropzone {
+			transform: translateY(3rem);
+		}
+
 		.dwi-result-title-wrap {
 			top: 3.25rem;
 			width: min(100%, calc(100vw - 1rem));
@@ -1526,6 +1539,36 @@ const stackedSecondaryButtonClass = "dwi-secondary-flat dwi-secondary-flat--wide
 
 		to {
 			transform: translate(-50%, -50%) rotate(0deg);
+		}
+	}
+
+	@media (pointer: coarse), (max-width: 48rem) {
+		/* Touch / small-viewport devices run a mobile-class GPU. Every continuous
+		   decorative animation here re-rasterizes a blurred or filtered region
+		   each frame: the ray polygons animate opacity *inside* an SVG Gaussian
+		   blur, the title shifts a clipped-text gradient, and the result rays
+		   spin a huge blurred conic gradient. Freeze them all — the page keeps
+		   its colour and layered look, it just stops repainting 60×/sec. Static
+		   blurs/filters paint once and are cached, so we leave those intact. */
+		.dwi-ray,
+		.dwi-ray-core,
+		.dwi-title,
+		.dwi-title-trail--a,
+		.dwi-title-trail--b,
+		.dwi-title-trail--c {
+			animation: none;
+		}
+
+		.dwi-result-media-stack::before,
+		.dwi-result-media-stack::after {
+			/* Static blur on a 140vmax layer still costs memory/paint; drop it. */
+			animation: none;
+			filter: none;
+		}
+
+		.dwi-preview-frame {
+			/* Recomputes whenever the dragged glasses move over it. */
+			backdrop-filter: none;
 		}
 	}
 
