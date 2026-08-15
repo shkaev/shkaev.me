@@ -4,6 +4,15 @@ This file tracks meaningful production updates to `shkaev.me`.
 Add newer committed work at the top, group updates by date, and describe outcomes rather than raw file churn.
 Use completed/past tense throughout, including entry titles, and do not show commit hashes in visible content.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-08-15</span></p>
+
+## Added a perfume collection page and a homepage illustration
+
+<p class="changelog-label changelog-label--added">Added</p>
+
+- Created "My perfume collection" in Design → Playground.
+- Added an illustration to the homepage next to the intro.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-06-14</span></p>
 
 ## Mobile polish for the "Deal with it" tool and dark theme

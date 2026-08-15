@@ -2,6 +2,15 @@
 
 Этот файл показывает значимые продакшен-обновления `shkaev.me` в русской локали сайта.
 
+<p class="changelog-meta"><span class="changelog-meta__date">2026-08-15</span></p>
+
+## Добавил коллекцию парфюмов и иллюстрацию на главную
+
+<p class="changelog-label changelog-label--added">Добавлено</p>
+
+- Сделал «Коллекцию парфюмов» в разделе Дизайн → Эксперименты.
+- Добавил иллюстрацию на главную страницу рядом с приветствием.
+
 <p class="changelog-meta"><span class="changelog-meta__date">2026-06-14</span></p>
 
 ## Привёл в порядок «Deal with it» и тёмную тему на мобиле
