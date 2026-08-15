@@ -13,20 +13,30 @@ const copy = getSiteCopy(locale);
 	description={copy.home.metaDescription}
 	locale={locale}
 >
-	<PageHero
-		title={copy.home.heroTitle}
-		class="my-auto max-w-4xl"
-	>
-		<p class="type-page-lead mt-4 max-w-3xl text-ink-soft sm:mt-8 sm:leading-8">
-			{copy.home.introBeforePhotos}<a
-				href={localizePath("/photography", locale)}
-				class="text-link"
-			>{copy.home.photosLabel}</a>{copy.home.introBeforeHighlights}<a
-				href={localizePath("/design", locale)}
-				class="text-link"
-			>{copy.home.highlightsLabel}</a>{copy.home.introBeforeAbout}<a href={localizePath("/about", locale)} class="text-link"
-				>{copy.home.aboutLabel}</a
-			>{copy.home.introAfterAbout}
-		</p>
-	</PageHero>
+	<div class="my-auto flex w-full flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+		<PageHero
+			title={copy.home.heroTitle}
+			class="max-w-4xl lg:max-w-2xl"
+		>
+			<p class="type-page-lead mt-4 max-w-3xl text-ink-soft sm:mt-8 sm:leading-8">
+				{copy.home.introBeforePhotos}<a
+					href={localizePath("/photography", locale)}
+					class="text-link"
+				>{copy.home.photosLabel}</a>{copy.home.introBeforeHighlights}<a
+					href={localizePath("/design", locale)}
+					class="text-link"
+				>{copy.home.highlightsLabel}</a>{copy.home.introBeforeAbout}<a href={localizePath("/about", locale)} class="text-link"
+					>{copy.home.aboutLabel}</a
+				>{copy.home.introAfterAbout}
+			</p>
+		</PageHero>
+		<img
+			src="/images/home-hero.webp"
+			alt={copy.home.heroImageAlt}
+			width="896"
+			height="1139"
+			fetchpriority="high"
+			class="w-full max-w-sm shrink-0 rounded-3xl lg:max-w-md"
+		/>
+	</div>
 </SiteLayout>

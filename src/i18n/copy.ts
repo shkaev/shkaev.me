@@ -44,6 +44,7 @@ export interface HomePageCopy {
 	introBeforeAbout: string;
 	aboutLabel: string;
 	introAfterAbout: string;
+	heroImageAlt: string;
 }
 
 export interface DesignPageCopy {
@@ -139,7 +140,9 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			highlightsLabel: "highlights",
 			introBeforeAbout: " of my professional career as a ",
 			aboutLabel: "product designer",
-			introAfterAbout: "."
+			introAfterAbout: ".",
+			heroImageAlt:
+				"Illustrated collage: a portrait of Dima surrounded by the things he loves — a camera, a bicycle, a VR headset, a gamepad, a sailboat, and a city skyline."
 		},
 		design: {
 			metaTitle: "Design | Dmitry Shkaev",
@@ -223,7 +226,9 @@ export const siteCopy: Record<Locale, SiteCopy> = {
 			highlightsLabel: "проектов",
 			introBeforeAbout: " из моей профессиональной карьеры продуктового ",
 			aboutLabel: "дизайнера",
-			introAfterAbout: "."
+			introAfterAbout: ".",
+			heroImageAlt:
+				"Иллюстрированный коллаж: портрет Димы в окружении любимых вещей — камеры, велосипеда, VR-шлема, геймпада, парусника и городского силуэта."
 		},
 		design: {
 			metaTitle: "Дизайн | Дмитрий Шкаев",
