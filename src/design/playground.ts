@@ -28,6 +28,13 @@ const playgroundCardsEn = [
 		href: "/design/playground/deal-with-it",
 		imageSrc: "/images/playground/deal-with-it-dog.gif",
 		imageAlt: "A dog wearing pixel deal-with-it sunglasses."
+	},
+	{
+		title: "My perfume collection",
+		description: "A simple list I made to keep track of what's in stock.",
+		href: "/design/playground/perfume-collection",
+		imageSrc: "/images/playground/perfume-collection-cover.jpg",
+		imageAlt: "A man in traditional Gulf attire admiring a perfume bottle, surrounded by ornate flacons."
 	}
 ] satisfies PlaygroundCardMeta[];
 
@@ -45,6 +52,13 @@ const playgroundCardsRu = [
 		href: "/design/playground/deal-with-it",
 		imageSrc: "/images/playground/deal-with-it-dog.gif",
 		imageAlt: "Собака в пиксельных очках deal with it."
+	},
+	{
+		title: "Коллекция парфюмов",
+		description: "Простой список, который я сделал, чтобы отслеживать, что у меня сейчас есть.",
+		href: "/design/playground/perfume-collection",
+		imageSrc: "/images/playground/perfume-collection-cover.jpg",
+		imageAlt: "Мужчина в традиционном арабском наряде рассматривает флакон парфюма в окружении богато украшенных флаконов."
 	}
 ] satisfies PlaygroundCardMeta[];
 

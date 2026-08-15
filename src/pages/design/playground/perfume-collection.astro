@@ -1,0 +1,14 @@
+---
+import PerfumeCollection from "../../../components/playground/PerfumeCollection.astro";
+import { getPerfumeCollection } from "../../../design/playground/perfume-collection";
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+
+export const prerender = true;
+
+const locale = "en" as const;
+const copy = getPerfumeCollection(locale);
+---
+
+<SiteLayout title={copy.metaTitle} description={copy.metaDescription} locale={locale}>
+	<PerfumeCollection locale={locale} />
+</SiteLayout>

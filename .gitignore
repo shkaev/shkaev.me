@@ -21,6 +21,9 @@ pnpm-debug.log*
 public/photo-imports/
 data/photo-imports/
 
+# perfume collection photos are stored in R2, not in Git
+public/images/playground/perfume-collection/
+
 # macOS-specific files
 .DS_Store
 
