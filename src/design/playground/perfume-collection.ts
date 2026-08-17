@@ -432,6 +432,63 @@ const groups: PerfumeGroupDef[] = [
 				]
 			},
 			{
+				name: "Aurner",
+				brand: "Aesop",
+				href: "https://www.fragrantica.com/perfume/Aesop/Aurner-102299.html",
+				image: "aesop-aurner-hq.jpg",
+				ml: "2",
+				concentration: "EDP",
+				alt: "Aesop Aurner",
+				notesEn: [
+					"Roman chamomile, cardamom, pink pepper",
+					"Magnolia leaf, geranium, cardamom",
+					"Sandalwood, cedar, cypriol"
+				],
+				notesRu: [
+					"Римская ромашка, кардамон, розовый перец",
+					"Лист магнолии, герань, кардамон",
+					"Сандал, кедр, циприол"
+				]
+			},
+			{
+				name: "Tales of Amber",
+				brand: "Goldfield & Banks",
+				href: "https://www.fragrantica.com/perfume/Goldfield-Banks-Australia/Tales-of-Amber-111767.html",
+				image: "goldfield-tales-of-amber-hq.jpg",
+				ml: "2",
+				concentration: "Extrait",
+				alt: "Goldfield & Banks Tales of Amber",
+				notesEn: [
+					"Orange blossom, moss",
+					"Orris, cinnamon, musk",
+					"Labdanum, ambergris, oud"
+				],
+				notesRu: [
+					"Флёрдоранж, мох",
+					"Ирис, корица, мускус",
+					"Лабданум, серая амбра, уд"
+				]
+			},
+			{
+				name: "Silky Woods Elixir",
+				brand: "Goldfield & Banks",
+				href: "https://www.fragrantica.com/perfume/Goldfield-Banks-Australia/Silky-Woods-Elixir-87428.html",
+				image: "goldfield-silky-woods-elixir-hq.jpg",
+				ml: "2",
+				concentration: "Extrait",
+				alt: "Goldfield & Banks Silky Woods Elixir",
+				notesEn: [
+					"Fig, saffron",
+					"Orris, caramel, praline",
+					"Oud, vanilla, guaiac wood"
+				],
+				notesRu: [
+					"Инжир, шафран",
+					"Ирис, карамель, пралине",
+					"Уд, ваниль, гваяковое дерево"
+				]
+			},
+			{
 				name: "Oud for Greatness Neo",
 				brand: "Initio Parfums Privés",
 				href: "https://www.fragrantica.com/perfume/Initio-Parfums-Prives/Oud-for-Greatness-Neo-93090.html",
@@ -875,7 +932,7 @@ const copyByLocale = {
 		metaDescription: "A simple list I made to keep track of what's in stock.",
 		eyebrow: "Design",
 		title: "My perfume collection",
-		lead: "The list changes all the time — I buy some things and sell others. As of the last site update there are 49 items in the set (24 bottles and 25 samples). The long-term goal isn't to pile up a bit of everything, but to find what I truly like and keep about ten.",
+		lead: "The list changes all the time — I buy some things and sell others. As of the last site update there are 52 items in the set (24 bottles and 28 samples). The long-term goal isn't to pile up a bit of everything, but to find what I truly like and keep about ten.",
 		sectionAriaLabel: "Perfume collection",
 		viewerAriaLabel: "Image viewer",
 		openImageLabel: "Open image:"
@@ -885,7 +942,7 @@ const copyByLocale = {
 		metaDescription: "Простой список, который я сделал, чтобы отслеживать, что у меня сейчас есть.",
 		eyebrow: "Дизайн",
 		title: "Коллекция парфюмов",
-		lead: "Список регулярно меняется, что-то покупаю, что-то продаю. На момент последнего обновления сайта в наборе 49 штук (24 флакона и 25 пробников). Долгосрочная цель — не собрать побольше всего подряд, а найти то, что нравится, и оставить штук десять.",
+		lead: "Список регулярно меняется, что-то покупаю, что-то продаю. На момент последнего обновления сайта в наборе 52 штуки (24 флакона и 28 пробников). Долгосрочная цель — не собрать побольше всего подряд, а найти то, что нравится, и оставить штук десять.",
 		sectionAriaLabel: "Парфюмерная коллекция",
 		viewerAriaLabel: "Просмотр изображения",
 		openImageLabel: "Открыть изображение:"
