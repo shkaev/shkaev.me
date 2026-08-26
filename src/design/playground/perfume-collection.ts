@@ -263,25 +263,6 @@ const groups: PerfumeGroupDef[] = [
 				]
 			},
 			{
-				name: "Safari Breeze",
-				brand: "French Avenue",
-				href: "https://www.fragrantica.com/perfume/French-Avenue/Safari-Breeze-118019.html",
-				image: "french-avenue-safari-breeze-hq.jpg",
-				ml: "100",
-				concentration: "Extrait",
-				alt: "French Avenue Safari Breeze",
-				notesEn: [
-					"Grapefruit, blackcurrant, coconut",
-					"Spearmint, jasmine",
-					"Vetiver, amber, oakmoss"
-				],
-				notesRu: [
-					"Грейпфрут, чёрная смородина, кокос",
-					"Мята колосистая, жасмин",
-					"Ветивер, амбра, дубовый мох"
-				]
-			},
-			{
 				name: "Turathi Blue",
 				brand: "Afnan",
 				href: "https://www.fragrantica.com/perfume/Afnan/Turathi-Blue-70839.html",
@@ -291,25 +272,6 @@ const groups: PerfumeGroupDef[] = [
 				alt: "Afnan Turathi Blue",
 				notesEn: ["Citruses", "Woody notes, amber", "Musk, spices, patchouli"],
 				notesRu: ["Цитрусы", "Древесные ноты, амбра", "Мускус, специи, пачули"]
-			},
-			{
-				name: "Freeze",
-				brand: "Riiffs",
-				href: "https://www.fragrantica.com/perfume/Riiffs-Perfumes/Freeze-118093.html",
-				image: "riiffs-freeze-hq.jpg",
-				ml: "100",
-				concentration: "Extrait",
-				alt: "Riiffs Freeze",
-				notesEn: [
-					"Mint, bergamot, grapefruit, snow",
-					"Ice, tea, ginger, sage",
-					"Ambermax, peony, cedar"
-				],
-				notesRu: [
-					"Мята, бергамот, грейпфрут, снег",
-					"Лёд, чай, имбирь, шалфей",
-					"Амбермакс, пион, кедр"
-				]
 			},
 			{
 				name: "Pacific Aura",
@@ -932,7 +894,7 @@ const copyByLocale = {
 		metaDescription: "A simple list I made to keep track of what's in stock.",
 		eyebrow: "Design",
 		title: "My perfume collection",
-		lead: "The list changes all the time — I buy some things and sell others. As of the last site update there are 52 items in the set (24 bottles and 28 samples). The long-term goal isn't to pile up a bit of everything, but to find what I truly like and keep about ten.",
+		lead: "The list changes all the time — I buy some things and sell others. As of the last site update there are 50 items in the set (22 bottles and 28 samples). The long-term goal isn't to pile up a bit of everything, but to find what I truly like and keep about ten.",
 		sectionAriaLabel: "Perfume collection",
 		viewerAriaLabel: "Image viewer",
 		openImageLabel: "Open image:"
@@ -942,7 +904,7 @@ const copyByLocale = {
 		metaDescription: "Простой список, который я сделал, чтобы отслеживать, что у меня сейчас есть.",
 		eyebrow: "Дизайн",
 		title: "Коллекция парфюмов",
-		lead: "Список регулярно меняется, что-то покупаю, что-то продаю. На момент последнего обновления сайта в наборе 52 штуки (24 флакона и 28 пробников). Долгосрочная цель — не собрать побольше всего подряд, а найти то, что нравится, и оставить штук десять.",
+		lead: "Список регулярно меняется, что-то покупаю, что-то продаю. На момент последнего обновления сайта в наборе 50 штук (22 флакона и 28 пробников). Долгосрочная цель — не собрать побольше всего подряд, а найти то, что нравится, и оставить штук десять.",
 		sectionAriaLabel: "Парфюмерная коллекция",
 		viewerAriaLabel: "Просмотр изображения",
 		openImageLabel: "Открыть изображение:"
